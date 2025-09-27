@@ -47,7 +47,7 @@ export default function Contact() {
             Ready to Transform Your Business?
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Let's discuss how Steel Motion can help you leverage AI to streamline operations
+            Let&apos;s discuss how Steel Motion can help you leverage AI to streamline operations
             and drive growth. Your first consultation session is completely free.
           </p>
         </motion.div>
@@ -63,7 +63,7 @@ export default function Contact() {
               <CardHeader>
                 <CardTitle className="text-2xl text-white">Send us a message</CardTitle>
                 <CardDescription className="text-slate-400">
-                  Tell us about your project and we'll get back to you within 24 hours.
+                  Tell us about your project and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -152,7 +152,7 @@ export default function Contact() {
             <div>
               <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
               <p className="text-slate-300 mb-8 leading-relaxed">
-                Ready to start your digital transformation journey? We're here to help.
+                Ready to start your digital transformation journey? We&apos;re here to help.
                 Whether you need AI consulting, custom development, or cybersecurity services,
                 our veteran-led team is ready to deliver results.
               </p>
@@ -194,7 +194,7 @@ export default function Contact() {
               <h4 className="text-lg font-semibold text-white mb-3">Response Time</h4>
               <p className="text-slate-300 text-sm">
                 We typically respond to all inquiries within 24 hours during business days.
-                For urgent matters, please mention "URGENT" in your message subject.
+                For urgent matters, please mention &ldquo;URGENT&rdquo; in your message subject.
               </p>
             </div>
           </motion.div>

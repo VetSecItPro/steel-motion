@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 // --- Data for Steel Motion's Technology Solutions ---
 const accordionItems = [
@@ -73,15 +74,12 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
       onMouseEnter={onMouseEnter}
     >
       {/* Background Image */}
-      <img
+      <Image
         src={item.imageUrl}
         alt={item.title}
-        className="absolute inset-0 w-full h-full object-cover"
-        onError={(e) => {
-          const target = e.target as HTMLImageElement;
-          target.onerror = null;
-          target.src = 'https://placehold.co/400x450/1a3a5c/00F2FF?text=Steel+Motion';
-        }}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 60px, 400px"
       />
 
       {/* Gradient overlay for better integration */}

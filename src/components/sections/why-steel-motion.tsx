@@ -45,8 +45,8 @@ export default function WhySteelMotion() {
               The Steel Motion Difference
             </h2>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-              When you choose Steel Motion LLC, you're not just hiring a technology consultant —
-              you're partnering with a team that understands the importance of mission success,
+              When you choose Steel Motion LLC, you&apos;re not just hiring a technology consultant —
+              you&apos;re partnering with a team that understands the importance of mission success,
               operational excellence, and unwavering commitment to results.
             </p>
 
@@ -87,8 +87,8 @@ export default function WhySteelMotion() {
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-4">Our Commitment</h3>
                 <p className="text-slate-300 leading-relaxed">
-                  "In the military, mission failure is not an option. That same dedication
-                  drives everything we do at Steel Motion. Your success is our mission."
+                  &ldquo;In the military, mission failure is not an option. That same dedication
+                  drives everything we do at Steel Motion. Your success is our mission.&rdquo;
                 </p>
               </div>
 
