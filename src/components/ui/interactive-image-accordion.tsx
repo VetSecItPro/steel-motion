@@ -80,6 +80,8 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
         fill
         className="object-cover"
         sizes="(max-width: 768px) 60px, 400px"
+        priority={false}
+        unoptimized={false}
       />
 
       {/* Gradient overlay for better integration */}
