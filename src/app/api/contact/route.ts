@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     // Check if API key is configured
     if (!process.env.RESEND_API_KEY) {
       return NextResponse.json(
-        { error: 'Email service not configured. Please contact us directly at vetsecitpro@gmail.com' },
+        { error: 'Email service not configured. Please contact us directly at contact@steelmotionllc.com' },
         { status: 503 }
       );
     }
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'Steel Motion Contact Form <noreply@steelmotionllc.com>',
-      to: ['vetsecitpro@gmail.com'],
+      to: ['contact@steelmotionllc.com'],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
