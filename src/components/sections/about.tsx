@@ -82,7 +82,7 @@ export default function About() {
             <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
               <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Professional Philosophy</h3>
               <blockquote className="text-lg text-white italic mb-4">
-                "Focus beats frenzy every time"
+                &ldquo;Focus beats frenzy every time&rdquo;
               </blockquote>
               <p className="text-[#B3B3B3] leading-relaxed">
                 This guiding principle drives our strategic, intentional approach to technology adoption.
@@ -98,7 +98,7 @@ export default function About() {
                 mentor with ACT NOW EDUCATION, he helps veterans successfully transition into technology careers.
               </p>
               <p className="text-[#B3B3B3] leading-relaxed">
-                His thought leadership includes insights on "The First Artificial Generation" - exploring
+                His thought leadership includes insights on &ldquo;The First Artificial Generation&rdquo; - exploring
                 how the Class of 2026 learned to think alongside machines, shaping the future of AI-human collaboration.
               </p>
             </div>
