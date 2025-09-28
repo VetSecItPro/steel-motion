@@ -1,10 +1,19 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend with API key, fallback to empty string during build
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: 'Email service not configured. Please contact us directly at vetsecitpro@gmail.com' },
+        { status: 503 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, company, message } = body;
 
