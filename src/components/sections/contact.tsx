@@ -173,7 +173,7 @@ export default function Contact() {
                   {submitStatus === 'error' && (
                     <div className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg">
                       <p className="font-medium">❌ Failed to send message</p>
-                      <p className="text-sm opacity-90">Please try again or contact us directly at vetsecitpro@gmail.com</p>
+                      <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
                     </div>
                   )}
                 </form>
@@ -204,7 +204,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-white">Email</p>
-                  <p className="text-slate-400">vetsecitpro@gmail.com</p>
+                  <p className="text-slate-400">contact@steelmotionllc.com</p>
                 </div>
               </div>
 
