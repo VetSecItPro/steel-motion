@@ -97,36 +97,43 @@ export default function Navbar() {
                 Provided Solutions
               </button>
               {/* Dropdown menu */}
-              <div className="absolute top-full left-0 mt-2 w-64 bg-[#1a3a5c] border border-[#0a1728] rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <div className="absolute top-full left-0 mt-2 w-72 bg-[#1a3a5c] border border-[#0a1728] rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <div className="p-4 space-y-3">
-                  <button
-                    onClick={() => scrollToSection('services')}
+                  <Link
+                    href="/services/ai-transformation"
                     className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
                   >
-                    <div className="font-medium">AI Transformation</div>
-                    <div className="text-sm text-[#666666]">Automation & Process Optimization</div>
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('services')}
+                    <div className="font-medium">AI Transformation & Automation</div>
+                    <div className="text-sm text-[#666666]">Intelligent automation & process optimization</div>
+                  </Link>
+                  <Link
+                    href="/services/cloud-infrastructure"
                     className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
                   >
-                    <div className="font-medium">Cloud Services</div>
-                    <div className="text-sm text-[#666666]">Scalable Infrastructure Solutions</div>
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('services')}
+                    <div className="font-medium">Cloud Infrastructure Solutions</div>
+                    <div className="text-sm text-[#666666]">Scalable cloud architecture & migration</div>
+                  </Link>
+                  <Link
+                    href="/services/cybersecurity"
                     className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
                   >
-                    <div className="font-medium">Cybersecurity Consulting</div>
-                    <div className="text-sm text-[#666666]">Security Assessment & Protection</div>
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('services')}
+                    <div className="font-medium">Cybersecurity & Protection</div>
+                    <div className="text-sm text-[#666666]">Military-grade security solutions</div>
+                  </Link>
+                  <Link
+                    href="/services/custom-development"
                     className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
                   >
-                    <div className="font-medium">Custom Development</div>
-                    <div className="text-sm text-[#666666]">Tailored Application Solutions</div>
-                  </button>
+                    <div className="font-medium">Custom Application Development</div>
+                    <div className="text-sm text-[#666666]">Tailored software solutions</div>
+                  </Link>
+                  <Link
+                    href="/services/data-analytics"
+                    className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
+                  >
+                    <div className="font-medium">Data Analytics & Intelligence</div>
+                    <div className="text-sm text-[#666666]">Business intelligence & insights</div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -167,30 +174,41 @@ export default function Navbar() {
               <div className="space-y-2">
                 <div className="text-[#B3B3B3] font-medium py-2">Provided Solutions</div>
                 <div className="pl-4 space-y-2">
-                  <button
-                    onClick={() => scrollToSection('services')}
+                  <Link
+                    href="/services/ai-transformation"
                     className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
                   >
                     AI Transformation & Automation
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('services')}
+                  </Link>
+                  <Link
+                    href="/services/cloud-infrastructure"
                     className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
                   >
-                    Cloud Services
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('services')}
+                    Cloud Infrastructure Solutions
+                  </Link>
+                  <Link
+                    href="/services/cybersecurity"
                     className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
                   >
-                    Cybersecurity Consulting
-                  </button>
-                  <button
-                    onClick={() => scrollToSection('services')}
+                    Cybersecurity & Protection
+                  </Link>
+                  <Link
+                    href="/services/custom-development"
                     className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
                   >
-                    Custom Development
-                  </button>
+                    Custom Application Development
+                  </Link>
+                  <Link
+                    href="/services/data-analytics"
+                    className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Data Analytics & Intelligence
+                  </Link>
                 </div>
               </div>
               <Link
