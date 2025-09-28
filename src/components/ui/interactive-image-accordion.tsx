@@ -1,12 +1,14 @@
 'use client'
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 // --- Data for Steel Motion's Technology Solutions ---
 const accordionItems = [
   {
     id: 1,
     title: 'AI Transformation & Automation',
+    url: '/services/ai-transformation',
     imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop',
     bulletPoints: [
       'Process Automation & Workflow Optimization',
@@ -17,6 +19,7 @@ const accordionItems = [
   {
     id: 2,
     title: 'Cloud Infrastructure Solutions',
+    url: '/services/cloud-infrastructure',
     imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
     bulletPoints: [
       'Scalable Cloud Architecture Design',
@@ -27,6 +30,7 @@ const accordionItems = [
   {
     id: 3,
     title: 'Cybersecurity & Protection',
+    url: '/services/cybersecurity',
     imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
     bulletPoints: [
       'Security Assessments & Penetration Testing',
@@ -37,6 +41,7 @@ const accordionItems = [
   {
     id: 4,
     title: 'Custom Application Development',
+    url: '/services/custom-development',
     imageUrl: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070&auto=format&fit=crop',
     bulletPoints: [
       'Full-Stack Web & Mobile Applications',
@@ -47,6 +52,7 @@ const accordionItems = [
   {
     id: 5,
     title: 'Data Analytics & Intelligence',
+    url: '/services/data-analytics',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     bulletPoints: [
       'Business Intelligence Dashboards',
@@ -63,21 +69,22 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
   onMouseEnter: () => void;
 }) => {
   return (
-    <div
-      className={`
-        relative h-[450px] rounded-2xl overflow-hidden cursor-pointer
-        transition-all duration-700 ease-in-out border border-[#00F2FF]/20
-        hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25
-        ${isActive ? 'w-[400px]' : 'w-[60px]'}
-      `}
-      style={{
-        backgroundImage: `url(${item.imageUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-      onMouseEnter={onMouseEnter}
-    >
+    <Link href={item.url} className="block">
+      <div
+        className={`
+          relative h-[450px] rounded-2xl overflow-hidden cursor-pointer
+          transition-all duration-700 ease-in-out border border-[#00F2FF]/20
+          hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25
+          ${isActive ? 'w-[400px]' : 'w-[60px]'}
+        `}
+        style={{
+          backgroundImage: `url(${item.imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+        onMouseEnter={onMouseEnter}
+      >
       {/* Gradient overlay for better integration */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/60 via-[#1a3a5c]/40 to-[#0f2640]/60"></div>
 
@@ -116,7 +123,8 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
       {isActive && (
         <div className="absolute inset-0 bg-gradient-to-br from-[#00F2FF]/10 via-transparent to-[#33CCFF]/10 pointer-events-none"></div>
       )}
-    </div>
+      </div>
+    </Link>
   );
 };
 
