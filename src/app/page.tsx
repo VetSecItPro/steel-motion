@@ -8,6 +8,7 @@ import Footer from "@/components/sections/footer"
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* GitHub Actions deployment test - 2025-09-28 */}
       <Navbar />
       <Hero />
       <Services />
