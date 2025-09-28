@@ -16,11 +16,35 @@ export default function Contact() {
     company: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    // TODO: Implement form submission logic
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', company: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -132,11 +156,26 @@ export default function Contact() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg rounded-lg group transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
                   >
-                    Send Message
-                    <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    <Send className={`ml-2 w-5 h-5 transition-transform ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'}`} />
                   </Button>
+
+                  {submitStatus === 'success' && (
+                    <div className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg">
+                      <p className="font-medium">✅ Message sent successfully!</p>
+                      <p className="text-sm opacity-90">We&apos;ll get back to you within 24 hours.</p>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg">
+                      <p className="font-medium">❌ Failed to send message</p>
+                      <p className="text-sm opacity-90">Please try again or contact us directly at vetsecitpro@gmail.com</p>
+                    </div>
+                  )}
                 </form>
               </CardContent>
             </Card>
@@ -165,7 +204,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-white">Email</p>
-                  <p className="text-slate-400">contact@steelmotion.com</p>
+                  <p className="text-slate-400">vetsecitpro@gmail.com</p>
                 </div>
               </div>
 
