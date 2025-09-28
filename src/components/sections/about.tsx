@@ -102,13 +102,13 @@ export default function About() {
               </blockquote>
               <div className="text-[#B3B3B3] leading-relaxed space-y-4">
                 <p>
-                  A U.S. Army veteran turned cybersecurity strategist, I've led multimillion-dollar IT and communications operations across South Korea, Iraq, Qatar, and the U.S. — directing secure network strategies, driving compliance with NIST and RMF standards, and ensuring 100% success in external audits. In uniform, I managed portfolios worth over $50M, orchestrated cybersecurity awareness programs for hundreds of personnel, and oversaw large-scale IT infrastructure upgrades that improved mission readiness and operational efficiency.
+                  A U.S. Army veteran turned cybersecurity strategist, I&apos;ve led multimillion-dollar IT and communications operations across South Korea, Iraq, Qatar, and the U.S. — directing secure network strategies, driving compliance with NIST and RMF standards, and ensuring 100% success in external audits. In uniform, I managed portfolios worth over $50M, orchestrated cybersecurity awareness programs for hundreds of personnel, and oversaw large-scale IT infrastructure upgrades that improved mission readiness and operational efficiency.
                 </p>
                 <p>
-                  Today, I bring that same discipline and leadership into the cyber and cloud domain. As an adjunct professor at Purdue University and an instructor with Vets in Tech, I've taught and mentored hundreds of students and veterans, helping them achieve industry certifications such as Security+ and AWS Cloud Practitioner. My work has empowered over 150 veterans to launch new careers in cybersecurity while strengthening the next generation of cyber professionals.
+                  Today, I bring that same discipline and leadership into the cyber and cloud domain. As an adjunct professor at Purdue University and an instructor with Vets in Tech, I&apos;ve taught and mentored hundreds of students and veterans, helping them achieve industry certifications such as Security+ and AWS Cloud Practitioner. My work has empowered over 150 veterans to launch new careers in cybersecurity while strengthening the next generation of cyber professionals.
                 </p>
                 <p>
-                  Holding dual master's degrees — an MBA from The George Washington University and an M.S. in Information Security and Assurance — I combine strategic business acumen with deep technical expertise. Alongside an extensive portfolio of certifications (CISSP, CCSP, AWS Solutions Architect, and more), I've built a career at the intersection of cybersecurity leadership, cloud security, and mentorship — committed to enabling secure innovation and shaping tomorrow's workforce.
+                  Holding dual master&apos;s degrees — an MBA from The George Washington University and an M.S. in Information Security and Assurance — I combine strategic business acumen with deep technical expertise. Alongside an extensive portfolio of certifications (CISSP, CCSP, AWS Solutions Architect, and more), I&apos;ve built a career at the intersection of cybersecurity leadership, cloud security, and mentorship — committed to enabling secure innovation and shaping tomorrow&apos;s workforce.
                 </p>
               </div>
             </div>
