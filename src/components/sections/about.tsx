@@ -1,17 +1,8 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Shield, Award, Globe, Users, BookOpen, Lightbulb, Cloud, GraduationCap } from "lucide-react"
-
-const certifications = [
-  "Microsoft Security, Compliance and Identity Fundamentals",
-  "CompTIA Security+, A+, and Linux+",
-  "AWS Cloud Practitioner",
-  "EC-Council Certified Ethical Hacker",
-  "Computer Hacking Forensic Investigator"
-]
-
-const languages = ["Arabic", "French", "English"]
+import { Shield, Award, Globe, Lightbulb, Cloud, GraduationCap } from "lucide-react"
+import Image from "next/image"
 
 const expertise = [
   {
@@ -56,18 +47,52 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 rounded-full px-4 py-2 text-sm font-medium mb-6">
-            About Our Founder
+          <div className="flex flex-col lg:flex-row items-center gap-8 max-w-4xl mx-auto">
+            {/* Profile Picture */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex-shrink-0"
+            >
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#00F2FF]/30 shadow-xl shadow-[#00F2FF]/25">
+                <Image
+                  src="/images/profile-picture.jpg"
+                  alt="Anouar K. Bencheqroun MBA CISSP"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to placeholder if image not found
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.parentElement?.querySelector('.fallback-avatar');
+                    if (fallback) fallback.classList.remove('hidden');
+                  }}
+                />
+                {/* Fallback placeholder */}
+                <div className="fallback-avatar hidden w-full h-full bg-gradient-to-br from-[#00F2FF] via-[#33CCFF] to-[#00F2FF] flex items-center justify-center">
+                  <span className="text-[#0a1728] font-bold text-4xl">AB</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Text Content */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 rounded-full px-4 py-2 text-sm font-medium mb-6">
+                About Our Founder
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Meet Anouar K. Bencheqroun MBA CISSP
+              </h2>
+              <p className="text-xl text-[#B3B3B3] leading-relaxed">
+                Veteran technology leader combining military precision with cutting-edge innovation
+                to deliver transformational cybersecurity and AI solutions.
+              </p>
+            </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Meet Anouar K. Bencheqroun MBA CISSP
-          </h2>
-          <p className="text-xl text-[#B3B3B3] max-w-3xl mx-auto leading-relaxed">
-            Veteran technology leader combining military precision with cutting-edge innovation
-            to deliver transformational cybersecurity and AI solutions.
-          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -138,69 +163,6 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Credentials Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-16 grid md:grid-cols-2 gap-8"
-        >
-          {/* Certifications */}
-          <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-            <h3 className="text-2xl font-bold text-[#00F2FF] mb-6">Professional Certifications</h3>
-            <div className="space-y-3">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-2 h-2 bg-[#00F2FF] rounded-full flex-shrink-0"></div>
-                  <span className="text-[#B3B3B3]">{cert}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Education & Languages */}
-          <div className="space-y-8">
-            <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <h3 className="text-2xl font-bold text-[#00F2FF] mb-6">Education</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#00F2FF] rounded-full"></div>
-                  <span className="text-[#B3B3B3]">The George Washington University (2022-2025)</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#00F2FF] rounded-full"></div>
-                  <span className="text-[#B3B3B3]">Purdue Global - Current Association</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <h3 className="text-2xl font-bold text-[#00F2FF] mb-6">Languages</h3>
-              <div className="flex flex-wrap gap-3">
-                {languages.map((lang, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="px-4 py-2 bg-gradient-to-r from-[#00F2FF]/20 to-[#33CCFF]/20 rounded-full text-[#00F2FF] border border-[#00F2FF]/30"
-                  >
-                    {lang}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
