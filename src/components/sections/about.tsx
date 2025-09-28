@@ -62,7 +62,7 @@ export default function About() {
             About Our Founder
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Meet Anouar Bencheqroun
+            Meet Anouar K. Bencheqroun MBA CISSP
           </h2>
           <p className="text-xl text-[#B3B3B3] max-w-3xl mx-auto leading-relaxed">
             Veteran technology leader combining military precision with cutting-edge innovation
