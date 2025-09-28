@@ -23,13 +23,13 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3 cursor-pointer"
-            onClick={() => scrollToSection('hero')}
-          >
+          <Link href="/" className="flex items-center gap-3 cursor-pointer">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-3"
+            >
             {/* Steel Motion Logo - Enhanced Design */}
             <div className="w-12 h-12 relative group">
               {/* Animated background rings */}
@@ -79,7 +79,8 @@ export default function Navbar() {
                 Steel Motion
               </h1>
             </div>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <motion.div

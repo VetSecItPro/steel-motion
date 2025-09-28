@@ -80,13 +80,12 @@ export default function About() {
             className="space-y-8"
           >
             <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Professional Philosophy</h3>
-              <blockquote className="text-lg text-white italic mb-4">
+              <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Professional Summary</h3>
+              <blockquote className="text-lg text-white italic mb-4 text-center">
                 &ldquo;Focus beats frenzy every time&rdquo;
               </blockquote>
               <p className="text-[#B3B3B3] leading-relaxed">
-                This guiding principle drives our strategic, intentional approach to technology adoption.
-                We believe in purposeful innovation that delivers measurable results, not just trendy solutions.
+                Cybersecurity Risk & Solutions Leader with 10+ years of experience across cybersecurity operations, project delivery, and third-party risk management. Demonstrated success in client-facing roles advising on cloud and cybersecurity risks, aligning risk frameworks with business objectives, and enabling continuous compliance. Expertise in SaaS and cloud technologies, NIST/RMF, and vendor governance. Adept at driving thought leadership, developing cybersecurity strategy, and enhancing product offerings in alignment with industry trends and regulations.
               </p>
             </div>
 
