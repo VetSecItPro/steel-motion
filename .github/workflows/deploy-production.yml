@@ -1,0 +1,78 @@
+name: Deploy to Production VPS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests (if any)
+      run: npm run test --if-present
+
+    - name: Build application
+      run: npm run build
+
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        port: 22
+        script: |
+          # Navigate to project directory
+          cd /root/steel-motion
+
+          # Create backup of current deployment
+          sudo cp -r /root/steel-motion /root/steel-motion-backup-$(date +%Y%m%d-%H%M%S) || true
+
+          # Pull latest changes
+          git fetch origin
+          git reset --hard origin/main
+
+          # Install dependencies
+          npm ci --production
+
+          # Build the application
+          npm run build
+
+          # Restart PM2 process
+          pm2 restart steel-motion || pm2 start npm --name "steel-motion" -- start
+
+          # Health check
+          sleep 5
+          if ! pm2 list | grep -q "steel-motion.*online"; then
+            echo "Deployment failed - PM2 process not running"
+            exit 1
+          fi
+
+          # Check if site is responding
+          if ! curl -f http://localhost:3000 > /dev/null 2>&1; then
+            echo "Deployment failed - Site not responding"
+            exit 1
+          fi
+
+          echo "Deployment successful!"
+
+    - name: Notify on failure
+      if: failure()
+      run: |
+        echo "Deployment failed! Check the logs above for details."
+        echo "The backup is available at /root/steel-motion-backup-TIMESTAMP on the VPS"
