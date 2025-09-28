@@ -96,26 +96,21 @@ export default function About() {
             className="space-y-8"
           >
             <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Professional Summary</h3>
+              <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Leadership & Impact</h3>
               <blockquote className="text-lg text-white italic mb-4 text-center">
                 &ldquo;Focus beats frenzy every time&rdquo;
               </blockquote>
-              <p className="text-[#B3B3B3] leading-relaxed">
-                Cybersecurity Risk & Solutions Leader with 10+ years of experience across cybersecurity operations, project delivery, and third-party risk management. Demonstrated success in client-facing roles advising on cloud and cybersecurity risks, aligning risk frameworks with business objectives, and enabling continuous compliance. Expertise in SaaS and cloud technologies, NIST/RMF, and vendor governance. Adept at driving thought leadership, developing cybersecurity strategy, and enhancing product offerings in alignment with industry trends and regulations.
-              </p>
-            </div>
-
-            <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Mission-Driven Impact</h3>
-              <p className="text-[#B3B3B3] leading-relaxed mb-4">
-                Beyond client work, Anouar is deeply committed to supporting fellow veterans and the next
-                generation of technology professionals. As a Career Readiness Coach with FourBlock and
-                mentor with ACT NOW EDUCATION, he helps veterans successfully transition into technology careers.
-              </p>
-              <p className="text-[#B3B3B3] leading-relaxed">
-                His thought leadership includes insights on &ldquo;The First Artificial Generation&rdquo; - exploring
-                how the Class of 2026 learned to think alongside machines, shaping the future of AI-human collaboration.
-              </p>
+              <div className="text-[#B3B3B3] leading-relaxed space-y-4">
+                <p>
+                  A U.S. Army veteran turned cybersecurity strategist, I've led multimillion-dollar IT and communications operations across South Korea, Iraq, Qatar, and the U.S. — directing secure network strategies, driving compliance with NIST and RMF standards, and ensuring 100% success in external audits. In uniform, I managed portfolios worth over $50M, orchestrated cybersecurity awareness programs for hundreds of personnel, and oversaw large-scale IT infrastructure upgrades that improved mission readiness and operational efficiency.
+                </p>
+                <p>
+                  Today, I bring that same discipline and leadership into the cyber and cloud domain. As an adjunct professor at Purdue University and an instructor with Vets in Tech, I've taught and mentored hundreds of students and veterans, helping them achieve industry certifications such as Security+ and AWS Cloud Practitioner. My work has empowered over 150 veterans to launch new careers in cybersecurity while strengthening the next generation of cyber professionals.
+                </p>
+                <p>
+                  Holding dual master's degrees — an MBA from The George Washington University and an M.S. in Information Security and Assurance — I combine strategic business acumen with deep technical expertise. Alongside an extensive portfolio of certifications (CISSP, CCSP, AWS Solutions Architect, and more), I've built a career at the intersection of cybersecurity leadership, cloud security, and mentorship — committed to enabling secure innovation and shaping tomorrow's workforce.
+                </p>
+              </div>
             </div>
           </motion.div>
 
