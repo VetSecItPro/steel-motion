@@ -87,12 +87,6 @@ export default function Navbar() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="hidden md:flex items-center gap-8"
           >
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
-            >
-              About
-            </button>
             <div className="relative group">
               <button
                 onClick={() => scrollToSection('services')}
@@ -134,6 +128,12 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+            <button
+              onClick={() => scrollToSection('about')}
+              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+            >
+              About
+            </button>
             <Button
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-[#00F2FF]/25 font-semibold"
@@ -162,12 +162,6 @@ export default function Navbar() {
             className="md:hidden bg-[#1a3a5c] border-t border-[#0a1728]"
           >
             <div className="px-4 py-6 space-y-4">
-              <button
-                onClick={() => scrollToSection('about')}
-                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
-              >
-                About
-              </button>
               <div className="space-y-2">
                 <div className="text-[#B3B3B3] font-medium py-2">Provided Solutions</div>
                 <div className="pl-4 space-y-2">
@@ -197,6 +191,12 @@ export default function Navbar() {
                   </button>
                 </div>
               </div>
+              <button
+                onClick={() => scrollToSection('about')}
+                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+              >
+                About
+              </button>
               <Button
                 onClick={() => scrollToSection('contact')}
                 className="w-full bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] py-3 rounded-full transition-all duration-300 font-semibold"
