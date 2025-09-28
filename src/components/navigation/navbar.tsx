@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -128,12 +129,12 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => scrollToSection('about')}
+            <Link
+              href="/about"
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
             >
               About
-            </button>
+            </Link>
             <Button
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-[#00F2FF]/25 font-semibold"
@@ -191,12 +192,13 @@ export default function Navbar() {
                   </button>
                 </div>
               </div>
-              <button
-                onClick={() => scrollToSection('about')}
+              <Link
+                href="/about"
                 className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                onClick={() => setIsOpen(false)}
               >
                 About
-              </button>
+              </Link>
               <Button
                 onClick={() => scrollToSection('contact')}
                 className="w-full bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] py-3 rounded-full transition-all duration-300 font-semibold"
