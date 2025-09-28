@@ -83,67 +83,69 @@ export default function WhySteelMotion() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
+            className="space-y-6"
           >
-            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 rounded-2xl p-8 text-white">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-4">Our Commitment</h3>
-                <p className="text-slate-300 leading-relaxed">
-                  &ldquo;In the military, mission failure is not an option. That same dedication
-                  drives everything we do at Steel Motion. Your success is our mission.&rdquo;
-                </p>
-              </div>
+            {/* Our Commitment Box */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 rounded-2xl p-8 text-white">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold mb-4">Our Commitment</h3>
+                  <p className="text-slate-300 leading-relaxed">
+                    &ldquo;In the military, mission failure is not an option. That same dedication
+                    drives everything we do at Steel Motion. Your success is our mission.&rdquo;
+                  </p>
+                </div>
 
-              <div className="border-t border-slate-600 pt-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center p-1">
-                    <Image
-                      src="/images/steel-motion-hero-logo.png"
-                      alt="Steel Motion Logo"
-                      width={40}
-                      height={40}
-                      className="w-full h-full object-contain filter brightness-110 contrast-110"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Steel Motion LLC</p>
-                    <p className="text-slate-400 text-sm">Veteran-Led Technology Solutions</p>
+                <div className="border-t border-slate-600 pt-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center p-1">
+                      <Image
+                        src="/images/steel-motion-hero-logo.png"
+                        alt="Steel Motion Logo"
+                        width={40}
+                        height={40}
+                        className="w-full h-full object-contain filter brightness-110 contrast-110"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Steel Motion LLC</p>
+                      <p className="text-slate-400 text-sm">Veteran-Led Technology Solutions</p>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-full opacity-10"></div>
+              <div className="absolute -top-4 -left-4 w-16 h-16 bg-slate-400 rounded-full opacity-10"></div>
             </div>
 
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-full opacity-10"></div>
-            <div className="absolute -top-4 -left-4 w-16 h-16 bg-slate-400 rounded-full opacity-10"></div>
-          </motion.div>
-
-          {/* Veteran Partnerships Box */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-8"
-          >
-            <Link href="/partnerships" className="block group">
-              <div className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] rounded-2xl p-6 text-white border border-[#00F2FF]/30 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/20">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center">
-                    <Handshake className="w-6 h-6 text-slate-900" />
+            {/* Veteran Partnerships Box */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Link href="/partnerships" className="block group">
+                <div className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] rounded-2xl p-6 text-white border border-[#00F2FF]/30 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/20">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center">
+                      <Handshake className="w-6 h-6 text-slate-900" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold group-hover:text-[#00F2FF] transition-colors">Veteran Partnerships</h3>
+                      <p className="text-slate-400 text-sm">Building stronger veteran communities</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold group-hover:text-[#00F2FF] transition-colors">Veteran Partnerships</h3>
-                    <p className="text-slate-400 text-sm">Building stronger veteran communities</p>
+                  <p className="text-slate-300 leading-relaxed">
+                    Partner with Steel Motion for veteran-focused initiatives. Together, we can support veteran communities and drive innovation with military precision.
+                  </p>
+                  <div className="mt-4 text-[#00F2FF] font-medium group-hover:text-[#33CCFF] transition-colors">
+                    Learn more about partnerships →
                   </div>
                 </div>
-                <p className="text-slate-300 leading-relaxed">
-                  Partner with Steel Motion for veteran-focused initiatives. Together, we can support veteran communities and drive innovation with military precision.
-                </p>
-                <div className="mt-4 text-[#00F2FF] font-medium group-hover:text-[#33CCFF] transition-colors">
-                  Learn more about partnerships →
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>
