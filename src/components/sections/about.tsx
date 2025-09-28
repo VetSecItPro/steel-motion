@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Shield, Award, Globe, Users, BookOpen, Lightbulb } from "lucide-react"
+import { Shield, Award, Globe, Users, BookOpen, Lightbulb, Cloud, GraduationCap } from "lucide-react"
 
 const certifications = [
   "Microsoft Security, Compliance and Identity Fundamentals",
@@ -15,34 +15,34 @@ const languages = ["Arabic", "French", "English"]
 
 const expertise = [
   {
-    icon: Shield,
-    title: "Cybersecurity Leadership",
-    description: "Expert-level security assessments, ethical hacking, and forensic investigation capabilities"
-  },
-  {
     icon: Award,
-    title: "Military Veteran",
-    description: "Extensive international service experience with proven leadership and strategic thinking"
+    title: "Battle-Tested Leader",
+    description: "U.S. Army veteran managing multimillion-dollar global IT missions."
   },
   {
-    icon: Globe,
-    title: "Multilingual Professional",
-    description: "Fluent communication in Arabic, French, and English for global technology solutions"
+    icon: Shield,
+    title: "Cybersecurity Strategist",
+    description: "10+ years securing cloud, SaaS, and enterprise systems."
   },
   {
-    icon: Users,
-    title: "Mentor & Educator",
-    description: "Career readiness coach supporting veteran transitions and professional development"
+    icon: GraduationCap,
+    title: "Educator & Mentor",
+    description: "Training hundreds of students and veterans to earn top cyber certs."
   },
   {
-    icon: BookOpen,
-    title: "Continuous Learning",
-    description: "Advanced education from The George Washington University and ongoing professional development"
+    icon: Cloud,
+    title: "Cloud Risk Expert",
+    description: "Former AWS engineer, cutting security incidents and compliance gaps."
   },
   {
     icon: Lightbulb,
-    title: "Innovation Focus",
-    description: "Strategic AI integration and digital transformation expertise for modern enterprises"
+    title: "Innovation Driver",
+    description: "Built frameworks and content powering growth, audits, and product launches."
+  },
+  {
+    icon: Globe,
+    title: "Global Communicator",
+    description: "Fluent in Arabic, French, and English, bridging cultures and teams."
   }
 ]
 
