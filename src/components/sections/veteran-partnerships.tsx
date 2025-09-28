@@ -137,12 +137,33 @@ export default function VeteranPartnerships() {
                 <p className="text-[#B3B3B3] text-sm">Technology partnerships and joint ventures</p>
               </div>
             </motion.div>
+
+            {/* Call to Action Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              className="mt-12 text-center"
+            >
+              <Button
+                onClick={() => {
+                  document.getElementById('partnership-form')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  })
+                }}
+                className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Partner with Us
+                <Handshake className="ml-2 w-5 h-5" />
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Partnership Form Section */}
-      <section className="py-20 bg-slate-900 text-white">
+      <section id="partnership-form" className="py-20 bg-slate-900 text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}

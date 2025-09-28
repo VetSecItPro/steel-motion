@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Award, Clock, Lightbulb } from "lucide-react"
+import { CheckCircle, Award, Clock, Lightbulb, Handshake } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function WhySteelMotion() {
   const advantages = [
@@ -94,8 +96,14 @@ export default function WhySteelMotion() {
 
               <div className="border-t border-slate-600 pt-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">SM</span>
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center p-1">
+                    <Image
+                      src="/images/steel-motion-hero-logo.png"
+                      alt="Steel Motion Logo"
+                      width={40}
+                      height={40}
+                      className="w-full h-full object-contain filter brightness-110 contrast-110"
+                    />
                   </div>
                   <div>
                     <p className="font-semibold">Steel Motion LLC</p>
@@ -107,6 +115,35 @@ export default function WhySteelMotion() {
 
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-full opacity-10"></div>
             <div className="absolute -top-4 -left-4 w-16 h-16 bg-slate-400 rounded-full opacity-10"></div>
+          </motion.div>
+
+          {/* Veteran Partnerships Box */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-8"
+          >
+            <Link href="/partnerships" className="block group">
+              <div className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] rounded-2xl p-6 text-white border border-[#00F2FF]/30 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/20">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center">
+                    <Handshake className="w-6 h-6 text-slate-900" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold group-hover:text-[#00F2FF] transition-colors">Veteran Partnerships</h3>
+                    <p className="text-slate-400 text-sm">Building stronger veteran communities</p>
+                  </div>
+                </div>
+                <p className="text-slate-300 leading-relaxed">
+                  Partner with Steel Motion for veteran-focused initiatives. Together, we can support veteran communities and drive innovation with military precision.
+                </p>
+                <div className="mt-4 text-[#00F2FF] font-medium group-hover:text-[#33CCFF] transition-colors">
+                  Learn more about partnerships →
+                </div>
+              </div>
+            </Link>
           </motion.div>
         </div>
       </div>
