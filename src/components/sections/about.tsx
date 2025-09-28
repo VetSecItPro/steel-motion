@@ -58,24 +58,15 @@ export default function About() {
               viewport={{ once: true }}
               className="flex-shrink-0"
             >
-              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#00F2FF]/30 shadow-xl shadow-[#00F2FF]/25">
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#00F2FF]/30 shadow-xl shadow-[#00F2FF]/25 relative">
                 <Image
                   src="/images/profile-picture.jpg"
                   alt="Anouar K. Bencheqroun MBA CISSP"
                   width={192}
                   height={192}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback to placeholder if image not found
-                    e.currentTarget.style.display = 'none';
-                    const fallback = e.currentTarget.parentElement?.querySelector('.fallback-avatar');
-                    if (fallback) fallback.classList.remove('hidden');
-                  }}
+                  priority
                 />
-                {/* Fallback placeholder */}
-                <div className="fallback-avatar hidden w-full h-full bg-gradient-to-br from-[#00F2FF] via-[#33CCFF] to-[#00F2FF] flex items-center justify-center">
-                  <span className="text-[#0a1728] font-bold text-4xl">AB</span>
-                </div>
               </div>
             </motion.div>
 
