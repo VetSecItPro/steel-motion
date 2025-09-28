@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Linkedin, Github, Mail } from "lucide-react"
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -55,19 +56,19 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-slate-400">
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">AI Consulting</a></li>
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">App Development</a></li>
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">Veteran Partnerships</a></li>
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">Cybersecurity (Soon)</a></li>
+              <li><Link href="/#services" className="hover:text-[#00F2FF] transition-colors">AI Consulting</Link></li>
+              <li><Link href="/#services" className="hover:text-[#00F2FF] transition-colors">App Development</Link></li>
+              <li><Link href="/partnerships" className="hover:text-[#00F2FF] transition-colors">Veteran Partnerships</Link></li>
+              <li><Link href="/#services" className="hover:text-[#00F2FF] transition-colors">Cybersecurity (Soon)</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-slate-400">
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">Our Mission</a></li>
-              <li><a href="#" className="hover:text-[#00F2FF] transition-colors">Contact</a></li>
+              <li><Link href="/about" className="hover:text-[#00F2FF] transition-colors">About Us</Link></li>
+              <li><Link href="/#hero" className="hover:text-[#00F2FF] transition-colors">Our Mission</Link></li>
+              <li><Link href="/#contact" className="hover:text-[#00F2FF] transition-colors">Contact</Link></li>
               <li><a href="#" className="hover:text-[#00F2FF] transition-colors">Blog (Coming Soon)</a></li>
             </ul>
           </div>
