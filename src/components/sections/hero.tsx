@@ -72,9 +72,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-[#C0C0C0] to-[#B3B3B3] bg-clip-text text-transparent"
+            className="text-4xl md:text-6xl font-bold mb-4"
           >
-            Transforming Business Through
+            <span className="text-white">Transforming Business Through</span>
             <span className="block text-[#00F2FF] drop-shadow-lg">AI Innovation</span>
           </motion.h1>
 
