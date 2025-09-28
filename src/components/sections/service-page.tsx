@@ -4,7 +4,8 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Star, ArrowRight } from "lucide-react"
+import { CheckCircle, Star, ArrowRight, ArrowLeft, Home } from "lucide-react"
+import Link from "next/link"
 
 interface ServiceFeature {
   title: string
@@ -47,8 +48,36 @@ export default function ServicePage({
 
   return (
     <>
+      {/* Back Navigation */}
+      <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] pt-20 pb-4">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4"
+          >
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 group"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              <span className="text-sm font-medium">Back to Home</span>
+            </Link>
+            <span className="text-[#666666]">•</span>
+            <Link
+              href="/#services"
+              className="flex items-center gap-2 text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 group"
+            >
+              <Home className="w-4 h-4" />
+              <span className="text-sm font-medium">All Services</span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className={`min-h-[80vh] flex items-center justify-center bg-gradient-to-br ${heroGradient} text-white pt-20 relative overflow-hidden`}>
+      <section className={`min-h-[80vh] flex items-center justify-center bg-gradient-to-br ${heroGradient} text-white pt-8 relative overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 py-8 text-center relative z-10">
