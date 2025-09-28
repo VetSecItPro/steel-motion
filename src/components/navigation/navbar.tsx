@@ -74,8 +74,8 @@ export default function Navbar() {
               {/* Outer glow on hover */}
               <div className="absolute -inset-2 bg-gradient-to-r from-[#00F2FF]/0 via-[#00F2FF]/20 to-[#33CCFF]/0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             </div>
-            <div className="text-white">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-[#FFFFFF] via-[#C0C0C0] to-[#00F2FF] bg-clip-text text-transparent">
+            <div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-white via-[#E0E0E0] to-[#00F2FF] bg-clip-text text-transparent">
                 Steel Motion
               </h1>
             </div>
