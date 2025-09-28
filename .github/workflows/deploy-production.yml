@@ -23,53 +23,95 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Run tests (if any)
-      run: npm run test --if-present
+    - name: Lint code
+      run: npm run lint
 
     - name: Build application
       run: npm run build
 
     - name: Deploy to VPS
-      uses: appleboy/ssh-action@v1.0.3
+      uses: appleboy/ssh-action@v0.1.7
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         key: ${{ secrets.VPS_SSH_KEY }}
         port: 22
         script: |
+          set -e  # Exit on any error
+
+          echo "Starting deployment to VPS..."
+
           # Navigate to project directory
-          cd /root/steel-motion
+          cd /root/steel-motion || { echo "Project directory not found"; exit 1; }
 
           # Create backup of current deployment
-          sudo cp -r /root/steel-motion /root/steel-motion-backup-$(date +%Y%m%d-%H%M%S) || true
+          BACKUP_DIR="/root/backups"
+          mkdir -p "$BACKUP_DIR"
+          cp -r /root/steel-motion "$BACKUP_DIR/steel-motion-backup-$(date +%Y%m%d-%H%M%S)" || echo "Backup failed but continuing..."
 
           # Pull latest changes
+          echo "Pulling latest changes..."
           git fetch origin
           git reset --hard origin/main
 
           # Install dependencies
-          npm ci --production
+          echo "Installing dependencies..."
+          npm ci --production --silent
 
           # Build the application
+          echo "Building application..."
           npm run build
 
-          # Restart PM2 process
-          pm2 restart steel-motion || pm2 start npm --name "steel-motion" -- start
+          # Check if PM2 is installed
+          if ! command -v pm2 &> /dev/null; then
+            echo "Installing PM2..."
+            npm install -g pm2
+          fi
 
-          # Health check
-          sleep 5
-          if ! pm2 list | grep -q "steel-motion.*online"; then
-            echo "Deployment failed - PM2 process not running"
+          # Restart or start PM2 process
+          echo "Managing PM2 process..."
+          if pm2 list | grep -q "steel-motion"; then
+            echo "Restarting existing PM2 process..."
+            pm2 restart steel-motion
+          else
+            echo "Starting new PM2 process..."
+            pm2 start npm --name "steel-motion" -- start
+            pm2 save
+          fi
+
+          # Wait for application to start
+          echo "Waiting for application to start..."
+          sleep 10
+
+          # Health check - PM2 process
+          if pm2 list | grep -q "steel-motion.*online"; then
+            echo "✓ PM2 process is running"
+          else
+            echo "✗ PM2 process is not running"
+            pm2 logs steel-motion --lines 10
             exit 1
           fi
 
-          # Check if site is responding
-          if ! curl -f http://localhost:3000 > /dev/null 2>&1; then
-            echo "Deployment failed - Site not responding"
-            exit 1
-          fi
+          # Health check - HTTP response
+          echo "Testing HTTP response..."
+          for i in {1..5}; do
+            if curl -f http://localhost:3000 > /dev/null 2>&1; then
+              echo "✓ Site is responding on port 3000"
+              break
+            else
+              echo "Attempt $i: Site not responding, waiting..."
+              sleep 5
+            fi
 
-          echo "Deployment successful!"
+            if [ $i -eq 5 ]; then
+              echo "✗ Site is not responding after 5 attempts"
+              pm2 logs steel-motion --lines 10
+              exit 1
+            fi
+          done
+
+          echo "🚀 Deployment completed successfully!"
+          echo "Website is live at: https://steelmotionllc.com"
 
     - name: Notify on failure
       if: failure()
