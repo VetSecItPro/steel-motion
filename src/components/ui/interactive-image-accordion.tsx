@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 // --- Data for Steel Motion's Technology Solutions ---
 const accordionItems = [
@@ -71,19 +70,14 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
         hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25
         ${isActive ? 'w-[400px]' : 'w-[60px]'}
       `}
+      style={{
+        backgroundImage: `url(${item.imageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
       onMouseEnter={onMouseEnter}
     >
-      {/* Background Image */}
-      <Image
-        src={item.imageUrl}
-        alt={item.title}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 60px, 400px"
-        priority={false}
-        unoptimized={true}
-      />
-
       {/* Gradient overlay for better integration */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/60 via-[#1a3a5c]/40 to-[#0f2640]/60"></div>
 
