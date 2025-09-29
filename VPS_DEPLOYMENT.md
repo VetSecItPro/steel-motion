@@ -14,7 +14,7 @@
 ### Step 1: Connect to Your VPS
 
 ```bash
-ssh -i ~/.ssh/REDACTED root@REDACTED
+ssh -i ~/.ssh/REDACTED root@REDACTED -p 2222
 ```
 
 ### Step 2: Navigate to Project Directory
