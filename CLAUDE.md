@@ -10,6 +10,9 @@ This document provides comprehensive guidance for deploying the Steel Motion LLC
 
 ### **Production Environment**
 - **Platform**: Custom VPS (Linux)
+- **IP Address**: 72.60.115.247
+- **SSH Port**: 2222 (NOT default port 22)
+- **SSH Command**: `ssh -i ~/.ssh/steel_motion_vps root@72.60.115.247 -p 2222`
 - **Domain**: steelmotionllc.com
 - **SSL**: Managed SSL certificates
 - **Process Manager**: PM2 for Node.js application management
