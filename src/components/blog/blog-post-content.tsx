@@ -298,33 +298,46 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
       </section>
 
       {/* Main Image */}
-      {post.mainImage && (
-        <section className="py-8">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Image
-                src={urlForImage(post.mainImage).width(1200).height(600).url()}
-                alt={post.mainImage.alt || post.title}
-                width={1200}
-                height={600}
-                className="rounded-lg shadow-xl"
-                priority
-                onError={(e) => {
-                  console.error('Image failed to load:', e)
-                  console.error('Image data:', post.mainImage)
-                }}
-              />
+      {post.mainImage && (() => {
+        const imageUrl = urlForImage(post.mainImage)
+        return imageUrl ? (
+          <section className="py-8">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <Image
+                  src={imageUrl.width(1200).height(600).url()}
+                  alt={post.mainImage.alt || post.title}
+                  width={1200}
+                  height={600}
+                  className="rounded-lg shadow-xl"
+                  priority
+                  onError={(e) => {
+                    console.error('Image failed to load:', e)
+                    console.error('Image data:', post.mainImage)
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        ) : (
+          <section className="py-8">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-slate-200 rounded-lg shadow-xl h-96 flex items-center justify-center text-slate-500">
+                  Image could not be loaded
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      })()}
 
       {/* Content */}
       <section className="py-8">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {/* Main Content */}
-            <div className="lg:col-span-3">
+            <div>
               <div className="prose prose-lg max-w-none">
                 <PortableText
                   value={post.body}
@@ -351,90 +364,6 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
               )}
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              {/* Author Bio */}
-              <Card className="border-slate-200 mb-8">
-                <CardContent className="p-6">
-                  <div className="text-center">
-                    {post.author.image && (
-                      <div className="mb-4">
-                        <Image
-                          src={urlForImage(post.author.image).width(100).height(100).url()}
-                          alt={post.author.name}
-                          width={100}
-                          height={100}
-                          className="rounded-full mx-auto"
-                        />
-                      </div>
-                    )}
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                      {post.author.name}
-                    </h3>
-
-                    {/* Veteran Info */}
-                    {post.author.veteranBranch && (
-                      <div className="flex items-center justify-center gap-2 mb-3">
-                        {getVeteranIcon(post.author.veteranBranch)}
-                        <span className="text-sm text-[#00F2FF] font-medium">
-                          {post.author.rank || 'Veteran'} - {post.author.veteranBranch}
-                        </span>
-                      </div>
-                    )}
-
-                    {post.author.yearsOfService && (
-                      <div className="flex items-center justify-center gap-1 mb-3">
-                        <Award className="w-4 h-4 text-slate-500" />
-                        <span className="text-sm text-slate-600">
-                          {post.author.yearsOfService} of service
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Bio */}
-                    {post.author.bio && (
-                      <div className="text-sm text-slate-600 mb-4">
-                        <PortableText value={post.author.bio} />
-                      </div>
-                    )}
-
-                    {/* Expertise */}
-                    {post.author.expertise && post.author.expertise.length > 0 && (
-                      <div>
-                        <h4 className="text-sm font-semibold text-slate-900 mb-2">
-                          Expertise
-                        </h4>
-                        <div className="flex flex-wrap gap-1">
-                          {post.author.expertise.map((skill) => (
-                            <Badge
-                              key={skill}
-                              variant="outline"
-                              className="text-xs bg-slate-50"
-                            >
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Table of Contents placeholder */}
-              <Card className="border-slate-200">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">
-                    In This Article
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="text-sm text-slate-600">
-                      Auto-generated table of contents coming soon...
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
