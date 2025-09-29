@@ -6,16 +6,12 @@ import Link from "next/link"
 import { PortableText } from '@portabletext/react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
   Clock,
   User,
   Calendar,
   ArrowLeft,
-  Share2,
-  Shield,
-  Award,
-  Target
+  Share2
 } from "lucide-react"
 import { urlForImage } from "@/lib/sanity"
 
@@ -70,43 +66,29 @@ interface BlogPostContentProps {
   post: BlogPost
 }
 
-const getCategoryColor = (color: string) => {
-  const colors = {
-    cyan: "bg-cyan-100 text-cyan-800 border-cyan-200",
-    red: "bg-red-100 text-red-800 border-red-200",
-    blue: "bg-blue-100 text-blue-800 border-blue-200",
-    purple: "bg-purple-100 text-purple-800 border-purple-200",
-    green: "bg-green-100 text-green-800 border-green-200",
-    orange: "bg-orange-100 text-orange-800 border-orange-200",
-    indigo: "bg-indigo-100 text-indigo-800 border-indigo-200",
-  }
-  return colors[color as keyof typeof colors] || colors.cyan
-}
-
-const getVeteranIcon = (branch?: string) => {
-  // You could extend this with branch-specific icons
-  return <Shield className="w-5 h-5" />
-}
 
 // Portable Text components for rich content rendering
 const portableTextComponents = {
   types: {
-    image: ({ value }: any) => (
-      <div className="my-8">
-        <Image
-          src={urlForImage(value).width(800).height(600).url()}
-          alt={value.alt || ''}
-          width={800}
-          height={600}
-          className="rounded-lg shadow-lg"
-        />
-        {value.caption && (
-          <p className="text-sm text-slate-600 text-center mt-2 italic">
-            {value.caption}
-          </p>
-        )}
-      </div>
-    ),
+    image: ({ value }: any) => {
+      const imageUrl = urlForImage(value)
+      return imageUrl ? (
+        <div className="my-8">
+          <Image
+            src={imageUrl.width(800).height(600).url()}
+            alt={value.alt || ''}
+            width={800}
+            height={600}
+            className="rounded-lg shadow-lg"
+          />
+          {value.caption && (
+            <p className="text-sm text-slate-600 text-center mt-2 italic">
+              {value.caption}
+            </p>
+          )}
+        </div>
+      ) : null
+    },
     codeBlock: ({ value }: any) => (
       <div className="my-6">
         {value.filename && (
