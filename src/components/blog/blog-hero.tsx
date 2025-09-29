@@ -6,9 +6,7 @@ import { FileText, Users, Target } from "lucide-react"
 export default function BlogHero() {
   return (
     <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-20 pb-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4">
         <div className="text-center max-w-4xl mx-auto animate-fade-in-up">
           <div className="mb-6 animate-fade-in-scale">
             <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30 mb-6">

@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
@@ -55,15 +54,15 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
   if (posts.length === 0) return null
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post, index) => (
-        <motion.div
-          key={post._id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-        >
-          <Link href={`/blog/${post.slug.current}`}>
+    <>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post, index) => (
+          <div
+            key={post._id}
+            className="animate-fade-in-up"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <Link href={`/blog/${post.slug.current}`}>
             <Card className="h-full hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
               {/* Featured Image */}
               {post.mainImage && (
@@ -139,8 +138,27 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
               </CardContent>
             </Card>
           </Link>
-        </motion.div>
+        </div>
       ))}
     </div>
+
+    <style jsx>{`
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      :global(.animate-fade-in-up) {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+    `}</style>
+    </>
   )
 }
