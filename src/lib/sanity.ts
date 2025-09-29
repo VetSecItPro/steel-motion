@@ -11,5 +11,9 @@ export const client = createClient({
 const builder = imageUrlBuilder(client)
 
 export function urlForImage(source: any) {
+  if (!source?.asset?._ref && !source?.asset?._id) {
+    console.warn('Invalid image source:', source)
+    return builder.image('')
+  }
   return builder.image(source)
 }
