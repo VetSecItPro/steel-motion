@@ -5,8 +5,9 @@ import Footer from "@/components/sections/footer"
 import BlogPostContent from "@/components/blog/blog-post-content"
 import { client } from "@/lib/sanity"
 import { postQuery } from "@/lib/sanity-queries"
+import { revalidationManager } from "@/lib/revalidation-manager"
 
-// Revalidate every 60 seconds to ensure fresh content
+// Use shorter base interval for smart revalidation
 export const revalidate = 60
 
 interface BlogPostPageProps {
@@ -16,6 +17,10 @@ interface BlogPostPageProps {
 }
 
 async function getPost(slug: string) {
+  // Check revalidation status for logging
+  const shouldUpdate = await revalidationManager.getPostRevalidation()
+  console.log(`Post ${slug} fetch - should update in ${shouldUpdate}s`)
+
   const post = await client.fetch(postQuery, { slug })
   return post
 }
