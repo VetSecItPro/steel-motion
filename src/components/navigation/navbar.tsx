@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
@@ -24,12 +23,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-3"
-            >
+            <div className="flex items-center gap-3 animate-slide-in-left">
             {/* Steel Motion Logo - Enhanced Design */}
             <div className="w-12 h-12 relative group">
               {/* Animated background rings */}
@@ -79,16 +73,11 @@ export default function Navbar() {
                 Steel Motion
               </h1>
             </div>
-            </motion.div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="hidden md:flex items-center gap-8"
-          >
+          <div className="hidden md:flex items-center gap-8 animate-fade-in-delay">
             <div className="relative group">
               <button
                 onClick={() => scrollToSection('services')}
@@ -155,7 +144,7 @@ export default function Navbar() {
             >
               Get Started
             </Button>
-          </motion.div>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -170,12 +159,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1a3a5c] border-t border-[#0a1728]"
-          >
+          <div className="md:hidden bg-[#1a3a5c] border-t border-[#0a1728] animate-mobile-menu">
             <div className="px-4 py-6 space-y-4">
               <div className="space-y-2">
                 <div className="text-[#B3B3B3] font-medium py-2">Provided Solutions</div>
@@ -238,9 +222,55 @@ export default function Navbar() {
                 Get Started
               </Button>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes mobileMenuSlide {
+          from {
+            opacity: 0;
+            max-height: 0;
+          }
+          to {
+            opacity: 1;
+            max-height: 500px;
+          }
+        }
+
+        .animate-slide-in-left {
+          animation: slideInLeft 0.5s ease-out forwards;
+        }
+
+        .animate-fade-in-delay {
+          animation: fadeIn 0.5s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+
+        .animate-mobile-menu {
+          animation: mobileMenuSlide 0.3s ease-out forwards;
+        }
+      `}</style>
     </nav>
   )
 }
