@@ -14,7 +14,7 @@
 ### Step 1: Connect to Your VPS
 
 ```bash
-ssh -i ~/.ssh/steel_motion_vps root@72.60.115.247
+ssh -i ~/.ssh/steel_motion_vps root@72.60.115.247 -p 2222
 ```
 
 ### Step 2: Navigate to Project Directory
