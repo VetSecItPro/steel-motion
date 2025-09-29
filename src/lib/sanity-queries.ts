@@ -9,7 +9,10 @@ export const postsQuery = groq`
     publishedAt,
     excerpt,
     mainImage {
-      asset,
+      asset->{
+        _id,
+        url
+      },
       alt
     },
     readTime,
@@ -19,7 +22,10 @@ export const postsQuery = groq`
       name,
       slug,
       image {
-        asset,
+        asset->{
+          _id,
+          url
+        },
         alt
       },
       veteranBranch,
@@ -42,7 +48,10 @@ export const featuredPostsQuery = groq`
     publishedAt,
     excerpt,
     mainImage {
-      asset,
+      asset->{
+        _id,
+        url
+      },
       alt
     },
     readTime,
@@ -50,7 +59,10 @@ export const featuredPostsQuery = groq`
       name,
       slug,
       image {
-        asset,
+        asset->{
+          _id,
+          url
+        },
         alt
       },
       veteranBranch,
@@ -73,7 +85,10 @@ export const postQuery = groq`
     publishedAt,
     excerpt,
     mainImage {
-      asset,
+      asset->{
+        _id,
+        url
+      },
       alt
     },
     body,
@@ -84,7 +99,10 @@ export const postQuery = groq`
       name,
       slug,
       image {
-        asset,
+        asset->{
+          _id,
+          url
+        },
         alt
       },
       bio,
@@ -127,7 +145,10 @@ export const postsByCategoryQuery = groq`
     publishedAt,
     excerpt,
     mainImage {
-      asset,
+      asset->{
+        _id,
+        url
+      },
       alt
     },
     readTime,
@@ -186,7 +207,10 @@ export const postsByAuthorQuery = groq`
     publishedAt,
     excerpt,
     mainImage {
-      asset,
+      asset->{
+        _id,
+        url
+      },
       alt
     },
     readTime,

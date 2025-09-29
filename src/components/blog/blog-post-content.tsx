@@ -198,6 +198,9 @@ const portableTextComponents = {
 }
 
 export default function BlogPostContent({ post }: BlogPostContentProps) {
+  // Debug logging for image data
+  console.log('Post main image data:', post.mainImage)
+
   return (
     <article className="pt-20">
       {/* Hero Section */}
@@ -306,6 +309,10 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                 height={600}
                 className="rounded-lg shadow-xl"
                 priority
+                onError={(e) => {
+                  console.error('Image failed to load:', e)
+                  console.error('Image data:', post.mainImage)
+                }}
               />
             </div>
           </div>

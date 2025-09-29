@@ -11,9 +11,26 @@ export const client = createClient({
 const builder = imageUrlBuilder(client)
 
 export function urlForImage(source: any) {
-  if (!source?.asset?._ref && !source?.asset?._id) {
-    console.warn('Invalid image source:', source)
+  if (!source) {
+    console.warn('No image source provided')
     return builder.image('')
   }
-  return builder.image(source)
+
+  // Handle different Sanity image formats
+  if (source.asset) {
+    return builder.image(source.asset)
+  }
+
+  // If source has _ref or _id directly
+  if (source._ref || source._id) {
+    return builder.image(source)
+  }
+
+  // If source is the image reference string itself
+  if (typeof source === 'string') {
+    return builder.image(source)
+  }
+
+  console.warn('Invalid image source format:', source)
+  return builder.image('')
 }
