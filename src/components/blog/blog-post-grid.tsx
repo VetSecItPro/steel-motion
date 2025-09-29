@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
@@ -66,12 +65,7 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
   return (
     <div className="space-y-8">
       {posts.map((post, index) => (
-        <motion.div
-          key={post._id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-        >
+        <div key={post._id}>
           <Link href={`/blog/${post.slug.current}`}>
             <Card className="hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
               <CardContent className="p-0">
@@ -169,7 +163,7 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
               </CardContent>
             </Card>
           </Link>
-        </motion.div>
+        </div>
       ))}
     </div>
   )
