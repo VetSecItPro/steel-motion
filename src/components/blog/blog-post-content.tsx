@@ -366,16 +366,19 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                     className="block"
                   >
                     <Card className="h-full hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
-                      {relatedPost.mainImage && (
-                        <div className="relative h-48 overflow-hidden rounded-t-lg">
-                          <Image
-                            src={urlForImage(relatedPost.mainImage).width(400).height(200).url()}
-                            alt={relatedPost.mainImage.alt || relatedPost.title}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                        </div>
-                      )}
+                      {relatedPost.mainImage && (() => {
+                        const imageUrl = urlForImage(relatedPost.mainImage)
+                        return imageUrl ? (
+                          <div className="relative h-48 overflow-hidden rounded-t-lg">
+                            <Image
+                              src={imageUrl.width(400).height(200).url()}
+                              alt={relatedPost.mainImage.alt || relatedPost.title}
+                              fill
+                              className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </div>
+                        ) : null
+                      })()}
                       <CardContent className="p-6">
                         <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
                           {relatedPost.title}

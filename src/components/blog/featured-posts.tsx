@@ -65,21 +65,24 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
             <Link href={`/blog/${post.slug.current}`}>
             <Card className="h-full hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
               {/* Featured Image */}
-              {post.mainImage && (
-                <div className="relative h-48 overflow-hidden rounded-t-lg">
-                  <Image
-                    src={urlForImage(post.mainImage).width(400).height(200).url()}
-                    alt={post.mainImage.alt || post.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-[#00F2FF]/90 text-slate-900 hover:bg-[#00F2FF]">
-                      Featured
-                    </Badge>
+              {post.mainImage && (() => {
+                const imageUrl = urlForImage(post.mainImage)
+                return imageUrl ? (
+                  <div className="relative h-48 overflow-hidden rounded-t-lg">
+                    <Image
+                      src={imageUrl.width(400).height(200).url()}
+                      alt={post.mainImage.alt || post.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-[#00F2FF]/90 text-slate-900 hover:bg-[#00F2FF]">
+                        Featured
+                      </Badge>
+                    </div>
                   </div>
-                </div>
-              )}
+                ) : null
+              })()}
 
               <CardContent className="p-6">
                 {/* Categories */}
