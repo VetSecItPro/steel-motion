@@ -64,30 +64,33 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
 
   return (
     <div className="space-y-8">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <div key={post._id}>
           <Link href={`/blog/${post.slug.current}`}>
             <Card className="hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
               <CardContent className="p-0">
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* Image */}
-                  {post.mainImage && (
-                    <div className="relative h-48 md:h-full overflow-hidden md:rounded-l-lg">
-                      <Image
-                        src={urlForImage(post.mainImage).width(300).height(200).url()}
-                        alt={post.mainImage.alt || post.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      {post.featured && (
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-[#00F2FF]/90 text-slate-900 hover:bg-[#00F2FF]">
-                            Featured
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-                  )}
+                  {post.mainImage && (() => {
+                    const imageUrl = urlForImage(post.mainImage)
+                    return imageUrl ? (
+                      <div className="relative h-48 md:h-full overflow-hidden md:rounded-l-lg">
+                        <Image
+                          src={imageUrl.width(300).height(200).url()}
+                          alt={post.mainImage.alt || post.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                        {post.featured && (
+                          <div className="absolute top-4 left-4">
+                            <Badge className="bg-[#00F2FF]/90 text-slate-900 hover:bg-[#00F2FF]">
+                              Featured
+                            </Badge>
+                          </div>
+                        )}
+                      </div>
+                    ) : null
+                  })()}
 
                   {/* Content */}
                   <div className={`p-6 ${post.mainImage ? 'md:col-span-2' : 'md:col-span-3'}`}>
