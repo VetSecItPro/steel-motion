@@ -246,6 +246,10 @@ This project is proprietary to Steel Motion LLC. All rights reserved.
 
 ---
 
+## 🔒 Security Notice
+
+All API keys and tokens are now properly secured using GitHub Secrets and environment variables. Previously exposed credentials have been revoked and regenerated with new secure keys.
+
 ## 🎖️ Veteran-Owned Business
 
 Steel Motion LLC is proudly veteran-owned and operated, bringing military precision and commitment to excellence to every project.
