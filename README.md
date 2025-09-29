@@ -1,20 +1,21 @@
-# Steel Motion LLC - Landing Page
+# Steel Motion LLC - Complete Digital Platform
 
 ![Steel Motion Logo](./public/images/steel-motion-hero-logo.png)
 
 ## 🚀 Overview
 
-Steel Motion LLC is a veteran-led technology consulting company specializing in AI transformation, cloud infrastructure, cybersecurity, and custom application development. This modern, responsive landing page showcases our comprehensive technology solutions with an interactive and engaging user experience.
+Steel Motion LLC is a veteran-led technology consulting company specializing in AI transformation, cloud infrastructure, cybersecurity, and custom application development. This comprehensive digital platform features a modern landing page, interactive blog with content management system, and partnership portal, all designed to showcase our technology expertise and thought leadership.
 
 ## 🎯 Purpose
 
 This comprehensive website serves as the primary digital presence for Steel Motion LLC, designed to:
 
 - **Showcase Services**: Interactive accordion and dedicated service pages for each technology solution
-- **Generate Leads**: Streamlined contact form with clear call-to-action flow across all pages
-- **Build Trust**: Veteran-owned business credentials and mission-focused messaging
-- **Convert Visitors**: Optimized user journey from home page to detailed service pages to contact form
-- **Professional Presentation**: Dedicated subpages for each service offering with detailed capabilities
+- **Share Expertise**: Professional blog with CMS integration showcasing thought leadership
+- **Generate Leads**: Streamlined contact form and partnership inquiry system
+- **Build Trust**: Veteran-owned business credentials, case studies, and technical insights
+- **Convert Visitors**: Optimized user journey from landing to services to blog to contact
+- **Content Management**: Full-featured blog with categories, author profiles, and content optimization
 
 ## ✨ Key Features
 
@@ -28,8 +29,10 @@ This comprehensive website serves as the primary digital presence for Steel Moti
 - **Hero Section**: Integrated mission statement with prominent logo display
 - **Technology Accordion**: Interactive showcase of 5 core service areas with clickable navigation
 - **Service Pages**: Dedicated pages for each service with comprehensive details and back navigation
-- **Navigation System**: Dropdown menus linking to service pages and smooth scrolling for home page sections
-- **Contact Form**: Professional contact interface with form validation accessible from all pages
+- **Blog Platform**: Full-featured blog with content management, categories, and author profiles
+- **Partnership Portal**: Dedicated partnership inquiry system with custom form handling
+- **Navigation System**: Comprehensive menu with smooth scrolling and intuitive navigation
+- **Contact Forms**: Professional contact and partnership interfaces with form validation
 
 ### 🎯 **User Experience**
 - **Clear Navigation**: Intuitive menu with smooth scroll-to-section functionality
@@ -40,15 +43,25 @@ This comprehensive website serves as the primary digital presence for Steel Moti
 ## 🛠️ Tech Stack
 
 ### **Frontend Framework**
-- **[Next.js 15.5.3](https://nextjs.org/)** - React framework for production
-- **[React 19.1.0](https://reactjs.org/)** - Component-based UI library
-- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Next.js 15.5.3](https://nextjs.org/)** - React framework with App Router and Server Components
+- **[React 19.1.0](https://reactjs.org/)** - Component-based UI library with latest features
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript development
+
+### **Content Management**
+- **[Sanity CMS](https://www.sanity.io/)** - Headless CMS for blog content management
+- **[Portable Text](https://www.portabletext.org/)** - Rich text rendering with custom components
+- **[GROQ](https://www.sanity.io/docs/groq)** - Content queries and data fetching
 
 ### **Styling & UI**
 - **[Tailwind CSS 4](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[shadcn/ui](https://ui.shadcn.com/)** - Re-usable component library
 - **[Framer Motion](https://www.framer.com/motion/)** - Production-ready motion library
 - **[Lucide React](https://lucide.dev/)** - Beautiful & consistent icon toolkit
+
+### **Backend & API**
+- **[Next.js API Routes](https://nextjs.org/docs/api-routes/introduction)** - Serverless API endpoints
+- **[Resend](https://resend.com/)** - Email delivery service for contact forms
+- **[React Email](https://react.email/)** - Email template system
 
 ### **Development Tools**
 - **[ESLint](https://eslint.org/)** - Code linting and quality assurance
@@ -65,43 +78,55 @@ steel-motion-landing/
 │   └── ...                               # Static assets
 ├── src/
 │   ├── app/
+│   │   ├── api/                          # API endpoints
+│   │   │   ├── contact/                  # Contact form handler
+│   │   │   ├── partnerships/             # Partnership form handler
+│   │   │   └── revalidation-status/      # Content monitoring endpoint
+│   │   ├── blog/                         # Blog section
+│   │   │   ├── [slug]/                   # Dynamic blog post pages
+│   │   │   └── page.tsx                  # Blog listing page
 │   │   ├── services/                     # Service pages directory
 │   │   │   ├── ai-transformation/
-│   │   │   │   └── page.tsx              # AI Transformation service page
 │   │   │   ├── cloud-infrastructure/
-│   │   │   │   └── page.tsx              # Cloud Infrastructure service page
 │   │   │   ├── cybersecurity/
-│   │   │   │   └── page.tsx              # Cybersecurity service page
 │   │   │   ├── custom-development/
-│   │   │   │   └── page.tsx              # Custom Development service page
 │   │   │   └── data-analytics/
-│   │   │       └── page.tsx              # Data Analytics service page
+│   │   ├── partnerships/
+│   │   │   └── page.tsx                  # Partnership portal
 │   │   ├── about/
-│   │   │   └── page.tsx                  # About page (future expansion)
+│   │   │   └── page.tsx                  # About page
+│   │   ├── studio/                       # Sanity Studio integration
 │   │   ├── globals.css                   # Global styles and Tailwind config
 │   │   ├── layout.tsx                    # Root layout component
 │   │   ├── page.tsx                      # Home page component
 │   │   └── favicon.ico
 │   ├── components/
+│   │   ├── blog/                         # Blog-specific components
+│   │   │   ├── blog-hero.tsx             # Blog section hero
+│   │   │   ├── blog-post-content.tsx     # Individual post display
+│   │   │   ├── blog-post-grid.tsx        # Post listing grid
+│   │   │   ├── featured-posts.tsx        # Featured content showcase
+│   │   │   └── blog-sidebar.tsx          # Blog navigation sidebar
 │   │   ├── navigation/
-│   │   │   └── navbar.tsx                # Main navigation with service links
+│   │   │   └── navbar.tsx                # Main navigation system
 │   │   ├── sections/
-│   │   │   ├── hero.tsx                  # Hero section with integrated mission
-│   │   │   ├── services.tsx              # Interactive technology solutions
-│   │   │   ├── service-page.tsx          # Reusable service page template
+│   │   │   ├── hero.tsx                  # Hero section with mission
+│   │   │   ├── services.tsx              # Interactive service showcase
+│   │   │   ├── service-page.tsx          # Reusable service template
 │   │   │   ├── why-steel-motion.tsx      # Value proposition section
-│   │   │   ├── contact.tsx               # Contact form and information
+│   │   │   ├── contact.tsx               # Contact forms
 │   │   │   └── footer.tsx                # Footer with company info
-│   │   └── ui/
-│   │       ├── interactive-image-accordion.tsx  # Clickable service accordion
-│   │       ├── button.tsx                # Reusable button component
-│   │       ├── card.tsx                  # Card component variants
-│   │       ├── input.tsx                 # Form input components
-│   │       ├── textarea.tsx              # Textarea component
-│   │       └── badge.tsx                 # Badge component
+│   │   └── ui/                           # Reusable UI components
+│   │       ├── interactive-image-accordion.tsx
+│   │       ├── button.tsx, card.tsx, input.tsx, etc.
 │   └── lib/
+│       ├── sanity.ts                     # Sanity CMS configuration
+│       ├── sanity-queries.ts             # Content queries
+│       ├── content-monitor.ts            # Smart content monitoring
+│       ├── revalidation-manager.ts       # Adaptive revalidation system
 │       └── utils.ts                      # Utility functions
 ├── components.json                       # shadcn/ui configuration
+├── next.config.ts                        # Next.js configuration
 ├── tailwind.config.js                   # Tailwind CSS configuration
 ├── tsconfig.json                         # TypeScript configuration
 └── package.json                         # Dependencies and scripts
@@ -213,7 +238,13 @@ The application is built with a mobile-first approach:
 
 ## 🚀 Deployment
 
-### **Vercel (Recommended)**
+### **Production VPS (Current)**
+- Deployed on custom VPS with PM2 process management
+- Automated CI/CD via GitHub Actions
+- SSL certificates and domain configuration
+- Production URL: [https://steelmotionllc.com](https://steelmotionllc.com)
+
+### **Development/Staging**
 ```bash
 npm install -g vercel
 vercel
@@ -240,22 +271,25 @@ This project is proprietary to Steel Motion LLC. All rights reserved.
 ## 📞 Contact
 
 **Steel Motion LLC**
-📧 Email: contact@steelmotion.com
-📱 Phone: Available upon request
-🌐 Service Area: Nationwide Remote (Responsive on Zoom as needed)
+📧 Email: contact@steelmotionllc.com
+🌐 Website: [https://steelmotionllc.com](https://steelmotionllc.com)
+📱 Service Area: Nationwide Remote (Responsive on Zoom as needed)
 
 ---
 
-## 🔒 Security Notice
+## 🔒 Security & Performance
 
-All API keys and tokens are now properly secured using GitHub Secrets and environment variables. Previously exposed credentials have been revoked and regenerated with new secure keys.
+- **Environment Variables**: All API keys secured using GitHub Secrets
+- **Content Delivery**: Optimized image delivery via Sanity CDN
+- **Smart Caching**: Adaptive content revalidation for optimal performance
+- **SSL Security**: Production deployment with SSL certificates
 
 ## 🎖️ Veteran-Owned Business
 
 Steel Motion LLC is proudly veteran-owned and operated, bringing military precision and commitment to excellence to every project.
 
 **Ready to Transform Your Business?**
-[Get Started Today](https://steel-motion-landing.vercel.app/#contact)
+[Get Started Today](https://steelmotionllc.com/#contact)
 
 ---
 
