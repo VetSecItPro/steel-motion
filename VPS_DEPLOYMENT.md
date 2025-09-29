@@ -41,12 +41,12 @@ Add the following content (replace with your actual values):
 
 ```bash
 # Resend API Key for email functionality
-RESEND_API_KEY=re_LoopzZPN_DFX2ZZgNdJynLXuehAnpjnRh
+RESEND_API_KEY=your_resend_api_key_here
 
 # Sanity Configuration
-NEXT_PUBLIC_SANITY_PROJECT_ID=9hai52b5
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=sktOpvETnTZEsUomws9RKRAoXCgajXRDVH9AQzTAnmaW5liS7tV2I1HnzmYN4g1hdGAoh9uTl0OL2tSK6Y0TlyhchiyoVvr0W86xOzDtMtjkyophRlq7vBDwEQ9loPsTLgPg8RBzLAVj2Me5ZSpcx4tEtPSojm0vFIxXfrVT6rd1Dlwl0all
+SANITY_API_TOKEN=your_sanity_api_token_here
 ```
 
 ### Step 5: Install New Dependencies
