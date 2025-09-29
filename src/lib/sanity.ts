@@ -11,32 +11,24 @@ export const client = createClient({
 const builder = imageUrlBuilder(client)
 
 export function urlForImage(source: any) {
-  console.log('urlForImage called with source:', JSON.stringify(source, null, 2))
-
   if (!source) {
-    console.warn('No image source provided')
     return null
   }
 
   try {
-    // Try the direct approach first
-    const imageUrl = builder.image(source)
-    console.log('Generated image URL:', imageUrl.url())
-    return imageUrl
-  } catch (error) {
-    console.error('Error generating image URL:', error)
-    console.log('Falling back to asset-based approach')
-
-    try {
-      if (source.asset) {
-        const assetUrl = builder.image(source.asset)
-        console.log('Asset-based URL:', assetUrl.url())
-        return assetUrl
-      }
-    } catch (assetError) {
-      console.error('Asset-based approach also failed:', assetError)
+    // Handle different Sanity image reference formats
+    if (source.asset) {
+      // New format: { asset: { _ref: "..." }, alt: "..." }
+      return builder.image(source.asset)
+    } else if (source._ref || source._id) {
+      // Direct asset reference
+      return builder.image(source)
+    } else {
+      // Fallback: try processing the source directly
+      return builder.image(source)
     }
-
+  } catch (error) {
+    console.error('Error generating image URL:', error, 'Source:', source)
     return null
   }
 }

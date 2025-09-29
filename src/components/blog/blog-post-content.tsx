@@ -180,9 +180,6 @@ const portableTextComponents = {
 }
 
 export default function BlogPostContent({ post }: BlogPostContentProps) {
-  // Debug logging for image data
-  console.log('Post main image data:', post.mainImage)
-
   return (
     <article className="pt-20">
       {/* Hero Section */}
@@ -285,7 +282,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
         return imageUrl ? (
           <section className="py-8">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <Image
                   src={imageUrl.width(1200).height(600).url()}
                   alt={post.mainImage.alt || post.title}
@@ -304,7 +301,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
         ) : (
           <section className="py-8">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <div className="bg-slate-200 rounded-lg shadow-xl h-96 flex items-center justify-center text-slate-500">
                   Image could not be loaded
                 </div>
@@ -317,7 +314,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
       {/* Content */}
       <section className="py-8">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             {/* Main Content */}
             <div>
               <div className="prose prose-lg max-w-none">
