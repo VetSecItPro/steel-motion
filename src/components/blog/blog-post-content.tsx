@@ -272,10 +272,8 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   <span>{post.readTime} min read</span>
                 </div>
               )}
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+              <button
+                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white border border-white/30 rounded-md hover:bg-white/10 hover:text-white transition-colors"
                 onClick={() => {
                   if (navigator.share) {
                     navigator.share({
@@ -288,9 +286,9 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   }
                 }}
               >
-                <Share2 className="w-4 h-4 mr-2" />
-                <span>Share</span>
-              </Button>
+                <Share2 className="w-4 h-4" />
+                <span className="text-white">Share</span>
+              </button>
             </div>
           </motion.div>
         </div>

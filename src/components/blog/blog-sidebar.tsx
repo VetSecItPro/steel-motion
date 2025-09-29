@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, BookOpen, Mail } from "lucide-react"
+import { ArrowRight, BookOpen } from "lucide-react"
 
 interface Category {
   _id: string
@@ -79,28 +79,6 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
               </Link>
             ))}
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Newsletter Signup */}
-      <Card className="border-slate-200 bg-gradient-to-br from-[#0a1728]/5 via-[#0f2640]/5 to-[#1a3a5c]/5">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-slate-900">
-            <Mail className="w-5 h-5 text-[#00F2FF]" />
-            Stay Updated
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-slate-600 mb-4 text-sm leading-relaxed">
-            Get the latest insights on AI transformation, cybersecurity, and technology leadership
-            delivered directly to your inbox.
-          </p>
-          <Link href="/#contact">
-            <Button className="w-full bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold">
-              Subscribe to Newsletter
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
         </CardContent>
       </Card>
 

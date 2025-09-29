@@ -1,7 +1,6 @@
 'use client'
 
 import { Badge } from "@/components/ui/badge"
-import { FileText, Users, Target } from "lucide-react"
 
 export default function BlogHero() {
   return (
@@ -23,25 +22,6 @@ export default function BlogHero() {
             Discover practical insights on AI transformation, cybersecurity, cloud infrastructure,
             and technology leadership from our experienced veteran team.
           </p>
-
-          {/* Stats */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-in-up-delay-3">
-            <div className="text-center">
-              <FileText className="w-8 h-8 text-[#00F2FF] mx-auto mb-3" />
-              <div className="text-2xl font-bold text-white">50+</div>
-              <div className="text-sm text-white/80">Technical Articles</div>
-            </div>
-            <div className="text-center">
-              <Users className="w-8 h-8 text-[#00F2FF] mx-auto mb-3" />
-              <div className="text-2xl font-bold text-white">10+</div>
-              <div className="text-sm text-white/80">Veteran Authors</div>
-            </div>
-            <div className="text-center">
-              <Target className="w-8 h-8 text-[#00F2FF] mx-auto mb-3" />
-              <div className="text-2xl font-bold text-white">5</div>
-              <div className="text-sm text-white/80">Core Topics</div>
-            </div>
-          </div>
         </div>
       </div>
 
