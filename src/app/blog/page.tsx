@@ -9,6 +9,9 @@ import BlogSidebar from "@/components/blog/blog-sidebar"
 import { client } from "@/lib/sanity"
 import { postsQuery, featuredPostsQuery, categoriesQuery } from "@/lib/sanity-queries"
 
+// Revalidate every 60 seconds to ensure fresh content
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: "Steel Motion Blog | Tech Insights from Veteran Leaders",
   description: "Discover insights on AI transformation, cybersecurity, cloud infrastructure, and technology leadership from Steel Motion's veteran team.",

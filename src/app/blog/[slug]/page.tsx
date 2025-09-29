@@ -6,6 +6,9 @@ import BlogPostContent from "@/components/blog/blog-post-content"
 import { client } from "@/lib/sanity"
 import { postQuery } from "@/lib/sanity-queries"
 
+// Revalidate every 60 seconds to ensure fresh content
+export const revalidate = 60
+
 interface BlogPostPageProps {
   params: Promise<{
     slug: string
