@@ -8,9 +8,7 @@ import BlogPostGrid from "@/components/blog/blog-post-grid"
 import BlogSidebar from "@/components/blog/blog-sidebar"
 import { client } from "@/lib/sanity"
 import { postsQuery, featuredPostsQuery, categoriesQuery } from "@/lib/sanity-queries"
-
-// Revalidate every 60 seconds to ensure fresh content
-export const revalidate = 60
+import { revalidationManager } from "@/lib/revalidation-manager"
 
 export const metadata: Metadata = {
   title: "Steel Motion Blog | Tech Insights from Veteran Leaders",
@@ -51,7 +49,15 @@ export const metadata: Metadata = {
   }
 }
 
+// Use shorter base interval for smart revalidation
+export const revalidate = 60
+
 async function getBlogData() {
+  // Check if we should actually fetch new data
+  const shouldUpdate = await revalidationManager.getBlogRevalidation()
+
+  console.log(`Blog data fetch - should update in ${shouldUpdate}s`)
+
   const [posts, featuredPosts, categories] = await Promise.all([
     client.fetch(postsQuery),
     client.fetch(featuredPostsQuery),
