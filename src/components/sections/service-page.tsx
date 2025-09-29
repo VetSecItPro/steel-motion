@@ -41,8 +41,8 @@ export default function ServicePage({
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     } else {
-      // If we're on a service page, go to home page contact section
-      window.location.href = '/#contact'
+      // If we're on a service page, navigate to home page contact section
+      window.location.assign('/#contact')
     }
   }
 

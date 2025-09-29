@@ -138,6 +138,12 @@ export default function Navbar() {
               </div>
             </div>
             <Link
+              href="/blog"
+              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+            >
+              Blog
+            </Link>
+            <Link
               href="/about"
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
             >
@@ -211,6 +217,13 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
+              <Link
+                href="/blog"
+                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Blog
+              </Link>
               <Link
                 href="/about"
                 className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
