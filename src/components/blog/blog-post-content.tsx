@@ -275,10 +275,21 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="border-white/30 text-white hover:bg-white/10"
+                className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: post.title,
+                      text: post.excerpt,
+                      url: window.location.href,
+                    })
+                  } else {
+                    navigator.clipboard.writeText(window.location.href)
+                  }
+                }}
               >
                 <Share2 className="w-4 h-4 mr-2" />
-                Share
+                <span>Share</span>
               </Button>
             </div>
           </motion.div>

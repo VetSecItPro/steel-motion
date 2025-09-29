@@ -81,12 +81,12 @@ jobs:
 
           # Restart or start PM2 process
           echo "Managing PM2 process..."
-          if pm2 list | grep -q "steel-motion"; then
+          if pm2 list | grep -q "steel-motion-app"; then
             echo "Restarting existing PM2 process..."
-            pm2 restart steel-motion
+            pm2 restart steel-motion-app
           else
             echo "Starting new PM2 process..."
-            pm2 start npm --name "steel-motion" -- start
+            pm2 start npm --name "steel-motion-app" -- start
             pm2 save
           fi
 
@@ -95,11 +95,11 @@ jobs:
           sleep 10
 
           # Health check - PM2 process
-          if pm2 list | grep -q "steel-motion.*online"; then
+          if pm2 list | grep -q "steel-motion-app.*online"; then
             echo "✓ PM2 process is running"
           else
             echo "✗ PM2 process is not running"
-            pm2 logs steel-motion --lines 10
+            pm2 logs steel-motion-app --lines 10
             exit 1
           fi
 
@@ -116,7 +116,7 @@ jobs:
 
             if [ $i -eq 5 ]; then
               echo "✗ Site is not responding after 5 attempts"
-              pm2 logs steel-motion --lines 10
+              pm2 logs steel-motion-app --lines 10
               exit 1
             fi
           done

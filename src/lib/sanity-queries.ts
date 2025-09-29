@@ -8,14 +8,20 @@ export const postsQuery = groq`
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      asset,
+      alt
+    },
     readTime,
     featured,
     tags,
     author->{
       name,
       slug,
-      image,
+      image {
+        asset,
+        alt
+      },
       veteranBranch,
       rank
     },
@@ -35,12 +41,18 @@ export const featuredPostsQuery = groq`
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      asset,
+      alt
+    },
     readTime,
     author->{
       name,
       slug,
-      image,
+      image {
+        asset,
+        alt
+      },
       veteranBranch,
       rank
     },
@@ -60,7 +72,10 @@ export const postQuery = groq`
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      asset,
+      alt
+    },
     body,
     readTime,
     tags,
@@ -68,7 +83,10 @@ export const postQuery = groq`
     author->{
       name,
       slug,
-      image,
+      image {
+        asset,
+        alt
+      },
       bio,
       veteranBranch,
       rank,
@@ -86,7 +104,10 @@ export const postQuery = groq`
       title,
       slug,
       excerpt,
-      mainImage,
+      mainImage {
+        asset,
+        alt
+      },
       publishedAt,
       readTime,
       author->{
@@ -105,12 +126,18 @@ export const postsByCategoryQuery = groq`
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      asset,
+      alt
+    },
     readTime,
     author->{
       name,
       slug,
-      image
+      image {
+        asset,
+        alt
+      }
     },
     categories[]->{
       title,
@@ -138,7 +165,10 @@ export const authorsQuery = groq`
     _id,
     name,
     slug,
-    image,
+    image {
+      asset,
+      alt
+    },
     bio,
     veteranBranch,
     rank,
@@ -155,7 +185,10 @@ export const postsByAuthorQuery = groq`
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      asset,
+      alt
+    },
     readTime,
     categories[]->{
       title,
