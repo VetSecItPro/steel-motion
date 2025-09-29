@@ -8,12 +8,13 @@ Steel Motion LLC is a veteran-led technology consulting company specializing in 
 
 ## 🎯 Purpose
 
-This landing page serves as the primary digital presence for Steel Motion LLC, designed to:
+This comprehensive website serves as the primary digital presence for Steel Motion LLC, designed to:
 
-- **Showcase Services**: Interactive accordion displaying our core technology solutions
-- **Generate Leads**: Streamlined contact form with clear call-to-action flow
+- **Showcase Services**: Interactive accordion and dedicated service pages for each technology solution
+- **Generate Leads**: Streamlined contact form with clear call-to-action flow across all pages
 - **Build Trust**: Veteran-owned business credentials and mission-focused messaging
-- **Convert Visitors**: Optimized user journey from hero section to contact form
+- **Convert Visitors**: Optimized user journey from home page to detailed service pages to contact form
+- **Professional Presentation**: Dedicated subpages for each service offering with detailed capabilities
 
 ## ✨ Key Features
 
@@ -25,9 +26,10 @@ This landing page serves as the primary digital presence for Steel Motion LLC, d
 
 ### 🔧 **Interactive Components**
 - **Hero Section**: Integrated mission statement with prominent logo display
-- **Technology Accordion**: Interactive showcase of 5 core service areas with detailed descriptions
-- **Smooth Scrolling**: Seamless navigation between sections
-- **Contact Form**: Professional contact interface with form validation
+- **Technology Accordion**: Interactive showcase of 5 core service areas with clickable navigation
+- **Service Pages**: Dedicated pages for each service with comprehensive details and back navigation
+- **Navigation System**: Dropdown menus linking to service pages and smooth scrolling for home page sections
+- **Contact Form**: Professional contact interface with form validation accessible from all pages
 
 ### 🎯 **User Experience**
 - **Clear Navigation**: Intuitive menu with smooth scroll-to-section functionality
@@ -63,21 +65,35 @@ steel-motion-landing/
 │   └── ...                               # Static assets
 ├── src/
 │   ├── app/
+│   │   ├── services/                     # Service pages directory
+│   │   │   ├── ai-transformation/
+│   │   │   │   └── page.tsx              # AI Transformation service page
+│   │   │   ├── cloud-infrastructure/
+│   │   │   │   └── page.tsx              # Cloud Infrastructure service page
+│   │   │   ├── cybersecurity/
+│   │   │   │   └── page.tsx              # Cybersecurity service page
+│   │   │   ├── custom-development/
+│   │   │   │   └── page.tsx              # Custom Development service page
+│   │   │   └── data-analytics/
+│   │   │       └── page.tsx              # Data Analytics service page
+│   │   ├── about/
+│   │   │   └── page.tsx                  # About page (future expansion)
 │   │   ├── globals.css                   # Global styles and Tailwind config
 │   │   ├── layout.tsx                    # Root layout component
 │   │   ├── page.tsx                      # Home page component
 │   │   └── favicon.ico
 │   ├── components/
 │   │   ├── navigation/
-│   │   │   └── navbar.tsx                # Main navigation component
+│   │   │   └── navbar.tsx                # Main navigation with service links
 │   │   ├── sections/
 │   │   │   ├── hero.tsx                  # Hero section with integrated mission
 │   │   │   ├── services.tsx              # Interactive technology solutions
+│   │   │   ├── service-page.tsx          # Reusable service page template
 │   │   │   ├── why-steel-motion.tsx      # Value proposition section
 │   │   │   ├── contact.tsx               # Contact form and information
 │   │   │   └── footer.tsx                # Footer with company info
 │   │   └── ui/
-│   │       ├── interactive-image-accordion.tsx  # Custom accordion component
+│   │       ├── interactive-image-accordion.tsx  # Clickable service accordion
 │   │       ├── button.tsx                # Reusable button component
 │   │       ├── card.tsx                  # Card component variants
 │   │       ├── input.tsx                 # Form input components
