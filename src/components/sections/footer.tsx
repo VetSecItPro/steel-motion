@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from "framer-motion"
 import { Linkedin, Github, Mail } from "lucide-react"
 import Link from "next/link"
 
@@ -8,13 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white py-12">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-4 gap-8"
-        >
+        <div className="grid md:grid-cols-4 gap-8 animate-fade-in-up">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-lg flex items-center justify-center">
@@ -72,15 +65,9 @@ export default function Footer() {
               <li><a href="#" className="hover:text-[#00F2FF] transition-colors">Blog (Coming Soon)</a></li>
             </ul>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
+        <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center animate-fade-in-delay-1">
           <p className="text-slate-400 text-sm">
             © 2025 Steel Motion LLC. All rights reserved.
           </p>
@@ -92,21 +79,51 @@ export default function Footer() {
               Terms of Service
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-6 pt-6 border-t border-slate-800"
-        >
+        <div className="text-center mt-6 pt-6 border-t border-slate-800 animate-fade-in-delay-2">
           <div className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-full px-4 py-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-slate-300 text-sm font-medium">VETERAN OWNED BUSINESS</span>
           </div>
-        </motion.div>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-delay-1 {
+          animation: fadeIn 0.8s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.8s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+      `}</style>
     </footer>
   )
 }
