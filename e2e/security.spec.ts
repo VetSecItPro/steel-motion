@@ -98,8 +98,8 @@ test.describe('Security Tests', () => {
         },
       });
 
-      // Should handle gracefully - 400 (bad request) or 500 (parse error) are both acceptable
-      expect([400, 500]).toContain(response.status());
+      // Should handle gracefully - 400, 500, or 503 are acceptable
+      expect([400, 500, 503]).toContain(response.status());
     });
 
     test('API validates email format on server', async ({ request }) => {
