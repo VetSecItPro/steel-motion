@@ -19,8 +19,8 @@ test.describe('Navigation', () => {
     await page.click('nav >> text=Blog');
     await expect(page).toHaveURL(/\/blog/);
 
-    // Navigate back home
-    await page.click('nav >> img[alt*="Steel Motion"]');
+    // Navigate back home via logo link
+    await page.click('nav a[href="/"]');
     await expect(page).toHaveURL('/');
   });
 
