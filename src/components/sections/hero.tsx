@@ -74,8 +74,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-4xl md:text-6xl font-bold mb-4"
           >
-            <span className="text-white">Transforming Business Through</span>
-            <span className="block text-[#00F2FF] drop-shadow-lg">AI Innovation</span>
+            <span className="text-white">Mission-Critical AI for</span>
+            <span className="block text-[#00F2FF] drop-shadow-lg">Enterprise Operations</span>
           </motion.h1>
 
           <motion.p
@@ -84,22 +84,30 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-xl md:text-2xl text-[#B3B3B3] mb-6 max-w-3xl mx-auto leading-relaxed"
           >
-            Veteran-led solutions for the digital frontier. We help businesses leverage AI to streamline operations, boost efficiency, and stay ahead of the competition.
+            Where military precision meets cutting-edge technology. We deploy AI solutions that deliver results—built by veterans who understand that failure is not an option.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex justify-center items-center"
+            className="flex flex-col sm:flex-row justify-center items-center gap-4"
           >
             <Button
               size="lg"
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] px-8 py-6 text-lg rounded-full group transition-all duration-300 hover:scale-105 font-semibold shadow-lg shadow-[#00F2FF]/25"
             >
-              Start Your AI Journey
+              Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => scrollToSection('services')}
+              className="border-[#00F2FF]/50 text-[#00F2FF] hover:bg-[#00F2FF]/10 px-8 py-6 text-lg rounded-full group transition-all duration-300 hover:scale-105 font-semibold"
+            >
+              Explore Our Services
             </Button>
           </motion.div>
 
@@ -117,10 +125,10 @@ export default function Hero() {
                   Our Mission
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                  Precision, Innovation, and Service
+                  Results You Can Measure
                 </h2>
                 <p className="text-lg text-[#B3B3B3] leading-relaxed max-w-4xl mx-auto">
-                  At Steel Motion LLC, we combine military precision with cutting-edge technology to deliver AI solutions that transform how businesses operate. Our veteran leadership brings proven experience in mission-critical environments to your digital transformation journey.
+                  We bring military discipline to enterprise technology. Every engagement is scoped for measurable outcomes, executed with precision, and backed by veterans who have led mission-critical operations at scale.
                 </p>
               </div>
 
@@ -135,9 +143,9 @@ export default function Hero() {
                   <div className="bg-[#1a3a5c]/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#00F2FF]/20 transition-colors duration-300 border border-[#00F2FF]/20">
                     <Shield className="w-8 h-8 text-[#00F2FF] group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-white">Veteran Leadership</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-white">Accountability First</h3>
                   <p className="text-[#B3B3B3] leading-relaxed">
-                    Led by experienced veterans who understand the importance of reliability, precision, and getting the mission done right the first time.
+                    One point of contact. Clear deliverables. No finger-pointing. We own your project from discovery to deployment and beyond.
                   </p>
                 </motion.div>
 
@@ -150,9 +158,9 @@ export default function Hero() {
                   <div className="bg-[#1a3a5c]/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#00F2FF]/20 transition-colors duration-300 border border-[#00F2FF]/20">
                     <Target className="w-8 h-8 text-[#00F2FF] group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-white">Mission-Focused</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-white">Outcome-Driven</h3>
                   <p className="text-[#B3B3B3] leading-relaxed">
-                    Every project is approached with military precision and a clear objective: delivering measurable results that drive your business forward.
+                    We define success metrics before we write code. Every project is scoped for ROI, with milestones you can track and results you can verify.
                   </p>
                 </motion.div>
 
@@ -165,9 +173,9 @@ export default function Hero() {
                   <div className="bg-[#1a3a5c]/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#00F2FF]/20 transition-colors duration-300 border border-[#00F2FF]/20">
                     <Users className="w-8 h-8 text-[#00F2FF] group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-white">Collaborative Approach</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-white">Strategic Partnership</h3>
                   <p className="text-[#B3B3B3] leading-relaxed">
-                    We partner with fellow veterans and innovative minds to create solutions that combine diverse expertise and proven methodologies.
+                    Not just vendors—advisors. We embed with your team, transfer knowledge, and build solutions you can maintain long after we leave.
                   </p>
                 </motion.div>
               </div>

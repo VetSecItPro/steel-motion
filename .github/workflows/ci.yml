@@ -1,0 +1,387 @@
+name: CI Pipeline - Validate & Auto PR
+
+on:
+  push:
+    branches: ['**', '!main']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      create_pr:
+        description: 'Create PR after validation passes'
+        required: false
+        default: 'true'
+        type: boolean
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ============================================
+  # JOB 1: Code Quality & Security Checks
+  # ============================================
+  quality-checks:
+    name: Code Quality & Security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: TypeScript Type Check
+        run: npx tsc --noEmit
+
+      - name: Security Audit
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+      - name: Check for secrets in code
+        run: |
+          echo "Scanning for potential secrets..."
+          # Check for common secret patterns
+          if grep -rE "(api[_-]?key|secret|password|token)\s*[:=]\s*['\"][^'\"]+['\"]" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/ 2>/dev/null | grep -v ".env" | grep -v "process.env"; then
+            echo "WARNING: Potential hardcoded secrets found!"
+            exit 1
+          fi
+          echo "No hardcoded secrets detected."
+
+  # ============================================
+  # JOB 2: Unit & Integration Tests
+  # ============================================
+  unit-tests:
+    name: Unit & Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Vitest
+        run: npm run test:run
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  # ============================================
+  # JOB 3: Build Verification
+  # ============================================
+  build:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next/
+          retention-days: 1
+
+  # ============================================
+  # JOB 4: E2E Tests (Playwright)
+  # ============================================
+  e2e-tests:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next/
+
+      - name: Run E2E tests
+        run: npx playwright test --project=chromium
+        env:
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test-results/
+          retention-days: 7
+
+  # ============================================
+  # JOB 5: Lighthouse Performance Audit
+  # ============================================
+  lighthouse:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next/
+
+      - name: Run Lighthouse CI
+        run: |
+          npm run build
+          npx lhci autorun --collect.numberOfRuns=1 --collect.url=http://localhost:3000 || true
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          retention-days: 7
+
+  # ============================================
+  # JOB 6: Security Scanning
+  # ============================================
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: |
+          npm audit --json > npm-audit.json || true
+          cat npm-audit.json
+
+      - name: Check for critical vulnerabilities
+        run: |
+          CRITICAL=$(npm audit --json 2>/dev/null | jq '.metadata.vulnerabilities.critical // 0')
+          HIGH=$(npm audit --json 2>/dev/null | jq '.metadata.vulnerabilities.high // 0')
+          echo "Critical vulnerabilities: $CRITICAL"
+          echo "High vulnerabilities: $HIGH"
+          if [ "$CRITICAL" -gt 0 ]; then
+            echo "::error::Critical vulnerabilities found!"
+            exit 1
+          fi
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-report
+          path: npm-audit.json
+          retention-days: 7
+
+  # ============================================
+  # JOB 7: Auto Create PR (on branch push)
+  # ============================================
+  auto-pr:
+    name: Auto Create PR
+    runs-on: ubuntu-latest
+    needs: [quality-checks, unit-tests, build, e2e-tests, security-scan]
+    if: |
+      github.event_name == 'push' &&
+      github.ref != 'refs/heads/main' &&
+      (github.event.inputs.create_pr != 'false' || github.event.inputs.create_pr == null)
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get branch name
+        id: branch
+        run: echo "name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+
+      - name: Check if PR exists
+        id: check-pr
+        run: |
+          PR_EXISTS=$(gh pr list --head "${{ steps.branch.outputs.name }}" --json number --jq 'length')
+          echo "exists=$PR_EXISTS" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        if: steps.check-pr.outputs.exists == '0'
+        run: |
+          gh pr create \
+            --title "🚀 Deploy: ${{ steps.branch.outputs.name }}" \
+            --body "## Auto-generated PR
+
+          This PR was automatically created after all CI checks passed.
+
+          ### CI Validation Results
+          - ✅ Code Quality & Linting
+          - ✅ TypeScript Type Check
+          - ✅ Unit & Integration Tests
+          - ✅ E2E Tests (Playwright)
+          - ✅ Security Scan
+          - ✅ Build Verification
+
+          ### Changes
+          $(git log origin/main..HEAD --pretty=format:'- %s' | head -20)
+
+          ---
+          *Merge this PR to deploy to Vercel production.*
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
+            --base main \
+            --head "${{ steps.branch.outputs.name }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add CI passed label
+        if: steps.check-pr.outputs.exists != '0'
+        run: |
+          PR_NUMBER=$(gh pr list --head "${{ steps.branch.outputs.name }}" --json number --jq '.[0].number')
+          gh pr edit $PR_NUMBER --add-label "ci-passed" || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ============================================
+  # JOB 8: Validation Summary
+  # ============================================
+  validation-summary:
+    name: Validation Summary
+    runs-on: ubuntu-latest
+    needs: [quality-checks, unit-tests, build, e2e-tests, lighthouse, security-scan]
+    if: always()
+    steps:
+      - name: Check job results
+        run: |
+          echo "## CI Pipeline Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.quality-checks.result }}" == "success" ]; then
+            echo "✅ **Code Quality & Security**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Code Quality & Security**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.unit-tests.result }}" == "success" ]; then
+            echo "✅ **Unit Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Unit Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.build.result }}" == "success" ]; then
+            echo "✅ **Build**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Build**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.e2e-tests.result }}" == "success" ]; then
+            echo "✅ **E2E Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **E2E Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.lighthouse.result }}" == "success" ]; then
+            echo "✅ **Lighthouse Audit**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Lighthouse Audit**: Warning/Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.security-scan.result }}" == "success" ]; then
+            echo "✅ **Security Scan**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Security Scan**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Fail if critical jobs failed
+        if: |
+          needs.quality-checks.result == 'failure' ||
+          needs.unit-tests.result == 'failure' ||
+          needs.build.result == 'failure' ||
+          needs.e2e-tests.result == 'failure' ||
+          needs.security-scan.result == 'failure'
+        run: exit 1
