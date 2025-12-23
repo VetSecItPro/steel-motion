@@ -6,8 +6,16 @@ import BlogHero from "@/components/blog/blog-hero"
 import FeaturedPosts from "@/components/blog/featured-posts"
 import BlogPostGrid from "@/components/blog/blog-post-grid"
 import BlogSidebar from "@/components/blog/blog-sidebar"
+import { BlogSearch } from "@/components/blog/blog-search"
+import { BlogPagination } from "@/components/blog/blog-pagination"
+import { SkeletonCard, SkeletonFeaturedPost, SkeletonSidebar } from "@/components/ui/skeleton"
 import { client } from "@/lib/sanity"
-import { postsQuery, featuredPostsQuery, categoriesQuery } from "@/lib/sanity-queries"
+import {
+  featuredPostsQuery,
+  categoriesQuery,
+  paginatedPostsQuery,
+  postsCountQuery
+} from "@/lib/sanity-queries"
 import { revalidationManager } from "@/lib/revalidation-manager"
 
 export const metadata: Metadata = {
@@ -52,34 +60,71 @@ export const metadata: Metadata = {
 // Use shorter base interval for smart revalidation
 export const revalidate = 60
 
-async function getBlogData() {
+const POSTS_PER_PAGE = 6
+
+interface BlogPageProps {
+  searchParams: Promise<{ page?: string; search?: string }>
+}
+
+async function getBlogData(page: number, search: string) {
   // Check if we should actually fetch new data
   const shouldUpdate = await revalidationManager.getBlogRevalidation()
-
   console.log(`Blog data fetch - should update in ${shouldUpdate}s`)
 
-  const [posts, featuredPosts, categories] = await Promise.all([
-    client.fetch(postsQuery),
+  const start = (page - 1) * POSTS_PER_PAGE
+  const end = start + POSTS_PER_PAGE
+
+  const [posts, totalCount, featuredPosts, categories] = await Promise.all([
+    client.fetch(paginatedPostsQuery, { search, start, end }),
+    client.fetch(postsCountQuery, { search }),
     client.fetch(featuredPostsQuery),
     client.fetch(categoriesQuery)
   ])
 
-  return { posts, featuredPosts, categories }
+  const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE)
+
+  return { posts, featuredPosts, categories, totalCount, totalPages, currentPage: page }
 }
 
-export default async function BlogPage() {
-  const { posts, featuredPosts, categories } = await getBlogData()
+// Skeleton loaders
+function FeaturedPostsSkeleton() {
+  return (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <SkeletonFeaturedPost className="md:col-span-2 lg:col-span-2" />
+      <SkeletonCard />
+    </div>
+  )
+}
+
+function BlogPostsSkeleton() {
+  return (
+    <div className="grid md:grid-cols-2 gap-6">
+      {[...Array(6)].map((_, i) => (
+        <SkeletonCard key={i} />
+      ))}
+    </div>
+  )
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const params = await searchParams
+  const page = Math.max(1, parseInt(params.page || '1', 10))
+  const search = params.search || ''
+
+  const { posts, featuredPosts, categories, totalCount, totalPages, currentPage } = await getBlogData(page, search)
+
+  const showFeatured = !search && page === 1 && featuredPosts.length > 0
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main id="main-content" className="min-h-screen bg-slate-50">
       <Navbar />
 
       {/* Blog Hero Section */}
       <BlogHero />
 
       <div className="container mx-auto px-4 py-12">
-        {/* Featured Posts Section */}
-        {featuredPosts.length > 0 && (
+        {/* Featured Posts Section - only show on first page with no search */}
+        {showFeatured && (
           <section className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -89,7 +134,7 @@ export default async function BlogPage() {
                 Our latest thought leadership on technology transformation and veteran expertise
               </p>
             </div>
-            <Suspense fallback={<div>Loading featured posts...</div>}>
+            <Suspense fallback={<FeaturedPostsSkeleton />}>
               <FeaturedPosts posts={featuredPosts} />
             </Suspense>
           </section>
@@ -101,22 +146,59 @@ export default async function BlogPage() {
           <div className="lg:col-span-2">
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                Latest Articles
+                {search ? `Search Results` : 'Latest Articles'}
               </h2>
               <p className="text-slate-600">
-                Insights and analysis from our veteran technology team
+                {search
+                  ? `${totalCount} article${totalCount !== 1 ? 's' : ''} found for "${search}"`
+                  : 'Insights and analysis from our veteran technology team'
+                }
               </p>
             </div>
-            <Suspense fallback={<div>Loading blog posts...</div>}>
-              <BlogPostGrid posts={posts} />
+
+            <Suspense fallback={<BlogPostsSkeleton />}>
+              {posts.length > 0 ? (
+                <>
+                  <BlogPostGrid posts={posts} />
+                  {totalPages > 1 && (
+                    <BlogPagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      className="mt-12"
+                    />
+                  )}
+                </>
+              ) : (
+                <div className="text-center py-12 bg-white rounded-lg border border-slate-200">
+                  <h3 className="text-xl font-semibold text-slate-700 mb-2">
+                    No articles found
+                  </h3>
+                  <p className="text-slate-500">
+                    {search
+                      ? `No articles match "${search}". Try a different search term.`
+                      : 'Check back soon for new content.'
+                    }
+                  </p>
+                </div>
+              )}
             </Suspense>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <Suspense fallback={<div>Loading sidebar...</div>}>
-              <BlogSidebar categories={categories} />
-            </Suspense>
+            <div className="sticky top-24 space-y-6">
+              {/* Search */}
+              <div className="bg-[#1a3a5c] rounded-xl p-6">
+                <Suspense fallback={<SkeletonSidebar />}>
+                  <BlogSearch />
+                </Suspense>
+              </div>
+
+              {/* Categories */}
+              <Suspense fallback={<SkeletonSidebar />}>
+                <BlogSidebar categories={categories} />
+              </Suspense>
+            </div>
           </div>
         </div>
       </div>
