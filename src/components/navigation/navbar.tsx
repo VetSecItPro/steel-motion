@@ -24,49 +24,15 @@ export default function Navbar() {
           {/* Logo and Brand */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
             <div className="flex items-center gap-3 animate-slide-in-left">
-            {/* Steel Motion Logo - Enhanced Design */}
-            <div className="w-12 h-12 relative group">
-              {/* Animated background rings */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00F2FF]/20 to-[#33CCFF]/20 animate-pulse"></div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00F2FF]/10 to-[#33CCFF]/10 animate-ping animation-delay-1000"></div>
-
-              {/* Main logo container */}
-              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#0a1728] via-[#1a3a5c] to-[#0f2640] shadow-xl shadow-[#00F2FF]/25 border border-[#00F2FF]/30 overflow-hidden group-hover:shadow-[#00F2FF]/40 transition-all duration-300">
-                {/* Inner glow effect */}
-                <div className="absolute inset-1 rounded-full bg-gradient-to-br from-[#00F2FF]/10 via-transparent to-[#33CCFF]/10"></div>
-
-                {/* Logo image */}
-                <Image
-                  src="/images/steel-motion-hero-logo.png"
-                  alt="Steel Motion Logo"
-                  width={48}
-                  height={48}
-                  className="relative z-10 w-full h-full object-contain p-1 filter brightness-110 contrast-110 group-hover:scale-105 transition-transform duration-300"
-                  style={{
-                    maskImage: 'radial-gradient(circle at center, black 70%, transparent 100%)',
-                    WebkitMaskImage: 'radial-gradient(circle at center, black 70%, transparent 100%)',
-                  }}
-                  onError={(e) => {
-                    // Fallback to placeholder if logo not found
-                    e.currentTarget.style.display = 'none';
-                    const fallback = e.currentTarget.parentElement?.querySelector('.fallback-logo');
-                    if (fallback) fallback.classList.remove('hidden');
-                  }}
-                />
-
-                {/* Fallback placeholder - Enhanced */}
-                <div className="fallback-logo hidden absolute inset-0 rounded-full bg-gradient-to-br from-[#00F2FF] via-[#33CCFF] to-[#00F2FF] flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#00F2FF]/20 via-[#33CCFF]/30 to-[#00F2FF]/20 animate-pulse"></div>
-                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBGMkZGO3N0b3Atb3BhY2l0eTowLjMiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzMzQ0NGRjtzdG9wLW9wYWNpdHk6MC4xIiAvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+Cjwvc3ZnPg==')] opacity-50"></div>
-                  <span className="text-[#0a1728] font-bold text-lg relative z-10 drop-shadow-sm">SM</span>
-                </div>
-
-                {/* Rotating border effect */}
-                <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-r from-[#00F2FF]/50 via-transparent to-[#33CCFF]/50 bg-clip-border animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-
-              {/* Outer glow on hover */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#00F2FF]/0 via-[#00F2FF]/20 to-[#33CCFF]/0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            {/* Steel Motion Logo */}
+            <div className="w-10 h-10 relative">
+              <Image
+                src="/images/steel-motion-hero-logo.png"
+                alt="Steel Motion Logo"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-white via-[#E0E0E0] to-[#00F2FF] bg-clip-text text-transparent">
@@ -129,12 +95,11 @@ export default function Navbar() {
             >
               About
             </Link>
-            <Button
-              onClick={() => scrollToSection('contact')}
-              className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-[#00F2FF]/25 font-semibold"
-            >
-              Get Started
-            </Button>
+            <Link href="/#contact">
+              <Button className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-[#00F2FF]/25 font-semibold">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -199,12 +164,11 @@ export default function Navbar() {
               >
                 About
               </Link>
-              <Button
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] py-3 rounded-full transition-all duration-300 font-semibold"
-              >
-                Get Started
-              </Button>
+              <Link href="/#contact" onClick={() => setIsOpen(false)}>
+                <Button className="w-full bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] py-3 rounded-full transition-all duration-300 font-semibold">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
         )}

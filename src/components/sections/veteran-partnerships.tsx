@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Users, Target, Handshake, Send, Mail, Star } from "lucide-react"
+import { Shield, Users, Target, Handshake, Send } from "lucide-react"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 
@@ -70,10 +70,10 @@ export default function VeteranPartnerships() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-20 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-24 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 py-8 text-center relative z-10">
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -373,43 +373,9 @@ export default function VeteranPartnerships() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white mb-2">Direct Contact</h4>
-                    <p className="text-slate-400 mb-2">
-                      Ready to discuss partnership opportunities? Contact us directly:
-                    </p>
-                    <p className="text-[#00F2FF] font-medium">contact@steelmotionllc.com</p>
-                  </div>
-                </div>
               </div>
 
-              {/* Certifications */}
               <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 mt-8">
-                <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                  <Star className="w-5 h-5 text-[#00F2FF]" />
-                  Certifications & Credentials
-                </h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <Badge variant="secondary" className="bg-blue-900 text-blue-200 hover:bg-blue-800">
-                    Veteran-Owned Small Business
-                  </Badge>
-                  <Badge variant="secondary" className="bg-blue-900 text-blue-200 hover:bg-blue-800">
-                    Service-Disabled Veteran
-                  </Badge>
-                  <Badge variant="secondary" className="bg-blue-900 text-blue-200 hover:bg-blue-800">
-                    CISSP Certified
-                  </Badge>
-                  <Badge variant="secondary" className="bg-blue-900 text-blue-200 hover:bg-blue-800">
-                    MBA Leadership
-                  </Badge>
-                </div>
-              </div>
-
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
                 <h4 className="text-lg font-semibold text-white mb-3">Response Time</h4>
                 <p className="text-slate-300 text-sm">
                   We typically respond to partnership inquiries within 24 hours during business days.
