@@ -197,3 +197,51 @@ export const postsByAuthorQuery = groq`
     }
   }
 `
+
+// Paginated posts with optional search
+export const paginatedPostsQuery = groq`
+  *[_type == "post" && (
+    $search == "" ||
+    title match $search + "*" ||
+    excerpt match $search + "*" ||
+    pt::text(body) match $search + "*"
+  )] | order(publishedAt desc) [$start...$end] {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    mainImage {
+      asset,
+      alt
+    },
+    readTime,
+    featured,
+    tags,
+    author->{
+      name,
+      slug,
+      image {
+        asset,
+        alt
+      },
+      veteranBranch,
+      rank
+    },
+    categories[]->{
+      title,
+      slug,
+      color
+    }
+  }
+`
+
+// Count posts for pagination
+export const postsCountQuery = groq`
+  count(*[_type == "post" && (
+    $search == "" ||
+    title match $search + "*" ||
+    excerpt match $search + "*" ||
+    pt::text(body) match $search + "*"
+  )])
+`
