@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 // --- Data for Steel Motion's Technology Solutions ---
+// Primary services (AI & Custom Apps) first, then secondary services
 const accordionItems = [
   {
     id: 1,
@@ -14,32 +15,11 @@ const accordionItems = [
       'Process Automation & Workflow Optimization',
       'Intelligent Document Processing',
       'Predictive Analytics & Decision Support'
-    ]
+    ],
+    isPrimary: true
   },
   {
     id: 2,
-    title: 'Cloud Infrastructure Solutions',
-    url: '/services/cloud-infrastructure',
-    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
-    bulletPoints: [
-      'Scalable Cloud Architecture Design',
-      'Infrastructure as Code (IaC)',
-      'DevOps & CI/CD Pipeline Implementation'
-    ]
-  },
-  {
-    id: 3,
-    title: 'Cybersecurity & Protection',
-    url: '/services/cybersecurity',
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
-    bulletPoints: [
-      'Security Assessments & Penetration Testing',
-      'Compliance & Risk Management',
-      'Incident Response & Recovery Planning'
-    ]
-  },
-  {
-    id: 4,
     title: 'Custom Application Development',
     url: '/services/custom-development',
     imageUrl: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070&auto=format&fit=crop',
@@ -47,7 +27,32 @@ const accordionItems = [
       'Full-Stack Web & Mobile Applications',
       'API Development & Integration',
       'Legacy System Modernization'
-    ]
+    ],
+    isPrimary: true
+  },
+  {
+    id: 3,
+    title: 'Cloud Infrastructure Solutions',
+    url: '/services/cloud-infrastructure',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
+    bulletPoints: [
+      'Scalable Cloud Architecture Design',
+      'Infrastructure as Code (IaC)',
+      'DevOps & CI/CD Pipeline Implementation'
+    ],
+    isPrimary: false
+  },
+  {
+    id: 4,
+    title: 'Cybersecurity & Protection',
+    url: '/services/cybersecurity',
+    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+    bulletPoints: [
+      'Security Assessments & Penetration Testing',
+      'Compliance & Risk Management',
+      'Incident Response & Recovery Planning'
+    ],
+    isPrimary: false
   },
   {
     id: 5,
@@ -58,7 +63,8 @@ const accordionItems = [
       'Business Intelligence Dashboards',
       'Machine Learning Model Development',
       'Real-time Data Processing & Visualization'
-    ]
+    ],
+    isPrimary: false
   },
 ];
 
@@ -69,13 +75,13 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
   onMouseEnter: () => void;
 }) => {
   return (
-    <Link href={item.url} className="block">
+    <Link href={item.url} className="block flex-shrink-0">
       <div
         className={`
-          relative h-[450px] rounded-2xl overflow-hidden cursor-pointer
+          relative h-[420px] rounded-2xl overflow-hidden cursor-pointer
           transition-all duration-700 ease-in-out border border-[#00F2FF]/20
           hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25
-          ${isActive ? 'w-[400px]' : 'w-[60px]'}
+          ${isActive ? 'w-[340px]' : 'w-[50px]'}
         `}
         style={{
           backgroundImage: `url(${item.imageUrl})`,
@@ -130,7 +136,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
 
 // --- Main Component ---
 export function LandingAccordionItem() {
-  const [activeIndex, setActiveIndex] = useState(2); // Default to Cybersecurity
+  const [activeIndex, setActiveIndex] = useState(0); // Default to AI Transformation (primary service)
 
   const handleItemHover = (index: number) => {
     setActiveIndex(index);
@@ -147,11 +153,11 @@ export function LandingAccordionItem() {
               Our Solutions
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tighter">
-              Comprehensive Technology
-              <span className="block text-[#00F2FF]">Solutions</span>
+              AI-Powered Solutions
+              <span className="block text-[#00F2FF]">Built to Perform</span>
             </h1>
             <p className="mt-6 text-lg text-[#B3B3B3] max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Veteran-led expertise delivering cutting-edge AI solutions, robust cybersecurity, and scalable cloud infrastructure to transform your business operations.
+              We specialize in AI transformation and custom application development—turning complex business challenges into streamlined, automated solutions that deliver measurable ROI.
             </p>
             <div className="mt-8">
               <a
@@ -164,8 +170,8 @@ export function LandingAccordionItem() {
           </div>
 
           {/* Right Side: Image Accordion */}
-          <div className="w-full lg:w-1/2">
-            <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4">
+          <div className="w-full lg:w-[55%]">
+            <div className="flex flex-row items-center justify-start gap-2 p-4">
               {accordionItems.map((item, index) => (
                 <AccordionItem
                   key={item.id}
