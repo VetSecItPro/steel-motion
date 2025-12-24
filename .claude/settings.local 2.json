@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh repo edit:*)",
+      "Bash(vercel --version:*)",
+      "Bash(vercel ls:*)",
+      "Bash(vercel inspect:*)",
+      "WebFetch(domain:steel-motion-landing.vercel.app)",
+      "Bash(vercel env:*)",
+      "Bash(vercel status:*)",
+      "Bash(vercel link:*)",
+      "Bash(dig:*)",
+      "Bash(nslookup:*)",
+      "Bash(vercel domains:*)",
+      "Bash(wc:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run test:run:*)",
+      "Bash(lsof:*)",
+      "Bash(pkill:*)",
+      "Bash(cat:*)",
+      "Bash(curl:*)",
+      "Bash(npm audit:*)",
+      "Bash(npx playwright install:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npx next lint:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npm run build:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

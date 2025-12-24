@@ -119,7 +119,14 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
       {/* Inactive state - vertical title */}
       {!isActive && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-white text-lg font-semibold whitespace-nowrap rotate-90 transition-all duration-300 ease-in-out drop-shadow-lg text-center">
+          <span
+            className="text-white text-base font-semibold whitespace-nowrap transition-all duration-300 ease-in-out drop-shadow-lg"
+            style={{
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed',
+              transform: 'rotate(180deg)'
+            }}
+          >
             {item.title}
           </span>
         </div>
