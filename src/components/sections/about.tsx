@@ -96,19 +96,12 @@ export default function About() {
             className="space-y-8"
           >
             <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <h3 className="text-2xl font-bold text-[#00F2FF] mb-4">Leadership & Impact</h3>
-              <blockquote className="text-lg text-white italic mb-4 text-center">
-                &ldquo;Focus beats frenzy every time&rdquo;
+              <blockquote className="text-2xl text-white italic mb-6 text-center font-medium">
+                &ldquo;Focus beats frenzy every time.&rdquo;
               </blockquote>
-              <div className="text-[#B3B3B3] leading-relaxed space-y-4">
+              <div className="text-[#B3B3B3] leading-relaxed text-lg">
                 <p>
-                  A U.S. Army veteran turned cybersecurity strategist, I&apos;ve led multimillion-dollar IT and communications operations across South Korea, Iraq, Qatar, and the U.S., directing secure network strategies, driving compliance with NIST and RMF standards, and ensuring 100% success in external audits. In uniform, I managed portfolios worth over $50M, orchestrated cybersecurity awareness programs for hundreds of personnel, and oversaw large-scale IT infrastructure upgrades that improved mission readiness and operational efficiency.
-                </p>
-                <p>
-                  Today, I bring that same discipline and leadership into the cyber and cloud domain. As an adjunct professor at Purdue University and an instructor with Vets in Tech, I&apos;ve taught and mentored hundreds of students and veterans, helping them achieve industry certifications such as Security+ and AWS Cloud Practitioner. My work has empowered over 150 veterans to launch new careers in cybersecurity while strengthening the next generation of cyber professionals.
-                </p>
-                <p>
-                  Holding dual master&apos;s degrees (an MBA from The George Washington University and an M.S. in Information Security and Assurance), I combine strategic business acumen with deep technical expertise. Alongside an extensive portfolio of certifications (CISSP, CCSP, AWS Solutions Architect, and more), I&apos;ve built a career at the intersection of cybersecurity leadership, cloud security, and mentorship, committed to enabling secure innovation and shaping tomorrow&apos;s workforce.
+                  U.S. Army veteran. Cybersecurity strategist. I&apos;ve led IT operations across four continents and now help businesses secure their infrastructure and harness AI. Dual master&apos;s degrees, CISSP certified, and I teach at Purdue University because giving back matters. I build things that work and solve real problems.
                 </p>
               </div>
             </div>
