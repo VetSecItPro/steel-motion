@@ -112,6 +112,18 @@ export default function Navbar() {
               Blog
             </Link>
             <Link
+              href="/portfolio"
+              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+            >
+              Portfolio
+            </Link>
+            <Link
+              href="/partnerships"
+              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+            >
+              Partnerships
+            </Link>
+            <Link
               href="/about"
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
             >
@@ -165,6 +177,20 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 Blog
+              </Link>
+              <Link
+                href="/portfolio"
+                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Portfolio
+              </Link>
+              <Link
+                href="/partnerships"
+                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Partnerships
               </Link>
               <Link
                 href="/about"
