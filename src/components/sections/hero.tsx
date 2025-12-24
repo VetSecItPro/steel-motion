@@ -40,6 +40,7 @@ export default function Hero() {
                   alt="Steel Motion Logo"
                   width={400}
                   height={400}
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 400px"
                   className="object-contain drop-shadow-2xl filter brightness-110 contrast-110"
                   style={{
                     maskImage: 'radial-gradient(circle at center, black 60%, transparent 95%)',

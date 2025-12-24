@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // --- Data for Steel Motion's Technology Solutions ---
 // Primary services (AI & Custom Apps) first, then secondary services
@@ -68,7 +69,42 @@ const accordionItems = [
   },
 ];
 
-// --- Accordion Item Component ---
+// --- Mobile Card Component ---
+const MobileServiceCard = ({ item }: { item: typeof accordionItems[0] }) => {
+  return (
+    <Link href={item.url} className="block">
+      <div className="relative rounded-2xl overflow-hidden border border-[#00F2FF]/20 hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25 transition-all duration-300">
+        <div className="relative h-48 w-full">
+          <Image
+            src={item.imageUrl}
+            alt={item.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/70 via-[#1a3a5c]/50 to-[#0f2640]/70"></div>
+        </div>
+        <div className="p-4 bg-[#0a1728]/90">
+          <h3 className="text-lg font-bold text-[#00F2FF] mb-3">
+            {item.title}
+          </h3>
+          <div className="space-y-2">
+            {item.bulletPoints.map((point, index) => (
+              <div key={index} className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-[#00F2FF] rounded-full mt-2 flex-shrink-0"></div>
+                <span className="text-white text-sm leading-relaxed">
+                  {point}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+// --- Desktop Accordion Item Component ---
 const AccordionItem = ({ item, isActive, onMouseEnter }: {
   item: typeof accordionItems[0];
   isActive: boolean;
@@ -83,59 +119,60 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
           hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25
           ${isActive ? 'w-[340px]' : 'w-[50px]'}
         `}
-        style={{
-          backgroundImage: `url(${item.imageUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
         onMouseEnter={onMouseEnter}
       >
-      {/* Gradient overlay for better integration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/60 via-[#1a3a5c]/40 to-[#0f2640]/60"></div>
+        <Image
+          src={item.imageUrl}
+          alt={item.title}
+          fill
+          sizes="(max-width: 1024px) 100vw, 340px"
+          className="object-cover"
+        />
+        {/* Gradient overlay for better integration */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/60 via-[#1a3a5c]/40 to-[#0f2640]/60"></div>
 
-      {/* Content Container - Only visible when active */}
-      {isActive && (
-        <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
-          {/* Title */}
-          <h3 className="text-xl font-bold text-[#00F2FF] mb-4 text-center drop-shadow-lg">
-            {item.title}
-          </h3>
+        {/* Content Container - Only visible when active */}
+        {isActive && (
+          <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
+            {/* Title */}
+            <h3 className="text-xl font-bold text-[#00F2FF] mb-4 text-center drop-shadow-lg">
+              {item.title}
+            </h3>
 
-          {/* Bullet Points */}
-          <div className="space-y-2">
-            {item.bulletPoints.map((point, index) => (
-              <div key={index} className="flex items-start gap-2">
-                <div className="w-2 h-2 bg-[#00F2FF] rounded-full mt-2 flex-shrink-0"></div>
-                <span className="text-white text-sm leading-relaxed drop-shadow-md">
-                  {point}
-                </span>
-              </div>
-            ))}
+            {/* Bullet Points */}
+            <div className="space-y-2">
+              {item.bulletPoints.map((point, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-[#00F2FF] rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-white text-sm leading-relaxed drop-shadow-md">
+                    {point}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Inactive state - vertical title */}
-      {!isActive && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span
-            className="text-white text-base font-semibold whitespace-nowrap transition-all duration-300 ease-in-out drop-shadow-lg"
-            style={{
-              writingMode: 'vertical-rl',
-              textOrientation: 'mixed',
-              transform: 'rotate(180deg)'
-            }}
-          >
-            {item.title}
-          </span>
-        </div>
-      )}
+        {/* Inactive state - vertical title */}
+        {!isActive && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span
+              className="text-white text-base font-semibold whitespace-nowrap transition-all duration-300 ease-in-out drop-shadow-lg"
+              style={{
+                writingMode: 'vertical-rl',
+                textOrientation: 'mixed',
+                transform: 'rotate(180deg)'
+              }}
+            >
+              {item.title}
+            </span>
+          </div>
+        )}
 
-      {/* Active state glow effect */}
-      {isActive && (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#00F2FF]/10 via-transparent to-[#33CCFF]/10 pointer-events-none"></div>
-      )}
+        {/* Active state glow effect */}
+        {isActive && (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#00F2FF]/10 via-transparent to-[#33CCFF]/10 pointer-events-none"></div>
+        )}
       </div>
     </Link>
   );
@@ -169,16 +206,24 @@ export function LandingAccordionItem() {
             <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-block bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] text-[#0a1728] font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-[#00F2FF]/25 transition-all duration-300 hover:scale-105"
+                className="inline-block bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] text-[#0a1728] font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-[#00F2FF]/25 transition-all duration-300 hover:scale-105 min-h-[44px]"
               >
                 Get Started Today
               </a>
             </div>
           </div>
 
-          {/* Right Side: Image Accordion */}
+          {/* Right Side: Mobile Cards / Desktop Accordion */}
           <div className="w-full lg:w-[55%]">
-            <div className="flex flex-row items-center justify-start gap-2 p-4">
+            {/* Mobile: Grid of Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+              {accordionItems.map((item) => (
+                <MobileServiceCard key={item.id} item={item} />
+              ))}
+            </div>
+
+            {/* Desktop: Image Accordion */}
+            <div className="hidden lg:flex flex-row items-center justify-start gap-2 p-4 overflow-x-auto">
               {accordionItems.map((item, index) => (
                 <AccordionItem
                   key={item.id}
