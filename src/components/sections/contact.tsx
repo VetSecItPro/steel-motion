@@ -1,28 +1,78 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+import { FormField } from "@/components/ui/form-field"
+import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact"
+
+type FormErrors = Partial<Record<keyof ContactFormData, string>>
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     company: '',
     message: ''
   })
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+  const validateField = useCallback((name: keyof ContactFormData, value: string) => {
+    const fieldSchema = contactFormSchema.shape[name]
+    const result = fieldSchema.safeParse(value)
+
+    if (!result.success) {
+      return result.error.issues[0]?.message || 'Invalid value'
+    }
+    return undefined
+  }, [])
+
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setTouched(prev => ({ ...prev, [name]: true }))
+
+    const error = validateField(name as keyof ContactFormData, value)
+    setErrors(prev => ({ ...prev, [name]: error }))
+  }, [validateField])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+
+    // Clear error when user starts typing (if field was touched)
+    if (touched[name] && errors[name as keyof ContactFormData]) {
+      const error = validateField(name as keyof ContactFormData, value)
+      setErrors(prev => ({ ...prev, [name]: error }))
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
     setSubmitStatus('idle')
+
+    // Validate all fields
+    const result = contactFormSchema.safeParse(formData)
+
+    if (!result.success) {
+      const fieldErrors: FormErrors = {}
+      result.error.issues.forEach(err => {
+        const field = err.path[0] as keyof ContactFormData
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message
+        }
+      })
+      setErrors(fieldErrors)
+      setTouched({ name: true, email: true, company: true, message: true })
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
       const response = await fetch('/api/contact', {
@@ -36,7 +86,13 @@ export default function Contact() {
       if (response.ok) {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', company: '', message: '' })
+        setErrors({})
+        setTouched({})
       } else {
+        const data = await response.json()
+        if (data.errors) {
+          setErrors(data.errors)
+        }
         setSubmitStatus('error')
       }
     } catch (error) {
@@ -45,13 +101,6 @@ export default function Contact() {
     } finally {
       setIsSubmitting(false)
     }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
   }
 
   return (
@@ -91,91 +140,104 @@ export default function Contact() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
-                        Full Name *
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
-                        Email *
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-slate-300 mb-2">
-                      Company/Organization
-                    </label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
+                    <FormField
+                      label="Full Name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
                       onChange={handleChange}
-                      className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                      placeholder="Your company name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
-                      Tell us about your project *
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.name ? errors.name : undefined}
                       required
-                      rows={5}
-                      className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                      placeholder="Describe your project, goals, and how we can help..."
+                      placeholder="Your full name"
+                      inputClassName="bg-slate-700 border-slate-600"
+                    />
+                    <FormField
+                      label="Email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.email ? errors.email : undefined}
+                      required
+                      placeholder="your@email.com"
+                      inputClassName="bg-slate-700 border-slate-600"
                     />
                   </div>
+
+                  <FormField
+                    label="Company/Organization"
+                    name="company"
+                    type="text"
+                    value={formData.company || ''}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.company ? errors.company : undefined}
+                    placeholder="Your company name"
+                    inputClassName="bg-slate-700 border-slate-600"
+                  />
+
+                  <FormField
+                    label="Tell us about your project"
+                    name="message"
+                    type="textarea"
+                    value={formData.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.message ? errors.message : undefined}
+                    required
+                    rows={5}
+                    placeholder="Describe your project, goals, and how we can help..."
+                    inputClassName="bg-slate-700 border-slate-600"
+                  />
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                    <Send className={`ml-2 w-5 h-5 transition-transform ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'}`} />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </Button>
 
-                  {submitStatus === 'success' && (
-                    <div className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg">
-                      <p className="font-medium">✅ Message sent successfully!</p>
-                      <p className="text-sm opacity-90">We&apos;ll get back to you within 24 hours.</p>
-                    </div>
-                  )}
+                  {/* Status messages with aria-live for accessibility */}
+                  <div aria-live="polite" aria-atomic="true">
+                    {submitStatus === 'success' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
+                        role="alert"
+                      >
+                        <p className="font-medium">Message sent successfully!</p>
+                        <p className="text-sm opacity-90">We&apos;ll get back to you within 24 hours.</p>
+                      </motion.div>
+                    )}
 
-                  {submitStatus === 'error' && (
-                    <div className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg">
-                      <p className="font-medium">❌ Failed to send message</p>
-                      <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
-                    </div>
-                  )}
+                    {submitStatus === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg"
+                        role="alert"
+                      >
+                        <p className="font-medium">Failed to send message</p>
+                        <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
+                      </motion.div>
+                    )}
+                  </div>
                 </form>
               </CardContent>
             </Card>
@@ -204,7 +266,9 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-white">Email</p>
-                  <p className="text-slate-400">contact@steelmotionllc.com</p>
+                  <a href="mailto:contact@steelmotionllc.com" className="text-slate-400 hover:text-[#00F2FF] transition-colors">
+                    contact@steelmotionllc.com
+                  </a>
                 </div>
               </div>
 
