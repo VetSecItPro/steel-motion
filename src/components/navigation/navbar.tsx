@@ -96,32 +96,11 @@ export default function Navbar() {
                     <div className="text-sm text-[#666666]">Intelligent automation & process optimization</div>
                   </Link>
                   <Link
-                    href="/services/cloud-infrastructure"
-                    className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
-                  >
-                    <div className="font-medium">Cloud Infrastructure Solutions</div>
-                    <div className="text-sm text-[#666666]">Scalable cloud architecture & migration</div>
-                  </Link>
-                  <Link
-                    href="/services/cybersecurity"
-                    className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
-                  >
-                    <div className="font-medium">Cybersecurity & Protection</div>
-                    <div className="text-sm text-[#666666]">Military-grade security solutions</div>
-                  </Link>
-                  <Link
                     href="/services/custom-development"
                     className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
                   >
                     <div className="font-medium">Custom Application Development</div>
                     <div className="text-sm text-[#666666]">Tailored software solutions</div>
-                  </Link>
-                  <Link
-                    href="/services/data-analytics"
-                    className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
-                  >
-                    <div className="font-medium">Data Analytics & Intelligence</div>
-                    <div className="text-sm text-[#666666]">Business intelligence & insights</div>
                   </Link>
                 </div>
               </div>
@@ -172,32 +151,11 @@ export default function Navbar() {
                     AI Transformation & Automation
                   </Link>
                   <Link
-                    href="/services/cloud-infrastructure"
-                    className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Cloud Infrastructure Solutions
-                  </Link>
-                  <Link
-                    href="/services/cybersecurity"
-                    className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Cybersecurity & Protection
-                  </Link>
-                  <Link
                     href="/services/custom-development"
                     className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
                     onClick={() => setIsOpen(false)}
                   >
                     Custom Application Development
-                  </Link>
-                  <Link
-                    href="/services/data-analytics"
-                    className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Data Analytics & Intelligence
                   </Link>
                 </div>
               </div>
