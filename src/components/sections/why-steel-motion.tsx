@@ -31,7 +31,7 @@ export default function WhySteelMotion() {
   ]
 
   return (
-    <section className="py-10 bg-white">
+    <section className="py-10 bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c]">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -40,13 +40,13 @@ export default function WhySteelMotion() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-200">
+            <Badge variant="secondary" className="mb-4 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 hover:bg-[#00F2FF]/20">
               Why Choose Steel Motion
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               The Steel Motion Difference
             </h2>
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+            <p className="text-xl text-[#B3B3B3] mb-8 leading-relaxed">
               When you choose Steel Motion LLC, you&apos;re not just hiring a technology consultant.
               You&apos;re partnering with a team that understands the importance of mission success,
               operational excellence, and unwavering commitment to results.
@@ -62,14 +62,14 @@ export default function WhySteelMotion() {
                   viewport={{ once: true }}
                   className="flex gap-4"
                 >
-                  <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <advantage.icon className="w-6 h-6 text-blue-600" />
+                  <div className="bg-[#1a3a5c] border border-[#00F2FF]/30 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <advantage.icon className="w-6 h-6 text-[#00F2FF]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                    <h3 className="text-lg font-semibold text-white mb-2">
                       {advantage.title}
                     </h3>
-                    <p className="text-slate-600">
+                    <p className="text-[#B3B3B3]">
                       {advantage.description}
                     </p>
                   </div>
