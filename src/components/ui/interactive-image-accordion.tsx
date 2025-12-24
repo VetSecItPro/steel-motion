@@ -157,7 +157,7 @@ export function LandingAccordionItem() {
               <span className="block text-[#00F2FF]">Built to Perform</span>
             </h1>
             <p className="mt-6 text-lg text-[#B3B3B3] max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              We specialize in AI transformation and custom application development—turning complex business challenges into streamlined, automated solutions that deliver measurable ROI.
+              We specialize in AI transformation and custom application development, turning complex business challenges into streamlined, automated solutions that deliver measurable ROI.
             </p>
             <div className="mt-8">
               <a

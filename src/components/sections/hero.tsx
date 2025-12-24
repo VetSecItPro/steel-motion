@@ -84,7 +84,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-xl md:text-2xl text-[#B3B3B3] mb-6 max-w-3xl mx-auto leading-relaxed"
           >
-            Where military precision meets cutting-edge technology. We deploy AI solutions that deliver results—built by veterans who understand that failure is not an option.
+            Where military precision meets cutting-edge technology. We deploy AI solutions that deliver results, built by veterans who understand that failure is not an option.
           </motion.p>
 
           <motion.div
@@ -103,9 +103,8 @@ export default function Hero() {
             </Button>
             <Button
               size="lg"
-              variant="outline"
               onClick={() => scrollToSection('services')}
-              className="border-[#00F2FF]/50 text-[#00F2FF] hover:bg-[#00F2FF]/10 px-8 py-6 text-lg rounded-full group transition-all duration-300 hover:scale-105 font-semibold"
+              className="bg-[#0a1728] border border-[#00F2FF]/30 text-[#00F2FF] hover:bg-[#1a3a5c] px-8 py-6 text-lg rounded-full group transition-all duration-300 hover:scale-105 font-semibold"
             >
               Explore Our Services
             </Button>
@@ -175,7 +174,7 @@ export default function Hero() {
                   </div>
                   <h3 className="text-xl font-semibold mb-4 text-white">Strategic Partnership</h3>
                   <p className="text-[#B3B3B3] leading-relaxed">
-                    Not just vendors—advisors. We embed with your team, transfer knowledge, and build solutions you can maintain long after we leave.
+                    Not just vendors, but advisors. We embed with your team, transfer knowledge, and build solutions you can maintain long after we leave.
                   </p>
                 </motion.div>
               </div>
