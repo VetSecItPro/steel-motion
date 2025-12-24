@@ -116,7 +116,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const showFeatured = !search && page === 1 && featuredPosts.length > 0
 
   return (
-    <main id="main-content" className="min-h-screen bg-slate-50">
+    <main id="main-content" className="min-h-screen bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c]">
       <Navbar />
 
       {/* Blog Hero Section */}
@@ -127,10 +127,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         {showFeatured && (
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Featured Insights
               </h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              <p className="text-lg text-[#B3B3B3] max-w-2xl mx-auto">
                 Our latest thought leadership on technology transformation and veteran expertise
               </p>
             </div>
@@ -145,10 +145,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           {/* Blog Posts */}
           <div className="lg:col-span-2">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2">
                 {search ? `Search Results` : 'Latest Articles'}
               </h2>
-              <p className="text-slate-600">
+              <p className="text-[#B3B3B3]">
                 {search
                   ? `${totalCount} article${totalCount !== 1 ? 's' : ''} found for "${search}"`
                   : 'Insights and analysis from our veteran technology team'
@@ -169,11 +169,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                   )}
                 </>
               ) : (
-                <div className="text-center py-12 bg-white rounded-lg border border-slate-200">
-                  <h3 className="text-xl font-semibold text-slate-700 mb-2">
+                <div className="text-center py-12 bg-[#1a3a5c]/50 rounded-lg border border-[#00F2FF]/20">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     No articles found
                   </h3>
-                  <p className="text-slate-500">
+                  <p className="text-[#B3B3B3]">
                     {search
                       ? `No articles match "${search}". Try a different search term.`
                       : 'Check back soon for new content.'

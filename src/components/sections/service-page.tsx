@@ -143,7 +143,7 @@ export default function ServicePage({
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gradient-to-br from-[#0f2640] via-[#1a3a5c] to-[#0f2640]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -152,10 +152,10 @@ export default function ServicePage({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               What We Do
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-[#B3B3B3] max-w-2xl mx-auto leading-relaxed">
               Practical solutions that solve real problems.
             </p>
           </motion.div>
@@ -169,13 +169,13 @@ export default function ServicePage({
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full border-slate-200 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg">
+                <Card className="h-full bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/10">
                   <CardHeader>
                     <div className="text-4xl mb-4">{feature.icon}</div>
-                    <CardTitle className="text-xl text-slate-900">{feature.title}</CardTitle>
+                    <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-slate-600 leading-relaxed">
+                    <CardDescription className="text-[#B3B3B3] leading-relaxed">
                       {feature.description}
                     </CardDescription>
                   </CardContent>
@@ -187,7 +187,7 @@ export default function ServicePage({
       </section>
 
       {/* Benefits & Industries Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-[#0a1728]">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Benefits */}
@@ -197,7 +197,7 @@ export default function ServicePage({
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-6 text-slate-900">Why It Matters</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Why It Matters</h3>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -208,8 +208,8 @@ export default function ServicePage({
                     viewport={{ once: true }}
                     className="flex items-start gap-3"
                   >
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-slate-700 leading-relaxed">{benefit}</p>
+                    <CheckCircle className="w-6 h-6 text-[#00F2FF] flex-shrink-0 mt-0.5" />
+                    <p className="text-[#B3B3B3] leading-relaxed">{benefit}</p>
                   </motion.div>
                 ))}
               </div>
@@ -222,7 +222,7 @@ export default function ServicePage({
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-6 text-slate-900">Good Fit If You&apos;re...</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Good Fit If You&apos;re...</h3>
               <div className="space-y-3">
                 {industries.map((industry, index) => (
                   <motion.div
@@ -234,7 +234,7 @@ export default function ServicePage({
                     className="flex items-center gap-3"
                   >
                     <CheckCircle className="w-5 h-5 text-[#00F2FF] flex-shrink-0" />
-                    <p className="text-slate-700">{industry}</p>
+                    <p className="text-[#B3B3B3]">{industry}</p>
                   </motion.div>
                 ))}
               </div>

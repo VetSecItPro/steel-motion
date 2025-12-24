@@ -39,13 +39,13 @@ interface FeaturedPostsProps {
 
 const getCategoryColor = (color: string) => {
   const colors = {
-    cyan: "bg-cyan-100 text-cyan-800 border-cyan-200",
-    red: "bg-red-100 text-red-800 border-red-200",
-    blue: "bg-blue-100 text-blue-800 border-blue-200",
-    purple: "bg-purple-100 text-purple-800 border-purple-200",
-    green: "bg-green-100 text-green-800 border-green-200",
-    orange: "bg-orange-100 text-orange-800 border-orange-200",
-    indigo: "bg-indigo-100 text-indigo-800 border-indigo-200",
+    cyan: "bg-cyan-900/50 text-cyan-300 border-cyan-500/30",
+    red: "bg-red-900/50 text-red-300 border-red-500/30",
+    blue: "bg-blue-900/50 text-blue-300 border-blue-500/30",
+    purple: "bg-purple-900/50 text-purple-300 border-purple-500/30",
+    green: "bg-green-900/50 text-green-300 border-green-500/30",
+    orange: "bg-orange-900/50 text-orange-300 border-orange-500/30",
+    indigo: "bg-indigo-900/50 text-indigo-300 border-indigo-500/30",
   }
   return colors[color as keyof typeof colors] || colors.cyan
 }
@@ -63,7 +63,7 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <Link href={`/blog/${post.slug.current}`}>
-            <Card className="h-full hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
+            <Card className="h-full hover:shadow-lg hover:shadow-[#00F2FF]/10 transition-all duration-300 bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 group">
               {/* Featured Image */}
               {post.mainImage && (() => {
                 const imageUrl = urlForImage(post.mainImage)
@@ -86,7 +86,7 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
 
               <CardContent className="p-6">
                 {/* Categories */}
-                {post.categories.length > 0 && (
+                {post.categories && post.categories.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-3">
                     {post.categories.slice(0, 2).map((category) => (
                       <Badge
@@ -101,17 +101,17 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
                 )}
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-slate-600 mb-4 line-clamp-3 leading-relaxed">
+                <p className="text-[#B3B3B3] mb-4 line-clamp-3 leading-relaxed">
                   {post.excerpt}
                 </p>
 
                 {/* Meta Info */}
-                <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-[#B3B3B3]/70">
                   <div className="flex items-center gap-1">
                     <User className="w-4 h-4" />
                     <span>{post.author.name}</span>

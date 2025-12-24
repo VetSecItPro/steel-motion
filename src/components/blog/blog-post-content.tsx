@@ -82,7 +82,7 @@ const portableTextComponents = {
             className="rounded-lg shadow-lg"
           />
           {value.caption && (
-            <p className="text-sm text-slate-600 text-center mt-2 italic">
+            <p className="text-sm text-[#B3B3B3] text-center mt-2 italic">
               {value.caption}
             </p>
           )}
@@ -105,11 +105,11 @@ const portableTextComponents = {
     ),
     callout: ({ value }: any) => {
       const typeStyles = {
-        info: "border-blue-200 bg-blue-50 text-blue-900",
-        warning: "border-yellow-200 bg-yellow-50 text-yellow-900",
-        success: "border-green-200 bg-green-50 text-green-900",
-        error: "border-red-200 bg-red-50 text-red-900",
-        tip: "border-purple-200 bg-purple-50 text-purple-900",
+        info: "border-blue-400 bg-blue-900/30 text-blue-200",
+        warning: "border-yellow-400 bg-yellow-900/30 text-yellow-200",
+        success: "border-green-400 bg-green-900/30 text-green-200",
+        error: "border-red-400 bg-red-900/30 text-red-200",
+        tip: "border-purple-400 bg-purple-900/30 text-purple-200",
       }
 
       return (
@@ -124,32 +124,32 @@ const portableTextComponents = {
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 mt-8">
+      <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 mt-8">
         {children}
       </h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 mt-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 mt-8">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 mt-6">
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-3 mt-6">
         {children}
       </h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-lg md:text-xl font-semibold text-slate-900 mb-2 mt-4">
+      <h4 className="text-lg md:text-xl font-semibold text-white mb-2 mt-4">
         {children}
       </h4>
     ),
     normal: ({ children }: any) => (
-      <p className="text-slate-700 leading-relaxed mb-4 text-lg">
+      <p className="text-[#B3B3B3] leading-relaxed mb-4 text-lg">
         {children}
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-[#00F2FF] pl-6 py-2 my-6 italic text-slate-700 bg-slate-50 rounded-r-lg">
+      <blockquote className="border-l-4 border-[#00F2FF] pl-6 py-2 my-6 italic text-[#B3B3B3] bg-[#1a3a5c]/50 rounded-r-lg">
         {children}
       </blockquote>
     ),
@@ -166,13 +166,13 @@ const portableTextComponents = {
       </a>
     ),
     strong: ({ children }: any) => (
-      <strong className="font-semibold text-slate-900">{children}</strong>
+      <strong className="font-semibold text-white">{children}</strong>
     ),
     em: ({ children }: any) => (
       <em className="italic">{children}</em>
     ),
     code: ({ children }: any) => (
-      <code className="bg-slate-100 text-slate-800 px-2 py-1 rounded text-sm font-mono">
+      <code className="bg-[#1a3a5c] text-[#00F2FF] px-2 py-1 rounded text-sm font-mono">
         {children}
       </code>
     ),
@@ -302,7 +302,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
           <section className="py-8">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <div className="bg-slate-200 rounded-lg shadow-xl h-96 flex items-center justify-center text-slate-500">
+                <div className="bg-[#1a3a5c] rounded-lg shadow-xl h-96 flex items-center justify-center text-[#B3B3B3]">
                   Image could not be loaded
                 </div>
               </div>
@@ -326,14 +326,14 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
 
               {/* Tags */}
               {post.tags && post.tags.length > 0 && (
-                <div className="mt-12 pt-8 border-t border-slate-200">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Tags</h3>
+                <div className="mt-12 pt-8 border-t border-[#00F2FF]/20">
+                  <h3 className="text-lg font-semibold text-white mb-4">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <Badge
                         key={tag}
                         variant="outline"
-                        className="bg-slate-50 text-slate-700 hover:bg-slate-100"
+                        className="bg-[#1a3a5c] text-[#B3B3B3] border-[#00F2FF]/30 hover:bg-[#00F2FF]/20 hover:text-white"
                       >
                         #{tag}
                       </Badge>
@@ -349,10 +349,10 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
 
       {/* Related Posts */}
       {post.relatedPosts && post.relatedPosts.length > 0 && (
-        <section className="py-16 bg-slate-50">
+        <section className="py-16 bg-[#0a1728]">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">
+              <h2 className="text-3xl font-bold text-white mb-12 text-center">
                 Related Articles
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -362,7 +362,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                     href={`/blog/${relatedPost.slug.current}`}
                     className="block"
                   >
-                    <Card className="h-full hover:shadow-lg transition-all duration-300 border-slate-200 hover:border-[#00F2FF]/50 group">
+                    <Card className="h-full hover:shadow-lg hover:shadow-[#00F2FF]/10 transition-all duration-300 bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 group">
                       {relatedPost.mainImage && (() => {
                         const imageUrl = urlForImage(relatedPost.mainImage)
                         return imageUrl ? (
@@ -377,13 +377,13 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                         ) : null
                       })()}
                       <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
+                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
                           {relatedPost.title}
                         </h3>
-                        <p className="text-slate-600 text-sm line-clamp-3 mb-4">
+                        <p className="text-[#B3B3B3] text-sm line-clamp-3 mb-4">
                           {relatedPost.excerpt}
                         </p>
-                        <div className="flex items-center gap-4 text-xs text-slate-500">
+                        <div className="flex items-center gap-4 text-xs text-[#B3B3B3]/70">
                           <span>{relatedPost.author.name}</span>
                           {relatedPost.readTime && (
                             <span>{relatedPost.readTime} min read</span>
