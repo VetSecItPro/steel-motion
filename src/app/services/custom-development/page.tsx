@@ -36,7 +36,7 @@ export default function CustomDevelopmentPage() {
     title: "Custom Application Development",
     subtitle: "Tailored software solutions for your unique requirements",
     description: "Transform your business processes with custom-built applications designed specifically for your workflows, requirements, and operational needs.",
-    heroGradient: "from-purple-600 via-indigo-500 to-blue-500",
+    heroGradient: "from-blue-600 via-blue-500 to-cyan-400",
     features: [
       {
         title: "Web Application Development",

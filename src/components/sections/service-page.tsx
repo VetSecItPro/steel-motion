@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Star, ArrowRight, ArrowLeft, Home } from "lucide-react"
+import { CheckCircle, ArrowRight, ArrowLeft, Home } from "lucide-react"
 import Link from "next/link"
 
 interface ServiceFeature {
@@ -77,10 +77,10 @@ export default function ServicePage({
       </section>
 
       {/* Hero Section */}
-      <section className={`min-h-[80vh] flex items-center justify-center bg-gradient-to-br ${heroGradient} text-white pt-8 relative overflow-hidden`}>
+      <section className={`flex items-center justify-center bg-gradient-to-br ${heroGradient} text-white py-16 relative overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 py-8 text-center relative z-10">
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ export default function ServicePage({
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -152,11 +152,11 @@ export default function ServicePage({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
-              Service Capabilities
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+              What We Do
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive solutions designed to meet your specific business needs with military precision and proven methodologies.
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Practical solutions that solve real problems.
             </p>
           </motion.div>
 
@@ -187,7 +187,7 @@ export default function ServicePage({
       </section>
 
       {/* Benefits & Industries Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Benefits */}
@@ -197,7 +197,7 @@ export default function ServicePage({
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold mb-8 text-slate-900">Key Benefits</h3>
+              <h3 className="text-2xl font-bold mb-6 text-slate-900">Why It Matters</h3>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -222,21 +222,19 @@ export default function ServicePage({
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold mb-8 text-slate-900">Industries We Serve</h3>
-              <div className="grid gap-4">
+              <h3 className="text-2xl font-bold mb-6 text-slate-900">Good Fit If You&apos;re...</h3>
+              <div className="space-y-3">
                 {industries.map((industry, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    initial={{ opacity: 0, x: 10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
                     viewport={{ once: true }}
-                    className="bg-white p-4 rounded-lg border border-slate-200 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-md"
+                    className="flex items-center gap-3"
                   >
-                    <div className="flex items-center gap-3">
-                      <Star className="w-5 h-5 text-[#00F2FF]" />
-                      <p className="font-medium text-slate-800">{industry}</p>
-                    </div>
+                    <CheckCircle className="w-5 h-5 text-[#00F2FF] flex-shrink-0" />
+                    <p className="text-slate-700">{industry}</p>
                   </motion.div>
                 ))}
               </div>
@@ -246,7 +244,7 @@ export default function ServicePage({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white">
+      <section className="py-16 bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -255,8 +253,8 @@ export default function ServicePage({
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">{ctaText}</h2>
-            <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{ctaText}</h2>
+            <p className="text-lg text-slate-300 mb-6 leading-relaxed">
               {ctaDescription}
             </p>
             <Button

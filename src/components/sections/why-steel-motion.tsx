@@ -31,7 +31,7 @@ export default function WhySteelMotion() {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -47,8 +47,8 @@ export default function WhySteelMotion() {
               The Steel Motion Difference
             </h2>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-              When you choose Steel Motion LLC, you&apos;re not just hiring a technology consultant —
-              you&apos;re partnering with a team that understands the importance of mission success,
+              When you choose Steel Motion LLC, you&apos;re not just hiring a technology consultant.
+              You&apos;re partnering with a team that understands the importance of mission success,
               operational excellence, and unwavering commitment to results.
             </p>
 
@@ -98,15 +98,13 @@ export default function WhySteelMotion() {
 
                 <div className="border-t border-slate-600 pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF] to-[#33CCFF] rounded-full flex items-center justify-center p-1">
-                      <Image
-                        src="/images/steel-motion-hero-logo.png"
-                        alt="Steel Motion Logo"
-                        width={40}
-                        height={40}
-                        className="w-full h-full object-contain filter brightness-110 contrast-110"
-                      />
-                    </div>
+                    <Image
+                      src="/images/steel-motion-hero-logo.png"
+                      alt="Steel Motion Logo"
+                      width={44}
+                      height={44}
+                      className="object-contain"
+                    />
                     <div>
                       <p className="font-semibold">Steel Motion LLC</p>
                       <p className="text-slate-400 text-sm">Veteran-Led Technology Solutions</p>

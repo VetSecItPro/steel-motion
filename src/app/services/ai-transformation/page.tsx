@@ -33,60 +33,60 @@ export const metadata: Metadata = {
 
 export default function AITransformationPage() {
   const serviceData = {
-    title: "AI Transformation & Automation",
-    subtitle: "Intelligent solutions that transform operations",
-    description: "Leverage cutting-edge artificial intelligence to automate processes, optimize workflows, and unlock new levels of efficiency in your organization.",
+    title: "AI Transformation",
+    subtitle: "Put AI to work for your business",
+    description: "We help you automate the tedious stuff so your team can focus on what matters.",
     heroGradient: "from-blue-600 via-blue-500 to-cyan-400",
     features: [
       {
-        title: "Process Automation & Workflow Optimization",
-        description: "Streamline repetitive tasks and complex workflows with intelligent automation solutions that reduce manual effort and eliminate human error.",
+        title: "Workflow Automation",
+        description: "Stop doing repetitive tasks manually. We build systems that handle the boring stuff automatically and accurately.",
         icon: "🔄"
       },
       {
-        title: "Intelligent Document Processing",
-        description: "Extract, analyze, and process documents automatically using advanced OCR and natural language processing technologies.",
+        title: "Document Processing",
+        description: "Invoices, forms, contracts. We set up AI to read, extract, and organize your documents without human intervention.",
         icon: "📄"
       },
       {
-        title: "Predictive Analytics & Decision Support",
-        description: "Make data-driven decisions with AI-powered analytics that identify patterns, predict outcomes, and recommend optimal actions.",
+        title: "Predictive Analytics",
+        description: "See what's coming before it happens. We build dashboards and alerts that help you make smarter decisions faster.",
         icon: "📊"
       },
       {
-        title: "Machine Learning Model Development",
-        description: "Custom ML models tailored to your specific business needs, from customer behavior prediction to operational optimization.",
+        title: "Custom AI Models",
+        description: "Off-the-shelf AI doesn't always fit. We build models trained specifically on your data and your problems.",
         icon: "🤖"
       },
       {
-        title: "Robotic Process Automation (RPA)",
-        description: "Deploy software robots to handle routine tasks across multiple systems, improving accuracy and freeing up your team for strategic work.",
+        title: "Process Automation (RPA)",
+        description: "Software bots that work across your existing systems. No ripping and replacing, just automation layered on top.",
         icon: "⚙️"
       },
       {
-        title: "AI Integration & Implementation",
-        description: "Seamlessly integrate AI capabilities into your existing systems and workflows with minimal disruption to operations.",
+        title: "AI Integration",
+        description: "Already have systems you love? We plug AI into what you're using now without breaking anything.",
         icon: "🔗"
       }
     ],
     benefits: [
-      "Reduce operational costs by up to 40% through intelligent automation",
-      "Eliminate manual errors and improve data accuracy",
-      "Scale operations without proportional increase in staffing",
-      "Make faster, more informed decisions with AI-powered insights",
-      "Improve customer experience through automated service delivery",
-      "Ensure compliance with automated monitoring and reporting"
+      "Cut operational costs significantly",
+      "Eliminate manual data entry errors",
+      "Handle more volume without hiring more people",
+      "Get answers from your data in minutes, not days",
+      "Respond to customers faster",
+      "Stay compliant without the paperwork headaches"
     ],
     industries: [
-      "Financial Services & Banking",
-      "Healthcare & Medical Records",
-      "Manufacturing & Supply Chain",
-      "Government & Defense Contracting",
-      "Insurance & Risk Management",
-      "Legal & Professional Services"
+      "Businesses ready to scale without adding headcount",
+      "Teams buried in repetitive manual tasks",
+      "Companies managing high volumes of documents",
+      "Organizations looking to respond to customers faster",
+      "Anyone tired of copy-pasting between systems",
+      "Businesses that want to work smarter, not harder"
     ],
-    ctaText: "Transform Your Operations with AI",
-    ctaDescription: "Ready to harness the power of artificial intelligence? Let's discuss how AI transformation can drive efficiency and growth in your organization."
+    ctaText: "Let's Talk AI",
+    ctaDescription: "Not sure where to start? We'll help you figure out where AI makes sense for your business."
   }
 
   return (
