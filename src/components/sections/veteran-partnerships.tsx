@@ -1,32 +1,83 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Shield, Users, Target, Handshake, Send } from "lucide-react"
+import { Shield, Users, Target, Handshake, Send, Loader2 } from "lucide-react"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
+import { FormField } from "@/components/ui/form-field"
+import { partnershipFormSchema, type PartnershipFormData } from "@/lib/validations/partnership"
+
+type FormErrors = Partial<Record<keyof PartnershipFormData, string>>
 
 export default function VeteranPartnerships() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<PartnershipFormData>({
     name: '',
     email: '',
     organization: '',
     veteranStatus: '',
-    partnershipType: '',
+    partnershipType: '' as PartnershipFormData['partnershipType'],
     message: ''
   })
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+  const validateField = useCallback((name: keyof PartnershipFormData, value: string) => {
+    // Create a partial object for validation
+    const testData = { ...formData, [name]: value }
+    const result = partnershipFormSchema.safeParse(testData)
+
+    if (!result.success) {
+      const fieldError = result.error.issues.find(issue => issue.path[0] === name)
+      return fieldError?.message
+    }
+    return undefined
+  }, [formData])
+
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setTouched(prev => ({ ...prev, [name]: true }))
+
+    const error = validateField(name as keyof PartnershipFormData, value)
+    setErrors(prev => ({ ...prev, [name]: error }))
+  }, [validateField])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+
+    // Clear error when user starts typing (if field was touched)
+    if (touched[name] && errors[name as keyof PartnershipFormData]) {
+      const error = validateField(name as keyof PartnershipFormData, value)
+      setErrors(prev => ({ ...prev, [name]: error }))
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
     setSubmitStatus('idle')
+
+    // Validate all fields
+    const result = partnershipFormSchema.safeParse(formData)
+
+    if (!result.success) {
+      const fieldErrors: FormErrors = {}
+      result.error.issues.forEach(err => {
+        const field = err.path[0] as keyof PartnershipFormData
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message
+        }
+      })
+      setErrors(fieldErrors)
+      setTouched({ name: true, email: true, organization: true, veteranStatus: true, partnershipType: true, message: true })
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
       const response = await fetch('/api/partnerships', {
@@ -44,10 +95,16 @@ export default function VeteranPartnerships() {
           email: '',
           organization: '',
           veteranStatus: '',
-          partnershipType: '',
+          partnershipType: '' as PartnershipFormData['partnershipType'],
           message: ''
         })
+        setErrors({})
+        setTouched({})
       } else {
+        const data = await response.json()
+        if (data.errors) {
+          setErrors(data.errors)
+        }
         setSubmitStatus('error')
       }
     } catch (error) {
@@ -56,13 +113,6 @@ export default function VeteranPartnerships() {
     } finally {
       setIsSubmitting(false)
     }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
   }
 
   return (
@@ -181,136 +231,145 @@ export default function VeteranPartnerships() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                          placeholder="Your full name"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
-                          Email *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                          placeholder="your@email.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="organization" className="block text-sm font-medium text-slate-300 mb-2">
-                        Organization/Company *
-                      </label>
-                      <Input
-                        id="organization"
-                        name="organization"
-                        value={formData.organization}
+                      <FormField
+                        label="Full Name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
                         onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.name ? errors.name : undefined}
                         required
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                        placeholder="Your organization name"
+                        placeholder="Your full name"
+                        inputClassName="bg-slate-700 border-slate-600"
+                      />
+                      <FormField
+                        label="Email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.email ? errors.email : undefined}
+                        required
+                        placeholder="your@email.com"
+                        inputClassName="bg-slate-700 border-slate-600"
                       />
                     </div>
 
+                    <FormField
+                      label="Organization/Company"
+                      name="organization"
+                      type="text"
+                      value={formData.organization}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.organization ? errors.organization : undefined}
+                      required
+                      placeholder="Your organization name"
+                      inputClassName="bg-slate-700 border-slate-600"
+                    />
+
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="veteranStatus" className="block text-sm font-medium text-slate-300 mb-2">
-                          Veteran Status
-                        </label>
-                        <select
-                          id="veteranStatus"
-                          name="veteranStatus"
-                          value={formData.veteranStatus}
-                          onChange={handleChange}
-                          className="w-full bg-slate-700 border border-slate-600 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00F2FF]"
-                        >
-                          <option value="">Select status</option>
-                          <option value="veteran">Veteran</option>
-                          <option value="active-duty">Active Duty</option>
-                          <option value="military-spouse">Military Spouse</option>
-                          <option value="civilian">Civilian</option>
-                          <option value="prefer-not-to-say">Prefer not to say</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label htmlFor="partnershipType" className="block text-sm font-medium text-slate-300 mb-2">
-                          Partnership Type *
-                        </label>
-                        <select
-                          id="partnershipType"
-                          name="partnershipType"
-                          value={formData.partnershipType}
-                          onChange={handleChange}
-                          required
-                          className="w-full bg-slate-700 border border-slate-600 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00F2FF]"
-                        >
-                          <option value="">Select type</option>
-                          <option value="veteran-organization">Veteran Organization</option>
-                          <option value="defense-contractor">Defense Contractor</option>
-                          <option value="technology-partnership">Technology Partnership</option>
-                          <option value="joint-venture">Joint Venture</option>
-                          <option value="subcontracting">Subcontracting</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
-                        Partnership Details *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
+                      <FormField
+                        label="Veteran Status"
+                        name="veteranStatus"
+                        type="select"
+                        value={formData.veteranStatus || ''}
                         onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.veteranStatus ? errors.veteranStatus : undefined}
+                        inputClassName="bg-slate-700 border-slate-600"
+                      >
+                        <option value="">Select status</option>
+                        <option value="veteran">Veteran</option>
+                        <option value="active-duty">Active Duty</option>
+                        <option value="military-spouse">Military Spouse</option>
+                        <option value="civilian">Civilian</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                      </FormField>
+
+                      <FormField
+                        label="Partnership Type"
+                        name="partnershipType"
+                        type="select"
+                        value={formData.partnershipType}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.partnershipType ? errors.partnershipType : undefined}
                         required
-                        rows={5}
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                        placeholder="Describe your partnership goals, project scope, timeline, and how we can work together..."
-                      />
+                        inputClassName="bg-slate-700 border-slate-600"
+                      >
+                        <option value="">Select type</option>
+                        <option value="veteran-organization">Veteran Organization</option>
+                        <option value="defense-contractor">Defense Contractor</option>
+                        <option value="technology-partnership">Technology Partnership</option>
+                        <option value="joint-venture">Joint Venture</option>
+                        <option value="subcontracting">Subcontracting</option>
+                        <option value="other">Other</option>
+                      </FormField>
                     </div>
+
+                    <FormField
+                      label="Partnership Details"
+                      name="message"
+                      type="textarea"
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.message ? errors.message : undefined}
+                      required
+                      rows={5}
+                      placeholder="Describe your partnership goals, project scope, timeline, and how we can work together..."
+                      inputClassName="bg-slate-700 border-slate-600"
+                    />
 
                     <Button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
                     >
-                      {isSubmitting ? 'Sending Partnership Inquiry...' : 'Submit Partnership Inquiry'}
-                      <Send className={`ml-2 w-5 h-5 transition-transform ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'}`} />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                          Sending Partnership Inquiry...
+                        </>
+                      ) : (
+                        <>
+                          Submit Partnership Inquiry
+                          <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
                     </Button>
 
-                    {submitStatus === 'success' && (
-                      <div className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg">
-                        <p className="font-medium">✅ Partnership inquiry sent successfully!</p>
-                        <p className="text-sm opacity-90">We&apos;ll review your submission and get back to you within 24 hours.</p>
-                      </div>
-                    )}
+                    {/* Status messages with aria-live for accessibility */}
+                    <div aria-live="polite" aria-atomic="true">
+                      {submitStatus === 'success' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
+                          role="alert"
+                        >
+                          <p className="font-medium">Partnership inquiry sent successfully!</p>
+                          <p className="text-sm opacity-90">We&apos;ll review your submission and get back to you within 24 hours.</p>
+                        </motion.div>
+                      )}
 
-                    {submitStatus === 'error' && (
-                      <div className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg">
-                        <p className="font-medium">❌ Failed to send partnership inquiry</p>
-                        <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
-                      </div>
-                    )}
+                      {submitStatus === 'error' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg"
+                          role="alert"
+                        >
+                          <p className="font-medium">Failed to send partnership inquiry</p>
+                          <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
+                        </motion.div>
+                      )}
+                    </div>
                   </form>
                 </CardContent>
               </Card>

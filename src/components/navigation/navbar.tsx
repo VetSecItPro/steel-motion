@@ -18,7 +18,10 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1728]/95 backdrop-blur-md border-b border-[#1a3a5c]">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0a1728]/95 backdrop-blur-md border-b border-[#1a3a5c]"
+      aria-label="Main navigation"
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand */}
@@ -107,6 +110,9 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -115,7 +121,11 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-[#1a3a5c] border-t border-[#0a1728] animate-mobile-menu">
+          <div
+            id="mobile-menu"
+            className="md:hidden bg-[#1a3a5c] border-t border-[#0a1728] animate-mobile-menu"
+            role="menu"
+          >
             <div className="px-4 py-6 space-y-4">
               <div className="space-y-2">
                 <div className="text-[#B3B3B3] font-medium py-2">Provided Solutions</div>
