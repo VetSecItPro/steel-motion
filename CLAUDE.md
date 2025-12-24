@@ -26,6 +26,41 @@ This document provides comprehensive guidance for developing and deploying the S
 - **Images**: Optimized delivery via Sanity CDN
 - **Revalidation**: Adaptive system (60s-4h intervals based on activity)
 
+## 🔄 Git Workflow (IMPORTANT)
+
+### **NEVER push directly to main. Always use feature branches.**
+
+### **Step-by-Step Process**
+```bash
+# 1. Create feature branch
+git checkout -b feature/your-feature-name
+
+# 2. Make changes and commit
+git add -A
+git commit -m "Your commit message"
+
+# 3. Push branch to GitHub
+git push origin feature/your-feature-name
+
+# 4. CI runs automatically - wait for all checks to pass
+
+# 5. Create PR (or let auto-PR create it)
+gh pr create --title "Your PR title" --body "Description"
+
+# 6. After review, merge PR
+gh pr merge --squash
+
+# 7. Return to main and pull latest
+git checkout main
+git pull origin main
+```
+
+### **Branch Naming Convention**
+- `feature/` - New features (e.g., `feature/add-portfolio-page`)
+- `fix/` - Bug fixes (e.g., `fix/navbar-link`)
+- `chore/` - Maintenance (e.g., `chore/update-dependencies`)
+- `docs/` - Documentation (e.g., `docs/update-readme`)
+
 ## 🔄 CI/CD Pipeline
 
 ### **Workflow Overview**
@@ -34,23 +69,24 @@ Feature Branch → CI Validation → Auto PR → Review → Merge → Vercel Dep
 ```
 
 ### **CI Checks (`.github/workflows/ci.yml`)**
+All checks run on EVERY push to ANY branch:
 1. **Code Quality**: ESLint, TypeScript type checking
 2. **Security**: npm audit, secrets scanning
 3. **Unit Tests**: Vitest
-4. **E2E Tests**: Playwright (Chrome, Firefox, Mobile)
-5. **Performance**: Lighthouse CI audits
-6. **Build Verification**: Next.js production build
+4. **E2E Tests**: Playwright
+5. **Build Verification**: Next.js production build
 
 ### **Automated PR Creation**
-When you push to any branch (except `main`), the CI will:
+When you push to any feature branch, the CI will:
 1. Run all validation checks
 2. If all pass, automatically create a PR to `main`
 3. Add CI status labels
 
 ### **Deployment Flow**
-1. **Push to feature branch** → CI runs
-2. **CI passes** → Auto-creates PR
-3. **PR merged to main** → Vercel auto-deploys to production
+1. **Push to feature branch** → CI runs all checks
+2. **CI passes** → Auto-creates PR (or you create manually)
+3. **Review PR** → Check Vercel preview deployment
+4. **Merge to main** → Vercel auto-deploys to production
 
 ## 📦 Available Scripts
 
