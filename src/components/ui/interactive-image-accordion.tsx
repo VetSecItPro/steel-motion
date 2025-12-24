@@ -46,7 +46,7 @@ const accordionItems = [
     id: 4,
     title: 'Cybersecurity & Protection',
     url: '/services/cybersecurity',
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
     bulletPoints: [
       'Security Assessments & Penetration Testing',
       'Compliance & Risk Management',
