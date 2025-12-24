@@ -14,12 +14,17 @@ export const partnershipFormSchema = z.object({
     .string()
     .min(2, 'Organization name must be at least 2 characters')
     .max(200, 'Organization name must be less than 200 characters'),
-  veteranStatus: z.enum(['veteran', 'active-duty', 'family', 'supporter', 'organization'], {
-    message: 'Please select your veteran status',
-  }),
-  partnershipType: z.enum(['business', 'technology', 'community', 'training', 'other'], {
-    message: 'Please select a partnership type',
-  }),
+  veteranStatus: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || ['veteran', 'active-duty', 'military-spouse', 'civilian', 'prefer-not-to-say'].includes(val),
+      { message: 'Please select a valid veteran status' }
+    ),
+  partnershipType: z.enum(
+    ['veteran-organization', 'defense-contractor', 'technology-partnership', 'joint-venture', 'subcontracting', 'other'],
+    { message: 'Please select a partnership type' }
+  ),
   message: z
     .string()
     .min(20, 'Please provide more details (at least 20 characters)')
