@@ -78,7 +78,7 @@ export default function Navbar() {
               href="/blog"
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
             >
-              Blog
+              Articles
             </Link>
             <Link
               href="/portfolio"
@@ -151,7 +151,7 @@ export default function Navbar() {
                 className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
                 onClick={() => setIsOpen(false)}
               >
-                Blog
+                Articles
               </Link>
               <Link
                 href="/portfolio"
