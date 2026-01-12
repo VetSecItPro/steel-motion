@@ -154,6 +154,30 @@ const portableTextComponents = {
       </blockquote>
     ),
   },
+  list: {
+    bullet: ({ children }: any) => (
+      <ul className="list-disc list-outside ml-6 mb-4 space-y-2 text-[#B3B3B3]">
+        {children}
+      </ul>
+    ),
+    number: ({ children }: any) => (
+      <ol className="list-decimal list-outside ml-6 mb-4 space-y-2 text-[#B3B3B3]">
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }: any) => (
+      <li className="text-[#B3B3B3] leading-relaxed text-lg">
+        {children}
+      </li>
+    ),
+    number: ({ children }: any) => (
+      <li className="text-[#B3B3B3] leading-relaxed text-lg">
+        {children}
+      </li>
+    ),
+  },
   marks: {
     link: ({ children, value }: any) => (
       <a
@@ -169,7 +193,7 @@ const portableTextComponents = {
       <strong className="font-semibold text-white">{children}</strong>
     ),
     em: ({ children }: any) => (
-      <em className="italic">{children}</em>
+      <em className="italic text-[#B3B3B3]">{children}</em>
     ),
     code: ({ children }: any) => (
       <code className="bg-[#1a3a5c] text-[#00F2FF] px-2 py-1 rounded text-sm font-mono">
