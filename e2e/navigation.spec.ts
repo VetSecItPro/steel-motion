@@ -15,9 +15,9 @@ test.describe('Navigation', () => {
     await page.click('nav >> text=About');
     await expect(page).toHaveURL(/\/about/);
 
-    // Test Blog link
+    // Test Articles link
     await page.goto('/');
-    await page.click('nav >> text=Blog');
+    await page.click('nav >> text=Articles');
     await expect(page).toHaveURL(/\/blog/);
   });
 
