@@ -58,7 +58,7 @@ interface BlogPost {
   readTime?: number
   tags?: string[]
   author: Author
-  categories: Category[]
+  categories?: Category[]
   relatedPosts: RelatedPost[]
 }
 
@@ -203,7 +203,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
             </div>
 
             {/* Categories */}
-            {post.categories.length > 0 && (
+            {post.categories && post.categories.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.categories.map((category) => (
                   <Badge
