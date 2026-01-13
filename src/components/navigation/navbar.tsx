@@ -1,13 +1,22 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useDevice } from "@/lib/contexts/DeviceContext"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { isMobile } = useDevice()
+
+  // Close mobile menu when switching to desktop view
+  useEffect(() => {
+    if (!isMobile && isOpen) {
+      setIsOpen(false)
+    }
+  }, [isMobile, isOpen])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -46,7 +55,8 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 animate-fade-in-delay">
+          {!isMobile && (
+          <div className="flex items-center gap-8 animate-fade-in-delay">
             <div className="relative group">
               <button
                 onClick={() => scrollToSection('services')}
@@ -104,9 +114,11 @@ export default function Navbar() {
               </Button>
             </Link>
           </div>
+          )}
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {isMobile && (
+          <div>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
@@ -117,13 +129,14 @@ export default function Navbar() {
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+          )}
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
+        {isMobile && isOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden bg-[#1a3a5c] border-t border-[#0a1728] animate-mobile-menu"
+            className="bg-[#1a3a5c] border-t border-[#0a1728] animate-mobile-menu"
             role="menu"
           >
             <div className="px-4 py-6 space-y-4">
