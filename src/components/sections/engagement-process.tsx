@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Search, ClipboardCheck, Rocket, TrendingUp } from "lucide-react"
+import { useDevice } from "@/lib/contexts/DeviceContext"
 
 const steps = [
   {
@@ -31,6 +32,8 @@ const steps = [
 ]
 
 export default function EngagementProcess() {
+  const { isDesktop } = useDevice();
+
   return (
     <section id="process" className="py-24 bg-gradient-to-b from-[#0a1728] to-[#0f2640] text-white relative overflow-hidden">
       {/* Background decoration */}
@@ -59,7 +62,7 @@ export default function EngagementProcess() {
         </motion.div>
 
         {/* Desktop Timeline */}
-        <div className="hidden lg:block">
+        {isDesktop && (
           <div className="grid grid-cols-4 gap-8 items-stretch">
             {steps.map((step, index) => (
               <motion.div
@@ -105,10 +108,11 @@ export default function EngagementProcess() {
               </motion.div>
             ))}
           </div>
-        </div>
+        )}
 
         {/* Mobile/Tablet vertical timeline */}
-        <div className="lg:hidden space-y-8">
+        {!isDesktop && (
+        <div className="space-y-8">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
@@ -154,6 +158,7 @@ export default function EngagementProcess() {
             </motion.div>
           ))}
         </div>
+        )}
       </div>
     </section>
   )

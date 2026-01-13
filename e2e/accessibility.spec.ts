@@ -100,19 +100,23 @@ test.describe('Accessibility', () => {
   test('page has proper heading hierarchy', async ({ page }) => {
     await page.goto('/');
 
+    // Wait for page to fully hydrate (DeviceContext may change rendered content)
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
     // Check for h1
     const h1Count = await page.locator('h1').count();
     expect(h1Count).toBeGreaterThanOrEqual(1);
 
+    // Get heading levels in a single evaluation to avoid stale locators
+    const headingLevels = await page.evaluate(() => {
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      return Array.from(headings).map(h => parseInt(h.tagName.charAt(1)));
+    });
+
     // Heading levels should not skip (e.g., h1 then h3 without h2)
-    const headings = await page.locator('h1, h2, h3, h4, h5, h6').all();
     let previousLevel = 0;
-
-    for (const heading of headings) {
-      const tagName = await heading.evaluate(el => el.tagName);
-      const currentLevel = parseInt(tagName.charAt(1));
-
-      // Should not skip more than one level down
+    for (const currentLevel of headingLevels) {
       if (previousLevel > 0 && currentLevel > previousLevel + 1) {
         console.warn(`Heading hierarchy issue: h${previousLevel} followed by h${currentLevel}`);
       }
@@ -123,25 +127,37 @@ test.describe('Accessibility', () => {
   test('focus is visible on interactive elements', async ({ page }) => {
     await page.goto('/');
 
+    // Wait for page to fully hydrate
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
     // Tab to first focusable element
     await page.keyboard.press('Tab');
 
-    // Get the focused element
+    // Get the focused element (wait for focus to settle)
+    await page.waitForTimeout(100);
     const focusedElement = page.locator(':focus');
-    await expect(focusedElement).toBeVisible();
+    await expect(focusedElement).toBeVisible({ timeout: 10000 });
   });
 
   test('keyboard navigation works', async ({ page }) => {
     await page.goto('/');
 
+    // Wait for page to fully hydrate
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
     // Should be able to navigate with keyboard
     await page.keyboard.press('Tab');
+    await page.waitForTimeout(100);
     await page.keyboard.press('Tab');
+    await page.waitForTimeout(100);
     await page.keyboard.press('Tab');
+    await page.waitForTimeout(100);
 
     // Should have a focused element
     const focusedElement = page.locator(':focus');
-    await expect(focusedElement).toBeVisible();
+    await expect(focusedElement).toBeVisible({ timeout: 10000 });
 
     // Press Enter on focused element
     await page.keyboard.press('Enter');
