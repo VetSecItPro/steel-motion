@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useDevice } from '@/lib/contexts/DeviceContext';
 
 // --- Data for Steel Motion's Technology Solutions ---
 // Primary services (AI & Custom Apps) first, then secondary services
@@ -181,6 +182,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
 // --- Main Component ---
 export function LandingAccordionItem() {
   const [activeIndex, setActiveIndex] = useState(0); // Default to AI Transformation (primary service)
+  const { isDesktop } = useDevice();
 
   const handleItemHover = (index: number) => {
     setActiveIndex(index);
@@ -215,24 +217,28 @@ export function LandingAccordionItem() {
 
           {/* Right Side: Mobile Cards / Desktop Accordion */}
           <div className="w-full lg:w-[55%]">
-            {/* Mobile: Grid of Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-              {accordionItems.map((item) => (
-                <MobileServiceCard key={item.id} item={item} />
-              ))}
-            </div>
+            {/* Mobile/Tablet: Grid of Cards */}
+            {!isDesktop && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {accordionItems.map((item) => (
+                  <MobileServiceCard key={item.id} item={item} />
+                ))}
+              </div>
+            )}
 
             {/* Desktop: Image Accordion */}
-            <div className="hidden lg:flex flex-row items-center justify-start gap-2 p-4 overflow-x-auto">
-              {accordionItems.map((item, index) => (
-                <AccordionItem
-                  key={item.id}
-                  item={item}
-                  isActive={index === activeIndex}
-                  onMouseEnter={() => handleItemHover(index)}
-                />
-              ))}
-            </div>
+            {isDesktop && (
+              <div className="flex flex-row items-center justify-start gap-2 p-4 overflow-x-auto">
+                {accordionItems.map((item, index) => (
+                  <AccordionItem
+                    key={item.id}
+                    item={item}
+                    isActive={index === activeIndex}
+                    onMouseEnter={() => handleItemHover(index)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

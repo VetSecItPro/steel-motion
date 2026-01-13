@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { DeviceProvider } from "@/lib/contexts/DeviceContext";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -53,7 +54,9 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        {children}
+        <DeviceProvider>
+          {children}
+        </DeviceProvider>
       </body>
     </html>
   );
