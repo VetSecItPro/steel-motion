@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import ServicePage from "@/components/sections/service-page"
+import ServiceSchema from "@/components/structured-data/service"
 
 export const metadata: Metadata = {
   title: "Custom Application Development | Steel Motion LLC - Veteran-Led Technology Solutions",
@@ -89,8 +90,15 @@ export default function CustomDevelopmentPage() {
     ctaDescription: "Ready to create software that works exactly how your business operates? Let's discuss your requirements and design a custom solution that drives results."
   }
 
+  const serviceSchema = {
+    name: "Custom Application Development",
+    description: "Build tailored software solutions that fit your exact business needs. Steel Motion delivers custom web applications, mobile apps, and system integrations with veteran precision.",
+    url: "https://www.steelmotionllc.com/services/custom-development"
+  }
+
   return (
     <main className="min-h-screen">
+      <ServiceSchema service={serviceSchema} />
       <Navbar />
       <ServicePage {...serviceData} />
       <Footer />

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import ServicePage from "@/components/sections/service-page"
+import ServiceSchema from "@/components/structured-data/service"
 
 export const metadata: Metadata = {
   title: "Data Analytics & Intelligence | Steel Motion LLC - Veteran-Led Technology Solutions",
@@ -89,8 +90,15 @@ export default function DataAnalyticsPage() {
     ctaDescription: "Ready to transform your data into a strategic asset? Let's discuss how advanced analytics can drive growth and efficiency in your organization."
   }
 
+  const serviceSchema = {
+    name: "Data Analytics & Intelligence",
+    description: "Transform raw data into actionable business intelligence. Steel Motion delivers data analytics, visualization, and business intelligence solutions with veteran precision.",
+    url: "https://www.steelmotionllc.com/services/data-analytics"
+  }
+
   return (
     <main className="min-h-screen">
+      <ServiceSchema service={serviceSchema} />
       <Navbar />
       <ServicePage {...serviceData} />
       <Footer />

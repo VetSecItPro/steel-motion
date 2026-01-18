@@ -39,7 +39,7 @@ export default function Navbar() {
             {/* Steel Motion Logo */}
             <div className="w-10 h-10 relative">
               <Image
-                src="/images/steel-motion-hero-logo.png"
+                src="/images/steel-motion-hero-logo.svg"
                 alt="Steel Motion Logo"
                 width={40}
                 height={40}
@@ -56,7 +56,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           {!isMobile && (
-          <div className="flex items-center gap-8 animate-fade-in-delay">
+          <div className="flex items-center gap-x-12 animate-fade-in-delay">
             <div className="relative group">
               <button
                 onClick={() => scrollToSection('services')}
@@ -84,9 +84,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <Link
-              href="/blog"
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium text-lg"
             >
               Articles
             </Link>

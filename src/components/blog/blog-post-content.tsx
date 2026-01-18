@@ -14,6 +14,7 @@ import {
   Share2
 } from "lucide-react"
 import { urlForImage } from "@/lib/sanity"
+import { slideInUp } from "@/lib/animations"
 
 interface Author {
   name: string
@@ -210,9 +211,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
       <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white py-16">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            {...slideInUp}
             className="max-w-4xl mx-auto"
           >
             {/* Back Navigation */}
@@ -341,7 +340,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
           <div className="max-w-6xl mx-auto">
             {/* Main Content */}
             <div>
-              <div className="prose prose-lg max-w-none">
+              <div className="prose prose-lg prose-invert max-w-none">
                 <PortableText
                   value={post.body}
                   components={portableTextComponents}

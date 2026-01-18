@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { Input } from './input'
 import { Textarea } from './textarea'
 import { motion, AnimatePresence } from 'framer-motion'
+import { slideInDownShort } from '@/lib/animations'
 
 interface FormFieldProps {
   label: string
@@ -107,10 +108,7 @@ export function FormField({
         {hasError && (
           <motion.p
             id={errorId}
-            initial={{ opacity: 0, y: -10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: 'auto' }}
-            exit={{ opacity: 0, y: -10, height: 0 }}
-            transition={{ duration: 0.2 }}
+            {...slideInDownShort}
             className="text-sm text-red-400 flex items-center gap-1"
             role="alert"
             aria-live="polite"

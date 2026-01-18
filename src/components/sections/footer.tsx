@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <Image
-                src="/images/steel-motion-hero-logo.png"
+                src="/images/steel-motion-hero-logo.svg"
                 alt="Steel Motion Logo"
                 width={32}
                 height={32}

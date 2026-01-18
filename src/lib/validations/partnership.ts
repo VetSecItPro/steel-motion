@@ -29,6 +29,7 @@ export const partnershipFormSchema = z.object({
     .string()
     .min(20, 'Please provide more details (at least 20 characters)')
     .max(3000, 'Message must be less than 3000 characters'),
+  fax: z.string().optional(),
 });
 
 export type PartnershipFormData = z.infer<typeof partnershipFormSchema>;

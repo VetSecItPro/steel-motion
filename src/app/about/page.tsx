@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import AboutContent from "@/components/sections/about"
+import PersonSchema from '@/components/structured-data/person'
 
 export const metadata: Metadata = {
   title: 'About | Steel Motion LLC - Veteran-Led AI & Technology Solutions',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
+      <PersonSchema />
       <Navbar />
       <AboutContent />
       <Footer />
