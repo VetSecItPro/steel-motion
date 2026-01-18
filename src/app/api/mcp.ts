@@ -1,18 +1,29 @@
-
 import { createMcpHandler } from 'mcp-handler';
 
-const mcpHandler = createMcpHandler({
-  // Your tool definitions go here
-  tools: {
-    hello: {
-      description: 'A simple tool that returns a friendly greeting.',
-      run: async () => {
+const mcpHandler = createMcpHandler(
+  (server) => {
+    server.tool(
+      'hello',
+      'A simple tool that returns a friendly greeting.',
+      {},
+      async () => {
         return {
-          message: 'Hello from the a Vercel MCP server!',
+          content: [
+            {
+              type: 'text',
+              text: 'Hello from the Steel Motion Vercel MCP server!',
+            },
+          ],
         };
-      },
-    },
+      }
+    );
   },
-});
+  {
+    serverInfo: {
+      name: 'steel-motion-mcp',
+      version: '1.0.0',
+    },
+  }
+);
 
 export const POST = mcpHandler;

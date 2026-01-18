@@ -4,7 +4,7 @@ import { ratelimit } from '@/lib/rate-limiter';
 import DOMPurify from 'isomorphic-dompurify';
 
 export async function POST(request: NextRequest) {
-  const ip = request.ip ?? "127.0.0.1";
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0] ?? "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
 
   if (!success) {
