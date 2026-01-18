@@ -84,6 +84,8 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+            <Link
+              href="/blog"
               className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium text-lg"
             >
               Articles

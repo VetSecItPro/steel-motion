@@ -5,7 +5,7 @@ import DOMPurify from 'isomorphic-dompurify';
 
 export async function POST(request: NextRequest) {
   const ip = request.ip ?? "127.0.0.1";
-  const { success, pending, limit, reset, remaining } = await ratelimit.limit(ip);
+  const { success } = await ratelimit.limit(ip);
 
   if (!success) {
     return NextResponse.json(
