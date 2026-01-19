@@ -26,34 +26,24 @@ export default function Hero() {
         >
           {/* Hero Logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.3, rotateY: 180 }}
-            whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 100 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
             className="mb-4 flex justify-center"
           >
             <div className="relative">
-              {/* Logo with blurred edges and seamless blending */}
-              <div className="relative">
-                <Image
-                  src="/images/steel-motion-hero-logo.svg"
-                  alt="Steel Motion Logo"
-                  width={400}
-                  height={400}
-                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 400px"
-                  className="object-contain drop-shadow-2xl filter brightness-110 contrast-110"
-                  style={{
-                    maskImage: 'radial-gradient(circle at center, black 60%, transparent 95%)',
-                    WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 95%)',
-                  }}
-                  priority
-                />
-                {/* Additional soft edge blending overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-transparent rounded-full opacity-50 blur-sm"></div>
-              </div>
-              {/* Multiple glow layers for better integration */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00F2FF]/20 to-[#33CCFF]/20 blur-3xl scale-150 -z-10 animate-pulse"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/30 via-transparent to-[#1a3a5c]/30 blur-2xl scale-125 -z-5"></div>
+              <Image
+                src="/images/steel-motion-hero-logo.png"
+                alt="Steel Motion Logo"
+                width={350}
+                height={350}
+                sizes="(max-width: 640px) 250px, (max-width: 768px) 300px, 350px"
+                className="object-contain drop-shadow-2xl"
+                priority
+              />
+              {/* Subtle glow behind logo */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00F2FF]/10 to-[#33CCFF]/10 blur-3xl scale-125 -z-10"></div>
             </div>
           </motion.div>
 

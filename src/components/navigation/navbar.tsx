@@ -39,7 +39,7 @@ export default function Navbar() {
             {/* Steel Motion Logo */}
             <div className="w-10 h-10 relative">
               <Image
-                src="/images/steel-motion-hero-logo.svg"
+                src="/images/steel-motion-hero-logo.png"
                 alt="Steel Motion Logo"
                 width={40}
                 height={40}
