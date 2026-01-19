@@ -2,6 +2,7 @@
 
 import { Linkedin, Mail } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -10,6 +11,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Left side - Brand & Social */}
           <div className="flex items-center gap-4">
+            <Image
+              src="/images/steel-motion-hero-logo.png"
+              alt="Steel Motion Logo"
+              width={32}
+              height={32}
+              className="object-contain"
+            />
             <span className="text-lg font-bold">Steel Motion LLC</span>
             <div className="flex space-x-2">
               <a
