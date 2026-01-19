@@ -59,13 +59,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased no-cursor`}
       >
-        <SmoothScroll />
-        <CustomCursor />
-        <Spotlight />
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
         <DeviceProvider>
+          <SmoothScroll />
+          <CustomCursor />
+          <Spotlight />
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
           <PageTransition>
             {children}
           </PageTransition>
