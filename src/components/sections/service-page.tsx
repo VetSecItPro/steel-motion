@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, ArrowRight, ArrowLeft, Home } from "lucide-react"
 import Link from "next/link"
+import { slideInUp, slideInLeft, slideInRight, scaleIn } from "@/lib/animations"
 
 interface ServiceFeature {
   title: string
@@ -52,9 +53,7 @@ export default function ServicePage({
       <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] pt-20 pb-4">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            {...slideInLeft}
             className="flex items-center gap-4"
           >
             <Link
@@ -82,14 +81,11 @@ export default function ServicePage({
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            {...slideInUp}
             className="max-w-4xl mx-auto"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
+              {...scaleIn}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6"
             >
@@ -99,36 +95,32 @@ export default function ServicePage({
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl md:text-6xl font-bold mb-6"
             >
               {title}
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto leading-relaxed"
             >
               {subtitle}
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 0.8 }}
               className="text-lg text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed"
             >
               {description}
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 1.0 }}
             >
               <Button
                 onClick={scrollToContact}
@@ -146,10 +138,7 @@ export default function ServicePage({
       <section className="py-16 bg-gradient-to-br from-[#0f2640] via-[#1a3a5c] to-[#0f2640]">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInUp}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
@@ -164,10 +153,8 @@ export default function ServicePage({
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...slideInUp}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
               >
                 <Card className="h-full bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/10">
                   <CardHeader>
@@ -192,20 +179,15 @@ export default function ServicePage({
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Benefits */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              {...slideInLeft}
             >
               <h3 className="text-2xl font-bold mb-6 text-white">Why It Matters</h3>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    {...slideInLeft}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
                     className="flex items-start gap-3"
                   >
                     <CheckCircle className="w-6 h-6 text-[#00F2FF] flex-shrink-0 mt-0.5" />
@@ -217,20 +199,15 @@ export default function ServicePage({
 
             {/* Industries */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              {...slideInRight}
             >
               <h3 className="text-2xl font-bold mb-6 text-white">Good Fit If You&apos;re...</h3>
               <div className="space-y-3">
                 {industries.map((industry, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: 10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    {...slideInRight}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    viewport={{ once: true }}
                     className="flex items-center gap-3"
                   >
                     <CheckCircle className="w-5 h-5 text-[#00F2FF] flex-shrink-0" />
@@ -247,10 +224,7 @@ export default function ServicePage({
       <section className="py-16 bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInUp}
             className="max-w-4xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{ctaText}</h2>

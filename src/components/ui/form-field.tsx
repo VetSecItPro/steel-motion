@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { Input } from './input'
 import { Textarea } from './textarea'
 import { motion, AnimatePresence } from 'framer-motion'
+import { slideInDownShort } from '@/lib/animations'
 
 interface FormFieldProps {
   label: string
@@ -20,6 +21,8 @@ interface FormFieldProps {
   inputClassName?: string
   rows?: number
   children?: React.ReactNode // For select options
+  tabIndex?: number
+  autoComplete?: string
 }
 
 export function FormField({
@@ -36,6 +39,8 @@ export function FormField({
   inputClassName,
   rows = 4,
   children,
+  tabIndex,
+  autoComplete,
 }: FormFieldProps) {
   const inputId = `field-${name}`
   const errorId = `${inputId}-error`
@@ -71,6 +76,8 @@ export function FormField({
           aria-invalid={hasError}
           aria-describedby={hasError ? errorId : undefined}
           className={baseInputClasses}
+          tabIndex={tabIndex}
+          autoComplete={autoComplete}
         />
       ) : type === 'select' ? (
         <select
@@ -85,6 +92,8 @@ export function FormField({
             'flex h-10 w-full rounded-md border px-3 py-2 text-sm',
             baseInputClasses
           )}
+          tabIndex={tabIndex}
+          autoComplete={autoComplete}
         >
           {children}
         </select>
@@ -100,6 +109,8 @@ export function FormField({
           aria-invalid={hasError}
           aria-describedby={hasError ? errorId : undefined}
           className={baseInputClasses}
+          tabIndex={tabIndex}
+          autoComplete={autoComplete}
         />
       )}
 
@@ -107,10 +118,7 @@ export function FormField({
         {hasError && (
           <motion.p
             id={errorId}
-            initial={{ opacity: 0, y: -10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: 'auto' }}
-            exit={{ opacity: 0, y: -10, height: 0 }}
-            transition={{ duration: 0.2 }}
+            {...slideInDownShort}
             className="text-sm text-red-400 flex items-center gap-1"
             role="alert"
             aria-live="polite"

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import ServicePage from "@/components/sections/service-page"
+import ServiceSchema from "@/components/structured-data/service"
 
 export const metadata: Metadata = {
   title: "Cybersecurity & Protection | Steel Motion LLC - Veteran-Led Technology Solutions",
@@ -89,8 +90,15 @@ export default function CybersecurityPage() {
     ctaDescription: "Don't leave your security to chance. Let our veteran cybersecurity experts assess your vulnerabilities and implement military-grade protection for your organization."
   }
 
+  const serviceSchema = {
+    name: "Cybersecurity & Protection",
+    description: "Protect your organization with military-grade cybersecurity solutions. Steel Motion delivers security assessments, threat protection, and compliance consulting with veteran expertise.",
+    url: "https://www.steelmotionllc.com/services/cybersecurity"
+  }
+
   return (
     <main className="min-h-screen">
+      <ServiceSchema service={serviceSchema} />
       <Navbar />
       <ServicePage {...serviceData} />
       <Footer />

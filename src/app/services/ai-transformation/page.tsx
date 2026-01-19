@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import ServicePage from "@/components/sections/service-page"
+import ServiceSchema from "@/components/structured-data/service"
 
 export const metadata: Metadata = {
   title: "AI Transformation & Automation | Steel Motion LLC - Veteran-Led Technology Solutions",
@@ -89,8 +90,15 @@ export default function AITransformationPage() {
     ctaDescription: "Not sure where to start? We'll help you figure out where AI makes sense for your business."
   }
 
+  const serviceSchema = {
+    name: "AI Transformation & Automation",
+    description: "Transform your business with intelligent automation and AI solutions. Steel Motion delivers process optimization, workflow automation, and intelligent document processing with military precision.",
+    url: "https://www.steelmotionllc.com/services/ai-transformation"
+  }
+
   return (
     <main className="min-h-screen">
+      <ServiceSchema service={serviceSchema} />
       <Navbar />
       <ServicePage {...serviceData} />
       <Footer />
