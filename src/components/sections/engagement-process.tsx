@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Search, ClipboardCheck, Rocket, TrendingUp } from "lucide-react"
 import { useDevice } from "@/lib/contexts/DeviceContext"
+import { slideInUp, slideInLeft } from "@/lib/animations"
 
 const steps = [
   {
@@ -44,10 +45,7 @@ export default function EngagementProcess() {
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          {...slideInUp}
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 rounded-full px-4 py-2 text-sm font-medium mb-4">
@@ -67,10 +65,8 @@ export default function EngagementProcess() {
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
+                {...slideInUp}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
                 className="flex flex-col"
               >
                 {/* Step number and icon */}
@@ -116,10 +112,8 @@ export default function EngagementProcess() {
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              {...slideInLeft}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="flex gap-6"
             >
               {/* Left side - icon */}

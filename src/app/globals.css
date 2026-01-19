@@ -170,3 +170,4 @@
   outline: 2px solid #00F2FF;
   outline-offset: 2px;
 }
+.no-cursor { cursor: none; }

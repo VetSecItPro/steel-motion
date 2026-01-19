@@ -9,6 +9,7 @@ import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import { FormField } from "@/components/ui/form-field"
 import { partnershipFormSchema, type PartnershipFormData } from "@/lib/validations/partnership"
+import { slideInUp, scaleIn, fadeIn, slideInLeft, slideInRight } from "@/lib/animations"
 
 type FormErrors = Partial<Record<keyof PartnershipFormData, string>>
 
@@ -19,7 +20,8 @@ export default function VeteranPartnerships() {
     organization: '',
     veteranStatus: '',
     partnershipType: '' as PartnershipFormData['partnershipType'],
-    message: ''
+    message: '',
+    fax: '',
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -125,14 +127,11 @@ export default function VeteranPartnerships() {
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            {...slideInUp}
             className="max-w-5xl mx-auto"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
+              {...scaleIn}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6"
             >
@@ -143,9 +142,8 @@ export default function VeteranPartnerships() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl md:text-6xl font-bold mb-6"
             >
               <span className="text-white">Partner with</span>
@@ -153,9 +151,8 @@ export default function VeteranPartnerships() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="text-xl md:text-2xl text-[#B3B3B3] mb-8 max-w-3xl mx-auto leading-relaxed"
             >
               Join forces with Steel Motion LLC to deliver mission-critical technology solutions.
@@ -164,8 +161,7 @@ export default function VeteranPartnerships() {
 
             {/* Partnership Types */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              {...fadeIn}
               transition={{ duration: 1, delay: 0.8 }}
               className="grid md:grid-cols-3 gap-6 mt-12"
             >
@@ -190,9 +186,8 @@ export default function VeteranPartnerships() {
 
             {/* Call to Action Button */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 1.0 }}
               className="mt-12 text-center"
             >
               <Button
@@ -218,10 +213,7 @@ export default function VeteranPartnerships() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              {...slideInLeft}
             >
               <Card className="bg-slate-800 border-slate-700">
                 <CardHeader>
@@ -256,6 +248,19 @@ export default function VeteranPartnerships() {
                         required
                         placeholder="your@email.com"
                         inputClassName="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+
+                    {/* Honeypot field */}
+                    <div className="hidden" aria-hidden="true">
+                      <FormField
+                        label="Fax"
+                        name="fax"
+                        type="text"
+                        value={formData.fax || ''}
+                        onChange={handleChange}
+                        tabIndex={-1}
+                        autoComplete="off"
                       />
                     </div>
 
@@ -348,8 +353,7 @@ export default function VeteranPartnerships() {
                     <div aria-live="polite" aria-atomic="true">
                       {submitStatus === 'success' && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          {...fadeIn}
                           className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
                           role="alert"
                         >
@@ -360,8 +364,7 @@ export default function VeteranPartnerships() {
 
                       {submitStatus === 'error' && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          {...fadeIn}
                           className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg"
                           role="alert"
                         >
@@ -377,10 +380,7 @@ export default function VeteranPartnerships() {
 
             {/* Partnership Information */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              {...slideInRight}
               className="space-y-8"
             >
               <div>

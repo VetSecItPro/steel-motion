@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Shield, Award, Globe, Lightbulb, Cloud, GraduationCap } from "lucide-react"
 import Image from "next/image"
+import { slideInUp, scaleIn, slideInLeft, slideInRight } from "@/lib/animations"
 
 const expertise = [
   {
@@ -43,19 +44,14 @@ export default function About() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          {...slideInUp}
           className="mb-16"
         >
           <div className="flex flex-col lg:flex-row items-center gap-8 max-w-4xl mx-auto">
             {/* Profile Picture */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              {...scaleIn}
               transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
               className="flex-shrink-0"
             >
               <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#00F2FF]/30 shadow-xl shadow-[#00F2FF]/25 relative">
@@ -65,7 +61,6 @@ export default function About() {
                   width={192}
                   height={192}
                   className="w-full h-full object-cover"
-                  priority
                 />
               </div>
             </motion.div>
@@ -78,7 +73,7 @@ export default function About() {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Meet Anouar K. Bencheqroun MBA CISSP
               </h2>
-              <p className="text-xl text-[#B3B3B3] leading-relaxed">
+              <p className="text-xl text-[#B3B3B3] leading-relaxed max-w-prose">
                 Veteran technology leader combining military precision with cutting-edge innovation
                 to deliver transformational cybersecurity and AI solutions.
               </p>
@@ -89,17 +84,14 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Professional Story */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            {...slideInLeft}
             className="space-y-8"
           >
             <div className="bg-[#1a3a5c]/50 rounded-2xl p-8 border border-[#00F2FF]/20">
-              <blockquote className="text-2xl text-white italic mb-6 text-center font-medium">
+              <blockquote className="text-2xl text-white italic mb-6 text-center font-medium max-w-prose">
                 &ldquo;Focus beats frenzy every time.&rdquo;
               </blockquote>
-              <div className="text-[#B3B3B3] leading-relaxed text-lg">
+              <div className="text-[#B3B3B3] leading-relaxed text-lg max-w-prose">
                 <p>
                   U.S. Army veteran. Cybersecurity strategist. I&apos;ve led IT operations across four continents and now help businesses secure their infrastructure and harness AI. Dual master&apos;s degrees, CISSP certified, and I teach at Purdue University because giving back matters. I build things that work and solve real problems.
                 </p>
@@ -109,10 +101,7 @@ export default function About() {
 
           {/* Right Column - Expertise & Credentials */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            {...slideInRight}
             className="space-y-8"
           >
             {/* Expertise Areas */}
@@ -122,10 +111,8 @@ export default function About() {
                 {expertise.map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    {...slideInUp}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
                     className="flex items-start gap-4 p-4 bg-[#1a3a5c]/30 rounded-xl border border-[#00F2FF]/10 hover:border-[#00F2FF]/30 transition-colors"
                   >
                     <div className="w-12 h-12 bg-gradient-to-br from-[#00F2FF]/20 to-[#33CCFF]/20 rounded-xl flex items-center justify-center flex-shrink-0">

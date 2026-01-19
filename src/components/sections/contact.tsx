@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
 import { FormField } from "@/components/ui/form-field"
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact"
+import { slideInUp, slideInLeft, slideInRight, fadeIn } from "@/lib/animations"
 
 type FormErrors = Partial<Record<keyof ContactFormData, string>>
 
@@ -16,7 +17,8 @@ export default function Contact() {
     name: '',
     email: '',
     company: '',
-    message: ''
+    message: '',
+    fax: ''
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -107,10 +109,7 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-slate-900 text-white">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          {...slideInUp}
           className="text-center mb-16"
         >
           <Badge variant="secondary" className="mb-4 bg-blue-900 text-blue-200 hover:bg-blue-800">
@@ -127,10 +126,7 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInLeft}
           >
             <Card className="bg-slate-800 border-slate-700">
               <CardHeader>
@@ -167,6 +163,20 @@ export default function Contact() {
                       inputClassName="bg-slate-700 border-slate-600"
                     />
                   </div>
+
+                  {/* Honeypot field */}
+                  <div className="hidden" aria-hidden="true">
+                    <FormField
+                      label="Fax"
+                      name="fax"
+                      type="text"
+                      value={formData.fax || ''}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
 
                   <FormField
                     label="Company/Organization"
@@ -216,8 +226,7 @@ export default function Contact() {
                   <div aria-live="polite" aria-atomic="true">
                     {submitStatus === 'success' && (
                       <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        {...fadeIn}
                         className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
                         role="alert"
                       >
@@ -228,8 +237,7 @@ export default function Contact() {
 
                     {submitStatus === 'error' && (
                       <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        {...fadeIn}
                         className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg"
                         role="alert"
                       >
@@ -244,10 +252,7 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInRight}
             className="space-y-8"
           >
             <div>

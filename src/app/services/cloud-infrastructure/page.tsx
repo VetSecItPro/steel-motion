@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import ServicePage from "@/components/sections/service-page"
+import ServiceSchema from "@/components/structured-data/service"
 
 export const metadata: Metadata = {
   title: "Cloud Infrastructure Solutions | Steel Motion LLC - Veteran-Led Technology Solutions",
@@ -89,8 +90,15 @@ export default function CloudInfrastructurePage() {
     ctaDescription: "Ready to unlock the power of cloud computing? Let's design a cloud strategy that drives efficiency, scalability, and innovation for your organization."
   }
 
+  const serviceSchema = {
+    name: "Cloud Infrastructure Solutions",
+    description: "Modernize your IT infrastructure with scalable cloud solutions. Steel Motion delivers cloud migration, architecture design, and infrastructure management with veteran expertise.",
+    url: "https://www.steelmotionllc.com/services/cloud-infrastructure"
+  }
+
   return (
     <main className="min-h-screen">
+      <ServiceSchema service={serviceSchema} />
       <Navbar />
       <ServicePage {...serviceData} />
       <Footer />

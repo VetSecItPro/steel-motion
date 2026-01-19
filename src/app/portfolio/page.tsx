@@ -8,6 +8,7 @@ import { ArrowRight, ExternalLink, Sparkles, Music, Code, Rocket } from "lucide-
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
+import { slideInUp } from "@/lib/animations"
 
 interface Project {
   id: string
@@ -93,9 +94,7 @@ export default function PortfolioPage() {
       <section className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            {...slideInUp}
             className="max-w-4xl mx-auto text-center"
           >
             <Badge variant="secondary" className="mb-6 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 hover:bg-[#00F2FF]/20">
@@ -122,10 +121,8 @@ export default function PortfolioPage() {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...slideInUp}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
               >
                 <Card className="h-full bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 transition-all duration-300 overflow-hidden group">
                   {/* Gradient Header */}
@@ -208,10 +205,7 @@ export default function PortfolioPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInUp}
             className="max-w-2xl mx-auto text-center"
           >
             <div className="bg-[#1a3a5c]/30 border border-[#00F2FF]/20 rounded-2xl p-8">

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowRight, Zap, Shield, Target, Users } from "lucide-react"
 import Image from "next/image"
+import { slideInUp, scaleIn, fadeIn } from "@/lib/animations"
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -20,23 +21,22 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 pt-4 pb-8 text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          {...slideInUp}
           className="max-w-5xl mx-auto"
         >
           {/* Hero Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.3, rotateY: 180 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 100 }}
+            viewport={{ once: true }}
             className="mb-4 flex justify-center"
           >
             <div className="relative">
               {/* Logo with blurred edges and seamless blending */}
               <div className="relative">
                 <Image
-                  src="/images/steel-motion-hero-logo.png"
+                  src="/images/steel-motion-hero-logo.svg"
                   alt="Steel Motion Logo"
                   width={400}
                   height={400}
@@ -58,8 +58,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
+            {...scaleIn}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mb-3"
           >
@@ -70,9 +69,8 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            {...slideInUp}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="text-4xl md:text-6xl font-bold mb-4"
           >
             <span className="text-white">Mission-Critical AI for</span>
@@ -80,18 +78,16 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            {...slideInUp}
+            transition={{ duration: 0.6, delay: 0.8 }}
             className="text-xl md:text-2xl text-[#B3B3B3] mb-6 max-w-3xl mx-auto leading-relaxed"
           >
             Where military precision meets cutting-edge technology. We deploy AI solutions that deliver results, built by veterans who understand that failure is not an option.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+            {...slideInUp}
+            transition={{ duration: 0.6, delay: 1.0 }}
             className="flex flex-col sm:flex-row justify-center items-center gap-4"
           >
             <Button
@@ -112,8 +108,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            {...fadeIn}
             transition={{ duration: 1, delay: 1.4 }}
             className="mt-4"
           >
@@ -135,8 +130,7 @@ export default function Hero() {
               {/* Three pillars */}
               <div className="grid md:grid-cols-3 gap-8">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  {...slideInUp}
                   transition={{ duration: 0.6, delay: 1.6 }}
                   className="text-center group"
                 >
@@ -150,8 +144,7 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  {...slideInUp}
                   transition={{ duration: 0.6, delay: 1.8 }}
                   className="text-center group"
                 >
@@ -165,8 +158,7 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  {...slideInUp}
                   transition={{ duration: 0.6, delay: 2.0 }}
                   className="text-center group"
                 >
