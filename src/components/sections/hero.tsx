@@ -15,11 +15,11 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="min-h-screen flex items-start justify-center bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-20 relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-start justify-center bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-20 pb-4 relative overflow-hidden">
       {/* Background overlay for better logo integration */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 pt-4 pb-8 text-center relative z-10">
+      <div className="container mx-auto px-4 pt-4 pb-4 text-center relative z-10">
         <motion.div
           {...slideInUp}
           className="max-w-5xl mx-auto"
