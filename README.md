@@ -1,6 +1,6 @@
 # Steel Motion LLC - Complete Digital Platform
 
-![Steel Motion Logo](./public/images/steel-motion-hero-logo.png)
+![Steel Motion Logo](./public/images/steel-motion-hero-logo.svg)
 
 ## 🚀 Overview
 

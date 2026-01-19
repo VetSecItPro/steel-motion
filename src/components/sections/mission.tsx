@@ -3,16 +3,14 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Shield, Target, Users } from "lucide-react"
+import { slideInUp } from "@/lib/animations"
 
 export default function Mission() {
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-[#0f2640] via-[#1a3a5c] to-[#0f2640]">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          {...slideInUp}
           className="max-w-4xl mx-auto text-center mb-16"
         >
           <Badge variant="secondary" className="mb-4 bg-[#00F2FF]/10 text-[#00F2FF] hover:bg-[#00F2FF]/20 border border-[#00F2FF]/30">
@@ -30,10 +28,8 @@ export default function Mission() {
 
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...slideInUp}
             transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
             className="text-center group"
           >
             <div className="bg-[#1a3a5c] border border-[#00F2FF]/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#00F2FF]/10 transition-colors duration-300">
@@ -47,10 +43,8 @@ export default function Mission() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...slideInUp}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
             className="text-center group"
           >
             <div className="bg-[#1a3a5c] border border-[#00F2FF]/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#00F2FF]/10 transition-colors duration-300">
@@ -64,10 +58,8 @@ export default function Mission() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...slideInUp}
             transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
             className="text-center group"
           >
             <div className="bg-[#1a3a5c] border border-[#00F2FF]/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#00F2FF]/10 transition-colors duration-300">

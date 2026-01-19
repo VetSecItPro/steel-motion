@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Award, Clock, Lightbulb, Handshake } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { slideInLeft, slideInRight, slideInUp } from "@/lib/animations"
 
 export default function WhySteelMotion() {
   const advantages = [
@@ -35,10 +36,7 @@ export default function WhySteelMotion() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInLeft}
           >
             <Badge variant="secondary" className="mb-4 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 hover:bg-[#00F2FF]/20">
               Why Choose Steel Motion
@@ -56,10 +54,8 @@ export default function WhySteelMotion() {
               {advantages.map((advantage, index) => (
                 <motion.div
                   key={advantage.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  {...slideInUp}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
                   className="flex gap-4"
                 >
                   <div className="bg-[#1a3a5c] border border-[#00F2FF]/30 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -79,10 +75,7 @@ export default function WhySteelMotion() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...slideInRight}
             className="space-y-6"
           >
             {/* Our Commitment Box */}
@@ -99,7 +92,7 @@ export default function WhySteelMotion() {
                 <div className="border-t border-slate-600 pt-6">
                   <div className="flex items-center gap-4">
                     <Image
-                      src="/images/steel-motion-hero-logo.png"
+                      src="/images/steel-motion-hero-logo.svg"
                       alt="Steel Motion Logo"
                       width={44}
                       height={44}
@@ -119,10 +112,8 @@ export default function WhySteelMotion() {
 
             {/* Veteran Partnerships Box */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
+              {...slideInUp}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Link href="/partnerships" className="block group">
                 <div className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] rounded-2xl p-6 text-white border border-[#00F2FF]/30 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/20">
