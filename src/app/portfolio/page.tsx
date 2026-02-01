@@ -64,20 +64,20 @@ const getStatusBadge = (status: Project['status']) => {
   switch (status) {
     case 'live':
       return (
-        <Badge className="bg-green-500/20 text-green-400 border border-green-500/30">
-          <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+        <Badge className="bg-green-500/20 text-green-700 border border-green-500/30">
+          <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
           Live
         </Badge>
       )
     case 'coming-soon':
       return (
-        <Badge className="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
+        <Badge className="bg-yellow-500/20 text-yellow-700 border border-yellow-500/30">
           Coming Soon
         </Badge>
       )
     case 'in-development':
       return (
-        <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30">
+        <Badge className="bg-blue-500/20 text-blue-700 border border-blue-500/30">
           <Rocket className="w-3 h-3 mr-1" />
           In Development
         </Badge>
@@ -87,26 +87,26 @@ const getStatusBadge = (status: Project['status']) => {
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c]">
+    <main className="min-h-screen bg-sm-surface-primary">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16">
+      <section className="pt-24 pb-16 bg-sm-surface-inverse">
         <div className="container mx-auto px-4">
           <motion.div
             {...slideInUp}
             className="max-w-4xl mx-auto text-center"
           >
-            <Badge variant="secondary" className="mb-6 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 hover:bg-[#00F2FF]/20">
+            <Badge variant="secondary" className="mb-6 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20">
               <Sparkles className="w-4 h-4 mr-2" />
               Our Work
             </Badge>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              Projects & <span className="text-[#00F2FF]">Creations</span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-sm-text-inverse">
+              Projects & <span className="text-sm-accent-inverse">Creations</span>
             </h1>
 
-            <p className="text-xl text-[#B3B3B3] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-sm-text-inverse-muted max-w-2xl mx-auto leading-relaxed">
               A showcase of software products, creative experiments, and innovative solutions
               built with passion and precision.
             </p>
@@ -115,7 +115,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16">
+      <section className="py-16 bg-sm-surface-primary">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projects.map((project, index) => (
@@ -124,7 +124,7 @@ export default function PortfolioPage() {
                 {...slideInUp}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <Card className="h-full bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 transition-all duration-300 overflow-hidden group">
+                <Card className="h-full bg-sm-surface-elevated border-sm-border-default hover:border-sm-accent-primary/30 transition-all duration-300 overflow-hidden group hover:shadow-[var(--sm-shadow-md)]" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
                   {/* Gradient Header */}
                   <div className={`h-32 bg-gradient-to-r ${project.gradient} relative overflow-hidden`}>
                     <div className="absolute inset-0 bg-black/20"></div>
@@ -139,30 +139,30 @@ export default function PortfolioPage() {
                   <CardContent className="p-6">
                     {/* Category */}
                     <div className="flex items-center gap-2 mb-3">
-                      <project.categoryIcon className="w-4 h-4 text-[#00F2FF]" />
-                      <span className="text-sm text-[#00F2FF] font-medium">{project.category}</span>
+                      <project.categoryIcon className="w-4 h-4 text-sm-accent-primary" />
+                      <span className="text-sm text-sm-accent-primary font-medium">{project.category}</span>
                     </div>
 
                     {/* Title & Subtitle */}
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00F2FF] transition-colors">
+                    <h3 className="text-2xl font-bold text-sm-text-primary mb-2 group-hover:text-sm-accent-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-[#B3B3B3] font-medium mb-4">
+                    <p className="text-sm-text-secondary font-medium mb-4">
                       {project.subtitle}
                     </p>
 
                     {/* Description */}
-                    <p className="text-[#B3B3B3]/80 mb-6 leading-relaxed">
+                    <p className="text-sm-text-secondary/80 mb-6 leading-relaxed">
                       {project.description}
                     </p>
 
                     {/* Features */}
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-white mb-3">Key Features</h4>
+                      <h4 className="text-sm font-semibold text-sm-text-primary mb-3">Key Features</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {project.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm text-[#B3B3B3]">
-                            <div className="w-1.5 h-1.5 bg-[#00F2FF] rounded-full flex-shrink-0"></div>
+                          <div key={idx} className="flex items-center gap-2 text-sm text-sm-text-secondary">
+                            <div className="w-1.5 h-1.5 bg-sm-accent-primary rounded-full flex-shrink-0"></div>
                             {feature}
                           </div>
                         ))}
@@ -173,7 +173,7 @@ export default function PortfolioPage() {
                     <div className="flex gap-3">
                       {project.externalUrl && (
                         <a href={project.externalUrl} target="_blank" rel="noopener noreferrer">
-                          <Button className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold">
+                          <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white font-semibold rounded-lg">
                             Visit Project
                             <ExternalLink className="ml-2 w-4 h-4" />
                           </Button>
@@ -181,14 +181,14 @@ export default function PortfolioPage() {
                       )}
                       {project.internalUrl && (
                         <Link href={project.internalUrl}>
-                          <Button className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold">
+                          <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white font-semibold rounded-lg">
                             Learn More
                             <ArrowRight className="ml-2 w-4 h-4" />
                           </Button>
                         </Link>
                       )}
                       {!project.externalUrl && !project.internalUrl && (
-                        <Button variant="outline" className="border-[#00F2FF]/50 text-[#00F2FF] hover:bg-[#00F2FF]/10" disabled>
+                        <Button variant="outline" className="border-sm-accent-primary/50 text-sm-accent-primary hover:bg-sm-accent-primary-light" disabled>
                           Coming Soon
                         </Button>
                       )}
@@ -202,21 +202,21 @@ export default function PortfolioPage() {
       </section>
 
       {/* More Projects Coming Section */}
-      <section className="py-16">
+      <section className="py-16 bg-sm-surface-secondary">
         <div className="container mx-auto px-4">
           <motion.div
             {...slideInUp}
             className="max-w-2xl mx-auto text-center"
           >
-            <div className="bg-[#1a3a5c]/30 border border-[#00F2FF]/20 rounded-2xl p-8">
-              <Sparkles className="w-12 h-12 text-[#00F2FF] mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-3">More Projects on the Way</h3>
-              <p className="text-[#B3B3B3] mb-6">
+            <div className="bg-sm-surface-elevated border border-sm-border-default rounded-2xl p-8" style={{ boxShadow: 'var(--sm-shadow-md)' }}>
+              <Sparkles className="w-12 h-12 text-sm-accent-primary mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-sm-text-primary mb-3">More Projects on the Way</h3>
+              <p className="text-sm-text-secondary mb-6">
                 We&apos;re constantly building, experimenting, and creating. Stay tuned for
                 more innovative projects and creative endeavors.
               </p>
               <Link href="/#contact">
-                <Button className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold">
+                <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white font-semibold rounded-lg">
                   Get in Touch
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>

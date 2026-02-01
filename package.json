@@ -16,10 +16,11 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "lighthouse": "lhci autorun",
-    "audit": "npm audit --audit-level=high",
-    "validate": "npm run lint && npm run typecheck && npm run test:run && npm run build",
-    "analyze": "ANALYZE=true npm run build"
+    "audit": "pnpm audit --severity high",
+    "validate": "pnpm run lint && pnpm run typecheck && pnpm run test:run && pnpm run build",
+    "analyze": "ANALYZE=true pnpm run build"
   },
+  "packageManager": "pnpm@10.28.0",
   "dependencies": {
     "@next/bundle-analyzer": "^16.1.3",
     "@portabletext/react": "^4.0.3",

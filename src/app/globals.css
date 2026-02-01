@@ -41,12 +41,78 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Steel Motion Brand Colors — Tailwind Utilities */
+  --color-sm-surface-primary: var(--sm-surface-primary);
+  --color-sm-surface-secondary: var(--sm-surface-secondary);
+  --color-sm-surface-elevated: var(--sm-surface-elevated);
+  --color-sm-surface-inverse: var(--sm-surface-inverse);
+  --color-sm-surface-inverse-alt: var(--sm-surface-inverse-alt);
+  --color-sm-text-primary: var(--sm-text-primary);
+  --color-sm-text-secondary: var(--sm-text-secondary);
+  --color-sm-text-muted: var(--sm-text-muted);
+  --color-sm-text-inverse: var(--sm-text-inverse);
+  --color-sm-text-inverse-muted: var(--sm-text-inverse-muted);
+  --color-sm-border-default: var(--sm-border-default);
+  --color-sm-border-inverse: var(--sm-border-inverse);
+  --color-sm-accent-primary: var(--sm-accent-primary);
+  --color-sm-accent-primary-hover: var(--sm-accent-primary-hover);
+  --color-sm-accent-primary-light: var(--sm-accent-primary-light);
+  --color-sm-accent-inverse: var(--sm-accent-inverse);
+  --color-sm-accent-secondary: var(--sm-accent-secondary);
+  --color-sm-status-success: var(--sm-status-success);
+  --color-sm-status-success-light: var(--sm-status-success-light);
+  --color-sm-status-warning: var(--sm-status-warning);
+  --color-sm-status-warning-light: var(--sm-status-warning-light);
+  --color-sm-status-error: var(--sm-status-error);
+  --color-sm-status-error-light: var(--sm-status-error-light);
+  --color-sm-status-info: var(--sm-status-info);
+  --color-sm-status-info-light: var(--sm-status-info-light);
 }
 
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+
+  /* Steel Motion Brand Color System */
+  /* 60% — Surfaces */
+  --sm-surface-primary: #F8FAFB;
+  --sm-surface-secondary: #F0F4F7;
+  --sm-surface-elevated: #FFFFFF;
+  --sm-surface-inverse: #0B1A2B;
+  --sm-surface-inverse-alt: #112240;
+
+  /* 30% — Text & Structure */
+  --sm-text-primary: #0F1B2D;
+  --sm-text-secondary: #475569;
+  --sm-text-muted: #94A3B8;
+  --sm-text-inverse: #F1F5F9;
+  --sm-text-inverse-muted: #94A3B8;
+  --sm-border-default: #E2E8F0;
+  --sm-border-inverse: #1E3A5F;
+
+  /* 10% — Accents & CTAs */
+  --sm-accent-primary: #0D6E6E;
+  --sm-accent-primary-hover: #0A5858;
+  --sm-accent-primary-light: #E6F5F5;
+  --sm-accent-inverse: #2DD4BF;
+  --sm-accent-secondary: #3B82F6;
+
+  /* Status */
+  --sm-status-success: #16A34A;
+  --sm-status-success-light: #F0FDF4;
+  --sm-status-warning: #D97706;
+  --sm-status-warning-light: #FFFBEB;
+  --sm-status-error: #DC2626;
+  --sm-status-error-light: #FEF2F2;
+  --sm-status-info: #2563EB;
+  --sm-status-info-light: #EFF6FF;
+
+  /* Shadows */
+  --sm-shadow-sm: 0 1px 2px 0 rgba(15, 27, 45, 0.05);
+  --sm-shadow-md: 0 4px 6px -1px rgba(15, 27, 45, 0.07), 0 2px 4px -2px rgba(15, 27, 45, 0.05);
+  --sm-shadow-lg: 0 10px 15px -3px rgba(15, 27, 45, 0.08), 0 4px 6px -4px rgba(15, 27, 45, 0.04);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -156,8 +222,8 @@
   top: -100%;
   left: 50%;
   transform: translateX(-50%);
-  background: #00F2FF;
-  color: #0a1728;
+  background: var(--sm-accent-primary);
+  color: #FFFFFF;
   padding: 0.75rem 1.5rem;
   border-radius: 0 0 0.5rem 0.5rem;
   font-weight: 600;
@@ -167,7 +233,7 @@
 
 .skip-link:focus {
   top: 0;
-  outline: 2px solid #00F2FF;
+  outline: 2px solid var(--sm-accent-primary);
   outline-offset: 2px;
 }
 .no-cursor { cursor: none; }

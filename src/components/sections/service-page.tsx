@@ -50,7 +50,7 @@ export default function ServicePage({
   return (
     <>
       {/* Back Navigation */}
-      <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] pt-20 pb-4">
+      <section className="bg-sm-surface-inverse pt-20 pb-4">
         <div className="container mx-auto px-4">
           <motion.div
             {...slideInLeft}
@@ -58,15 +58,15 @@ export default function ServicePage({
           >
             <Link
               href="/"
-              className="flex items-center gap-2 text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 group"
+              className="flex items-center gap-2 text-sm-text-inverse-muted hover:text-sm-accent-inverse transition-colors duration-300 group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
               <span className="text-sm font-medium">Back to Home</span>
             </Link>
-            <span className="text-[#666666]">•</span>
+            <span className="text-sm-text-inverse-muted">•</span>
             <Link
               href="/#services"
-              className="flex items-center gap-2 text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 group"
+              className="flex items-center gap-2 text-sm-text-inverse-muted hover:text-sm-accent-inverse transition-colors duration-300 group"
             >
               <Home className="w-4 h-4" />
               <span className="text-sm font-medium">All Services</span>
@@ -76,8 +76,8 @@ export default function ServicePage({
       </section>
 
       {/* Hero Section */}
-      <section className={`flex items-center justify-center bg-gradient-to-br ${heroGradient} text-white py-16 relative overflow-hidden`}>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
+      <section className="flex items-center justify-center bg-sm-surface-inverse text-white py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-sm-surface-inverse-alt/40 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -97,7 +97,7 @@ export default function ServicePage({
             <motion.h1
               {...slideInUp}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-4xl md:text-6xl font-bold mb-6"
+              className="text-4xl md:text-6xl font-bold mb-6 text-sm-text-inverse"
             >
               {title}
             </motion.h1>
@@ -105,7 +105,7 @@ export default function ServicePage({
             <motion.p
               {...slideInUp}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-sm-text-inverse/90 mb-4 max-w-3xl mx-auto leading-relaxed"
             >
               {subtitle}
             </motion.p>
@@ -113,7 +113,7 @@ export default function ServicePage({
             <motion.p
               {...slideInUp}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-lg text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg text-sm-text-inverse/80 mb-8 max-w-2xl mx-auto leading-relaxed"
             >
               {description}
             </motion.p>
@@ -124,7 +124,7 @@ export default function ServicePage({
             >
               <Button
                 onClick={scrollToContact}
-                className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="bg-sm-accent-inverse hover:bg-[#5AE8D5] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -135,16 +135,16 @@ export default function ServicePage({
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-gradient-to-br from-[#0f2640] via-[#1a3a5c] to-[#0f2640]">
+      <section className="py-16 bg-sm-surface-secondary">
         <div className="container mx-auto px-4">
           <motion.div
             {...slideInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-primary">
               What We Do
             </h2>
-            <p className="text-lg text-[#B3B3B3] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto leading-relaxed">
               Practical solutions that solve real problems.
             </p>
           </motion.div>
@@ -156,13 +156,13 @@ export default function ServicePage({
                 {...slideInUp}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F2FF]/10">
+                <Card className="h-full bg-sm-surface-elevated border-sm-border-default hover:border-sm-accent-primary/30 transition-all duration-300 hover:shadow-[var(--sm-shadow-md)]" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
                   <CardHeader>
                     <div className="text-4xl mb-4">{feature.icon}</div>
-                    <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
+                    <CardTitle className="text-xl text-sm-text-primary">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-[#B3B3B3] leading-relaxed">
+                    <CardDescription className="text-sm-text-secondary leading-relaxed">
                       {feature.description}
                     </CardDescription>
                   </CardContent>
@@ -174,14 +174,14 @@ export default function ServicePage({
       </section>
 
       {/* Benefits & Industries Section */}
-      <section className="py-16 bg-[#0a1728]">
+      <section className="py-16 bg-sm-surface-primary">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Benefits */}
             <motion.div
               {...slideInLeft}
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">Why It Matters</h3>
+              <h3 className="text-2xl font-bold mb-6 text-sm-text-primary">Why It Matters</h3>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -190,8 +190,8 @@ export default function ServicePage({
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className="flex items-start gap-3"
                   >
-                    <CheckCircle className="w-6 h-6 text-[#00F2FF] flex-shrink-0 mt-0.5" />
-                    <p className="text-[#B3B3B3] leading-relaxed">{benefit}</p>
+                    <CheckCircle className="w-6 h-6 text-sm-accent-primary flex-shrink-0 mt-0.5" />
+                    <p className="text-sm-text-secondary leading-relaxed">{benefit}</p>
                   </motion.div>
                 ))}
               </div>
@@ -201,7 +201,7 @@ export default function ServicePage({
             <motion.div
               {...slideInRight}
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">Good Fit If You&apos;re...</h3>
+              <h3 className="text-2xl font-bold mb-6 text-sm-text-primary">Good Fit If You&apos;re...</h3>
               <div className="space-y-3">
                 {industries.map((industry, index) => (
                   <motion.div
@@ -210,8 +210,8 @@ export default function ServicePage({
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className="flex items-center gap-3"
                   >
-                    <CheckCircle className="w-5 h-5 text-[#00F2FF] flex-shrink-0" />
-                    <p className="text-[#B3B3B3]">{industry}</p>
+                    <CheckCircle className="w-5 h-5 text-sm-accent-primary flex-shrink-0" />
+                    <p className="text-sm-text-secondary">{industry}</p>
                   </motion.div>
                 ))}
               </div>
@@ -221,19 +221,19 @@ export default function ServicePage({
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white">
+      <section className="py-16 bg-sm-surface-inverse text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             {...slideInUp}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{ctaText}</h2>
-            <p className="text-lg text-slate-300 mb-6 leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-inverse">{ctaText}</h2>
+            <p className="text-lg text-sm-text-inverse-muted mb-6 leading-relaxed">
               {ctaDescription}
             </p>
             <Button
               onClick={scrollToContact}
-              className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="bg-sm-accent-inverse hover:bg-[#5AE8D5] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Schedule a Consultation
               <ArrowRight className="ml-2 w-5 h-5" />

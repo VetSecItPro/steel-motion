@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     openGraph: {
       title: metaTitle,
       description: metaDescription,
-      url: `https://steelmotionllc.com/blog/${post.slug.current}`,
+      url: `https://steelmotionllc.com/articles/${post.slug.current}`,
       siteName: "Steel Motion LLC",
       images: post.mainImage ? [
         {
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       creator: `@${post.author.name.replace(' ', '')}`,
     },
     alternates: {
-      canonical: `https://steelmotionllc.com/blog/${post.slug.current}`
+      canonical: `https://steelmotionllc.com/articles/${post.slug.current}`
     }
   }
 }
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c]">
+    <main className="min-h-screen bg-sm-surface-primary">
       <Navbar />
       <BlogPostContent post={post} />
       <Footer />

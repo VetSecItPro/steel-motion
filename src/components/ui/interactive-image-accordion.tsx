@@ -74,7 +74,7 @@ const accordionItems = [
 const MobileServiceCard = ({ item }: { item: typeof accordionItems[0] }) => {
   return (
     <Link href={item.url} className="block">
-      <div className="relative rounded-2xl overflow-hidden border border-[#00F2FF]/20 hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25 transition-all duration-300">
+      <div className="relative rounded-2xl overflow-hidden border border-sm-border-inverse hover:border-sm-accent-inverse/40 shadow-lg transition-all duration-300">
         <div className="relative h-48 w-full">
           <Image
             src={item.imageUrl}
@@ -83,17 +83,17 @@ const MobileServiceCard = ({ item }: { item: typeof accordionItems[0] }) => {
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/70 via-[#1a3a5c]/50 to-[#0f2640]/70"></div>
+          <div className="absolute inset-0 bg-sm-surface-inverse/70"></div>
         </div>
-        <div className="p-4 bg-[#0a1728]/90">
-          <h3 className="text-lg font-bold text-[#00F2FF] mb-3">
+        <div className="p-4 bg-sm-surface-inverse/90">
+          <h3 className="text-lg font-bold text-sm-accent-inverse mb-3">
             {item.title}
           </h3>
           <div className="space-y-2">
             {item.bulletPoints.map((point, index) => (
               <div key={index} className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 bg-[#00F2FF] rounded-full mt-2 flex-shrink-0"></div>
-                <span className="text-white text-sm leading-relaxed">
+                <div className="w-1.5 h-1.5 bg-sm-accent-inverse rounded-full mt-2 flex-shrink-0"></div>
+                <span className="text-sm-text-inverse text-sm leading-relaxed">
                   {point}
                 </span>
               </div>
@@ -116,8 +116,8 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
       <div
         className={`
           relative h-[420px] rounded-2xl overflow-hidden cursor-pointer
-          transition-all duration-700 ease-in-out border border-[#00F2FF]/20
-          hover:border-[#00F2FF]/40 shadow-lg hover:shadow-[#00F2FF]/25
+          transition-all duration-700 ease-in-out border border-sm-border-inverse
+          hover:border-sm-accent-inverse/40 shadow-lg
           ${isActive ? 'w-[340px]' : 'w-[50px]'}
         `}
         onMouseEnter={onMouseEnter}
@@ -130,13 +130,13 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
           className="object-cover"
         />
         {/* Gradient overlay for better integration */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1728]/60 via-[#1a3a5c]/40 to-[#0f2640]/60"></div>
+        <div className="absolute inset-0 bg-sm-surface-inverse/60"></div>
 
         {/* Content Container - Only visible when active */}
         {isActive && (
           <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
             {/* Title */}
-            <h3 className="text-xl font-bold text-[#00F2FF] mb-4 text-center drop-shadow-lg">
+            <h3 className="text-xl font-bold text-sm-accent-inverse mb-4 text-center drop-shadow-lg">
               {item.title}
             </h3>
 
@@ -144,8 +144,8 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
             <div className="space-y-2">
               {item.bulletPoints.map((point, index) => (
                 <div key={index} className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-[#00F2FF] rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-white text-sm leading-relaxed drop-shadow-md">
+                  <div className="w-2 h-2 bg-sm-accent-inverse rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm-text-inverse text-sm leading-relaxed drop-shadow-md">
                     {point}
                   </span>
                 </div>
@@ -158,7 +158,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
         {!isActive && (
           <div className="absolute inset-0 flex items-center justify-center">
             <span
-              className="text-white text-base font-semibold whitespace-nowrap transition-all duration-300 ease-in-out drop-shadow-lg"
+              className="text-sm-text-inverse text-base font-semibold whitespace-nowrap transition-all duration-300 ease-in-out drop-shadow-lg"
               style={{
                 writingMode: 'vertical-rl',
                 textOrientation: 'mixed',
@@ -172,7 +172,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
 
         {/* Active state glow effect */}
         {isActive && (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#00F2FF]/10 via-transparent to-[#33CCFF]/10 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-sm-accent-inverse/10 pointer-events-none"></div>
         )}
       </div>
     </Link>
@@ -189,26 +189,26 @@ export function LandingAccordionItem() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] font-sans">
+    <div className="bg-sm-surface-inverse font-sans">
       <section className="container mx-auto px-4 py-12 md:py-24">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 
           {/* Left Side: Text Content */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 rounded-full px-4 py-2 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 rounded-full px-4 py-2 text-sm font-medium mb-6">
               Our Solutions
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tighter">
+            <h1 className="text-4xl md:text-6xl font-bold text-sm-text-inverse leading-tight tracking-tighter">
               AI-Powered Solutions
-              <span className="block text-[#00F2FF]">Built to Perform</span>
+              <span className="block text-sm-accent-inverse">Built to Perform</span>
             </h1>
-            <p className="mt-6 text-lg text-[#B3B3B3] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="mt-6 text-lg text-sm-text-inverse-muted max-w-xl mx-auto lg:mx-0 leading-relaxed">
               We specialize in AI transformation and custom application development, turning complex business challenges into streamlined, automated solutions that deliver measurable ROI.
             </p>
             <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-block bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] text-[#0a1728] font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-[#00F2FF]/25 transition-all duration-300 hover:scale-105 min-h-[44px]"
+                className="inline-block bg-sm-accent-inverse hover:bg-[#5AE8D5] text-sm-surface-inverse font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 min-h-[44px]"
               >
                 Get Started Today
               </a>

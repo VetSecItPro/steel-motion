@@ -4,21 +4,21 @@ import { Badge } from "@/components/ui/badge"
 
 export default function BlogHero() {
   return (
-    <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-20 pb-16">
+    <section className="bg-sm-surface-inverse text-sm-text-inverse pt-20 pb-16">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-4xl mx-auto animate-fade-in-up">
           <div className="mb-6 animate-fade-in-scale">
-            <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30 mb-6">
+            <Badge variant="secondary" className="bg-sm-accent-inverse/10 text-sm-accent-inverse border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20 mb-6">
               Steel Motion Insights
             </Badge>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up-delay-1">
             Technology Insights from
-            <span className="block text-[#00F2FF]">Veteran Leaders</span>
+            <span className="block text-sm-accent-inverse">Veteran Leaders</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up-delay-2">
+          <p className="text-xl md:text-2xl text-sm-text-inverse-muted mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up-delay-2">
             Discover practical insights on AI transformation, cybersecurity, cloud infrastructure,
             and technology leadership from our experienced veteran team.
           </p>
