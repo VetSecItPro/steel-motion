@@ -69,13 +69,14 @@ export default function Hero() {
               Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button
-              size="lg"
-              onClick={() => scrollToSection('products')}
-              className="bg-transparent border border-sm-border-inverse text-sm-text-inverse hover:bg-sm-surface-inverse-alt hover:border-sm-text-inverse-muted px-8 py-6 text-lg rounded-lg group transition-all duration-300 hover:scale-105 font-semibold"
-            >
-              See What We Build
-            </Button>
+            <a href="/portfolio">
+              <Button
+                size="lg"
+                className="bg-transparent border border-sm-border-inverse text-sm-text-inverse hover:bg-sm-surface-inverse-alt hover:border-sm-text-inverse-muted px-8 py-6 text-lg rounded-lg group transition-all duration-300 hover:scale-105 font-semibold"
+              >
+                See What We Build
+              </Button>
+            </a>
           </div>
 
           {/* Trust Bar */}
