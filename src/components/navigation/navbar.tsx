@@ -71,25 +71,46 @@ export default function Navbar() {
                     href="/services/ai-transformation"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
                   >
-                    <div className="font-medium">AI Transformation & Automation</div>
+                    <div className="font-medium">AI Automation</div>
                     <div className="text-sm text-sm-text-muted">Intelligent automation & process optimization</div>
                   </Link>
                   <Link
                     href="/services/custom-development"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
                   >
-                    <div className="font-medium">Custom Application Development</div>
-                    <div className="text-sm text-sm-text-muted">Tailored software solutions</div>
+                    <div className="font-medium">Custom Development</div>
+                    <div className="text-sm text-sm-text-muted">Web applications, APIs, and internal tools</div>
                   </Link>
                 </div>
               </div>
             </div>
-            <Link
-              href="/portfolio"
-              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
-            >
-              Portfolio
-            </Link>
+            <div className="relative group">
+              <Link
+                href="/portfolio"
+                className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
+              >
+                Portfolio
+              </Link>
+              {/* Dropdown menu */}
+              <div className="absolute top-full left-0 mt-2 w-64 bg-sm-surface-elevated border border-sm-border-default rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300" style={{ boxShadow: 'var(--sm-shadow-lg)' }}>
+                <div className="p-4 space-y-3">
+                  <Link
+                    href="/portfolio/software"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                  >
+                    <div className="font-medium">Software</div>
+                    <div className="text-sm text-sm-text-muted">SaaS products we build and operate</div>
+                  </Link>
+                  <Link
+                    href="/portfolio/creative"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                  >
+                    <div className="font-medium">Creative</div>
+                    <div className="text-sm text-sm-text-muted">AI-assisted music production</div>
+                  </Link>
+                </div>
+              </div>
+            </div>
             <Link
               href="/partnerships"
               className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
@@ -142,24 +163,42 @@ export default function Navbar() {
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
                     onClick={() => setIsOpen(false)}
                   >
-                    AI Transformation & Automation
+                    AI Automation
                   </Link>
                   <Link
                     href="/services/custom-development"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
                     onClick={() => setIsOpen(false)}
                   >
-                    Custom Application Development
+                    Custom Development
                   </Link>
                 </div>
               </div>
-              <Link
-                href="/portfolio"
-                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Portfolio
-              </Link>
+              <div className="space-y-2">
+                <Link
+                  href="/portfolio"
+                  className="block w-full text-left text-sm-text-primary font-medium py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Portfolio
+                </Link>
+                <div className="pl-4 space-y-2">
+                  <Link
+                    href="/portfolio/software"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Software
+                  </Link>
+                  <Link
+                    href="/portfolio/creative"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Creative
+                  </Link>
+                </div>
+              </div>
               <Link
                 href="/partnerships"
                 className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
