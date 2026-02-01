@@ -208,7 +208,7 @@ export function LandingAccordionItem() {
             <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-block bg-sm-accent-inverse hover:bg-[#5AE8D5] text-sm-surface-inverse font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 min-h-[44px]"
+                className="inline-block bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 min-h-[44px]"
               >
                 Get Started Today
               </a>
