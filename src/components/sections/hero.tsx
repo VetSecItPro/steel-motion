@@ -1,10 +1,8 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Shield, Target, BookOpen, MapPin, Phone, Award, Flag } from "lucide-react"
+import { ArrowRight, MapPin, Phone, Award, Flag } from "lucide-react"
 import Image from "next/image"
-import { slideInUp } from "@/lib/animations"
-import { motion } from "framer-motion"
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -17,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-start justify-center bg-[#0B1A2B] text-sm-text-inverse pt-20 pb-4 relative overflow-hidden"
+      className="flex items-start justify-center bg-[#0B1A2B] text-sm-text-inverse pt-20 pb-16 relative overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}
     >
       {/* Subtle radial glow */}
@@ -102,59 +100,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Mission / How We Work Section — uses Framer Motion since it's below fold */}
-          <motion.div
-            {...slideInUp}
-            className="mt-4"
-          >
-            <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl px-8 py-8 backdrop-blur-sm max-w-6xl mx-auto">
-              {/* Section Header */}
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 rounded-full px-4 py-2 text-sm font-medium mb-4">
-                  How We Work
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-inverse">
-                  Results You Measure, Not Promises You Hope For
-                </h2>
-                <p className="text-lg text-sm-text-inverse-muted leading-relaxed max-w-4xl mx-auto">
-                  Every engagement starts with defined success metrics and ends with verified outcomes. One point of contact. Full accountability. No handoffs, no finger-pointing.
-                </p>
-              </div>
-
-              {/* Three pillars */}
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center group">
-                  <div className="bg-sm-surface-inverse-alt/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sm-accent-inverse/20 transition-colors duration-300 border border-sm-accent-inverse/20">
-                    <Shield className="w-8 h-8 text-sm-accent-inverse group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-sm-text-inverse">Accountability First</h3>
-                  <p className="text-sm-text-inverse-muted leading-relaxed">
-                    One point of contact owns your project from kickoff to delivery. You get clear deliverables, weekly updates, and direct access to the person doing the work.
-                  </p>
-                </div>
-
-                <div className="text-center group">
-                  <div className="bg-sm-surface-inverse-alt/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sm-accent-inverse/20 transition-colors duration-300 border border-sm-accent-inverse/20">
-                    <Target className="w-8 h-8 text-sm-accent-inverse group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-sm-text-inverse">Outcome-Driven</h3>
-                  <p className="text-sm-text-inverse-muted leading-relaxed">
-                    We define success metrics before writing a line of code. Every project includes an ROI framework with milestones you track in real time.
-                  </p>
-                </div>
-
-                <div className="text-center group">
-                  <div className="bg-sm-surface-inverse-alt/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sm-accent-inverse/20 transition-colors duration-300 border border-sm-accent-inverse/20">
-                    <BookOpen className="w-8 h-8 text-sm-accent-inverse group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-sm-text-inverse">Knowledge Transfer</h3>
-                  <p className="text-sm-text-inverse-muted leading-relaxed">
-                    We build solutions your team maintains after we leave. Documentation, training, and architecture reviews are included in every engagement. No vendor lock-in.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
 
