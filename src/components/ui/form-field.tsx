@@ -47,8 +47,8 @@ export function FormField({
   const hasError = Boolean(error)
 
   const baseInputClasses = cn(
-    'bg-[#0a1728]/80 border-[#1a3a5c] text-white placeholder:text-gray-500',
-    'focus:border-[#00F2FF] focus:ring-[#00F2FF]/20',
+    'bg-sm-surface-elevated border-sm-border-default text-sm-text-primary placeholder:text-sm-text-muted',
+    'focus:border-sm-accent-primary focus:ring-sm-accent-primary/20',
     'transition-all duration-200',
     hasError && 'border-red-500 focus:border-red-500 focus:ring-red-500/20 animate-shake',
     inputClassName
@@ -58,7 +58,7 @@ export function FormField({
     <div className={cn('space-y-2', className)}>
       <label
         htmlFor={inputId}
-        className="block text-sm font-medium text-[#B3B3B3]"
+        className="block text-sm font-medium text-sm-text-secondary"
       >
         {label}
         {required && <span className="text-red-400 ml-1">*</span>}

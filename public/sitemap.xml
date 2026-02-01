@@ -9,15 +9,15 @@
   </url>
 
   <url>
-    <loc>https://www.steelmotionllc.com/blog</loc>
+    <loc>https://www.steelmotionllc.com/articles</loc>
   </url>
 
   <url>
-    <loc>https://www.steelmotionllc.com/blog/[slug]</loc>
+    <loc>https://www.steelmotionllc.com/articles/[slug]</loc>
   </url>
 
   <url>
-    <loc>https://www.steelmotionllc.com/blog/category/[slug]</loc>
+    <loc>https://www.steelmotionllc.com/articles/category/[slug]</loc>
   </url>
 
   <url>

@@ -39,13 +39,13 @@ interface FeaturedPostsProps {
 
 const getCategoryColor = (color: string) => {
   const colors = {
-    cyan: "bg-cyan-900/50 text-cyan-300 border-cyan-500/30",
-    red: "bg-red-900/50 text-red-300 border-red-500/30",
-    blue: "bg-blue-900/50 text-blue-300 border-blue-500/30",
-    purple: "bg-purple-900/50 text-purple-300 border-purple-500/30",
-    green: "bg-green-900/50 text-green-300 border-green-500/30",
-    orange: "bg-orange-900/50 text-orange-300 border-orange-500/30",
-    indigo: "bg-indigo-900/50 text-indigo-300 border-indigo-500/30",
+    cyan: "bg-cyan-100 text-cyan-800 border-cyan-200",
+    red: "bg-red-100 text-red-800 border-red-200",
+    blue: "bg-blue-100 text-blue-800 border-blue-200",
+    purple: "bg-purple-100 text-purple-800 border-purple-200",
+    green: "bg-green-100 text-green-800 border-green-200",
+    orange: "bg-orange-100 text-orange-800 border-orange-200",
+    indigo: "bg-indigo-100 text-indigo-800 border-indigo-200",
   }
   return colors[color as keyof typeof colors] || colors.cyan
 }
@@ -62,8 +62,8 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
             className="animate-fade-in-up"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <Link href={`/blog/${post.slug.current}`}>
-            <Card className="h-full hover:shadow-lg hover:shadow-[#00F2FF]/10 transition-all duration-300 bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 group">
+            <Link href={`/articles/${post.slug.current}`}>
+            <Card className="h-full hover:shadow-[var(--sm-shadow-md)] transition-all duration-300 bg-sm-surface-elevated border border-sm-border-default hover:border-sm-accent-primary/30 group" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
               {/* Featured Image */}
               {post.mainImage && (() => {
                 const imageUrl = urlForImage(post.mainImage)
@@ -77,7 +77,7 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-[#00F2FF]/90 text-slate-900 hover:bg-[#00F2FF]">
+                      <Badge className="bg-sm-accent-primary text-white hover:bg-sm-accent-primary/90">
                         Featured
                       </Badge>
                     </div>
@@ -102,22 +102,22 @@ export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
                 )}
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
+                <h3 className="text-xl font-bold text-sm-text-primary mb-3 group-hover:text-sm-accent-primary transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-[#B3B3B3] mb-4 line-clamp-3 leading-relaxed">
+                <p className="text-sm-text-secondary mb-4 line-clamp-3 leading-relaxed">
                   {post.excerpt}
                 </p>
 
                 {/* Meta Info */}
-                <div className="flex flex-wrap items-center gap-4 text-sm text-[#B3B3B3]/70">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-sm-text-muted">
                   <div className="flex items-center gap-1">
                     <User className="w-4 h-4" />
                     <span>{post.author.name}</span>
                     {post.author.veteranBranch && (
-                      <span className="text-[#00F2FF]">
+                      <span className="text-sm-accent-primary">
                         ({post.author.rank || 'Veteran'})
                       </span>
                     )}

@@ -13,6 +13,20 @@ const ContentSecurityPolicy = `
 `;
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/articles',
+        permanent: true,
+      },
+      {
+        source: '/blog/:path*',
+        destination: '/articles/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
