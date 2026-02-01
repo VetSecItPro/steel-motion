@@ -84,12 +84,6 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => scrollToSection('products')}
-              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
-            >
-              Products
-            </button>
             <Link
               href="/portfolio"
               className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
@@ -159,12 +153,6 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
-              <button
-                onClick={() => { scrollToSection('products'); setIsOpen(false) }}
-                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
-              >
-                Products
-              </button>
               <Link
                 href="/portfolio"
                 className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
