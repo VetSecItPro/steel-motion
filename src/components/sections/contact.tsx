@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+import { Mail, MapPin, Send, Loader2 } from "lucide-react"
 import { FormField } from "@/components/ui/form-field"
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact"
 import { slideInUp, slideInLeft, slideInRight, fadeIn } from "@/lib/animations"
@@ -47,7 +47,6 @@ export default function Contact() {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
 
-    // Clear error when user starts typing (if field was touched)
     if (touched[name] && errors[name as keyof ContactFormData]) {
       const error = validateField(name as keyof ContactFormData, value)
       setErrors(prev => ({ ...prev, [name]: error }))
@@ -58,7 +57,6 @@ export default function Contact() {
     e.preventDefault()
     setSubmitStatus('idle')
 
-    // Validate all fields
     const result = contactFormSchema.safeParse(formData)
 
     if (!result.success) {
@@ -106,21 +104,20 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-slate-900 text-white">
+    <section id="contact" className="py-24 bg-sm-surface-inverse text-sm-text-inverse">
       <div className="container mx-auto px-4">
         <motion.div
           {...slideInUp}
           className="text-center mb-16"
         >
-          <Badge variant="secondary" className="mb-4 bg-blue-900 text-blue-200 hover:bg-blue-800">
+          <Badge variant="secondary" className="mb-4 bg-sm-accent-inverse/10 text-sm-accent-inverse border-0 hover:bg-sm-accent-inverse/20">
             Get Started
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Transform Your Business?
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-sm-text-inverse">
+            Let&apos;s Talk About Your Project
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Let&apos;s discuss how Steel Motion can help you leverage AI to streamline operations
-            and drive growth. Your first consultation session is completely free.
+          <p className="text-xl text-sm-text-inverse-muted max-w-3xl mx-auto">
+            Book a free 30-minute strategy call. No pitch deck, no pressure. We&apos;ll discuss your goals and tell you honestly if we&apos;re the right fit.
           </p>
         </motion.div>
 
@@ -128,10 +125,10 @@ export default function Contact() {
           <motion.div
             {...slideInLeft}
           >
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className="bg-sm-surface-elevated border-sm-border-default">
               <CardHeader>
-                <CardTitle className="text-2xl text-white">Send us a message</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className="text-2xl text-sm-text-primary">Send us a message</CardTitle>
+                <CardDescription className="text-sm-text-secondary">
                   Tell us about your project and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
@@ -148,7 +145,7 @@ export default function Contact() {
                       error={touched.name ? errors.name : undefined}
                       required
                       placeholder="Your full name"
-                      inputClassName="bg-slate-700 border-slate-600"
+                      inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                     />
                     <FormField
                       label="Email"
@@ -160,11 +157,11 @@ export default function Contact() {
                       error={touched.email ? errors.email : undefined}
                       required
                       placeholder="your@email.com"
-                      inputClassName="bg-slate-700 border-slate-600"
+                      inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                     />
                   </div>
 
-                  {/* Honeypot field */}
+                  {/* Honeypot field - hidden from users */}
                   <div className="hidden" aria-hidden="true">
                     <FormField
                       label="Fax"
@@ -177,7 +174,6 @@ export default function Contact() {
                     />
                   </div>
 
-
                   <FormField
                     label="Company/Organization"
                     name="company"
@@ -187,7 +183,7 @@ export default function Contact() {
                     onBlur={handleBlur}
                     error={touched.company ? errors.company : undefined}
                     placeholder="Your company name"
-                    inputClassName="bg-slate-700 border-slate-600"
+                    inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
 
                   <FormField
@@ -200,14 +196,14 @@ export default function Contact() {
                     error={touched.message ? errors.message : undefined}
                     required
                     rows={5}
-                    placeholder="Describe your project, goals, and how we can help..."
-                    inputClassName="bg-slate-700 border-slate-600"
+                    placeholder="What are you trying to build or automate? What's your timeline?"
+                    inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
+                    className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover disabled:opacity-50 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <>
@@ -222,12 +218,11 @@ export default function Contact() {
                     )}
                   </Button>
 
-                  {/* Status messages with aria-live for accessibility */}
                   <div aria-live="polite" aria-atomic="true">
                     {submitStatus === 'success' && (
                       <motion.div
                         {...fadeIn}
-                        className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
+                        className="bg-sm-status-success-light border border-sm-status-success/20 text-sm-status-success px-4 py-3 rounded-lg"
                         role="alert"
                       >
                         <p className="font-medium">Message sent successfully!</p>
@@ -238,7 +233,7 @@ export default function Contact() {
                     {submitStatus === 'error' && (
                       <motion.div
                         {...fadeIn}
-                        className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg"
+                        className="bg-sm-status-error-light border border-sm-status-error/20 text-sm-status-error px-4 py-3 rounded-lg"
                         role="alert"
                       >
                         <p className="font-medium">Failed to send message</p>
@@ -256,53 +251,41 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-              <p className="text-slate-300 mb-8 leading-relaxed">
-                Ready to start your digital transformation journey? We&apos;re here to help.
-                Whether you need AI consulting, custom development, or cybersecurity services,
-                our veteran-led team is ready to deliver results.
+              <h3 className="text-2xl font-bold mb-6 text-sm-text-inverse">Get in Touch</h3>
+              <p className="text-sm-text-inverse-muted mb-8 leading-relaxed">
+                Reach out by form or email. We respond to all messages within one business day.
               </p>
             </div>
 
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-white" />
+                <div className="bg-sm-accent-inverse/10 w-12 h-12 rounded-lg flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-sm-accent-inverse" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white">Email</p>
-                  <a href="mailto:contact@steelmotionllc.com" className="text-slate-400 hover:text-[#00F2FF] transition-colors">
+                  <p className="font-semibold text-sm-text-inverse">Email</p>
+                  <a href="mailto:contact@steelmotionllc.com" className="text-sm-text-inverse-muted hover:text-sm-accent-inverse transition-colors">
                     contact@steelmotionllc.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-white" />
+                <div className="bg-sm-accent-inverse/10 w-12 h-12 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-sm-accent-inverse" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white">Phone</p>
-                  <p className="text-slate-400">Available upon request</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="font-semibold text-white">Service Area</p>
-                  <p className="text-slate-400">Nationwide Remote (Responsive on Zoom as needed)</p>
+                  <p className="font-semibold text-sm-text-inverse">Service Area</p>
+                  <p className="text-sm-text-inverse-muted">Nationwide Remote (Responsive on Zoom as needed)</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 mt-8">
-              <h4 className="text-lg font-semibold text-white mb-3">Response Time</h4>
-              <p className="text-slate-300 text-sm">
-                We typically respond to all inquiries within 24 hours during business days.
-                For urgent matters, please mention &ldquo;URGENT&rdquo; in your message subject.
+            <div className="bg-sm-surface-inverse-alt border border-sm-border-inverse rounded-lg p-6 mt-8">
+              <h4 className="text-lg font-semibold text-sm-text-inverse mb-3">Response Time</h4>
+              <p className="text-sm-text-inverse-muted text-sm">
+                We respond to all inquiries within 24 hours on business days.
+                For urgent matters, mention &ldquo;URGENT&rdquo; in your message subject.
               </p>
             </div>
           </motion.div>

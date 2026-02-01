@@ -122,8 +122,8 @@ export default function VeteranPartnerships() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-24 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#001122]/80 via-[#003366]/60 to-[#004488]/40 pointer-events-none"></div>
+      <section className="bg-sm-surface-inverse text-white pt-24 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-sm-surface-inverse-alt/40 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -135,9 +135,9 @@ export default function VeteranPartnerships() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6"
             >
-              <div className="inline-flex items-center gap-2 bg-[#1a3a5c]/50 border border-[#00F2FF]/40 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
-                <Shield className="w-4 h-4 text-[#00F2FF]" />
-                <span className="text-[#B3B3B3]">Veteran Partnership Program</span>
+              <div className="inline-flex items-center gap-2 bg-sm-surface-inverse-alt/50 border border-sm-accent-inverse/40 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
+                <Shield className="w-4 h-4 text-sm-accent-inverse" />
+                <span className="text-sm-text-inverse-muted">Veteran Partnership Program</span>
               </div>
             </motion.div>
 
@@ -146,14 +146,14 @@ export default function VeteranPartnerships() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl md:text-6xl font-bold mb-6"
             >
-              <span className="text-white">Partner with</span>
-              <span className="block text-[#00F2FF] drop-shadow-lg">Veteran Leaders</span>
+              <span className="text-sm-text-inverse">Partner with</span>
+              <span className="block text-sm-accent-inverse drop-shadow-lg">Veteran Leaders</span>
             </motion.h1>
 
             <motion.p
               {...slideInUp}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xl md:text-2xl text-[#B3B3B3] mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-sm-text-inverse-muted mb-8 max-w-3xl mx-auto leading-relaxed"
             >
               Join forces with Steel Motion LLC to deliver mission-critical technology solutions.
               Together, we can serve veteran communities and drive innovation with military precision.
@@ -165,22 +165,22 @@ export default function VeteranPartnerships() {
               transition={{ duration: 1, delay: 0.8 }}
               className="grid md:grid-cols-3 gap-6 mt-12"
             >
-              <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/30 rounded-2xl p-6 backdrop-blur-sm">
-                <Users className="w-8 h-8 text-[#00F2FF] mb-4 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2 text-white">Veteran Organizations</h3>
-                <p className="text-[#B3B3B3] text-sm">VSOs, veteran nonprofits, and community groups</p>
+              <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl p-6 backdrop-blur-sm">
+                <Users className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
+                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Veteran Organizations</h3>
+                <p className="text-sm-text-inverse-muted text-sm">VSOs, veteran nonprofits, and community groups</p>
               </div>
 
-              <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/30 rounded-2xl p-6 backdrop-blur-sm">
-                <Target className="w-8 h-8 text-[#00F2FF] mb-4 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2 text-white">Defense Contractors</h3>
-                <p className="text-[#B3B3B3] text-sm">Prime contractors and specialized defense firms</p>
+              <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl p-6 backdrop-blur-sm">
+                <Target className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
+                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Defense Contractors</h3>
+                <p className="text-sm-text-inverse-muted text-sm">Prime contractors and specialized defense firms</p>
               </div>
 
-              <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/30 rounded-2xl p-6 backdrop-blur-sm">
-                <Handshake className="w-8 h-8 text-[#00F2FF] mb-4 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2 text-white">Strategic Alliances</h3>
-                <p className="text-[#B3B3B3] text-sm">Technology partnerships and joint ventures</p>
+              <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl p-6 backdrop-blur-sm">
+                <Handshake className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
+                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Strategic Alliances</h3>
+                <p className="text-sm-text-inverse-muted text-sm">Technology partnerships and joint ventures</p>
               </div>
             </motion.div>
 
@@ -197,7 +197,7 @@ export default function VeteranPartnerships() {
                     block: 'start'
                   })
                 }}
-                className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#33CCFF] hover:to-[#00F2FF] text-slate-900 font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="bg-sm-accent-inverse hover:bg-[#5AE8D5] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Partner with Us
                 <Handshake className="ml-2 w-5 h-5" />
@@ -208,17 +208,17 @@ export default function VeteranPartnerships() {
       </section>
 
       {/* Partnership Form Section */}
-      <section id="partnership-form" className="py-20 bg-slate-900 text-white">
+      <section id="partnership-form" className="py-20 bg-sm-surface-primary">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
               {...slideInLeft}
             >
-              <Card className="bg-slate-800 border-slate-700">
+              <Card className="bg-sm-surface-elevated border-sm-border-default" style={{ boxShadow: 'var(--sm-shadow-md)' }}>
                 <CardHeader>
-                  <CardTitle className="text-2xl text-white">Partnership Inquiry</CardTitle>
-                  <CardDescription className="text-slate-400">
+                  <CardTitle className="text-2xl text-sm-text-primary">Partnership Inquiry</CardTitle>
+                  <CardDescription className="text-sm-text-secondary">
                     Tell us about your organization and partnership goals. We&apos;ll connect you with our team within 24 hours.
                   </CardDescription>
                 </CardHeader>
@@ -235,7 +235,6 @@ export default function VeteranPartnerships() {
                         error={touched.name ? errors.name : undefined}
                         required
                         placeholder="Your full name"
-                        inputClassName="bg-slate-700 border-slate-600"
                       />
                       <FormField
                         label="Email"
@@ -247,7 +246,6 @@ export default function VeteranPartnerships() {
                         error={touched.email ? errors.email : undefined}
                         required
                         placeholder="your@email.com"
-                        inputClassName="bg-slate-700 border-slate-600"
                       />
                     </div>
 
@@ -274,7 +272,6 @@ export default function VeteranPartnerships() {
                       error={touched.organization ? errors.organization : undefined}
                       required
                       placeholder="Your organization name"
-                      inputClassName="bg-slate-700 border-slate-600"
                     />
 
                     <div className="grid md:grid-cols-2 gap-4">
@@ -286,7 +283,6 @@ export default function VeteranPartnerships() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         error={touched.veteranStatus ? errors.veteranStatus : undefined}
-                        inputClassName="bg-slate-700 border-slate-600"
                       >
                         <option value="">Select status</option>
                         <option value="veteran">Veteran</option>
@@ -305,7 +301,6 @@ export default function VeteranPartnerships() {
                         onBlur={handleBlur}
                         error={touched.partnershipType ? errors.partnershipType : undefined}
                         required
-                        inputClassName="bg-slate-700 border-slate-600"
                       >
                         <option value="">Select type</option>
                         <option value="veteran-organization">Veteran Organization</option>
@@ -328,13 +323,12 @@ export default function VeteranPartnerships() {
                       required
                       rows={5}
                       placeholder="Describe your partnership goals, project scope, timeline, and how we can work together..."
-                      inputClassName="bg-slate-700 border-slate-600"
                     />
 
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
+                      className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover disabled:bg-sm-accent-primary/50 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
                     >
                       {isSubmitting ? (
                         <>
@@ -384,8 +378,8 @@ export default function VeteranPartnerships() {
               className="space-y-8"
             >
               <div>
-                <h3 className="text-2xl font-bold mb-6">Partnership Opportunities</h3>
-                <p className="text-slate-300 mb-8 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-6 text-sm-text-primary">Partnership Opportunities</h3>
+                <p className="text-sm-text-secondary mb-8 leading-relaxed">
                   Steel Motion LLC is committed to building strong partnerships within the veteran
                   community and defense sector. We believe in the power of collaboration to deliver
                   exceptional results and support our fellow veterans.
@@ -394,12 +388,12 @@ export default function VeteranPartnerships() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">Veteran-First Approach</h4>
-                    <p className="text-slate-400">
+                    <h4 className="font-semibold text-sm-text-primary mb-2">Veteran-First Approach</h4>
+                    <p className="text-sm-text-secondary">
                       We prioritize partnerships with veteran-owned businesses and organizations
                       that share our commitment to excellence and service.
                     </p>
@@ -407,12 +401,12 @@ export default function VeteranPartnerships() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Target className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">Mission-Critical Solutions</h4>
-                    <p className="text-slate-400">
+                    <h4 className="font-semibold text-sm-text-primary mb-2">Mission-Critical Solutions</h4>
+                    <p className="text-sm-text-secondary">
                       Partner with us on defense contracts, government projects, and enterprise
                       solutions that make a real impact.
                     </p>
@@ -420,12 +414,12 @@ export default function VeteranPartnerships() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">Community Impact</h4>
-                    <p className="text-slate-400">
+                    <h4 className="font-semibold text-sm-text-primary mb-2">Community Impact</h4>
+                    <p className="text-sm-text-secondary">
                       Join us in supporting veteran communities through technology, training,
                       and employment opportunities.
                     </p>
@@ -434,9 +428,9 @@ export default function VeteranPartnerships() {
 
               </div>
 
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 mt-8">
-                <h4 className="text-lg font-semibold text-white mb-3">Response Time</h4>
-                <p className="text-slate-300 text-sm">
+              <div className="bg-sm-surface-elevated border border-sm-border-default rounded-lg p-6 mt-8" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
+                <h4 className="text-lg font-semibold text-sm-text-primary mb-3">Response Time</h4>
+                <p className="text-sm-text-secondary text-sm">
                   We typically respond to partnership inquiries within 24 hours during business days.
                   For urgent partnership opportunities, please mention &ldquo;URGENT&rdquo; in your message subject.
                 </p>

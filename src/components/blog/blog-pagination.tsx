@@ -20,7 +20,7 @@ export function BlogPagination({ currentPage, totalPages, className }: BlogPagin
   const goToPage = (page: number) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('page', page.toString())
-    router.push(`/blog?${params.toString()}`)
+    router.push(`/articles?${params.toString()}`)
   }
 
   // Generate page numbers to show
@@ -75,7 +75,7 @@ export function BlogPagination({ currentPage, totalPages, className }: BlogPagin
         size="sm"
         onClick={() => goToPage(currentPage - 1)}
         disabled={currentPage === 1}
-        className="border-[#00F2FF]/30 text-[#00F2FF] hover:bg-[#00F2FF]/10 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="border-sm-border-default text-sm-accent-primary hover:bg-sm-accent-primary-light disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Go to previous page"
       >
         <ChevronLeft className="w-4 h-4 mr-1" />
@@ -88,7 +88,7 @@ export function BlogPagination({ currentPage, totalPages, className }: BlogPagin
           page === '...' ? (
             <span
               key={`ellipsis-${index}`}
-              className="px-2 text-[#B3B3B3]"
+              className="px-2 text-sm-text-muted"
               aria-hidden="true"
             >
               ...
@@ -102,8 +102,8 @@ export function BlogPagination({ currentPage, totalPages, className }: BlogPagin
               className={cn(
                 "min-w-[40px]",
                 currentPage === page
-                  ? "bg-[#00F2FF] text-[#0a1728] hover:bg-[#00F2FF]/90"
-                  : "border-[#00F2FF]/30 text-[#00F2FF] hover:bg-[#00F2FF]/10"
+                  ? "bg-sm-accent-primary text-white hover:bg-sm-accent-primary/90"
+                  : "border-sm-border-default text-sm-accent-primary hover:bg-sm-accent-primary-light"
               )}
               aria-label={`Go to page ${page}`}
               aria-current={currentPage === page ? "page" : undefined}
@@ -120,7 +120,7 @@ export function BlogPagination({ currentPage, totalPages, className }: BlogPagin
         size="sm"
         onClick={() => goToPage(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="border-[#00F2FF]/30 text-[#00F2FF] hover:bg-[#00F2FF]/10 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="border-sm-border-default text-sm-accent-primary hover:bg-sm-accent-primary-light disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Go to next page"
       >
         Next

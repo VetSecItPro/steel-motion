@@ -41,13 +41,13 @@ interface BlogPostGridProps {
 
 const getCategoryColor = (color: string) => {
   const colors = {
-    cyan: "bg-cyan-900/50 text-cyan-300 border-cyan-500/30",
-    red: "bg-red-900/50 text-red-300 border-red-500/30",
-    blue: "bg-blue-900/50 text-blue-300 border-blue-500/30",
-    purple: "bg-purple-900/50 text-purple-300 border-purple-500/30",
-    green: "bg-green-900/50 text-green-300 border-green-500/30",
-    orange: "bg-orange-900/50 text-orange-300 border-orange-500/30",
-    indigo: "bg-indigo-900/50 text-indigo-300 border-indigo-500/30",
+    cyan: "bg-cyan-100 text-cyan-800 border-cyan-200",
+    red: "bg-red-100 text-red-800 border-red-200",
+    blue: "bg-blue-100 text-blue-800 border-blue-200",
+    purple: "bg-purple-100 text-purple-800 border-purple-200",
+    green: "bg-green-100 text-green-800 border-green-200",
+    orange: "bg-orange-100 text-orange-800 border-orange-200",
+    indigo: "bg-indigo-100 text-indigo-800 border-indigo-200",
   }
   return colors[color as keyof typeof colors] || colors.cyan
 }
@@ -56,8 +56,8 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
   if (posts.length === 0) {
     return (
       <div className="text-center py-12">
-        <h3 className="text-xl font-semibold text-white mb-4">No posts found</h3>
-        <p className="text-[#B3B3B3]">Check back soon for new insights from our team.</p>
+        <h3 className="text-xl font-semibold text-sm-text-primary mb-4">No posts found</h3>
+        <p className="text-sm-text-secondary">Check back soon for new insights from our team.</p>
       </div>
     )
   }
@@ -66,8 +66,8 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
     <div className="space-y-8">
       {posts.map((post) => (
         <div key={post._id}>
-          <Link href={`/blog/${post.slug.current}`}>
-            <Card className="hover:shadow-lg hover:shadow-[#00F2FF]/10 transition-all duration-300 bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 group">
+          <Link href={`/articles/${post.slug.current}`}>
+            <Card className="hover:shadow-[var(--sm-shadow-md)] transition-all duration-300 bg-sm-surface-elevated border border-sm-border-default hover:border-sm-accent-primary/30 group" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
               <CardContent className="p-0">
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* Image */}
@@ -84,7 +84,7 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
                         />
                         {post.featured && (
                           <div className="absolute top-4 left-4">
-                            <Badge className="bg-[#00F2FF]/90 text-slate-900 hover:bg-[#00F2FF]">
+                            <Badge className="bg-sm-accent-primary text-white hover:bg-sm-accent-primary/90">
                               Featured
                             </Badge>
                           </div>
@@ -111,12 +111,12 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
                     )}
 
                     {/* Title */}
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-sm-text-primary mb-3 group-hover:text-sm-accent-primary transition-colors line-clamp-2">
                       {post.title}
                     </h3>
 
                     {/* Excerpt */}
-                    <p className="text-[#B3B3B3] mb-4 line-clamp-3 leading-relaxed">
+                    <p className="text-sm-text-secondary mb-4 line-clamp-3 leading-relaxed">
                       {post.excerpt}
                     </p>
 
@@ -126,7 +126,7 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
                         {post.tags.slice(0, 4).map((tag) => (
                           <span
                             key={tag}
-                            className="text-xs bg-[#0a1728]/50 text-[#B3B3B3] px-2 py-1 rounded-full"
+                            className="text-xs bg-sm-surface-secondary text-sm-text-muted px-2 py-1 rounded-full"
                           >
                             #{tag}
                           </span>
@@ -135,12 +135,12 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
                     )}
 
                     {/* Meta Info */}
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-[#B3B3B3]/70">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-sm-text-muted">
                       <div className="flex items-center gap-1">
                         <User className="w-4 h-4" />
                         <span>{post.author.name}</span>
                         {post.author.veteranBranch && (
-                          <span className="text-[#00F2FF]">
+                          <span className="text-sm-accent-primary">
                             ({post.author.rank || 'Veteran'})
                           </span>
                         )}

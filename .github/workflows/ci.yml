@@ -27,23 +27,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run ESLint
-        run: npm run lint
+        run: pnpm run lint
 
       - name: TypeScript Type Check
-        run: npx tsc --noEmit
+        run: pnpm exec tsc --noEmit
 
       - name: Security Audit
-        run: npm audit --audit-level=critical || true
+        run: pnpm audit --severity critical || true
 
       - name: Check for secrets in code
         run: |
@@ -64,17 +67,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run Vitest
-        run: npm run test:run
+        run: pnpm run test:run
 
   # ============================================
   # JOB 3: Build Verification
@@ -89,17 +95,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build application
-        run: npm run build
+        run: pnpm run build
 
   # ============================================
   # JOB 4: E2E Tests (Playwright)
@@ -115,22 +124,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Build and run E2E tests
         run: |
-          npm run build
-          npx playwright test --project=chromium
+          pnpm run build
+          pnpm exec playwright test --project=chromium
         env:
           CI: true
 
@@ -152,23 +164,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
-      - name: Run npm audit
+      - name: Run pnpm audit
         run: |
-          npm audit --json > npm-audit.json || true
-          cat npm-audit.json
+          pnpm audit --json > pnpm-audit.json || true
+          cat pnpm-audit.json
 
       - name: Check for critical vulnerabilities
         run: |
-          CRITICAL=$(npm audit --json 2>/dev/null | jq '.metadata.vulnerabilities.critical // 0')
+          CRITICAL=$(pnpm audit --json 2>/dev/null | jq '[.advisories // {} | to_entries[] | select(.value.severity == "critical")] | length' 2>/dev/null || echo "0")
           echo "Critical vulnerabilities: $CRITICAL"
           if [ "$CRITICAL" -gt 0 ]; then
             echo "::error::Critical vulnerabilities found!"
@@ -180,7 +195,7 @@ jobs:
         if: always()
         with:
           name: security-report
-          path: npm-audit.json
+          path: pnpm-audit.json
           retention-days: 7
 
   # ============================================
@@ -219,7 +234,7 @@ jobs:
         if: steps.check-pr.outputs.exists == '0'
         run: |
           gh pr create \
-            --title "🚀 Deploy: ${{ steps.branch.outputs.name }}" \
+            --title "Deploy: ${{ steps.branch.outputs.name }}" \
             --body "## Auto-generated PR
 
           This PR was automatically created after all CI checks passed.
@@ -238,7 +253,7 @@ jobs:
           ---
           *Merge this PR to deploy to Vercel production.*
 
-          🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
+          Generated with [Claude Code](https://claude.com/claude-code)" \
             --base main \
             --head "${{ steps.branch.outputs.name }}"
         env:

@@ -59,13 +59,13 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     openGraph: {
       title: `${currentCategory.title} Articles | Steel Motion Blog`,
       description: currentCategory.description || `Read the latest articles about ${currentCategory.title} from Steel Motion's veteran technology team.`,
-      url: `https://steelmotionllc.com/blog/category/${currentCategory.slug.current}`,
+      url: `https://steelmotionllc.com/articles/category/${currentCategory.slug.current}`,
       siteName: "Steel Motion LLC",
       locale: "en_US",
       type: "website",
     },
     alternates: {
-      canonical: `https://steelmotionllc.com/blog/category/${currentCategory.slug.current}`
+      canonical: `https://steelmotionllc.com/articles/category/${currentCategory.slug.current}`
     }
   }
 }
@@ -79,28 +79,28 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c]">
+    <main className="min-h-screen bg-sm-surface-primary">
       <Navbar />
 
       {/* Category Hero */}
-      <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white pt-20 pb-16">
+      <section className="bg-sm-surface-inverse text-sm-text-inverse pt-20 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Back Navigation */}
             <div className="mb-8">
               <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 group"
+                href="/articles"
+                className="inline-flex items-center gap-2 text-sm-text-inverse-muted hover:text-sm-accent-inverse transition-colors duration-300 group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-                <span className="text-sm font-medium">Back to Blog</span>
+                <span className="text-sm font-medium">Back to Articles</span>
               </Link>
             </div>
 
             <div className="text-center">
               <Badge
                 variant="outline"
-                className={`mb-6 text-lg px-4 py-2 ${getCategoryColor(currentCategory.color)} border-white/30`}
+                className="mb-6 text-lg px-4 py-2 bg-sm-accent-inverse/10 text-sm-accent-inverse border-sm-accent-inverse/30"
               >
                 {currentCategory.title}
               </Badge>
@@ -110,13 +110,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </h1>
 
               {currentCategory.description && (
-                <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-xl text-sm-text-inverse-muted max-w-2xl mx-auto leading-relaxed">
                   {currentCategory.description}
                 </p>
               )}
 
               <div className="mt-8">
-                <span className="text-[#00F2FF] font-semibold">
+                <span className="text-sm-accent-inverse font-semibold">
                   {posts.length} {posts.length === 1 ? 'article' : 'articles'}
                 </span>
               </div>

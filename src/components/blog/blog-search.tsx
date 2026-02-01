@@ -26,7 +26,7 @@ export function BlogSearch({ className }: BlogSearchProps) {
       params.delete('search')
     }
 
-    router.push(`/blog?${params.toString()}`)
+    router.push(`/articles?${params.toString()}`)
   }, [router, searchParams])
 
   // Debounced effect
@@ -45,12 +45,12 @@ export function BlogSearch({ className }: BlogSearchProps) {
     const params = new URLSearchParams(searchParams.toString())
     params.delete('search')
     params.set('page', '1')
-    router.push(`/blog?${params.toString()}`)
+    router.push(`/articles?${params.toString()}`)
   }
 
   return (
     <div className={className}>
-      <label htmlFor="blog-search" className="block text-sm font-medium text-white mb-2">
+      <label htmlFor="blog-search" className="block text-sm font-medium text-sm-text-primary mb-2">
         Search Articles
       </label>
       <div className="relative">
@@ -61,13 +61,13 @@ export function BlogSearch({ className }: BlogSearchProps) {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search blog posts..."
-          className="pl-10 pr-10 bg-[#0a1728]/80 border-[#1a3a5c] text-white placeholder:text-gray-500 focus:border-[#00F2FF] focus:ring-[#00F2FF]/20"
+          className="pl-10 pr-10 bg-sm-surface-primary border-sm-border-default text-sm-text-primary placeholder:text-sm-text-muted focus:border-sm-accent-primary focus:ring-sm-accent-primary/20"
           aria-label="Search blog posts"
         />
         {searchTerm && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-sm-text-muted hover:text-sm-text-primary transition-colors"
             aria-label="Clear search"
           >
             <X className="w-4 h-4" />
@@ -75,8 +75,8 @@ export function BlogSearch({ className }: BlogSearchProps) {
         )}
       </div>
       {searchTerm && (
-        <p className="text-sm text-[#B3B3B3] mt-2">
-          Searching for: <span className="text-[#00F2FF]">&quot;{searchTerm}&quot;</span>
+        <p className="text-sm text-sm-text-secondary mt-2">
+          Searching for: <span className="text-sm-accent-primary">&quot;{searchTerm}&quot;</span>
         </p>
       )}
     </div>
