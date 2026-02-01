@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
   CheckCircle, ArrowRight, ArrowLeft, Home, ExternalLink,
-  RefreshCw, FileText, BarChart3, Brain, Cog, Plug,
-  ClipboardCheck, Hammer, Rocket,
+  Globe, Plug, Database, RefreshCw,
+  Search, Hammer, Rocket, FileCheck,
 } from "lucide-react"
 import Link from "next/link"
 import { slideInUp, slideInLeft, slideInRight } from "@/lib/animations"
@@ -15,52 +15,55 @@ import { slideInUp, slideInLeft, slideInRight } from "@/lib/animations"
 
 const features = [
   {
-    icon: RefreshCw,
-    title: "Workflow Automation",
+    icon: Globe,
+    title: "Web Application Development",
     description:
-      "We build systems that handle repetitive tasks automatically and accurately.",
+      "Full-stack web applications built with Next.js, React, and TypeScript. Deployed on Vercel or AWS.",
     example:
-      "Automated invoice routing that reduced a 4-person manual process to zero touch.",
-  },
-  {
-    icon: FileText,
-    title: "Document Processing",
-    description:
-      "Invoices, forms, contracts. We set up AI to read, extract, and organize your documents without human intervention.",
-    example:
-      "Extracting line items from 500+ supplier invoices per month into an ERP with 99%+ accuracy.",
-  },
-  {
-    icon: BarChart3,
-    title: "Predictive Analytics",
-    description:
-      "We build dashboards and alert systems that surface patterns before they become problems.",
-    example:
-      "Demand forecasting that reduced inventory carrying costs by 18%.",
-  },
-  {
-    icon: Brain,
-    title: "Custom AI Models",
-    description:
-      "Off-the-shelf AI doesn't always fit. We build models trained on your data for your specific problems.",
-    example:
-      "A classification model trained on 50K support tickets to auto-route and prioritize incoming requests.",
-  },
-  {
-    icon: Cog,
-    title: "Process Automation (RPA)",
-    description:
-      "Software bots that work across your existing systems. No ripping and replacing, automation layered on top.",
-    example:
-      "Syncing data between a legacy CRM and accounting system every 15 minutes, eliminating daily manual exports.",
+      "A multi-tenant SaaS dashboard processing 10K+ daily API calls with sub-200ms response times.",
   },
   {
     icon: Plug,
-    title: "AI Integration",
+    title: "API Development & Integration",
     description:
-      "We plug AI into what you're using now without breaking anything.",
+      "REST and webhook APIs that connect your systems and move data between platforms.",
     example:
-      "Adding LLM-powered summarization to an existing support dashboard with zero downtime.",
+      "A middleware API syncing inventory data between Shopify and a warehouse management system in real time.",
+  },
+  {
+    icon: Database,
+    title: "Database Design & Optimization",
+    description:
+      "Postgres and relational database design optimized for your query patterns.",
+    example:
+      "Restructuring a 50M-row database from 8-second queries to under 100ms with proper indexing and schema redesign.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Legacy System Modernization",
+    description:
+      "We rebuild aging internal tools into modern web applications without losing your business logic.",
+    example:
+      "Replacing a 15-year-old Access database with a web app that runs on any device and supports multiple concurrent users.",
+  },
+]
+
+const techStack = [
+  {
+    category: "Frontend",
+    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    category: "Backend",
+    tools: ["Node.js", "Next.js API Routes", "REST APIs", "Webhooks"],
+  },
+  {
+    category: "Database",
+    tools: ["PostgreSQL (Neon)", "Drizzle ORM", "Redis/Upstash"],
+  },
+  {
+    category: "Infrastructure",
+    tools: ["Vercel", "AWS", "GitHub Actions", "Inngest"],
   },
 ]
 
@@ -69,7 +72,7 @@ const products = [
     name: "Kaulby",
     tagline: "Community Intelligence Platform",
     description:
-      "AI-powered monitoring across Reddit, Hacker News, and forums. Uses LLM classification, automated data pipelines, and multi-source ingestion.",
+      "Full-stack Next.js application with Postgres, background job queues, multi-source API ingestion, and LLM-powered classification.",
     status: "In Development",
     statusBg: "bg-sm-status-warning-light",
     statusText: "text-sm-status-warning",
@@ -79,7 +82,7 @@ const products = [
     name: "Clarus",
     tagline: "Content Analysis Tool",
     description:
-      "Structured data extraction from unstructured content at scale. Uses document processing, AI summarization, and automated categorization.",
+      "Web application with structured data extraction, document processing pipelines, and AI-powered summarization.",
     status: "Early Access",
     statusBg: "bg-sm-status-info-light",
     statusText: "text-sm-status-info",
@@ -89,7 +92,7 @@ const products = [
     name: "Rowan",
     tagline: "Household Organization App",
     description:
-      "Real-time task coordination for couples, roommates, and families. Uses real-time sync, task automation, and notification workflows.",
+      "Real-time multi-user application with live sync, task management, notification workflows, and cross-device support.",
     status: "Beta",
     statusBg: "bg-sm-status-success-light",
     statusText: "text-sm-status-success",
@@ -99,55 +102,64 @@ const products = [
 
 const phases = [
   {
-    icon: ClipboardCheck,
+    icon: Search,
     number: "1",
-    title: "Assessment",
-    timeline: "Week 1–2",
+    title: "Discovery",
+    timeline: "Week 1",
     description:
-      "We audit your current workflows and identify the highest-ROI automation targets.",
-    deliverable: "Written scope document with estimated time and cost savings.",
+      "We map your requirements, define the scope, and agree on deliverables.",
+    deliverable: "Written scope document with architecture plan, timeline, and fixed-price quote.",
   },
   {
     icon: Hammer,
     number: "2",
     title: "Build",
-    timeline: "Week 3–8 (varies by complexity)",
+    timeline: "Week 2–8 (varies by complexity)",
     description:
-      "We build, test, and iterate on your automation system. Weekly demos so you see progress and give feedback in real time.",
-    deliverable: "Working system deployed to staging environment.",
+      "We build in weekly sprints. You see working code every Friday. Testing is continuous, not a phase bolted on at the end.",
+    deliverable: "Working application deployed to staging. You test each sprint.",
   },
   {
     icon: Rocket,
     number: "3",
-    title: "Handoff",
-    timeline: "1 week after launch",
+    title: "Launch",
+    timeline: "1 week after build complete",
     description:
-      "We deploy to production, train your team, and hand over documentation. 30 days of post-launch support included.",
-    deliverable: "Production deployment, training session, full documentation.",
+      "Production deployment, DNS, SSL, monitoring, and performance verification.",
+    deliverable: "Live application with monitoring dashboards.",
+  },
+  {
+    icon: FileCheck,
+    number: "4",
+    title: "Handoff",
+    timeline: "30 days post-launch",
+    description:
+      "Documentation, codebase walkthrough, and 30 days of post-launch support. You own the code. Full GitHub repository transfer.",
+    deliverable: "Complete documentation, repository access, support period.",
   },
 ]
 
 const benefits = [
-  "Cut operational costs on every automated workflow",
-  "Eliminate manual data entry errors",
-  "Handle more volume without hiring more people",
-  "Get answers from your data in minutes, not days",
-  "Respond to customers faster",
-  "Stay compliant with automated audit trails and documentation",
+  "Own your code. No vendor lock-in, no recurring license fees.",
+  "Get software that matches how your team works, not the other way around.",
+  "Deploy on infrastructure that scales with your business.",
+  "Connect to the tools you already use through clean APIs.",
+  "Replace manual processes with software that runs 24/7.",
+  "Ship in weeks, not months. Weekly demos, fixed-price scope.",
 ]
 
 const goodFit = [
-  "Businesses ready to scale without adding headcount",
-  "Teams buried in repetitive manual tasks",
-  "Companies managing high volumes of documents",
-  "Organizations looking to respond to customers faster",
-  "Operations teams spending 10+ hours per week on manual data entry",
-  "Companies growing revenue but unable to hire fast enough to keep up",
+  "Running a business process on spreadsheets that should be software",
+  "Paying for SaaS tools that don\u2019t fit how your team works",
+  "Needing an internal tool your team will use daily",
+  "Managing data across 3+ disconnected systems",
+  "Outgrowing a no-code tool and need a real application",
+  "Replacing a legacy internal system that only one person knows how to maintain",
 ]
 
 /* ─── Component ─── */
 
-export default function AITransformationContent() {
+export default function CustomDevelopmentContent() {
   const scrollToContact = () => {
     const el = document.getElementById("contact")
     if (el) {
@@ -188,15 +200,15 @@ export default function AITransformationContent() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <Badge variant="secondary" className="bg-sm-accent-inverse/10 text-sm-accent-inverse border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20 mb-6">
-              AI Automation Services
+              Custom Development Services
             </Badge>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-sm-text-inverse">
-              AI Automation That <span className="text-sm-accent-inverse">Pays for Itself</span>
+              Software Built Around <span className="text-sm-accent-inverse">How You Work</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-sm-text-inverse-muted mb-8 max-w-3xl mx-auto leading-relaxed">
-              We build automation systems that reduce manual work, cut processing time, and produce ROI you measure in weeks, not quarters.
+              We build web applications, APIs, and internal tools from scratch. You own the code. We build to spec. No templates, no shortcuts.
             </p>
 
             <Button
@@ -210,7 +222,7 @@ export default function AITransformationContent() {
         </div>
       </section>
 
-      {/* ── What We Do — 6 Service Cards ── */}
+      {/* ── What We Do — 4 Service Cards ── */}
       <section className="py-24 bg-sm-surface-secondary">
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="text-center mb-16">
@@ -218,11 +230,11 @@ export default function AITransformationContent() {
               What We Do
             </h2>
             <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Six areas where we build AI systems for small and mid-size businesses.
+              Four areas where we build custom software for small and mid-size businesses.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
@@ -250,27 +262,63 @@ export default function AITransformationContent() {
             ))}
           </div>
 
-          {/* Cross-link to Custom Development */}
+          {/* Cross-link to AI Automation */}
           <motion.div
             {...slideInUp}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-center mt-10"
           >
             <p className="text-sm-text-secondary text-sm">
-              Need a full custom application built alongside your automation?{" "}
+              Need AI automation built into your application?{" "}
               <Link
-                href="/services/custom-development"
+                href="/services/ai-transformation"
                 className="text-sm-accent-secondary hover:underline font-medium"
               >
-                See our Custom Application Development service →
+                See our AI Automation services →
               </Link>
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* ── We Build What We Sell ── */}
+      {/* ── What We Build With — Tech Stack ── */}
       <section className="py-24 bg-sm-surface-primary">
+        <div className="container mx-auto px-4">
+          <motion.div {...slideInUp} className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-primary">
+              What We Build With
+            </h2>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {techStack.map((group, i) => (
+              <motion.div
+                key={group.category}
+                {...slideInUp}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="text-center"
+              >
+                <h3 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-3">
+                  {group.category}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {group.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-sm-surface-secondary text-sm-text-primary border border-sm-border-default"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── We Build What We Sell ── */}
+      <section className="py-24 bg-sm-surface-secondary">
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-sm-accent-primary-light text-sm-accent-primary rounded-full px-4 py-2 text-sm font-medium mb-4">
@@ -280,7 +328,7 @@ export default function AITransformationContent() {
               We Build What We Sell
             </h2>
             <p className="text-lg text-sm-text-secondary max-w-3xl mx-auto leading-relaxed">
-              We run three SaaS products in production: Kaulby, Clarus, and Rowan. They use the same AI pipelines, automation patterns, and infrastructure we build for clients. Our recommendations come from operating real systems, not reading about them.
+              We run three SaaS products in production: Kaulby, Clarus, and Rowan. They use the same stack, deployment pipeline, and development process we bring to client projects. Our recommendations come from shipping real software, not reading about it.
             </p>
           </motion.div>
 
@@ -329,22 +377,22 @@ export default function AITransformationContent() {
         </div>
       </section>
 
-      {/* ── How an AI Automation Engagement Works ── */}
-      <section className="py-24 bg-sm-surface-secondary">
+      {/* ── How a Custom Dev Engagement Works ── */}
+      <section className="py-24 bg-sm-surface-primary">
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-sm-accent-primary-light text-sm-accent-primary rounded-full px-4 py-2 text-sm font-medium mb-4">
               Our Process
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-primary">
-              How an AI Automation Engagement Works
+              How a Custom Dev Engagement Works
             </h2>
             <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Every project follows the same three phases.
+              Every project follows the same four phases.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {phases.map((phase, i) => (
               <motion.div
                 key={phase.title}
@@ -384,7 +432,7 @@ export default function AITransformationContent() {
       </section>
 
       {/* ── Why It Matters + Good Fit ── */}
-      <section className="py-24 bg-sm-surface-primary">
+      <section className="py-24 bg-sm-surface-secondary">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
             {/* Benefits */}
@@ -435,13 +483,13 @@ export default function AITransformationContent() {
         <div className="container mx-auto px-4 text-center">
           <motion.div {...slideInUp} className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-inverse">
-              Let&apos;s Talk AI
+              Let&apos;s Scope Your Project
             </h2>
             <p className="text-lg text-sm-text-inverse-muted mb-4 leading-relaxed">
-              Tell us what you want to automate. We&apos;ll scope the work and give you a fixed-price quote on a free 30-minute call.
+              Tell us what you need built. We&apos;ll define the scope, timeline, and a fixed-price quote on a free 30-minute call.
             </p>
             <p className="text-sm text-sm-text-inverse-muted mb-8">
-              Most AI automation engagements run between $5,000 and $25,000 depending on complexity.
+              Most custom development projects run between $10,000 and $50,000 depending on scope.
             </p>
             <Button
               onClick={scrollToContact}
