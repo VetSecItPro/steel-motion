@@ -21,13 +21,13 @@ interface BlogSidebarProps {
 
 const getCategoryColor = (color: string) => {
   const colors = {
-    cyan: "bg-cyan-900/50 text-cyan-300 border-cyan-500/30 hover:bg-cyan-800/50",
-    red: "bg-red-900/50 text-red-300 border-red-500/30 hover:bg-red-800/50",
-    blue: "bg-blue-900/50 text-blue-300 border-blue-500/30 hover:bg-blue-800/50",
-    purple: "bg-purple-900/50 text-purple-300 border-purple-500/30 hover:bg-purple-800/50",
-    green: "bg-green-900/50 text-green-300 border-green-500/30 hover:bg-green-800/50",
-    orange: "bg-orange-900/50 text-orange-300 border-orange-500/30 hover:bg-orange-800/50",
-    indigo: "bg-indigo-900/50 text-indigo-300 border-indigo-500/30 hover:bg-indigo-800/50",
+    cyan: "bg-cyan-100 text-cyan-800 border-cyan-200 hover:bg-cyan-200",
+    red: "bg-red-100 text-red-800 border-red-200 hover:bg-red-200",
+    blue: "bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200",
+    purple: "bg-purple-100 text-purple-800 border-purple-200 hover:bg-purple-200",
+    green: "bg-green-100 text-green-800 border-green-200 hover:bg-green-200",
+    orange: "bg-orange-100 text-orange-800 border-orange-200 hover:bg-orange-200",
+    indigo: "bg-indigo-100 text-indigo-800 border-indigo-200 hover:bg-indigo-200",
   }
   return colors[color as keyof typeof colors] || colors.cyan
 }
@@ -36,10 +36,10 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
   return (
     <div className="space-y-8">
       {/* Categories */}
-      <Card className="bg-[#1a3a5c]/50 border-[#00F2FF]/20">
+      <Card className="bg-sm-surface-elevated border border-sm-border-default" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-white">
-            <BookOpen className="w-5 h-5 text-[#00F2FF]" />
+          <CardTitle className="flex items-center gap-2 text-sm-text-primary">
+            <BookOpen className="w-5 h-5 text-sm-accent-primary" />
             Topics
           </CardTitle>
         </CardHeader>
@@ -48,10 +48,10 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
             {categories.map((category) => (
               <Link
                 key={category._id}
-                href={`/blog/category/${category.slug.current}`}
+                href={`/articles/category/${category.slug.current}`}
                 className="block"
               >
-                <div className="flex items-center justify-between p-3 rounded-lg border border-[#00F2FF]/20 hover:border-[#00F2FF]/50 transition-all duration-300 group">
+                <div className="flex items-center justify-between p-3 rounded-lg border border-sm-border-default hover:border-sm-accent-primary/30 transition-all duration-300 group">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <Badge
@@ -62,16 +62,16 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
                       </Badge>
                     </div>
                     {category.description && (
-                      <p className="text-sm text-[#B3B3B3] line-clamp-2">
+                      <p className="text-sm text-sm-text-secondary line-clamp-2">
                         {category.description}
                       </p>
                     )}
                   </div>
                   <div className="text-right ml-3">
-                    <div className="text-sm font-medium text-white">
+                    <div className="text-sm font-medium text-sm-text-primary">
                       {category.postCount}
                     </div>
-                    <div className="text-xs text-[#B3B3B3]">
+                    <div className="text-xs text-sm-text-muted">
                       {category.postCount === 1 ? 'post' : 'posts'}
                     </div>
                   </div>
@@ -83,17 +83,17 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
       </Card>
 
       {/* About Steel Motion */}
-      <Card className="bg-[#1a3a5c]/50 border-[#00F2FF]/20">
+      <Card className="bg-sm-surface-elevated border border-sm-border-default" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
         <CardHeader>
-          <CardTitle className="text-white">About Steel Motion</CardTitle>
+          <CardTitle className="text-sm-text-primary">About Steel Motion</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-[#B3B3B3] text-sm leading-relaxed mb-4">
+          <p className="text-sm-text-secondary text-sm leading-relaxed mb-4">
             Steel Motion LLC is a veteran-led technology consulting company specializing in
             AI transformation, cybersecurity, and cloud infrastructure solutions.
           </p>
           <Link href="/about">
-            <Button variant="outline" className="w-full border-[#00F2FF] text-[#00F2FF] hover:bg-[#00F2FF] hover:text-slate-900">
+            <Button variant="outline" className="w-full border-sm-accent-primary text-sm-accent-primary hover:bg-sm-accent-primary hover:text-white">
               Learn More About Us
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
@@ -102,9 +102,9 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
       </Card>
 
       {/* Quick Links */}
-      <Card className="bg-[#1a3a5c]/50 border-[#00F2FF]/20">
+      <Card className="bg-sm-surface-elevated border border-sm-border-default" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
         <CardHeader>
-          <CardTitle className="text-white">Our Services</CardTitle>
+          <CardTitle className="text-sm-text-primary">Our Services</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
@@ -118,7 +118,7 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
               <Link
                 key={service.href}
                 href={service.href}
-                className="block text-sm text-[#B3B3B3] hover:text-[#00F2FF] transition-colors py-1"
+                className="block text-sm text-sm-text-secondary hover:text-sm-accent-primary transition-colors py-1"
               >
                 {service.title}
               </Link>

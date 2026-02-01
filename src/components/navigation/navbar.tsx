@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-[#0a1728]/95 backdrop-blur-md border-b border-[#1a3a5c]"
+      className="fixed top-0 left-0 right-0 z-50 bg-sm-surface-elevated/95 backdrop-blur-md border-b border-sm-border-default"
       aria-label="Main navigation"
     >
       <div className="container mx-auto px-4">
@@ -47,7 +47,7 @@ export default function Navbar() {
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-white via-[#E0E0E0] to-[#00F2FF] bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-sm-text-primary">
                 Steel Motion
               </h1>
             </div>
@@ -59,57 +59,63 @@ export default function Navbar() {
           <div className="flex items-center gap-x-12 animate-fade-in-delay">
             <div className="relative group">
               <button
-                onClick={() => scrollToSection('services')}
-                className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium flex items-center gap-1"
+                onClick={() => scrollToSection('solutions')}
+                className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium flex items-center gap-1"
               >
-                Provided Solutions
+                Solutions
               </button>
               {/* Dropdown menu */}
-              <div className="absolute top-full left-0 mt-2 w-72 bg-[#1a3a5c] border border-[#0a1728] rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <div className="absolute top-full left-0 mt-2 w-72 bg-sm-surface-elevated border border-sm-border-default rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300" style={{ boxShadow: 'var(--sm-shadow-lg)' }}>
                 <div className="p-4 space-y-3">
                   <Link
                     href="/services/ai-transformation"
-                    className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
                   >
                     <div className="font-medium">AI Transformation & Automation</div>
-                    <div className="text-sm text-[#666666]">Intelligent automation & process optimization</div>
+                    <div className="text-sm text-sm-text-muted">Intelligent automation & process optimization</div>
                   </Link>
                   <Link
                     href="/services/custom-development"
-                    className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
                   >
                     <div className="font-medium">Custom Application Development</div>
-                    <div className="text-sm text-[#666666]">Tailored software solutions</div>
+                    <div className="text-sm text-sm-text-muted">Tailored software solutions</div>
                   </Link>
                 </div>
               </div>
             </div>
+            <button
+              onClick={() => scrollToSection('products')}
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
+            >
+              Products
+            </button>
             <Link
-              href="/blog"
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium text-lg"
+              href="/articles"
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
             >
               Articles
             </Link>
             <Link
               href="/portfolio"
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
             >
               Portfolio
             </Link>
             <Link
               href="/partnerships"
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
             >
               Partnerships
             </Link>
             <Link
               href="/about"
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 font-medium"
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
             >
               About
             </Link>
             <Link href="/#contact">
-              <Button className="bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-[#00F2FF]/25 font-semibold">
+              <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white px-6 py-2 rounded-lg transition-all duration-300 font-semibold">
                 Get Started
               </Button>
             </Link>
@@ -121,7 +127,7 @@ export default function Navbar() {
           <div>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#B3B3B3] hover:text-[#00F2FF] transition-colors"
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -136,59 +142,65 @@ export default function Navbar() {
         {isMobile && isOpen && (
           <div
             id="mobile-menu"
-            className="bg-[#1a3a5c] border-t border-[#0a1728] animate-mobile-menu"
+            className="bg-sm-surface-elevated border-t border-sm-border-default animate-mobile-menu"
             role="menu"
           >
             <div className="px-4 py-6 space-y-4">
               <div className="space-y-2">
-                <div className="text-[#B3B3B3] font-medium py-2">Provided Solutions</div>
+                <div className="text-sm-text-primary font-medium py-2">Solutions</div>
                 <div className="pl-4 space-y-2">
                   <Link
                     href="/services/ai-transformation"
-                    className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
                     onClick={() => setIsOpen(false)}
                   >
                     AI Transformation & Automation
                   </Link>
                   <Link
                     href="/services/custom-development"
-                    className="block w-full text-left text-[#666666] hover:text-[#00F2FF] transition-colors text-sm py-1"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
                     onClick={() => setIsOpen(false)}
                   >
                     Custom Application Development
                   </Link>
                 </div>
               </div>
+              <button
+                onClick={() => { scrollToSection('products'); setIsOpen(false) }}
+                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
+              >
+                Products
+              </button>
               <Link
-                href="/blog"
-                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                href="/articles"
+                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
                 onClick={() => setIsOpen(false)}
               >
                 Articles
               </Link>
               <Link
                 href="/portfolio"
-                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
                 onClick={() => setIsOpen(false)}
               >
                 Portfolio
               </Link>
               <Link
                 href="/partnerships"
-                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
                 onClick={() => setIsOpen(false)}
               >
                 Partnerships
               </Link>
               <Link
                 href="/about"
-                className="block w-full text-left text-[#B3B3B3] hover:text-[#00F2FF] transition-colors font-medium py-2"
+                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
                 onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
               <Link href="/#contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full bg-gradient-to-r from-[#00F2FF] to-[#33CCFF] hover:from-[#00F2FF]/90 hover:to-[#33CCFF]/90 text-[#0F1E2C] py-3 rounded-full transition-all duration-300 font-semibold">
+                <Button className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white py-3 rounded-lg transition-all duration-300 font-semibold">
                   Get Started
                 </Button>
               </Link>

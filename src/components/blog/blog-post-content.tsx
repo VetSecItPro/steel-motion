@@ -83,7 +83,7 @@ const portableTextComponents = {
             className="rounded-lg shadow-lg"
           />
           {value.caption && (
-            <p className="text-sm text-[#B3B3B3] text-center mt-2 italic">
+            <p className="text-sm text-sm-text-secondary text-center mt-2 italic">
               {value.caption}
             </p>
           )}
@@ -106,11 +106,11 @@ const portableTextComponents = {
     ),
     callout: ({ value }: any) => {
       const typeStyles = {
-        info: "border-blue-400 bg-blue-900/30 text-blue-200",
-        warning: "border-yellow-400 bg-yellow-900/30 text-yellow-200",
-        success: "border-green-400 bg-green-900/30 text-green-200",
-        error: "border-red-400 bg-red-900/30 text-red-200",
-        tip: "border-purple-400 bg-purple-900/30 text-purple-200",
+        info: "border-blue-400 bg-blue-50 text-blue-800",
+        warning: "border-yellow-400 bg-yellow-50 text-yellow-800",
+        success: "border-green-400 bg-green-50 text-green-800",
+        error: "border-red-400 bg-red-50 text-red-800",
+        tip: "border-purple-400 bg-purple-50 text-purple-800",
       }
 
       return (
@@ -125,56 +125,56 @@ const portableTextComponents = {
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 mt-8">
+      <h1 className="text-3xl md:text-4xl font-bold text-sm-text-primary mb-6 mt-8">
         {children}
       </h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 mt-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-sm-text-primary mb-4 mt-8">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-xl md:text-2xl font-bold text-white mb-3 mt-6">
+      <h3 className="text-xl md:text-2xl font-bold text-sm-text-primary mb-3 mt-6">
         {children}
       </h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-lg md:text-xl font-semibold text-white mb-2 mt-4">
+      <h4 className="text-lg md:text-xl font-semibold text-sm-text-primary mb-2 mt-4">
         {children}
       </h4>
     ),
     normal: ({ children }: any) => (
-      <p className="text-[#B3B3B3] leading-relaxed mb-4 text-lg">
+      <p className="text-sm-text-secondary leading-relaxed mb-4 text-lg">
         {children}
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-[#00F2FF] pl-6 py-2 my-6 italic text-[#B3B3B3] bg-[#1a3a5c]/50 rounded-r-lg">
+      <blockquote className="border-l-4 border-sm-accent-primary pl-6 py-2 my-6 italic text-sm-text-secondary bg-sm-accent-primary-light rounded-r-lg">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-outside ml-6 mb-4 space-y-2 text-[#B3B3B3]">
+      <ul className="list-disc list-outside ml-6 mb-4 space-y-2 text-sm-text-secondary">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-outside ml-6 mb-4 space-y-2 text-[#B3B3B3]">
+      <ol className="list-decimal list-outside ml-6 mb-4 space-y-2 text-sm-text-secondary">
         {children}
       </ol>
     ),
   },
   listItem: {
     bullet: ({ children }: any) => (
-      <li className="text-[#B3B3B3] leading-relaxed text-lg">
+      <li className="text-sm-text-secondary leading-relaxed text-lg">
         {children}
       </li>
     ),
     number: ({ children }: any) => (
-      <li className="text-[#B3B3B3] leading-relaxed text-lg">
+      <li className="text-sm-text-secondary leading-relaxed text-lg">
         {children}
       </li>
     ),
@@ -183,7 +183,7 @@ const portableTextComponents = {
     link: ({ children, value }: any) => (
       <a
         href={value.href}
-        className="text-[#00F2FF] hover:text-[#33CCFF] underline transition-colors"
+        className="text-sm-accent-secondary hover:text-sm-accent-primary underline transition-colors"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -191,13 +191,13 @@ const portableTextComponents = {
       </a>
     ),
     strong: ({ children }: any) => (
-      <strong className="font-semibold text-white">{children}</strong>
+      <strong className="font-semibold text-sm-text-primary">{children}</strong>
     ),
     em: ({ children }: any) => (
-      <em className="italic text-[#B3B3B3]">{children}</em>
+      <em className="italic text-sm-text-secondary">{children}</em>
     ),
     code: ({ children }: any) => (
-      <code className="bg-[#1a3a5c] text-[#00F2FF] px-2 py-1 rounded text-sm font-mono">
+      <code className="bg-sm-accent-primary-light text-sm-accent-primary px-2 py-1 rounded text-sm font-mono">
         {children}
       </code>
     ),
@@ -208,7 +208,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
   return (
     <article className="pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0a1728] via-[#0f2640] to-[#1a3a5c] text-white py-16">
+      <section className="bg-sm-surface-inverse text-sm-text-inverse py-16">
         <div className="container mx-auto px-4">
           <motion.div
             {...slideInUp}
@@ -217,11 +217,11 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
             {/* Back Navigation */}
             <div className="mb-8">
               <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 text-[#B3B3B3] hover:text-[#00F2FF] transition-colors duration-300 group"
+                href="/articles"
+                className="inline-flex items-center gap-2 text-sm-text-inverse-muted hover:text-sm-accent-inverse transition-colors duration-300 group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-                <span className="text-sm font-medium">Back to Blog</span>
+                <span className="text-sm font-medium">Back to Articles</span>
               </Link>
             </div>
 
@@ -232,7 +232,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   <Badge
                     key={category.slug.current}
                     variant="outline"
-                    className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                    className="bg-sm-accent-inverse/10 text-sm-accent-inverse border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20"
                   >
                     {category.title}
                   </Badge>
@@ -246,17 +246,17 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
             </h1>
 
             {/* Excerpt */}
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+            <p className="text-xl text-sm-text-inverse-muted mb-8 leading-relaxed">
               {post.excerpt}
             </p>
 
             {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-6 text-white/80">
+            <div className="flex flex-wrap items-center gap-6 text-sm-text-inverse-muted">
               <div className="flex items-center gap-2">
                 <User className="w-5 h-5" />
                 <span>{post.author.name}</span>
                 {post.author.veteranBranch && (
-                  <span className="text-[#00F2FF]">
+                  <span className="text-sm-accent-inverse">
                     ({post.author.rank || 'Veteran'})
                   </span>
                 )}
@@ -278,7 +278,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                 </div>
               )}
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white border border-white/30 rounded-md hover:bg-white/10 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-sm-text-inverse border border-sm-border-inverse rounded-md hover:bg-white/10 hover:text-sm-text-inverse transition-colors"
                 onClick={() => {
                   if (navigator.share) {
                     navigator.share({
@@ -292,7 +292,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                 }}
               >
                 <Share2 className="w-4 h-4" />
-                <span className="text-white">Share</span>
+                <span className="text-sm-text-inverse">Share</span>
               </button>
             </div>
           </motion.div>
@@ -325,7 +325,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
           <section className="py-8">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <div className="bg-[#1a3a5c] rounded-lg shadow-xl h-96 flex items-center justify-center text-[#B3B3B3]">
+                <div className="bg-sm-surface-secondary rounded-lg shadow-xl h-96 flex items-center justify-center text-sm-text-secondary">
                   Image could not be loaded
                 </div>
               </div>
@@ -340,7 +340,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
           <div className="max-w-6xl mx-auto">
             {/* Main Content */}
             <div>
-              <div className="prose prose-lg prose-invert max-w-none">
+              <div className="prose prose-lg max-w-none">
                 <PortableText
                   value={post.body}
                   components={portableTextComponents}
@@ -349,14 +349,14 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
 
               {/* Tags */}
               {post.tags && post.tags.length > 0 && (
-                <div className="mt-12 pt-8 border-t border-[#00F2FF]/20">
-                  <h3 className="text-lg font-semibold text-white mb-4">Tags</h3>
+                <div className="mt-12 pt-8 border-t border-sm-border-default">
+                  <h3 className="text-lg font-semibold text-sm-text-primary mb-4">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <Badge
                         key={tag}
                         variant="outline"
-                        className="bg-[#1a3a5c] text-[#B3B3B3] border-[#00F2FF]/30 hover:bg-[#00F2FF]/20 hover:text-white"
+                        className="bg-sm-surface-secondary text-sm-text-secondary border-sm-border-default hover:bg-sm-accent-primary-light hover:text-sm-accent-primary"
                       >
                         #{tag}
                       </Badge>
@@ -372,20 +372,20 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
 
       {/* Related Posts */}
       {post.relatedPosts && post.relatedPosts.length > 0 && (
-        <section className="py-16 bg-[#0a1728]">
+        <section className="py-16 bg-sm-surface-secondary">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-white mb-12 text-center">
+              <h2 className="text-3xl font-bold text-sm-text-primary mb-12 text-center">
                 Related Articles
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {post.relatedPosts.map((relatedPost) => (
                   <Link
                     key={relatedPost._id}
-                    href={`/blog/${relatedPost.slug.current}`}
+                    href={`/articles/${relatedPost.slug.current}`}
                     className="block"
                   >
-                    <Card className="h-full hover:shadow-lg hover:shadow-[#00F2FF]/10 transition-all duration-300 bg-[#1a3a5c]/50 border-[#00F2FF]/20 hover:border-[#00F2FF]/50 group">
+                    <Card className="h-full hover:shadow-[var(--sm-shadow-md)] transition-all duration-300 bg-sm-surface-elevated border border-sm-border-default hover:border-sm-accent-primary/30 group" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
                       {relatedPost.mainImage && (() => {
                         const imageUrl = urlForImage(relatedPost.mainImage)
                         return imageUrl ? (
@@ -400,13 +400,13 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                         ) : null
                       })()}
                       <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#00F2FF] transition-colors line-clamp-2">
+                        <h3 className="text-lg font-semibold text-sm-text-primary mb-2 group-hover:text-sm-accent-primary transition-colors line-clamp-2">
                           {relatedPost.title}
                         </h3>
-                        <p className="text-[#B3B3B3] text-sm line-clamp-3 mb-4">
+                        <p className="text-sm-text-secondary text-sm line-clamp-3 mb-4">
                           {relatedPost.excerpt}
                         </p>
-                        <div className="flex items-center gap-4 text-xs text-[#B3B3B3]/70">
+                        <div className="flex items-center gap-4 text-xs text-sm-text-muted">
                           <span>{relatedPost.author.name}</span>
                           {relatedPost.readTime && (
                             <span>{relatedPost.readTime} min read</span>

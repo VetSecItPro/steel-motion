@@ -8,7 +8,7 @@ export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-md bg-slate-700/50",
+        "animate-pulse rounded-md bg-sm-surface-secondary",
         className
       )}
     />
@@ -17,7 +17,7 @@ export function Skeleton({ className }: SkeletonProps) {
 
 export function SkeletonCard({ className }: SkeletonProps) {
   return (
-    <div className={cn("rounded-xl bg-[#1a3a5c]/40 border border-[#00F2FF]/20 overflow-hidden", className)}>
+    <div className={cn("rounded-xl bg-sm-surface-elevated border border-sm-border-default overflow-hidden", className)}>
       {/* Image placeholder */}
       <Skeleton className="h-48 w-full rounded-none" />
       {/* Content */}
@@ -47,7 +47,7 @@ export function SkeletonCard({ className }: SkeletonProps) {
 
 export function SkeletonFeaturedPost({ className }: SkeletonProps) {
   return (
-    <div className={cn("rounded-2xl bg-[#1a3a5c]/40 border border-[#00F2FF]/20 overflow-hidden", className)}>
+    <div className={cn("rounded-2xl bg-sm-surface-elevated border border-sm-border-default overflow-hidden", className)}>
       <div className="grid md:grid-cols-2 gap-0">
         {/* Image placeholder */}
         <Skeleton className="h-64 md:h-full w-full rounded-none" />
@@ -80,12 +80,12 @@ export function SkeletonSidebar({ className }: SkeletonProps) {
   return (
     <div className={cn("space-y-6", className)}>
       {/* Search */}
-      <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/20 rounded-xl p-6">
+      <div className="bg-sm-surface-elevated border border-sm-border-default rounded-xl p-6">
         <Skeleton className="h-5 w-20 mb-4" />
         <Skeleton className="h-10 w-full rounded-lg" />
       </div>
       {/* Categories */}
-      <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/20 rounded-xl p-6">
+      <div className="bg-sm-surface-elevated border border-sm-border-default rounded-xl p-6">
         <Skeleton className="h-5 w-24 mb-4" />
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (

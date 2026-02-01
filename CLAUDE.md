@@ -71,7 +71,7 @@ Feature Branch → CI Validation → Auto PR → Review → Merge → Vercel Dep
 ### **CI Checks (`.github/workflows/ci.yml`)**
 All checks run on EVERY push to ANY branch:
 1. **Code Quality**: ESLint, TypeScript type checking
-2. **Security**: npm audit, secrets scanning
+2. **Security**: pnpm audit, secrets scanning
 3. **Unit Tests**: Vitest
 4. **E2E Tests**: Playwright
 5. **Build Verification**: Next.js production build
@@ -92,28 +92,28 @@ When you push to any feature branch, the CI will:
 
 ```bash
 # Development
-npm run dev          # Start dev server with Turbopack
+pnpm dev             # Start dev server with Turbopack
 
 # Testing
-npm run test         # Run Vitest in watch mode
-npm run test:run     # Run tests once
-npm run test:coverage # Run with coverage report
-npm run test:e2e     # Run Playwright E2E tests
-npm run test:e2e:ui  # Run E2E with UI
-npm run test:e2e:headed # Run E2E with browser visible
+pnpm test            # Run Vitest in watch mode
+pnpm test:run        # Run tests once
+pnpm test:coverage   # Run with coverage report
+pnpm test:e2e        # Run Playwright E2E tests
+pnpm test:e2e:ui     # Run E2E with UI
+pnpm test:e2e:headed # Run E2E with browser visible
 
 # Quality
-npm run lint         # Run ESLint
-npm run typecheck    # TypeScript type check
-npm run validate     # Run all validation (lint, typecheck, test, build)
+pnpm lint            # Run ESLint
+pnpm typecheck       # TypeScript type check
+pnpm validate        # Run all validation (lint, typecheck, test, build)
 
 # Build
-npm run build        # Production build
-npm run start        # Start production server
+pnpm build           # Production build
+pnpm start           # Start production server
 
 # Security
-npm run audit        # Security audit
-npm run lighthouse   # Run Lighthouse audits
+pnpm audit           # Security audit
+pnpm lighthouse      # Run Lighthouse audits
 ```
 
 ## ✨ Features
@@ -181,20 +181,20 @@ RESEND_API_KEY=re_your_key
 
 ### **Build Failures**
 ```bash
-rm -rf .next node_modules package-lock.json
-npm install
-npm run build
+rm -rf .next node_modules pnpm-lock.yaml
+pnpm install
+pnpm build
 ```
 
 ### **E2E Test Failures**
 ```bash
-npx playwright install --with-deps
-npm run test:e2e:headed  # Run with browser visible
+pnpm exec playwright install --with-deps
+pnpm test:e2e:headed  # Run with browser visible
 ```
 
 ### **Type Errors**
 ```bash
-npm run typecheck
+pnpm typecheck
 ```
 
 ## 📞 Support

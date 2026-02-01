@@ -26,23 +26,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Steel Motion LLC - Veteran-Led AI & Technology Solutions",
-  description: "Transform your business with veteran-led AI consulting, custom application development, and technology solutions. Steel Motion LLC delivers military precision for digital transformation.",
-  keywords: ["AI consulting", "veteran-owned business", "technology solutions", "custom app development", "digital transformation", "cybersecurity"],
+  title: "Steel Motion LLC | AI Automation & Custom Software Development",
+  description: "Steel Motion LLC builds AI automation systems and custom software applications. Veteran-owned. Based in Texas. Serving businesses nationwide. Free strategy call available.",
+  keywords: ["AI automation", "custom software development", "veteran-owned business", "technology solutions", "SaaS development", "AI consulting"],
   authors: [{ name: "Steel Motion LLC" }],
   creator: "Steel Motion LLC",
   publisher: "Steel Motion LLC",
   openGraph: {
-    title: "Steel Motion LLC - Veteran-Led AI & Technology Solutions",
-    description: "Transform your business with veteran-led AI consulting and technology solutions.",
-    url: "https://steelmotion.com",
+    title: "Steel Motion LLC | AI Automation & Custom Software Development",
+    description: "Steel Motion LLC builds AI automation systems and custom software applications. Veteran-owned. Based in Texas.",
+    url: "https://steelmotionllc.com",
     siteName: "Steel Motion LLC",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Steel Motion LLC - Veteran-Led AI & Technology Solutions",
-    description: "Transform your business with veteran-led AI consulting and technology solutions.",
+    title: "Steel Motion LLC | AI Automation & Custom Software Development",
+    description: "Steel Motion LLC builds AI automation systems and custom software applications. Veteran-owned. Based in Texas.",
   },
 };
 

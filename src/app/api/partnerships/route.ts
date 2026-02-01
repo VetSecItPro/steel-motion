@@ -61,12 +61,12 @@ export async function POST(request: NextRequest) {
       subject: `New Partnership Inquiry from ${sanitizedName} - ${sanitizedOrganization}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #0F1E2C; border-bottom: 2px solid #00F2FF; padding-bottom: 10px;">
+          <h2 style="color: #0F1B2D; border-bottom: 2px solid #0D6E6E; padding-bottom: 10px;">
             🤝 New Partnership Inquiry
           </h2>
 
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #0F1E2C;">Contact Information</h3>
+            <h3 style="margin-top: 0; color: #0F1B2D;">Contact Information</h3>
             <p><strong>Name:</strong> ${sanitizedName}</p>
             <p><strong>Email:</strong> ${sanitizedEmail}</p>
             <p><strong>Organization:</strong> ${sanitizedOrganization}</p>
@@ -74,12 +74,12 @@ export async function POST(request: NextRequest) {
           </div>
 
           <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #0F1E2C;">Partnership Details</h3>
+            <h3 style="margin-top: 0; color: #0F1B2D;">Partnership Details</h3>
             <p><strong>Partnership Type:</strong> ${sanitizedPartnershipType}</p>
           </div>
 
           <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
-            <h3 style="margin-top: 0; color: #0F1E2C;">Partnership Message</h3>
+            <h3 style="margin-top: 0; color: #0F1B2D;">Partnership Message</h3>
             <p style="line-height: 1.6; white-space: pre-wrap;">${sanitizedMessage}</p>
           </div>
 

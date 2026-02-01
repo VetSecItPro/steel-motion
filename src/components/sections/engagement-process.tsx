@@ -36,25 +36,19 @@ export default function EngagementProcess() {
   const { isDesktop } = useDevice();
 
   return (
-    <section id="process" className="py-24 bg-gradient-to-b from-[#0a1728] to-[#0f2640] text-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00F2FF] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#33CCFF] rounded-full blur-3xl"></div>
-      </div>
-
+    <section id="process" className="py-24 bg-sm-surface-secondary relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           {...slideInUp}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-[#00F2FF]/10 text-[#00F2FF] border border-[#00F2FF]/30 rounded-full px-4 py-2 text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-sm-accent-primary-light text-sm-accent-primary border border-sm-accent-primary/30 rounded-full px-4 py-2 text-sm font-medium mb-4">
             How We Work
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Our Engagement <span className="text-[#00F2FF]">Methodology</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sm-text-primary">
+            Our Engagement <span className="text-sm-accent-primary">Methodology</span>
           </h2>
-          <p className="text-lg text-[#B3B3B3] max-w-2xl mx-auto">
+          <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto">
             A battle-tested process refined through years of delivering mission-critical solutions.
           </p>
         </motion.div>
@@ -72,29 +66,29 @@ export default function EngagementProcess() {
                 {/* Step number and icon */}
                 <div className="flex flex-col items-center mb-8">
                   <div className="relative">
-                    <div className="w-16 h-16 rounded-full bg-[#1a3a5c] border-2 border-[#00F2FF] flex items-center justify-center z-10 relative">
-                      <step.icon className="w-8 h-8 text-[#00F2FF]" />
+                    <div className="w-16 h-16 rounded-full bg-sm-accent-primary-light border-2 border-sm-accent-primary flex items-center justify-center z-10 relative">
+                      <step.icon className="w-8 h-8 text-sm-accent-primary" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#00F2FF] flex items-center justify-center">
-                      <span className="text-xs font-bold text-[#0a1728]">{index + 1}</span>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-sm-accent-primary flex items-center justify-center">
+                      <span className="text-xs font-bold text-white">{index + 1}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="text-center flex flex-col flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-white">{step.title}</h3>
-                  <p className="text-[#B3B3B3] text-sm mb-4 leading-relaxed flex-1">
+                  <h3 className="text-xl font-bold mb-3 text-sm-text-primary">{step.title}</h3>
+                  <p className="text-sm-text-secondary text-sm mb-4 leading-relaxed flex-1">
                     {step.description}
                   </p>
 
                   {/* Deliverables */}
-                  <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/20 rounded-lg p-4 mt-auto">
-                    <p className="text-xs text-[#00F2FF] font-medium mb-2 text-left">Deliverables:</p>
+                  <div className="bg-sm-surface-elevated border border-sm-border-default rounded-lg p-4 mt-auto" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
+                    <p className="text-xs text-sm-accent-primary font-medium mb-2 text-left">Deliverables:</p>
                     <ul className="space-y-1">
                       {step.deliverables.map((item) => (
-                        <li key={item} className="text-xs text-[#B3B3B3] flex items-center gap-2">
-                          <span className="w-1 h-1 rounded-full bg-[#00F2FF] flex-shrink-0"></span>
+                        <li key={item} className="text-xs text-sm-text-secondary flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-sm-accent-primary flex-shrink-0"></span>
                           {item}
                         </li>
                       ))}
@@ -119,30 +113,30 @@ export default function EngagementProcess() {
               {/* Left side - icon */}
               <div className="flex flex-col items-center">
                 <div className="relative">
-                  <div className="w-14 h-14 rounded-full bg-[#1a3a5c] border-2 border-[#00F2FF] flex items-center justify-center">
-                    <step.icon className="w-6 h-6 text-[#00F2FF]" />
+                  <div className="w-14 h-14 rounded-full bg-sm-accent-primary-light border-2 border-sm-accent-primary flex items-center justify-center">
+                    <step.icon className="w-6 h-6 text-sm-accent-primary" />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#00F2FF] flex items-center justify-center">
-                    <span className="text-xs font-bold text-[#0a1728]">{index + 1}</span>
+                  <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-sm-accent-primary flex items-center justify-center">
+                    <span className="text-xs font-bold text-white">{index + 1}</span>
                   </div>
                 </div>
                 {index < steps.length - 1 && (
-                  <div className="w-0.5 h-full bg-gradient-to-b from-[#00F2FF]/60 to-[#00F2FF]/20 mt-4"></div>
+                  <div className="w-0.5 h-full bg-gradient-to-b from-sm-accent-primary/60 to-sm-accent-primary/20 mt-4"></div>
                 )}
               </div>
 
               {/* Right side - content */}
               <div className="flex-1 pb-8">
-                <h3 className="text-lg font-bold mb-2 text-white">{step.title}</h3>
-                <p className="text-[#B3B3B3] text-sm mb-4 leading-relaxed">
+                <h3 className="text-lg font-bold mb-2 text-sm-text-primary">{step.title}</h3>
+                <p className="text-sm-text-secondary text-sm mb-4 leading-relaxed">
                   {step.description}
                 </p>
 
-                <div className="bg-[#1a3a5c]/40 border border-[#00F2FF]/20 rounded-lg p-4">
-                  <p className="text-xs text-[#00F2FF] font-medium mb-2">Deliverables:</p>
+                <div className="bg-sm-surface-elevated border border-sm-border-default rounded-lg p-4" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
+                  <p className="text-xs text-sm-accent-primary font-medium mb-2">Deliverables:</p>
                   <div className="flex flex-wrap gap-2">
                     {step.deliverables.map((item) => (
-                      <span key={item} className="text-xs text-[#B3B3B3] bg-[#0a1728]/50 px-2 py-1 rounded">
+                      <span key={item} className="text-xs text-sm-text-secondary bg-sm-surface-secondary px-2 py-1 rounded">
                         {item}
                       </span>
                     ))}
