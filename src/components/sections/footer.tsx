@@ -15,12 +15,11 @@ const footerLinks = {
     { label: "Custom Development", href: "/services/custom-development" },
   ],
   products: [
-    { label: "Kaulby", href: "#" },
+    { label: "Kaulby", href: "https://kaulbyapp.com" },
     { label: "Clarus", href: "https://www.clarusapp.io" },
     { label: "Rowan", href: "https://rowanapp.com" },
   ],
   resources: [
-    { label: "Articles", href: "/articles" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
