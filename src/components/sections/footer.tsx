@@ -14,10 +14,9 @@ const footerLinks = {
     { label: "AI Automation", href: "/services/ai-transformation" },
     { label: "Custom Development", href: "/services/custom-development" },
   ],
-  products: [
-    { label: "Kaulby", href: "https://kaulbyapp.com" },
-    { label: "Clarus", href: "https://www.clarusapp.io" },
-    { label: "Rowan", href: "https://rowanapp.com" },
+  portfolio: [
+    { label: "Software", href: "/portfolio/software" },
+    { label: "Creative", href: "/portfolio/creative" },
   ],
   resources: [
     { label: "Privacy", href: "/privacy" },
@@ -56,19 +55,13 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-sm-text-inverse mb-4">Products</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-sm-text-inverse mb-4">Portfolio</h4>
             <ul className="space-y-2">
-              {footerLinks.products.map((link) => (
-                <li key={link.label}>
-                  {link.href.startsWith("http") ? (
-                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm-text-inverse-muted hover:text-sm-text-inverse text-sm transition-colors">
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link href={link.href} className="text-sm-text-inverse-muted hover:text-sm-text-inverse text-sm transition-colors">
-                      {link.label}
-                    </Link>
-                  )}
+              {footerLinks.portfolio.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm-text-inverse-muted hover:text-sm-text-inverse text-sm transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
