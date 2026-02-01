@@ -91,12 +91,6 @@ export default function Navbar() {
               Products
             </button>
             <Link
-              href="/articles"
-              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
-            >
-              Articles
-            </Link>
-            <Link
               href="/portfolio"
               className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
             >
@@ -171,13 +165,6 @@ export default function Navbar() {
               >
                 Products
               </button>
-              <Link
-                href="/articles"
-                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Articles
-              </Link>
               <Link
                 href="/portfolio"
                 className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
