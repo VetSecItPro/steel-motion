@@ -7,6 +7,9 @@ const isRedisConfigured =
   process.env.UPSTASH_REDIS_REST_TOKEN;
 
 // Create a mock ratelimiter for when Redis is not configured
+if (!isRedisConfigured && process.env.NODE_ENV === 'production') {
+  console.error('CRITICAL: Rate limiting not configured — Upstash Redis env vars missing. All requests will be allowed.');
+}
 const mockRatelimit = {
   limit: async () => ({ success: true, limit: 5, remaining: 5, reset: 0 }),
 };

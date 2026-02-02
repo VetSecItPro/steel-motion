@@ -191,6 +191,7 @@ export default function PortfolioPage() {
                           alt={`${project.title} logo`}
                           width={80}
                           height={80}
+                          sizes="80px"
                           className="object-contain drop-shadow-lg rounded-xl"
                         />
                       ) : (

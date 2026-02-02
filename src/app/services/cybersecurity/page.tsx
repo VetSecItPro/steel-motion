@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     description: "Protect your organization with military-grade cybersecurity solutions.",
     url: "https://steelmotionllc.com/services/cybersecurity",
     siteName: "Steel Motion LLC",
-    images: [
-      {
-        url: "/images/steel-motion-og-security.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Steel Motion LLC - Cybersecurity & Protection"
-      }
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -28,7 +20,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cybersecurity & Protection | Steel Motion LLC",
     description: "Protect your organization with military-grade cybersecurity solutions.",
-    images: ["/images/steel-motion-og-security.jpg"],
   }
 }
 

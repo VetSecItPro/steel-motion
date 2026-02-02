@@ -80,6 +80,7 @@ const portableTextComponents = {
             alt={value.alt || ''}
             width={800}
             height={600}
+            sizes="(max-width: 768px) 100vw, 800px"
             className="rounded-lg shadow-lg"
           />
           {value.caption && (
@@ -311,6 +312,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   alt={post.mainImage.alt || post.title}
                   width={1200}
                   height={600}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                   className="rounded-lg shadow-xl"
                   priority
                   onError={(e) => {

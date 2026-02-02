@@ -128,6 +128,7 @@ export default function SoftwarePortfolioPage() {
                         alt={`${product.name} logo`}
                         width={120}
                         height={120}
+                        sizes="120px"
                         className="object-contain drop-shadow-lg rounded-xl"
                       />
                     </div>

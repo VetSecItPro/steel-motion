@@ -16,8 +16,6 @@ import {
   paginatedPostsQuery,
   postsCountQuery
 } from "@/lib/sanity-queries"
-import { revalidationManager } from "@/lib/revalidation-manager"
-
 export const metadata: Metadata = {
   title: "Steel Motion Blog | Tech Insights from Veteran Leaders",
   description: "Discover insights on AI transformation, cybersecurity, cloud infrastructure, and technology leadership from Steel Motion's veteran team.",
@@ -35,14 +33,6 @@ export const metadata: Metadata = {
     description: "Discover insights on AI transformation, cybersecurity, cloud infrastructure, and technology leadership from Steel Motion's veteran team.",
     url: "https://steelmotionllc.com/articles",
     siteName: "Steel Motion LLC",
-    images: [
-      {
-        url: "/images/steel-motion-blog-og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Steel Motion Blog - Tech Insights from Veteran Leaders"
-      }
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -50,7 +40,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Steel Motion Blog | Tech Insights from Veteran Leaders",
     description: "Discover insights on AI transformation, cybersecurity, cloud infrastructure, and technology leadership from Steel Motion's veteran team.",
-    images: ["/images/steel-motion-blog-og.jpg"],
   },
   alternates: {
     canonical: "https://steelmotionllc.com/articles"
@@ -67,10 +56,6 @@ interface BlogPageProps {
 }
 
 async function getBlogData(page: number, search: string) {
-  // Check if we should actually fetch new data
-  const shouldUpdate = await revalidationManager.getBlogRevalidation()
-  console.log(`Blog data fetch - should update in ${shouldUpdate}s`)
-
   const start = (page - 1) * POSTS_PER_PAGE
   const end = start + POSTS_PER_PAGE
 

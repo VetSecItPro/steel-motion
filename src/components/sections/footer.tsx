@@ -19,6 +19,7 @@ const footerLinks = {
     { label: "Creative", href: "/portfolio/creative" },
   ],
   resources: [
+    { label: "Articles", href: "/articles" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
