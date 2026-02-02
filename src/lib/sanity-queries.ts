@@ -2,7 +2,7 @@ import { groq } from 'next-sanity'
 
 // Get all posts with author and category info
 export const postsQuery = groq`
-  *[_type == "post"] | order(publishedAt desc) {
+  *[_type == "post"] | order(publishedAt desc) [0...50] {
     _id,
     title,
     slug,
@@ -120,7 +120,7 @@ export const postQuery = groq`
 
 // Get posts by category
 export const postsByCategoryQuery = groq`
-  *[_type == "post" && $categorySlug in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && $categorySlug in categories[]->slug.current] | order(publishedAt desc) [0...50] {
     _id,
     title,
     slug,

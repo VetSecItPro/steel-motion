@@ -1,46 +1,60 @@
-import { NextResponse } from 'next/server'
-import { revalidationManager } from '@/lib/revalidation-manager'
+import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
-export async function GET() {
-  try {
-    // Get current revalidation status
-    const status = await revalidationManager.getActivityStatus()
+/**
+ * On-demand revalidation endpoint for Sanity webhooks.
+ *
+ * Configure a Sanity webhook to POST here when content changes.
+ * This calls revalidatePath to bust the ISR cache for /articles pages.
+ *
+ * Auth: Bearer token via REVALIDATION_SECRET env var.
+ */
 
-    return NextResponse.json({
-      success: true,
-      status: {
-        hasChanges: status.hasChanges,
-        timeSinceLastChange: status.timeSinceLastChange,
-        timeSinceLastChangeHours: (status.timeSinceLastChange / (1000 * 60 * 60)).toFixed(2),
-        nextInterval: status.nextInterval,
-        nextIntervalMinutes: (status.nextInterval / 60).toFixed(1),
-        reason: status.reason
-      },
-      timestamp: new Date().toISOString()
-    })
-  } catch (error) {
-    console.error('Error getting revalidation status:', error)
-    return NextResponse.json(
-      { success: false, error: 'Failed to get revalidation status' },
-      { status: 500 }
-    )
-  }
+function isAuthorized(request: NextRequest): boolean {
+  const secret = process.env.REVALIDATION_SECRET
+  if (!secret) return false
+  const authHeader = request.headers.get('authorization')
+  return authHeader === `Bearer ${secret}`
 }
 
-export async function POST() {
+export async function GET(request: NextRequest) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  return NextResponse.json({
+    success: true,
+    message: 'Revalidation endpoint is healthy',
+    timestamp: new Date().toISOString(),
+  })
+}
+
+export async function POST(request: NextRequest) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   try {
-    // Force refresh the content monitoring cache
-    await revalidationManager.forceRefresh()
+    const body = await request.json().catch(() => ({}))
+    const slug = body?.slug?.current as string | undefined
+
+    // Revalidate the articles listing page
+    revalidatePath('/articles')
+
+    // If a specific slug was provided (from Sanity webhook payload), revalidate that post
+    if (slug) {
+      revalidatePath(`/articles/${slug}`)
+    }
 
     return NextResponse.json({
       success: true,
-      message: 'Content monitoring cache refreshed',
-      timestamp: new Date().toISOString()
+      revalidated: slug ? ['/articles', `/articles/${slug}`] : ['/articles'],
+      timestamp: new Date().toISOString(),
     })
   } catch (error) {
-    console.error('Error refreshing revalidation cache:', error)
+    console.error('Revalidation error:', error instanceof Error ? error.message : 'Unknown error')
     return NextResponse.json(
-      { success: false, error: 'Failed to refresh cache' },
+      { success: false, error: 'Failed to revalidate' },
       { status: 500 }
     )
   }

@@ -186,6 +186,7 @@ export default function About() {
                     alt="Anouar K. Bencheqroun, Founder of Steel Motion LLC"
                     width={192}
                     height={192}
+                    sizes="192px"
                     className="w-full h-full object-cover"
                   />
                 </div>

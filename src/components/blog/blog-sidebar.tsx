@@ -92,12 +92,12 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
             Steel Motion LLC is a veteran-led technology consulting company specializing in
             AI transformation, cybersecurity, and cloud infrastructure solutions.
           </p>
-          <Link href="/about">
-            <Button variant="outline" className="w-full border-sm-accent-primary text-sm-accent-primary hover:bg-sm-accent-primary hover:text-white">
+          <Button asChild variant="outline" className="w-full border-sm-accent-primary text-sm-accent-primary hover:bg-sm-accent-primary hover:text-white">
+            <Link href="/about">
               Learn More About Us
               <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </CardContent>
       </Card>
 
