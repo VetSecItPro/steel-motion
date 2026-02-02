@@ -80,23 +80,37 @@ export function FormField({
           autoComplete={autoComplete}
         />
       ) : type === 'select' ? (
-        <select
-          id={inputId}
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          aria-invalid={hasError}
-          aria-describedby={hasError ? errorId : undefined}
-          className={cn(
-            'flex h-10 w-full rounded-md border px-3 py-2 text-sm',
-            baseInputClasses
-          )}
-          tabIndex={tabIndex}
-          autoComplete={autoComplete}
-        >
-          {children}
-        </select>
+        <div className="relative">
+          <select
+            id={inputId}
+            name={name}
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            aria-invalid={hasError}
+            aria-describedby={hasError ? errorId : undefined}
+            className={cn(
+              'flex h-10 w-full rounded-md border px-3 pr-10 py-2 text-sm appearance-none',
+              baseInputClasses
+            )}
+            tabIndex={tabIndex}
+            autoComplete={autoComplete}
+          >
+            {children}
+          </select>
+          <svg
+            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-sm-text-muted"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </div>
       ) : (
         <Input
           id={inputId}

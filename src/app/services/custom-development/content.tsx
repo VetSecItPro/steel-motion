@@ -73,9 +73,9 @@ const products = [
     tagline: "Community Intelligence Platform",
     description:
       "Full-stack Next.js application with Postgres, background job queues, multi-source API ingestion, and LLM-powered classification.",
-    status: "In Development",
-    statusBg: "bg-sm-status-warning-light",
-    statusText: "text-sm-status-warning",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     href: "https://kaulbyapp.com",
   },
   {
@@ -83,7 +83,7 @@ const products = [
     tagline: "Content Analysis Tool",
     description:
       "Web application with structured data extraction, document processing pipelines, and AI-powered summarization.",
-    status: "Early Access",
+    status: "Product Launch",
     statusBg: "bg-sm-status-info-light",
     statusText: "text-sm-status-info",
     href: "https://www.clarusapp.io",
@@ -93,9 +93,9 @@ const products = [
     tagline: "Household Organization App",
     description:
       "Real-time multi-user application with live sync, task management, notification workflows, and cross-device support.",
-    status: "Beta",
-    statusBg: "bg-sm-status-success-light",
-    statusText: "text-sm-status-success",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     href: "https://rowanapp.com",
   },
 ]
@@ -213,7 +213,7 @@ export default function CustomDevelopmentContent() {
 
             <Button
               onClick={scrollToContact}
-              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
             >
               Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -493,7 +493,7 @@ export default function CustomDevelopmentContent() {
             </p>
             <Button
               onClick={scrollToContact}
-              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
             >
               Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5" />
