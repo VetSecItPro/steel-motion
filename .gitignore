@@ -45,3 +45,10 @@ next-env.d.ts
 
 # content monitoring cache
 .content-cache.json
+
+# MCP config
+.mcp.json
+
+# security audit reports
+.security-reports/
+.security-audit.json

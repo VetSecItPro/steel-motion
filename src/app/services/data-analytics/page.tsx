@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     description: "Transform raw data into actionable business intelligence.",
     url: "https://steelmotionllc.com/services/data-analytics",
     siteName: "Steel Motion LLC",
-    images: [
-      {
-        url: "/images/steel-motion-og-analytics.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Steel Motion LLC - Data Analytics & Intelligence"
-      }
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -28,7 +20,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Data Analytics & Intelligence | Steel Motion LLC",
     description: "Transform raw data into actionable business intelligence.",
-    images: ["/images/steel-motion-og-analytics.jpg"],
   }
 }
 
