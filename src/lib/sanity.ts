@@ -1,11 +1,18 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+if (!projectId || !dataset) {
+  console.warn('Sanity environment variables not configured. CMS features will be unavailable.')
+}
+
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId: projectId || '',
+  dataset: dataset || 'production',
   apiVersion: '2024-01-01',
-  useCdn: false, // Disable CDN to get fresh data immediately
+  useCdn: false,
 })
 
 const builder = imageUrlBuilder(client)
