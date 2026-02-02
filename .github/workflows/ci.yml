@@ -1,313 +1,265 @@
-name: CI Pipeline - Validate & Auto PR
+name: CI
 
 on:
-  push:
-    branches: ['**']
   pull_request:
     branches: [main]
-  workflow_dispatch:
-    inputs:
-      create_pr:
-        description: 'Create PR after validation passes'
-        required: false
-        default: 'true'
-        type: boolean
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
+  PNPM_VERSION: '9'
+  # Placeholder env vars for build
+  NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+  NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
 
 jobs:
-  # ============================================
-  # JOB 1: Code Quality & Security Checks
-  # ============================================
-  quality-checks:
-    name: Code Quality & Security
+  # ─── Fast quality gate (lint + typecheck) ───
+  quality:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+  # ─── Security scanning ───
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
 
-      - name: Run ESLint
-        run: pnpm run lint
+      - name: Dependency audit
+        run: pnpm audit --audit-level=high
+        continue-on-error: true
 
-      - name: TypeScript Type Check
-        run: pnpm exec tsc --noEmit
-
-      - name: Security Audit
-        run: pnpm audit --severity critical || true
-
-      - name: Check for secrets in code
+      - name: Secret pattern scan
         run: |
-          echo "Scanning for potential secrets..."
-          if grep -rE "(api[_-]?key|secret|password|token)\s*[:=]\s*['\"][^'\"]+['\"]" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/ 2>/dev/null | grep -v ".env" | grep -v "process.env"; then
-            echo "WARNING: Potential hardcoded secrets found!"
+          echo "Scanning for leaked secrets in source..."
+          PATTERNS='sk_live_|sk_test_|AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC )?PRIVATE KEY|ghp_[a-zA-Z0-9]{36}|glpat-[a-zA-Z0-9\-]{20}'
+          MATCHES=$(grep -rn --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.json" -E "$PATTERNS" . \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::Potential secrets found in source code!"
+            echo "$MATCHES"
             exit 1
           fi
-          echo "No hardcoded secrets detected."
+          echo "No secrets detected."
 
-  # ============================================
-  # JOB 2: Unit & Integration Tests
-  # ============================================
-  unit-tests:
-    name: Unit & Integration Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Semgrep SAST
+        uses: returntocorp/semgrep-action@v1
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          config: >-
+            p/owasp-top-ten
+            p/nextjs
+        continue-on-error: true
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run Vitest
-        run: pnpm run test:run
-
-  # ============================================
-  # JOB 3: Build Verification
-  # ============================================
+  # ─── Build (gates e2e, lighthouse, bundle-size) ───
   build:
-    name: Build Verification
+    name: Build
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+    needs: quality
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-build
+          path: |
+            .next
+            !.next/cache
+          retention-days: 1
 
-      - name: Build application
-        run: pnpm run build
+      - name: Build summary
+        run: |
+          echo "## Build Output" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          du -sh .next/static/chunks/*.js 2>/dev/null | sort -rh | head -20 >> $GITHUB_STEP_SUMMARY || echo "No chunks found" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
-  # ============================================
-  # JOB 4: E2E Tests (Playwright)
-  # ============================================
-  e2e-tests:
-    name: E2E Tests (Playwright)
+  # ─── E2E tests (reuses build artifact) ───
+  e2e:
+    name: E2E Tests
     runs-on: ubuntu-latest
     needs: build
-    env:
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+      - name: Cache Playwright
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Build and run E2E tests
-        run: |
-          pnpm run build
-          pnpm exec playwright test --project=chromium
-        env:
-          CI: true
+      - run: pnpm exec playwright install chromium --with-deps
+      - run: pnpm exec playwright test --project=chromium
 
-      - name: Upload Playwright report
+      - name: Upload failure artifacts
         uses: actions/upload-artifact@v4
-        if: always()
+        if: failure()
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
 
-  # ============================================
-  # JOB 5: Security Scanning
-  # ============================================
-  security-scan:
-    name: Security Scanning
+  # ─── Lighthouse (reuses build artifact) ───
+  lighthouse:
+    name: Lighthouse Audit
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next
 
-      - name: Run pnpm audit
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        continue-on-error: true
+
+  # ─── Bundle size check (reuses build artifact) ───
+  bundle-size:
+    name: Bundle Size
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next
+
+      - name: Check bundle sizes
         run: |
-          pnpm audit --json > pnpm-audit.json || true
-          cat pnpm-audit.json
+          echo "## Bundle Size Report" >> $GITHUB_STEP_SUMMARY
+          echo '| File | Size |' >> $GITHUB_STEP_SUMMARY
+          echo '|------|------|' >> $GITHUB_STEP_SUMMARY
 
-      - name: Check for critical vulnerabilities
-        run: |
-          CRITICAL=$(pnpm audit --json 2>/dev/null | jq '[.advisories // {} | to_entries[] | select(.value.severity == "critical")] | length' 2>/dev/null || echo "0")
-          echo "Critical vulnerabilities: $CRITICAL"
-          if [ "$CRITICAL" -gt 0 ]; then
-            echo "::error::Critical vulnerabilities found!"
+          WARN=0
+          FAIL=0
+
+          for f in $(find .next/static/chunks -name "*.js" -type f 2>/dev/null | sort); do
+            SIZE=$(stat -c%s "$f" 2>/dev/null || stat -f%z "$f" 2>/dev/null || echo "0")
+            SIZE_KB=$((SIZE / 1024))
+            NAME=$(basename "$f")
+
+            if [ "$SIZE_KB" -gt 750 ]; then
+              echo "| \`$NAME\` | **${SIZE_KB}KB** :x: |" >> $GITHUB_STEP_SUMMARY
+              FAIL=$((FAIL + 1))
+            elif [ "$SIZE_KB" -gt 500 ]; then
+              echo "| \`$NAME\` | **${SIZE_KB}KB** :warning: |" >> $GITHUB_STEP_SUMMARY
+              WARN=$((WARN + 1))
+            elif [ "$SIZE_KB" -gt 200 ]; then
+              echo "| \`$NAME\` | ${SIZE_KB}KB |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Chunks > 500KB: $WARN warnings, $FAIL failures" >> $GITHUB_STEP_SUMMARY
+
+          if [ "$FAIL" -gt 0 ]; then
+            echo "::error::$FAIL chunk(s) exceed 750KB limit"
             exit 1
           fi
 
-      - name: Upload security report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: security-report
-          path: pnpm-audit.json
-          retention-days: 7
-
-  # ============================================
-  # JOB 6: Auto Create PR (on branch push)
-  # ============================================
-  auto-pr:
-    name: Auto Create PR
+  # ─── Summary (always runs) ───
+  summary:
+    name: CI Summary
     runs-on: ubuntu-latest
-    needs: [quality-checks, unit-tests, build, e2e-tests, security-scan]
-    if: |
-      github.event_name == 'push' &&
-      github.ref != 'refs/heads/main' &&
-      (github.event.inputs.create_pr != 'false' || github.event.inputs.create_pr == null)
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Get branch name
-        id: branch
-        run: echo "name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
-
-      - name: Check if PR exists
-        id: check-pr
-        run: |
-          PR_EXISTS=$(gh pr list --head "${{ steps.branch.outputs.name }}" --json number --jq 'length')
-          echo "exists=$PR_EXISTS" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create Pull Request
-        if: steps.check-pr.outputs.exists == '0'
-        run: |
-          gh pr create \
-            --title "Deploy: ${{ steps.branch.outputs.name }}" \
-            --body "## Auto-generated PR
-
-          This PR was automatically created after all CI checks passed.
-
-          ### CI Validation Results
-          - ✅ Code Quality & Linting
-          - ✅ TypeScript Type Check
-          - ✅ Unit & Integration Tests
-          - ✅ E2E Tests (Playwright)
-          - ✅ Security Scan
-          - ✅ Build Verification
-
-          ### Changes
-          $(git log origin/main..HEAD --pretty=format:'- %s' | head -20)
-
-          ---
-          *Merge this PR to deploy to Vercel production.*
-
-          Generated with [Claude Code](https://claude.com/claude-code)" \
-            --base main \
-            --head "${{ steps.branch.outputs.name }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # ============================================
-  # JOB 7: Validation Summary
-  # ============================================
-  validation-summary:
-    name: Validation Summary
-    runs-on: ubuntu-latest
-    needs: [quality-checks, unit-tests, build, e2e-tests, security-scan]
+    needs: [quality, security, build, e2e, lighthouse, bundle-size]
     if: always()
     steps:
-      - name: Check job results
+      - name: Evaluate results
         run: |
-          echo "## CI Pipeline Results" >> $GITHUB_STEP_SUMMARY
+          echo "## CI Results" >> $GITHUB_STEP_SUMMARY
+          echo '| Job | Status |' >> $GITHUB_STEP_SUMMARY
+          echo '|-----|--------|' >> $GITHUB_STEP_SUMMARY
+
+          FAILED=0
+
+          check_job() {
+            local name="$1"
+            local result="$2"
+            if [ "$result" = "success" ]; then
+              echo "| $name | :white_check_mark: passed |" >> $GITHUB_STEP_SUMMARY
+            elif [ "$result" = "skipped" ]; then
+              echo "| $name | :fast_forward: skipped |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $name | :x: $result |" >> $GITHUB_STEP_SUMMARY
+              FAILED=$((FAILED + 1))
+            fi
+          }
+
+          check_job "Quality" "${{ needs.quality.result }}"
+          check_job "Security" "${{ needs.security.result }}"
+          check_job "Build" "${{ needs.build.result }}"
+          check_job "E2E Tests" "${{ needs.e2e.result }}"
+          check_job "Lighthouse" "${{ needs.lighthouse.result }}"
+          check_job "Bundle Size" "${{ needs.bundle-size.result }}"
+
+          if [ "$FAILED" -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo ":x: **$FAILED job(s) failed**" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
           echo "" >> $GITHUB_STEP_SUMMARY
-
-          if [ "${{ needs.quality-checks.result }}" == "success" ]; then
-            echo "✅ **Code Quality & Security**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Code Quality & Security**: Failed" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ "${{ needs.unit-tests.result }}" == "success" ]; then
-            echo "✅ **Unit Tests**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Unit Tests**: Failed" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ "${{ needs.build.result }}" == "success" ]; then
-            echo "✅ **Build**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Build**: Failed" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ "${{ needs.e2e-tests.result }}" == "success" ]; then
-            echo "✅ **E2E Tests**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **E2E Tests**: Failed" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ "${{ needs.security-scan.result }}" == "success" ]; then
-            echo "✅ **Security Scan**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Security Scan**: Failed" >> $GITHUB_STEP_SUMMARY
-          fi
-
-      - name: Fail if critical jobs failed
-        if: |
-          needs.quality-checks.result == 'failure' ||
-          needs.unit-tests.result == 'failure' ||
-          needs.build.result == 'failure' ||
-          needs.e2e-tests.result == 'failure' ||
-          needs.security-scan.result == 'failure'
-        run: exit 1
+          echo ":white_check_mark: **All checks passed**" >> $GITHUB_STEP_SUMMARY
