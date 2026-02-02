@@ -4,6 +4,7 @@ import { DeviceProvider } from "@/lib/contexts/DeviceContext";
 import PageTransition from "@/components/ui/page-transition";
 import OrganizationSchema from "@/components/structured-data/organization";
 import SmoothScroll from "@/components/ui/smooth-scroll";
+import CookieNotice from "@/components/ui/cookie-notice";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -24,6 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://steelmotionllc.com'),
   title: "Steel Motion LLC | AI Automation & Custom Software Development",
   description: "Steel Motion LLC builds AI automation systems and custom software applications. Veteran-owned. Based in Texas. Serving businesses nationwide. Free strategy call available.",
   keywords: ["AI automation", "custom software development", "veteran-owned business", "technology solutions", "SaaS development", "AI consulting"],
@@ -65,6 +67,7 @@ export default function RootLayout({
           <PageTransition>
             {children}
           </PageTransition>
+          <CookieNotice />
         </DeviceProvider>
       </body>
     </html>

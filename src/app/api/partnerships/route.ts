@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ratelimit } from '@/lib/rate-limiter';
 import { supabaseAdmin } from '@/lib/supabase';
 import DOMPurify from 'isomorphic-dompurify';
+import { partnershipFormSchema } from '@/lib/validations/partnership';
+
+export const maxDuration = 30;
 
 const partnershipTypeLabels: Record<string, string> = {
   'referral': 'Referral Partnership',
@@ -14,145 +17,155 @@ const partnershipTypeLabels: Record<string, string> = {
 };
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0] ?? "127.0.0.1";
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || request.headers.get("x-real-ip")
+    || "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
 
   if (!success) {
     return NextResponse.json(
       { error: 'Too many requests. Please try again later.' },
-      { status: 429 }
+      { status: 429, headers: { 'Cache-Control': 'no-store' } }
     );
   }
 
   try {
     const body = await request.json();
-    const { name, email, organization, partnershipType, message, fax } = body;
 
     // Honeypot check
-    if (fax) {
+    if (body.fax) {
       return NextResponse.json(
         { message: 'Partnership inquiry sent successfully' },
-        { status: 200 }
+        { status: 200, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
-    // Validate required fields
-    if (!name || !email || !organization || !partnershipType || !message) {
+    // Server-side Zod validation (validates email format + partnership type enum)
+    const result = partnershipFormSchema.safeParse(body);
+    if (!result.success) {
+      const firstError = result.error.issues[0]?.message || 'Invalid input';
       return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
+        { error: firstError },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
-    // Validate input lengths
-    if (name.length > 100 || email.length > 254 || organization.length > 200 || message.length > 3000) {
-      return NextResponse.json(
-        { error: 'One or more fields exceed maximum length' },
-        { status: 400 }
-      );
-    }
+    const { name, email, organization, partnershipType, message } = result.data;
 
     // Sanitize user input
     const sanitizedName = DOMPurify.sanitize(name);
     const sanitizedEmail = DOMPurify.sanitize(email);
     const sanitizedOrganization = DOMPurify.sanitize(organization);
-    const sanitizedPartnershipType = DOMPurify.sanitize(partnershipType);
     const sanitizedMessage = DOMPurify.sanitize(message);
 
-    const typeLabel = partnershipTypeLabels[sanitizedPartnershipType] || sanitizedPartnershipType;
+    const typeLabel = partnershipTypeLabels[partnershipType] || partnershipType;
 
-    // Send email via Resend
-    let emailSent = false;
-    let resendId: string | undefined;
+    // Run email + DB insert in parallel
+    const emailPromise = process.env.RESEND_API_KEY
+      ? (async () => {
+          const resend = new Resend(process.env.RESEND_API_KEY);
+          const { data, error } = await resend.emails.send({
+            from: 'Steel Motion Partnerships <partnerships@steelmotionllc.com>',
+            to: ['contacts@steelmotionllc.com'],
+            subject: `[Partnership Inquiry] ${sanitizedOrganization}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <h2 style="color: #0F1B2D; border-bottom: 2px solid #0D6E6E; padding-bottom: 10px;">
+                  Partnership Inquiry
+                </h2>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                  <h3 style="margin-top: 0; color: #0F1B2D;">Contact Information</h3>
+                  <p><strong>Name:</strong> ${sanitizedName}</p>
+                  <p><strong>Email:</strong> ${sanitizedEmail}</p>
+                  <p><strong>Organization:</strong> ${sanitizedOrganization}</p>
+                </div>
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                  <h3 style="margin-top: 0; color: #0F1B2D;">Partnership Details</h3>
+                  <p><strong>Type:</strong> ${typeLabel}</p>
+                </div>
+                <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
+                  <h3 style="margin-top: 0; color: #0F1B2D;">Message</h3>
+                  <p style="line-height: 1.6; white-space: pre-wrap;">${sanitizedMessage}</p>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px; font-size: 14px; color: #1565c0;">
+                  <strong>Quick Reply:</strong> Reply to this email to respond directly to ${sanitizedName} at ${sanitizedEmail}
+                </div>
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #e9ecef;">
+                <p style="font-size: 12px; color: #6c757d; text-align: center;">
+                  Sent via the partnerships page at steelmotionllc.com/partnerships
+                </p>
+              </div>
+            `,
+            replyTo: sanitizedEmail,
+          });
 
-    if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY);
+          if (error) {
+            console.error('Resend error:', error instanceof Error ? error.message : 'Email send failed');
+            return { sent: false, id: undefined };
+          }
+          return { sent: true, id: data?.id };
+        })()
+      : Promise.resolve({ sent: false, id: undefined });
 
-      const { data, error } = await resend.emails.send({
-        from: 'Steel Motion Partnerships <partnerships@steelmotionllc.com>',
-        to: ['contacts@steelmotionllc.com'],
-        subject: `[Partnership Inquiry] ${sanitizedOrganization}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #0F1B2D; border-bottom: 2px solid #0D6E6E; padding-bottom: 10px;">
-              Partnership Inquiry
-            </h2>
+    const dbPromise = supabaseAdmin
+      ? (async () => {
+          const { error: dbError } = await supabaseAdmin
+            .from('sm_partnership_inquiries')
+            .insert({
+              name: sanitizedName,
+              email: sanitizedEmail,
+              organization: sanitizedOrganization,
+              partnership_type: partnershipType,
+              message: sanitizedMessage,
+              email_sent: false,
+              ip_address: ip,
+            });
 
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="margin-top: 0; color: #0F1B2D;">Contact Information</h3>
-              <p><strong>Name:</strong> ${sanitizedName}</p>
-              <p><strong>Email:</strong> ${sanitizedEmail}</p>
-              <p><strong>Organization:</strong> ${sanitizedOrganization}</p>
-            </div>
+          if (dbError) {
+            console.error('Supabase insert error:', dbError.message);
+            return { inserted: false };
+          }
+          return { inserted: true };
+        })()
+      : Promise.resolve({ inserted: false });
 
-            <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="margin-top: 0; color: #0F1B2D;">Partnership Details</h3>
-              <p><strong>Type:</strong> ${typeLabel}</p>
-            </div>
+    const [emailResult, dbResult] = await Promise.allSettled([emailPromise, dbPromise]);
 
-            <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
-              <h3 style="margin-top: 0; color: #0F1B2D;">Message</h3>
-              <p style="line-height: 1.6; white-space: pre-wrap;">${sanitizedMessage}</p>
-            </div>
+    const emailSent = emailResult.status === 'fulfilled' && emailResult.value.sent;
+    const dbInserted = dbResult.status === 'fulfilled' && dbResult.value.inserted;
 
-            <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px; font-size: 14px; color: #1565c0;">
-              <strong>Quick Reply:</strong> Reply to this email to respond directly to ${sanitizedName} at ${sanitizedEmail}
-            </div>
-
-            <hr style="margin: 30px 0; border: none; border-top: 1px solid #e9ecef;">
-            <p style="font-size: 12px; color: #6c757d; text-align: center;">
-              Sent via the partnerships page at steelmotionllc.com/partnerships
-            </p>
-          </div>
-        `,
-        replyTo: sanitizedEmail,
-      });
-
-      if (!error && data?.id) {
-        emailSent = true;
-        resendId = data.id;
-      } else if (error) {
-        console.error('Resend error:', error);
-      }
-    }
-
-    // Store in Supabase
-    if (supabaseAdmin) {
-      const { error: dbError } = await supabaseAdmin
+    // Update DB record with email status if both succeeded
+    if (emailSent && dbInserted && supabaseAdmin) {
+      const resendId = emailResult.status === 'fulfilled' ? emailResult.value.id : undefined;
+      await supabaseAdmin
         .from('sm_partnership_inquiries')
-        .insert({
-          name: sanitizedName,
-          email: sanitizedEmail,
-          organization: sanitizedOrganization,
-          partnership_type: sanitizedPartnershipType,
-          message: sanitizedMessage,
-          email_sent: emailSent,
-          resend_id: resendId || null,
-          ip_address: ip,
-        });
-
-      if (dbError) {
-        console.error('Supabase insert error:', dbError);
-      }
+        .update({ email_sent: true, resend_id: resendId || null })
+        .eq('email', sanitizedEmail)
+        .order('created_at', { ascending: false })
+        .limit(1);
     }
 
     // If neither email nor DB worked, return error
-    if (!emailSent && !supabaseAdmin) {
+    if (!emailSent && !dbInserted) {
       return NextResponse.json(
         { error: 'Unable to process inquiry. Please contact us directly at contacts@steelmotionllc.com' },
-        { status: 503 }
+        { status: 503, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
+    if (!dbInserted && supabaseAdmin) {
+      console.error('ALERT: Partnership inquiry DB insert failed but email sent for:', sanitizedEmail);
+    }
+
     return NextResponse.json(
-      { message: 'Partnership inquiry sent successfully', id: resendId },
-      { status: 200 }
+      { message: 'Partnership inquiry sent successfully' },
+      { status: 200, headers: { 'Cache-Control': 'no-store' } }
     );
   } catch (error) {
-    console.error('Error processing partnership inquiry:', error);
+    console.error('Error processing partnership inquiry:', error instanceof Error ? error.message : 'Unknown error');
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500, headers: { 'Cache-Control': 'no-store' } }
     );
   }
 }

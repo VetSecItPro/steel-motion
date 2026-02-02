@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
@@ -9,7 +9,10 @@ import { useDevice } from "@/lib/contexts/DeviceContext"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const { isMobile } = useDevice()
+  const solutionsRef = useRef<HTMLDivElement>(null)
+  const portfolioRef = useRef<HTMLDivElement>(null)
 
   // Close mobile menu when switching to desktop view
   useEffect(() => {
@@ -18,6 +21,40 @@ export default function Navbar() {
     }
   }, [isMobile, isOpen])
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        openDropdown &&
+        solutionsRef.current && !solutionsRef.current.contains(e.target as Node) &&
+        portfolioRef.current && !portfolioRef.current.contains(e.target as Node)
+      ) {
+        setOpenDropdown(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [openDropdown])
+
+  const toggleDropdown = useCallback((name: string) => {
+    setOpenDropdown(prev => prev === name ? null : name)
+  }, [])
+
+  const handleDropdownKeyDown = useCallback((e: React.KeyboardEvent, name: string) => {
+    if (e.key === 'Escape') {
+      setOpenDropdown(null)
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      toggleDropdown(name)
+    }
+  }, [toggleDropdown])
+
+  const handleDropdownItemKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setOpenDropdown(null)
+    }
+  }, [])
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -25,6 +62,8 @@ export default function Navbar() {
     }
     setIsOpen(false)
   }
+
+  const isDropdownOpen = (name: string) => openDropdown === name
 
   return (
     <nav
@@ -47,9 +86,9 @@ export default function Navbar() {
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-sm-text-primary">
+              <span className="text-xl font-bold text-sm-text-primary">
                 Steel Motion
-              </h1>
+              </span>
             </div>
             </div>
           </Link>
@@ -57,19 +96,36 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           {!isMobile && (
           <div className="flex items-center gap-x-12 animate-fade-in-delay">
-            <div className="relative group">
+            <div className="relative" ref={solutionsRef}>
               <button
-                onClick={() => scrollToSection('solutions')}
+                onClick={() => {
+                  scrollToSection('solutions')
+                  toggleDropdown('solutions')
+                }}
+                onKeyDown={(e) => handleDropdownKeyDown(e, 'solutions')}
+                aria-haspopup="true"
+                aria-expanded={isDropdownOpen('solutions')}
                 className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium flex items-center gap-1"
               >
                 Solutions
               </button>
               {/* Dropdown menu */}
-              <div className="absolute top-full left-0 mt-2 w-72 bg-sm-surface-elevated border border-sm-border-default rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300" style={{ boxShadow: 'var(--sm-shadow-lg)' }}>
+              <div
+                className={`absolute top-full left-0 mt-2 w-72 bg-sm-surface-elevated border border-sm-border-default rounded-lg transition-all duration-300 ${
+                  isDropdownOpen('solutions')
+                    ? 'opacity-100 visible'
+                    : 'opacity-0 invisible'
+                }`}
+                style={{ boxShadow: 'var(--sm-shadow-lg)' }}
+                role="menu"
+              >
                 <div className="p-4 space-y-3">
                   <Link
                     href="/services/ai-transformation"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
                   >
                     <div className="font-medium">AI Automation</div>
                     <div className="text-sm text-sm-text-muted">Intelligent automation & process optimization</div>
@@ -77,6 +133,9 @@ export default function Navbar() {
                   <Link
                     href="/services/custom-development"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
                   >
                     <div className="font-medium">Custom Development</div>
                     <div className="text-sm text-sm-text-muted">Web applications, APIs, and internal tools</div>
@@ -84,19 +143,37 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="relative group">
+            <div className="relative" ref={portfolioRef}>
               <Link
                 href="/portfolio"
+                onKeyDown={(e) => handleDropdownKeyDown(e, 'portfolio')}
+                onMouseEnter={() => setOpenDropdown('portfolio')}
+                onMouseLeave={() => setOpenDropdown(null)}
+                aria-haspopup="true"
+                aria-expanded={isDropdownOpen('portfolio')}
                 className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
               >
                 Portfolio
               </Link>
               {/* Dropdown menu */}
-              <div className="absolute top-full left-0 mt-2 w-64 bg-sm-surface-elevated border border-sm-border-default rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300" style={{ boxShadow: 'var(--sm-shadow-lg)' }}>
+              <div
+                className={`absolute top-full left-0 mt-2 w-64 bg-sm-surface-elevated border border-sm-border-default rounded-lg transition-all duration-300 ${
+                  isDropdownOpen('portfolio')
+                    ? 'opacity-100 visible'
+                    : 'opacity-0 invisible'
+                }`}
+                style={{ boxShadow: 'var(--sm-shadow-lg)' }}
+                role="menu"
+                onMouseEnter={() => setOpenDropdown('portfolio')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
                 <div className="p-4 space-y-3">
                   <Link
                     href="/portfolio/software"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
                   >
                     <div className="font-medium">Software</div>
                     <div className="text-sm text-sm-text-muted">SaaS products we build and operate</div>
@@ -104,6 +181,9 @@ export default function Navbar() {
                   <Link
                     href="/portfolio/creative"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
                   >
                     <div className="font-medium">Creative</div>
                     <div className="text-sm text-sm-text-muted">AI-assisted music production</div>
@@ -123,11 +203,15 @@ export default function Navbar() {
             >
               About
             </Link>
-            <Link href="/#contact">
-              <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white px-6 py-2 transition-all duration-300 font-semibold">
-                Get Started
-              </Button>
+            <Link
+              href="/articles"
+              className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors duration-300 font-medium"
+            >
+              Articles
             </Link>
+            <Button asChild className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white px-6 py-2 transition-all duration-300 font-semibold">
+              <Link href="/#contact">Get Started</Link>
+            </Button>
           </div>
           )}
 
@@ -213,11 +297,16 @@ export default function Navbar() {
               >
                 About
               </Link>
-              <Link href="/#contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white py-3 transition-all duration-300 font-semibold">
-                  Get Started
-                </Button>
+              <Link
+                href="/articles"
+                className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Articles
               </Link>
+              <Button asChild className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white py-3 transition-all duration-300 font-semibold">
+                <Link href="/#contact" onClick={() => setIsOpen(false)}>Get Started</Link>
+              </Button>
             </div>
           </div>
         )}

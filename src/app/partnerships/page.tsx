@@ -10,14 +10,6 @@ export const metadata: Metadata = {
     description: "Partner with Steel Motion LLC on referrals, shared projects, and overflow work.",
     url: "https://steelmotionllc.com/partnerships",
     siteName: "Steel Motion LLC",
-    images: [
-      {
-        url: "/images/steel-motion-og-partnerships.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Steel Motion LLC - Partnerships"
-      }
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -25,7 +17,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Partnerships | Steel Motion LLC",
     description: "Partner with Steel Motion LLC on referrals, shared projects, and overflow work.",
-    images: ["/images/steel-motion-og-partnerships.jpg"],
   }
 }
 

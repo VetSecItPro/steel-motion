@@ -3,16 +3,20 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com;
+  script-src 'self' 'unsafe-inline' *.youtube.com *.twitter.com;
   child-src *.youtube.com *.google.com *.twitter.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
-  img-src * blob: data:;
+  img-src 'self' blob: data: cdn.sanity.io images.unsplash.com placehold.co;
   media-src 'none';
-  connect-src *;
+  connect-src 'self' https://*.sanity.io https://*.supabase.co https://*.upstash.io https://*.vercel-insights.com https://*.vercel-analytics.com;
   font-src 'self' data:;
 `;
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
   async redirects() {
     return [
       {
@@ -29,6 +33,23 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://steelmotionllc.com',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'POST, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [

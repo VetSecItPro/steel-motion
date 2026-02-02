@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     description: "Modernize your IT infrastructure with scalable cloud solutions.",
     url: "https://steelmotionllc.com/services/cloud-infrastructure",
     siteName: "Steel Motion LLC",
-    images: [
-      {
-        url: "/images/steel-motion-og-cloud.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Steel Motion LLC - Cloud Infrastructure Solutions"
-      }
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -28,7 +20,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cloud Infrastructure Solutions | Steel Motion LLC",
     description: "Modernize your IT infrastructure with scalable cloud solutions.",
-    images: ["/images/steel-motion-og-cloud.jpg"],
   }
 }
 

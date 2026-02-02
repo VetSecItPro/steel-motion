@@ -5,13 +5,8 @@ const OrganizationSchema = () => {
     '@context': 'https://schema.org',
     '@type': 'Corporation',
     'name': 'Steel Motion LLC',
-    'url': 'https://www.steelmotionllc.com',
-    'logo': 'https://www.steelmotionllc.com/images/steel-motion-hero-logo.svg',
-    'contactPoint': {
-      '@type': 'ContactPoint',
-      'telephone': '+1-555-555-5555', // Add a real phone number when available
-      'contactType': 'customer service',
-    },
+    'url': 'https://steelmotionllc.com',
+    'logo': 'https://steelmotionllc.com/images/steel-motion-hero-logo.svg',
     'sameAs': [
       'https://www.linkedin.com/in/vetsecitpro',
     ],

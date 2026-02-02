@@ -1,13 +1,12 @@
 import type { Metadata } from "next"
+import { cache } from "react"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import BlogPostContent from "@/components/blog/blog-post-content"
 import { client } from "@/lib/sanity"
 import { postQuery } from "@/lib/sanity-queries"
-import { revalidationManager } from "@/lib/revalidation-manager"
 
-// Use shorter base interval for smart revalidation
 export const revalidate = 60
 
 interface BlogPostPageProps {
@@ -16,14 +15,9 @@ interface BlogPostPageProps {
   }>
 }
 
-async function getPost(slug: string) {
-  // Check revalidation status for logging
-  const shouldUpdate = await revalidationManager.getPostRevalidation()
-  console.log(`Post ${slug} fetch - should update in ${shouldUpdate}s`)
-
-  const post = await client.fetch(postQuery, { slug })
-  return post
-}
+const getPost = cache(async (slug: string) => {
+  return client.fetch(postQuery, { slug })
+})
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params
