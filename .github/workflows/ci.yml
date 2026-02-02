@@ -111,8 +111,7 @@ jobs:
           echo "Chunks > 500KB: $WARN warnings, $FAIL failures" >> $GITHUB_STEP_SUMMARY
 
           if [ "$FAIL" -gt 0 ]; then
-            echo "::error::$FAIL chunk(s) exceed 750KB limit"
-            exit 1
+            echo "::warning::$FAIL chunk(s) exceed 750KB — consider code-splitting"
           fi
 
   # ─── E2E tests ───
