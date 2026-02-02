@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, ExternalLink, Code, Music } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
@@ -25,6 +26,7 @@ interface Project {
   statusBg: string
   statusText: string
   gradient: string
+  logo?: string
   href?: string
 }
 
@@ -38,10 +40,11 @@ const projects: Project[] = [
     category: "software",
     categoryLabel: "Software Product",
     categoryIcon: Code,
-    status: "In Development",
-    statusBg: "bg-sm-status-warning-light",
-    statusText: "text-sm-status-warning",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     gradient: "from-indigo-500 via-blue-500 to-blue-600",
+    logo: "/images/kaulby-logo.png",
     href: "https://kaulbyapp.com",
   },
   {
@@ -53,10 +56,11 @@ const projects: Project[] = [
     category: "software",
     categoryLabel: "Software Product",
     categoryIcon: Code,
-    status: "Early Access",
+    status: "Product Launch",
     statusBg: "bg-sm-status-info-light",
     statusText: "text-sm-status-info",
     gradient: "from-blue-500 via-teal-500 to-teal-600",
+    logo: "/images/clarus-logo.webp",
     href: "https://www.clarusapp.io",
   },
   {
@@ -68,10 +72,11 @@ const projects: Project[] = [
     category: "software",
     categoryLabel: "Software Product",
     categoryIcon: Code,
-    status: "Beta",
-    statusBg: "bg-sm-status-success-light",
-    statusText: "text-sm-status-success",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     gradient: "from-teal-500 via-emerald-500 to-green-500",
+    logo: "/images/rowan-logo.png",
     href: "https://rowanapp.com",
   },
   {
@@ -180,7 +185,17 @@ export default function PortfolioPage() {
                   <div className={`h-32 bg-gradient-to-r ${project.gradient} relative overflow-hidden`}>
                     <div className="absolute inset-0 bg-black/20" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <project.categoryIcon className="w-16 h-16 text-white/30" />
+                      {project.logo ? (
+                        <Image
+                          src={project.logo}
+                          alt={`${project.title} logo`}
+                          width={80}
+                          height={80}
+                          className="object-contain drop-shadow-lg rounded-xl"
+                        />
+                      ) : (
+                        <project.categoryIcon className="w-16 h-16 text-white/30" />
+                      )}
                     </div>
                     <div className="absolute top-4 right-4">
                       <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${project.statusBg} ${project.statusText}`}>

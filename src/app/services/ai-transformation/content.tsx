@@ -70,9 +70,9 @@ const products = [
     tagline: "Community Intelligence Platform",
     description:
       "AI-powered monitoring across Reddit, Hacker News, and forums. Uses LLM classification, automated data pipelines, and multi-source ingestion.",
-    status: "In Development",
-    statusBg: "bg-sm-status-warning-light",
-    statusText: "text-sm-status-warning",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     href: "https://kaulbyapp.com",
   },
   {
@@ -80,7 +80,7 @@ const products = [
     tagline: "Content Analysis Tool",
     description:
       "Structured data extraction from unstructured content at scale. Uses document processing, AI summarization, and automated categorization.",
-    status: "Early Access",
+    status: "Product Launch",
     statusBg: "bg-sm-status-info-light",
     statusText: "text-sm-status-info",
     href: "https://www.clarusapp.io",
@@ -90,9 +90,9 @@ const products = [
     tagline: "Household Organization App",
     description:
       "Real-time task coordination for couples, roommates, and families. Uses real-time sync, task automation, and notification workflows.",
-    status: "Beta",
-    statusBg: "bg-sm-status-success-light",
-    statusText: "text-sm-status-success",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     href: "https://rowanapp.com",
   },
 ]
@@ -201,7 +201,7 @@ export default function AITransformationContent() {
 
             <Button
               onClick={scrollToContact}
-              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
             >
               Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -445,7 +445,7 @@ export default function AITransformationContent() {
             </p>
             <Button
               onClick={scrollToContact}
-              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
             >
               Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5" />

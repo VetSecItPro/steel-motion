@@ -203,7 +203,7 @@ export default function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover disabled:opacity-50 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
+                    className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover disabled:opacity-50 disabled:cursor-not-allowed text-white py-6 text-lg group transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <>
