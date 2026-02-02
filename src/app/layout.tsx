@@ -2,10 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { DeviceProvider } from "@/lib/contexts/DeviceContext";
 import PageTransition from "@/components/ui/page-transition";
-import CustomCursor from "@/components/ui/custom-cursor";
 import OrganizationSchema from "@/components/structured-data/organization";
 import SmoothScroll from "@/components/ui/smooth-scroll";
-import Spotlight from "@/components/ui/spotlight";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -57,12 +55,10 @@ export default function RootLayout({
         <OrganizationSchema />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased no-cursor`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <DeviceProvider>
           <SmoothScroll />
-          <CustomCursor />
-          <Spotlight />
           <a href="#main-content" className="skip-link">
             Skip to main content
           </a>

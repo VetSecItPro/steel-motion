@@ -5,9 +5,9 @@ import AboutContent from "@/components/sections/about"
 import PersonSchema from '@/components/structured-data/person'
 
 export const metadata: Metadata = {
-  title: 'About | Steel Motion LLC - Veteran-Led AI & Technology Solutions',
-  description: 'Meet Anouar K. Bencheqroun MBA CISSP, the founder of Steel Motion LLC. Learn about our veteran-led approach to AI consulting, cybersecurity, and technology solutions.',
-  keywords: 'about steel motion, anouar bencheqroun, veteran technology leader, AI consulting, cybersecurity expert, MBA CISSP',
+  title: 'About | Steel Motion LLC',
+  description: 'Steel Motion LLC is a veteran-owned software company in Dallas-Fort Worth. We build software products, AI automation systems, and custom web applications for small businesses.',
+  keywords: 'about steel motion, veteran-owned software company, anouar bencheqroun, AI automation, custom software development, Dallas Fort Worth',
 }
 
 export default function AboutPage() {

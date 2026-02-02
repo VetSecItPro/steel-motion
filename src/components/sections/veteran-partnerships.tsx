@@ -4,7 +4,7 @@ import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Users, Target, Handshake, Send, Loader2 } from "lucide-react"
+import { Users, ArrowRightLeft, Handshake, Send, Loader2, DollarSign, FolderGit2, Shield, Code, Cpu, Award, Calendar, Paintbrush, TrendingUp, Wrench, UserCheck } from "lucide-react"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import { FormField } from "@/components/ui/form-field"
@@ -18,7 +18,6 @@ export default function VeteranPartnerships() {
     name: '',
     email: '',
     organization: '',
-    veteranStatus: '',
     partnershipType: '' as PartnershipFormData['partnershipType'],
     message: '',
     fax: '',
@@ -29,7 +28,6 @@ export default function VeteranPartnerships() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const validateField = useCallback((name: keyof PartnershipFormData, value: string) => {
-    // Create a partial object for validation
     const testData = { ...formData, [name]: value }
     const result = partnershipFormSchema.safeParse(testData)
 
@@ -52,7 +50,6 @@ export default function VeteranPartnerships() {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
 
-    // Clear error when user starts typing (if field was touched)
     if (touched[name] && errors[name as keyof PartnershipFormData]) {
       const error = validateField(name as keyof PartnershipFormData, value)
       setErrors(prev => ({ ...prev, [name]: error }))
@@ -63,7 +60,6 @@ export default function VeteranPartnerships() {
     e.preventDefault()
     setSubmitStatus('idle')
 
-    // Validate all fields
     const result = partnershipFormSchema.safeParse(formData)
 
     if (!result.success) {
@@ -75,7 +71,7 @@ export default function VeteranPartnerships() {
         }
       })
       setErrors(fieldErrors)
-      setTouched({ name: true, email: true, organization: true, veteranStatus: true, partnershipType: true, message: true })
+      setTouched({ name: true, email: true, organization: true, partnershipType: true, message: true })
       return
     }
 
@@ -96,9 +92,8 @@ export default function VeteranPartnerships() {
           name: '',
           email: '',
           organization: '',
-          veteranStatus: '',
           partnershipType: '' as PartnershipFormData['partnershipType'],
-          message: ''
+          message: '',
         })
         setErrors({})
         setTouched({})
@@ -122,9 +117,7 @@ export default function VeteranPartnerships() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-sm-surface-inverse text-white pt-24 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-sm-surface-inverse-alt/40 pointer-events-none"></div>
-
+      <section className="bg-sm-surface-inverse text-white pt-24 pb-16 relative overflow-hidden" style={{ backgroundColor: '#0B1A2B', background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             {...slideInUp}
@@ -135,9 +128,9 @@ export default function VeteranPartnerships() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6"
             >
-              <div className="inline-flex items-center gap-2 bg-sm-surface-inverse-alt/50 border border-sm-accent-inverse/40 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
-                <Shield className="w-4 h-4 text-sm-accent-inverse" />
-                <span className="text-sm-text-inverse-muted">Veteran Partnership Program</span>
+              <div className="inline-flex items-center gap-2 bg-sm-accent-inverse/10 border border-sm-accent-inverse/30 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
+                <Handshake className="w-4 h-4 text-sm-accent-inverse" />
+                <span className="text-sm-accent-inverse">Partnerships</span>
               </div>
             </motion.div>
 
@@ -146,17 +139,18 @@ export default function VeteranPartnerships() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl md:text-6xl font-bold mb-6"
             >
-              <span className="text-sm-text-inverse">Partner with</span>
-              <span className="block text-sm-accent-inverse drop-shadow-lg">Veteran Leaders</span>
+              <span className="text-sm-text-inverse">Work </span>
+              <span className="text-sm-accent-inverse">With Us</span>
             </motion.h1>
 
             <motion.p
               {...slideInUp}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xl md:text-2xl text-sm-text-inverse-muted mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-sm-text-inverse-muted mb-8 max-w-3xl mx-auto leading-relaxed"
             >
-              Join forces with Steel Motion LLC to deliver mission-critical technology solutions.
-              Together, we can serve veteran communities and drive innovation with military precision.
+              We partner with other veteran-owned businesses, freelancers, and agencies
+              on referrals, overflow work, and complementary projects. If you build
+              something we don&apos;t, or we build something you don&apos;t, let&apos;s talk.
             </motion.p>
 
             {/* Partnership Types */}
@@ -167,20 +161,20 @@ export default function VeteranPartnerships() {
             >
               <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl p-6 backdrop-blur-sm">
                 <Users className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Veteran Organizations</h3>
-                <p className="text-sm-text-inverse-muted text-sm">VSOs, veteran nonprofits, and community groups</p>
+                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Veteran-Owned Businesses</h3>
+                <p className="text-sm-text-inverse-muted text-sm">Fellow veteran founders and service-disabled veteran-owned businesses</p>
               </div>
 
               <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl p-6 backdrop-blur-sm">
-                <Target className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Defense Contractors</h3>
-                <p className="text-sm-text-inverse-muted text-sm">Prime contractors and specialized defense firms</p>
+                <ArrowRightLeft className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
+                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Referral Partners</h3>
+                <p className="text-sm-text-inverse-muted text-sm">Designers, marketers, agencies who refer dev work and receive referrals</p>
               </div>
 
               <div className="bg-sm-surface-inverse-alt/40 border border-sm-border-inverse rounded-2xl p-6 backdrop-blur-sm">
                 <Handshake className="w-8 h-8 text-sm-accent-inverse mb-4 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Strategic Alliances</h3>
-                <p className="text-sm-text-inverse-muted text-sm">Technology partnerships and joint ventures</p>
+                <h3 className="text-lg font-semibold mb-2 text-sm-text-inverse">Complementary Services</h3>
+                <p className="text-sm-text-inverse-muted text-sm">Freelancers and firms with skills we don&apos;t offer in-house</p>
               </div>
             </motion.div>
 
@@ -197,13 +191,54 @@ export default function VeteranPartnerships() {
                     block: 'start'
                   })
                 }}
-                className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Partner with Us
+                Send a Partnership Inquiry
                 <Handshake className="ml-2 w-5 h-5" />
               </Button>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* What We Bring + What We Look For */}
+      <section className="py-20 bg-sm-surface-secondary">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <motion.div {...slideInLeft}>
+              <h3 className="text-2xl font-bold text-sm-text-primary mb-6">What We Bring</h3>
+              <div className="space-y-4">
+                {[
+                  { icon: Code, text: "Full-stack web development (Next.js, React, TypeScript)" },
+                  { icon: Cpu, text: "AI automation and LLM integration" },
+                  { icon: Award, text: "Veteran-owned business credentials (for joint bidding if applicable)" },
+                  { icon: Calendar, text: "Flexible scheduling for overflow and project-based work" },
+                ].map((item) => (
+                  <div key={item.text} className="flex items-start gap-3">
+                    <item.icon className="w-5 h-5 text-sm-accent-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-sm-text-secondary leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div {...slideInRight}>
+              <h3 className="text-2xl font-bold text-sm-text-primary mb-6">What We Look For</h3>
+              <div className="space-y-4">
+                {[
+                  { icon: Paintbrush, text: "Designers, copywriters, and marketers (we build, you brand)" },
+                  { icon: TrendingUp, text: "Sales consultants who work with SMBs (you close, we deliver)" },
+                  { icon: Wrench, text: "Other developers with complementary skills (mobile, DevOps, data)" },
+                  { icon: UserCheck, text: "Veteran-owned businesses in any industry (mutual referrals)" },
+                ].map((item) => (
+                  <div key={item.text} className="flex items-start gap-3">
+                    <item.icon className="w-5 h-5 text-sm-accent-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-sm-text-secondary leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -219,7 +254,7 @@ export default function VeteranPartnerships() {
                 <CardHeader>
                   <CardTitle className="text-2xl text-sm-text-primary">Partnership Inquiry</CardTitle>
                   <CardDescription className="text-sm-text-secondary">
-                    Tell us about your organization and partnership goals. We&apos;ll connect you with our team within 24 hours.
+                    Tell us about your business and how you&apos;d like to work together. We respond within 24 hours.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -271,49 +306,30 @@ export default function VeteranPartnerships() {
                       onBlur={handleBlur}
                       error={touched.organization ? errors.organization : undefined}
                       required
-                      placeholder="Your organization name"
+                      placeholder="Your business or company name"
                     />
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <FormField
-                        label="Veteran Status"
-                        name="veteranStatus"
-                        type="select"
-                        value={formData.veteranStatus || ''}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={touched.veteranStatus ? errors.veteranStatus : undefined}
-                      >
-                        <option value="">Select status</option>
-                        <option value="veteran">Veteran</option>
-                        <option value="active-duty">Active Duty</option>
-                        <option value="military-spouse">Military Spouse</option>
-                        <option value="civilian">Civilian</option>
-                        <option value="prefer-not-to-say">Prefer not to say</option>
-                      </FormField>
-
-                      <FormField
-                        label="Partnership Type"
-                        name="partnershipType"
-                        type="select"
-                        value={formData.partnershipType}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={touched.partnershipType ? errors.partnershipType : undefined}
-                        required
-                      >
-                        <option value="">Select type</option>
-                        <option value="veteran-organization">Veteran Organization</option>
-                        <option value="defense-contractor">Defense Contractor</option>
-                        <option value="technology-partnership">Technology Partnership</option>
-                        <option value="joint-venture">Joint Venture</option>
-                        <option value="subcontracting">Subcontracting</option>
-                        <option value="other">Other</option>
-                      </FormField>
-                    </div>
+                    <FormField
+                      label="Partnership Type"
+                      name="partnershipType"
+                      type="select"
+                      value={formData.partnershipType}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.partnershipType ? errors.partnershipType : undefined}
+                      required
+                    >
+                      <option value="">Select type</option>
+                      <option value="referral">Referral Partnership (we send each other leads)</option>
+                      <option value="overflow-subcontracting">Overflow / Subcontracting (you need extra dev capacity)</option>
+                      <option value="complementary-services">Complementary Services (your skills + our skills)</option>
+                      <option value="product-integration">Product Integration (your tool + our tool)</option>
+                      <option value="veteran-network">Veteran Business Network</option>
+                      <option value="other">Other</option>
+                    </FormField>
 
                     <FormField
-                      label="Partnership Details"
+                      label="Message"
                       name="message"
                       type="textarea"
                       value={formData.message}
@@ -322,28 +338,28 @@ export default function VeteranPartnerships() {
                       error={touched.message ? errors.message : undefined}
                       required
                       rows={5}
-                      placeholder="Describe your partnership goals, project scope, timeline, and how we can work together..."
+                      placeholder="Tell us about your business, what you're looking for, and how we might work together..."
                     />
 
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover disabled:bg-sm-accent-primary/50 disabled:cursor-not-allowed text-white py-6 text-lg rounded-lg group transition-all duration-300"
+                      className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover disabled:bg-sm-accent-primary/50 disabled:cursor-not-allowed text-white px-6 py-3 group transition-all duration-300"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="mr-2 w-5 h-5 animate-spin" />
-                          Sending Partnership Inquiry...
+                          <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                          Sending...
                         </>
                       ) : (
                         <>
                           Submit Partnership Inquiry
-                          <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                          <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </>
                       )}
                     </Button>
 
-                    {/* Status messages with aria-live for accessibility */}
+                    {/* Status messages */}
                     <div aria-live="polite" aria-atomic="true">
                       {submitStatus === 'success' && (
                         <motion.div
@@ -351,8 +367,8 @@ export default function VeteranPartnerships() {
                           className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
                           role="alert"
                         >
-                          <p className="font-medium">Partnership inquiry sent successfully!</p>
-                          <p className="text-sm opacity-90">We&apos;ll review your submission and get back to you within 24 hours.</p>
+                          <p className="font-medium">Partnership inquiry sent!</p>
+                          <p className="text-sm opacity-90">We&apos;ll get back to you within 24 hours.</p>
                         </motion.div>
                       )}
 
@@ -363,7 +379,7 @@ export default function VeteranPartnerships() {
                           role="alert"
                         >
                           <p className="font-medium">Failed to send partnership inquiry</p>
-                          <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
+                          <p className="text-sm opacity-90">Please try again or contact us directly at contacts@steelmotionllc.com</p>
                         </motion.div>
                       )}
                     </div>
@@ -380,59 +396,58 @@ export default function VeteranPartnerships() {
               <div>
                 <h3 className="text-2xl font-bold mb-6 text-sm-text-primary">Partnership Opportunities</h3>
                 <p className="text-sm-text-secondary mb-8 leading-relaxed">
-                  Steel Motion LLC is committed to building strong partnerships within the veteran
-                  community and defense sector. We believe in the power of collaboration to deliver
-                  exceptional results and support our fellow veterans.
+                  We&apos;re a veteran-owned software company in Texas. We partner with other small
+                  businesses on referrals, shared projects, and overflow work. Here&apos;s how a
+                  partnership works.
                 </p>
               </div>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <DollarSign className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-sm-text-primary mb-2">Referral Revenue</h4>
+                    <p className="text-sm-text-secondary">
+                      You send us a client who needs dev or automation work. We send you
+                      clients who need your services. No formal agreements needed to start.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <FolderGit2 className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-sm-text-primary mb-2">Shared Projects</h4>
+                    <p className="text-sm-text-secondary">
+                      You bring the design, we bring the code. Or you bring the strategy,
+                      we bring the implementation. We scope together, deliver together,
+                      split the work based on skills.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm-text-primary mb-2">Veteran-First Approach</h4>
+                    <h4 className="font-semibold text-sm-text-primary mb-2">Veteran Network</h4>
                     <p className="text-sm-text-secondary">
-                      We prioritize partnerships with veteran-owned businesses and organizations
-                      that share our commitment to excellence and service.
+                      We prioritize working with other veteran-owned businesses. Same values,
+                      same work ethic, shared understanding of accountability and delivery.
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Target className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm-text-primary mb-2">Mission-Critical Solutions</h4>
-                    <p className="text-sm-text-secondary">
-                      Partner with us on defense contracts, government projects, and enterprise
-                      solutions that make a real impact.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-sm-accent-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm-text-primary mb-2">Community Impact</h4>
-                    <p className="text-sm-text-secondary">
-                      Join us in supporting veteran communities through technology, training,
-                      and employment opportunities.
-                    </p>
-                  </div>
-                </div>
-
               </div>
 
               <div className="bg-sm-surface-elevated border border-sm-border-default rounded-lg p-6 mt-8" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
                 <h4 className="text-lg font-semibold text-sm-text-primary mb-3">Response Time</h4>
                 <p className="text-sm-text-secondary text-sm">
-                  We typically respond to partnership inquiries within 24 hours during business days.
-                  For urgent partnership opportunities, please mention &ldquo;URGENT&rdquo; in your message subject.
+                  We respond to every inquiry within 24 hours on business days.
                 </p>
               </div>
             </motion.div>

@@ -124,7 +124,7 @@ export default function Navbar() {
               About
             </Link>
             <Link href="/#contact">
-              <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white px-6 py-2 rounded-lg transition-all duration-300 font-semibold">
+              <Button className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white px-6 py-2 transition-all duration-300 font-semibold">
                 Get Started
               </Button>
             </Link>
@@ -214,7 +214,7 @@ export default function Navbar() {
                 About
               </Link>
               <Link href="/#contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white py-3 rounded-lg transition-all duration-300 font-semibold">
+                <Button className="w-full bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white py-3 transition-all duration-300 font-semibold">
                   Get Started
                 </Button>
               </Link>

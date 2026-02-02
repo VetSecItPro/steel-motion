@@ -2,12 +2,12 @@ import type { Metadata } from "next"
 import VeteranPartnerships from "@/components/sections/veteran-partnerships"
 
 export const metadata: Metadata = {
-  title: "Veteran Partnerships | Steel Motion LLC - Veteran-Led Technology Solutions",
-  description: "Partner with Steel Motion LLC for veteran-focused technology initiatives. Connect with our veteran-led team to explore collaboration opportunities in AI, cybersecurity, and digital transformation.",
-  keywords: ["veteran partnerships", "veteran-owned business", "military contractors", "defense technology", "veteran collaboration"],
+  title: "Partnerships | Steel Motion LLC",
+  description: "Partner with Steel Motion LLC on referrals, shared projects, and overflow work. Veteran-owned software company in Texas looking for complementary service providers and fellow veteran businesses.",
+  keywords: ["partnerships", "veteran-owned business", "referral partners", "software development partnerships", "veteran collaboration"],
   openGraph: {
-    title: "Veteran Partnerships | Steel Motion LLC",
-    description: "Partner with Steel Motion LLC for veteran-focused technology initiatives.",
+    title: "Partnerships | Steel Motion LLC",
+    description: "Partner with Steel Motion LLC on referrals, shared projects, and overflow work.",
     url: "https://steelmotionllc.com/partnerships",
     siteName: "Steel Motion LLC",
     images: [
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         url: "/images/steel-motion-og-partnerships.jpg",
         width: 1200,
         height: 630,
-        alt: "Steel Motion LLC - Veteran Partnerships"
+        alt: "Steel Motion LLC - Partnerships"
       }
     ],
     locale: "en_US",
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Veteran Partnerships | Steel Motion LLC",
-    description: "Partner with Steel Motion LLC for veteran-focused technology initiatives.",
+    title: "Partnerships | Steel Motion LLC",
+    description: "Partner with Steel Motion LLC on referrals, shared projects, and overflow work.",
     images: ["/images/steel-motion-og-partnerships.jpg"],
   }
 }

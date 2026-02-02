@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, ExternalLink, Code } from "lucide-react"
+import { ArrowRight, ArrowLeft, ExternalLink, ShieldCheck, Plug, CheckCircle, Key } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
@@ -16,11 +17,12 @@ const products = [
     description:
       "AI-powered community monitoring tool that tracks discussions across Reddit, Hacker News, and forums. Categorizes conversations into actionable buckets using LLM classification. Includes natural language query for collected data.",
     techStack:
-      "Next.js 14, TypeScript, Neon Postgres, Drizzle ORM, Clerk Auth, Stripe, Inngest, OpenRouter (Gemini 2.5 Flash), Redis/Upstash, PostHog, Vercel",
-    status: "In Development",
-    statusBg: "bg-sm-status-warning-light",
-    statusText: "text-sm-status-warning",
+      "Next.js, TypeScript, Neon Postgres, Drizzle ORM, Clerk Auth, Stripe, Inngest, OpenRouter, Redis/Upstash, PostHog, Vercel",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     gradient: "from-indigo-500 via-blue-500 to-blue-600",
+    logo: "/images/kaulby-logo.png",
     href: "https://kaulbyapp.com",
     linkLabel: "Coming Soon",
   },
@@ -29,11 +31,12 @@ const products = [
     tagline: "Content Analysis Tool",
     description:
       "Web-based content analysis platform. Extracts structured data from unstructured content. Document processing, AI-powered summarization, and automated categorization at scale.",
-    techStack: "Next.js, TypeScript, Vercel",
-    status: "Early Access",
+    techStack: "Next.js, TypeScript, Supabase, OpenRouter, Vercel AI SDK, FireCrawl, Polar, Resend, Playwright, Vercel",
+    status: "Product Launch",
     statusBg: "bg-sm-status-info-light",
     statusText: "text-sm-status-info",
     gradient: "from-blue-500 via-teal-500 to-teal-600",
+    logo: "/images/clarus-logo.webp",
     href: "https://www.clarusapp.io",
     linkLabel: "Visit",
   },
@@ -42,11 +45,12 @@ const products = [
     tagline: "Household Organization App",
     description:
       "Coordination app for couples, roommates, and families. Real-time task management, shopping lists, meal planning, and household scheduling with live sync across devices.",
-    techStack: "Next.js, TypeScript, Vercel",
-    status: "Beta",
-    statusBg: "bg-sm-status-success-light",
-    statusText: "text-sm-status-success",
+    techStack: "Next.js, TypeScript, Supabase, Capacitor, Polar, Google Gemini, Upstash Redis, Resend, Sentry, TanStack Query, Playwright, Vercel",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
     gradient: "from-teal-500 via-emerald-500 to-green-500",
+    logo: "/images/rowan-logo.png",
     href: "https://rowanapp.com",
     linkLabel: "Visit",
   },
@@ -119,7 +123,13 @@ export default function SoftwarePortfolioPage() {
                   <div className="grid md:grid-cols-[240px_1fr]">
                     {/* Gradient Side */}
                     <div className={`bg-gradient-to-br ${product.gradient} flex items-center justify-center p-8 min-h-[200px]`}>
-                      <Code className="w-20 h-20 text-white/30" />
+                      <Image
+                        src={product.logo}
+                        alt={`${product.name} logo`}
+                        width={120}
+                        height={120}
+                        className="object-contain drop-shadow-lg rounded-xl"
+                      />
                     </div>
 
                     {/* Content */}
@@ -179,17 +189,58 @@ export default function SoftwarePortfolioPage() {
         </div>
       </section>
 
-      {/* Shared Infrastructure Note */}
-      <section className="py-16 bg-sm-surface-secondary">
+      {/* How We Build */}
+      <section className="py-24 bg-sm-surface-secondary">
         <div className="container mx-auto px-4">
-          <motion.div {...slideInUp} className="max-w-3xl mx-auto text-center">
-            <h3 className="text-2xl font-bold text-sm-text-primary mb-4">
-              Shared Infrastructure
+          <motion.div {...slideInUp} className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-sm-text-primary mb-4">
+              How We Build
             </h3>
-            <p className="text-sm-text-secondary leading-relaxed">
-              All three products run on the same deployment pipeline (GitHub → Vercel), the same authentication layer (Clerk), and the same payment processor (Stripe via Polar). This is the same infrastructure and process we use for client projects. When we recommend a stack, we&apos;re recommending tools we operate daily.
-            </p>
           </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                icon: ShieldCheck,
+                title: "Security First",
+                body: "Authentication, authorization, and data protection are built in from day one. Not bolted on after launch. Every application ships with encrypted data at rest and in transit, role-based access controls, and audit logging.",
+              },
+              {
+                icon: Plug,
+                title: "Built to Integrate",
+                body: "Every product connects to the tools around it through clean APIs and webhooks. We build for interoperability. Your data moves where it needs to go without manual exports or middleware hacks.",
+              },
+              {
+                icon: CheckCircle,
+                title: "Tested in Production",
+                body: "We run what we build. These products serve real users. Bugs get caught and fixed on our own systems before our approach ever reaches a client project. Our process is validated by daily production traffic.",
+              },
+              {
+                icon: Key,
+                title: "Owned by You",
+                body: "Every line of code belongs to the client. Full repository access, complete documentation, zero vendor lock-in. When we hand off a project, you own everything and depend on nothing.",
+              },
+            ].map((principle, i) => (
+              <motion.div
+                key={principle.title}
+                {...slideInUp}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="bg-sm-surface-elevated border border-sm-border-default rounded-2xl p-8 hover:shadow-[var(--sm-shadow-md)] hover:border-sm-accent-primary/30 transition-all duration-300 cursor-default"
+                style={{ boxShadow: "var(--sm-shadow-sm)" }}
+              >
+                <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+                  <principle.icon className="w-8 h-8 text-sm-accent-primary mb-4" />
+                </motion.div>
+                <h4 className="text-xl font-bold text-sm-text-primary mb-3">
+                  {principle.title}
+                </h4>
+                <p className="text-sm-text-secondary leading-relaxed">
+                  {principle.body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
