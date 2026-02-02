@@ -30,6 +30,7 @@
     "@sanity/image-url": "^1.2.0",
     "@sanity/ui": "^3.1.8",
     "@sanity/vision": "^4.10.1",
+    "@supabase/supabase-js": "^2.93.3",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.36.1",
     "class-variance-authority": "^0.7.1",

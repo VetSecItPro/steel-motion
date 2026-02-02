@@ -64,7 +64,7 @@ export default function Hero() {
             <Button
               size="lg"
               onClick={() => scrollToSection('contact')}
-              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse px-8 py-6 text-lg rounded-lg group transition-all duration-300 hover:scale-105 font-semibold"
+              className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse px-8 py-6 text-lg group transition-all duration-300 hover:scale-105 font-semibold"
             >
               Schedule a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -72,7 +72,7 @@ export default function Hero() {
             <a href="/portfolio">
               <Button
                 size="lg"
-                className="bg-transparent border border-sm-border-inverse text-sm-text-inverse hover:bg-sm-surface-inverse-alt hover:border-sm-text-inverse-muted px-8 py-6 text-lg rounded-lg group transition-all duration-300 hover:scale-105 font-semibold"
+                className="bg-transparent border border-sm-border-inverse text-sm-text-inverse hover:bg-sm-surface-inverse-alt hover:border-sm-text-inverse-muted px-8 py-6 text-lg group transition-all duration-300 hover:scale-105 font-semibold"
               >
                 See What We Build
               </Button>

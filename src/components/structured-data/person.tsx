@@ -18,7 +18,15 @@ const PersonSchema = () => {
     'alumniOf': [
       {
         '@type': 'CollegeOrUniversity',
-        'name': 'Purdue University',
+        'name': 'George Washington University',
+      },
+      {
+        '@type': 'CollegeOrUniversity',
+        'name': 'Western Governors University',
+      },
+      {
+        '@type': 'CollegeOrUniversity',
+        'name': 'Purdue Global',
       },
     ],
     'knowsAbout': [
