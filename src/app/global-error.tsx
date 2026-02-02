@@ -1,7 +1,7 @@
 'use client'
 
 export default function GlobalError({
-  error,
+  error: _error,
   reset,
 }: {
   error: Error & { digest?: string }
@@ -37,6 +37,7 @@ export default function GlobalError({
               >
                 Try Again
               </button>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- global-error replaces the root layout; Link may not work */}
               <a
                 href="/"
                 style={{
