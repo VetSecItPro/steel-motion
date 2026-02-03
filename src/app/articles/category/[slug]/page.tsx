@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { Suspense } from "react"
+import { Suspense, cache } from "react"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import BlogPostGrid from "@/components/blog/blog-post-grid"
@@ -11,13 +11,17 @@ import Link from "next/link"
 import { client } from "@/lib/sanity"
 import { postsByCategoryQuery, categoriesQuery } from "@/lib/sanity-queries"
 
+// FIX-210: Add revalidate for ISR
+export const revalidate = 60
+
 interface CategoryPageProps {
   params: Promise<{
     slug: string
   }>
 }
 
-async function getCategoryData(slug: string) {
+// FIX-214: Wrap data-fetching with React cache() to prevent double-fetch
+const getCategoryData = cache(async (slug: string) => {
   const [posts, categories] = await Promise.all([
     client.fetch(postsByCategoryQuery, { categorySlug: slug }),
     client.fetch(categoriesQuery)
@@ -26,7 +30,7 @@ async function getCategoryData(slug: string) {
   const currentCategory = categories.find((cat: any) => cat.slug.current === slug)
 
   return { posts, categories, currentCategory }
-}
+})
 
 const getCategoryColor = (color: string) => {
   const colors = {

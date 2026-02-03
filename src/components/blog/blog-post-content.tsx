@@ -77,7 +77,7 @@ const portableTextComponents = {
         <div className="my-8">
           <Image
             src={imageUrl.width(800).height(600).url()}
-            alt={value.alt || ''}
+            alt={value.alt || 'Blog post image'}
             width={800}
             height={600}
             sizes="(max-width: 768px) 100vw, 800px"
@@ -181,16 +181,23 @@ const portableTextComponents = {
     ),
   },
   marks: {
-    link: ({ children, value }: any) => (
-      <a
-        href={value.href}
-        className="text-sm-accent-secondary hover:text-sm-accent-primary underline transition-colors"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    ),
+    link: ({ children, value }: any) => {
+      // SECURITY: URL protocol validation — FIX-024
+      const href = value.href || ''
+      const isValidProtocol = /^(https?|mailto):/.test(href)
+      if (!isValidProtocol) return <span>{children}</span>
+
+      return (
+        <a
+          href={href}
+          className="text-sm-accent-secondary hover:text-sm-accent-primary underline transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      )
+    },
     strong: ({ children }: any) => (
       <strong className="font-semibold text-sm-text-primary">{children}</strong>
     ),
@@ -279,6 +286,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                 </div>
               )}
               <button
+                aria-label="Share this article"
                 className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-sm-text-inverse border border-sm-border-inverse rounded-md hover:bg-white/10 hover:text-sm-text-inverse transition-colors"
                 onClick={() => {
                   if (navigator.share) {
@@ -316,8 +324,11 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   className="rounded-lg shadow-xl"
                   priority
                   onError={(e) => {
-                    console.error('Image failed to load:', e)
-                    console.error('Image data:', post.mainImage)
+                    // SECURITY: Console logging — FIX-010
+                    if (process.env.NODE_ENV === 'development') {
+                      console.error('Image failed to load:', e)
+                      console.error('Image data:', post.mainImage)
+                    }
                   }}
                 />
               </div>
@@ -372,7 +383,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
         </div>
       </section>
 
-      {/* Related Posts */}
+      {/* Related Posts - FIX-207/324 */}
       {post.relatedPosts && post.relatedPosts.length > 0 && (
         <section className="py-16 bg-sm-surface-secondary">
           <div className="container mx-auto px-4">
@@ -396,6 +407,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                               src={imageUrl.width(400).height(200).url()}
                               alt={relatedPost.mainImage.alt || relatedPost.title}
                               fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                               className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                           </div>

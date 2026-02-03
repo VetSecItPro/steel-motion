@@ -156,11 +156,13 @@ export default function PortfolioPage() {
       <section className="py-16 bg-sm-surface-primary">
         <div className="container mx-auto px-4">
           {/* Filter Tabs */}
-          <div className="flex justify-center gap-2 mb-12">
+          <div className="flex justify-center gap-2 mb-12" role="tablist" aria-label="Filter projects">
             {filterTabs.map((tab) => (
               <button
                 key={tab.value}
                 onClick={() => setFilter(tab.value)}
+                role="tab"
+                aria-selected={filter === tab.value}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   filter === tab.value
                     ? "bg-sm-accent-primary text-white"

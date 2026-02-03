@@ -6,11 +6,14 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: 'Privacy Policy | Steel Motion LLC',
   description: 'Privacy Policy for Steel Motion LLC. Learn how we collect, use, and protect your personal information in compliance with GDPR.',
+  alternates: {
+    canonical: 'https://steelmotionllc.com/privacy',
+  },
 }
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-4xl">
