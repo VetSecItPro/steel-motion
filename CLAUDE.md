@@ -155,7 +155,7 @@ NEXT_PUBLIC_SANITY_DATASET=production
 SANITY_API_TOKEN=your_token
 
 # Email Service
-RESEND_API_KEY=re_your_key
+RESEND_API_KEY=your_key
 ```
 
 ## 🧪 Testing

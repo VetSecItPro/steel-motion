@@ -9,7 +9,7 @@ This project uses a hybrid deployment strategy:
 ## Deployment Environments
 
 ### 1. Development (Vercel)
-- **URL**: https://steel-motion-landing-[hash]-REDACTED.vercel.app
+- **URL**: `https://<your-project>-<hash>.vercel.app`
 - **Trigger**: Every push to any branch
 - **Use Case**: Development, testing, preview deployments
 
