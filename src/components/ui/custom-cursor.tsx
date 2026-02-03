@@ -16,21 +16,27 @@ const CustomCursor = () => {
       setPosition({ x: e.clientX, y: e.clientY })
     }
 
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
+    // FIX-202: Use event delegation instead of querying elements on mount
+    // PERF: Event delegation prevents stale DOM snapshot issues
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (
+        target.matches('a, button, [role="button"]') ||
+        target.closest('a, button, [role="button"]')
+      ) {
+        setIsHovering(true)
+      } else {
+        setIsHovering(false)
+      }
+    }
 
+    // PERF: Independent mouse tracking — FIX-203 (acceptable, components render independently)
     document.addEventListener('mousemove', handleMouseMove)
-    document.querySelectorAll('a, button, [role="button"]').forEach((el) => {
-      el.addEventListener('mouseenter', handleMouseEnter)
-      el.addEventListener('mouseleave', handleMouseLeave)
-    })
+    document.addEventListener('mouseover', handleMouseOver)
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
-      document.querySelectorAll('a, button, [role="button"]').forEach((el) => {
-        el.removeEventListener('mouseenter', handleMouseEnter)
-        el.removeEventListener('mouseleave', handleMouseLeave)
-      })
+      document.removeEventListener('mouseover', handleMouseOver)
     }
   }, [isDesktop])
 

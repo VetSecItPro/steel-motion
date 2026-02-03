@@ -177,9 +177,10 @@ export const authorsQuery = groq`
   }
 `
 
+// FIX-204: Add limit to prevent unbounded query
 // Get posts by author
 export const postsByAuthorQuery = groq`
-  *[_type == "post" && author->slug.current == $authorSlug] | order(publishedAt desc) {
+  *[_type == "post" && author->slug.current == $authorSlug] | order(publishedAt desc) [0...50] {
     _id,
     title,
     slug,

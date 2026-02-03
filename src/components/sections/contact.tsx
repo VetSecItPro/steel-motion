@@ -96,7 +96,10 @@ export default function Contact() {
         setSubmitStatus('error')
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
+      // SECURITY: Console logging — FIX-012
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error submitting form:', error)
+      }
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)

@@ -8,12 +8,40 @@ import { contactFormSchema } from '@/lib/validations/contact';
 export const maxDuration = 30;
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+  // SECURITY: Request body size limit — FIX-007
+  const contentLength = parseInt(request.headers.get('content-length') || '0')
+  if (contentLength > 10_000) {
+    return NextResponse.json({ error: 'Request too large' }, { status: 413 })
+  }
+
+  // SECURITY: Origin verification for CSRF defense — FIX-020
+  const origin = request.headers.get('origin')
+  const allowedOrigins = [
+    'https://steelmotionllc.com',
+    'https://www.steelmotionllc.com',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+  ].filter(Boolean)
+
+  // In development, also allow localhost
+  if (process.env.NODE_ENV === 'development') {
+    allowedOrigins.push('http://localhost:3000', 'http://localhost:3001')
+  }
+
+  if (origin && !allowedOrigins.includes(origin)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  // SECURITY: IP extraction — FIX-015. x-forwarded-for is trustworthy on Vercel (set by edge proxy)
+  const clientIp = request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
+    || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
     || request.headers.get("x-real-ip")
-    || "127.0.0.1";
-  const { success } = await ratelimit.limit(ip);
+    || "unknown";
+
+  const { success } = await ratelimit.limit(`contact:${clientIp}`);
 
   if (!success) {
+    // SECURITY: Security event logging — FIX-022
+    console.warn(JSON.stringify({ event: 'rate_limit_hit', ip: clientIp, route: '/api/contact', timestamp: new Date().toISOString() }))
     return NextResponse.json(
       { error: 'Too many requests. Please try again later.' },
       { status: 429, headers: { 'Cache-Control': 'no-store' } }
@@ -94,7 +122,8 @@ export async function POST(request: NextRequest) {
 
     const dbPromise = supabaseAdmin
       ? (async () => {
-          const { error: dbError } = await supabaseAdmin
+          // SECURITY: Race condition prevention — FIX-014. Use returned row ID for update
+          const { data: insertedRow, error: dbError } = await supabaseAdmin
             .from('sm_contact_inquiries')
             .insert({
               name: sanitizedName,
@@ -102,31 +131,34 @@ export async function POST(request: NextRequest) {
               company: sanitizedCompany || null,
               message: sanitizedMessage,
               email_sent: false, // updated below if needed
-              ip_address: ip,
-            });
+              ip_address: clientIp,
+            })
+            .select('id')
+            .single();
 
           if (dbError) {
             console.error('Supabase insert error:', dbError.message);
-            return { inserted: false };
+            return { inserted: false, rowId: undefined };
           }
-          return { inserted: true };
+          return { inserted: true, rowId: insertedRow?.id };
         })()
-      : Promise.resolve({ inserted: false });
+      : Promise.resolve({ inserted: false, rowId: undefined });
 
     const [emailResult, dbResult] = await Promise.allSettled([emailPromise, dbPromise]);
 
     const emailSent = emailResult.status === 'fulfilled' && emailResult.value.sent;
     const dbInserted = dbResult.status === 'fulfilled' && dbResult.value.inserted;
 
-    // Update DB record with email status if both succeeded
+    // Update DB record with email status if both succeeded — FIX-014 (use row ID)
     if (emailSent && dbInserted && supabaseAdmin) {
       const resendId = emailResult.status === 'fulfilled' ? emailResult.value.id : undefined;
-      await supabaseAdmin
-        .from('sm_contact_inquiries')
-        .update({ email_sent: true, resend_id: resendId || null })
-        .eq('email', sanitizedEmail)
-        .order('created_at', { ascending: false })
-        .limit(1);
+      const rowId = dbResult.status === 'fulfilled' ? dbResult.value.rowId : undefined;
+      if (rowId) {
+        await supabaseAdmin
+          .from('sm_contact_inquiries')
+          .update({ email_sent: true, resend_id: resendId || null })
+          .eq('id', rowId);
+      }
     }
 
     // If neither email nor DB worked, return error

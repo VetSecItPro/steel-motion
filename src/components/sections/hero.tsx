@@ -43,7 +43,7 @@ export default function Hero() {
           {/* Badge - renders immediately via CSS animation */}
           <div className="mb-3 hero-fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="inline-flex items-center gap-2 bg-sm-surface-inverse-alt/50 border border-sm-border-inverse rounded-full px-4 py-2 text-sm backdrop-blur-sm">
-              <Award className="w-4 h-4 text-sm-accent-inverse" />
+              <Award className="w-4 h-4 text-sm-accent-inverse" aria-hidden={true} />
               <span className="text-sm-text-inverse-muted">Veteran-Owned Technology Company</span>
             </div>
           </div>
@@ -82,19 +82,19 @@ export default function Hero() {
           <div className="mt-8 mb-6 hero-fade-in" style={{ animationDelay: '0.25s' }}>
             <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs sm:text-sm uppercase tracking-wider text-sm-text-inverse-muted">
               <div className="flex items-center gap-1.5">
-                <Flag className="w-3.5 h-3.5" />
+                <Flag className="w-3.5 h-3.5" aria-hidden={true} />
                 <span>Veteran-Owned</span>
               </div>
               <span className="hidden sm:inline text-sm-border-inverse">|</span>
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" />
+                <MapPin className="w-3.5 h-3.5" aria-hidden={true} />
                 <span>Based in Texas</span>
               </div>
               <span className="hidden sm:inline text-sm-border-inverse">|</span>
               <span>Serving Clients Nationwide</span>
               <span className="hidden sm:inline text-sm-border-inverse">|</span>
               <div className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5" />
+                <Phone className="w-3.5 h-3.5" aria-hidden={true} />
                 <span>Free Strategy Call</span>
               </div>
             </div>

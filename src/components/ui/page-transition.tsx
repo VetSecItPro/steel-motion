@@ -3,6 +3,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
+// FIX-216: PageTransition wraps entire app (architectural concern)
+// PERF: Reduced animation duration for lighter performance impact
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
   return (
@@ -12,7 +14,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.15, ease: 'easeOut' }}
       >
         {children}
       </motion.div>

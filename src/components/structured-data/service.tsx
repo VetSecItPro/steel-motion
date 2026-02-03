@@ -24,7 +24,7 @@ const ServiceSchema = ({ service }: ServiceSchemaProps) => {
 
   return (
     <Script
-      id="service-schema"
+      id={`service-schema-${service.name.toLowerCase().replace(/\s+/g, '-')}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />

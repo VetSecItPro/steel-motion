@@ -118,7 +118,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: {
           relative h-[420px] rounded-2xl overflow-hidden cursor-pointer
           transition-all duration-700 ease-in-out border border-sm-border-inverse
           hover:border-sm-accent-inverse/40 shadow-lg
-          ${isActive ? 'w-[340px]' : 'w-[50px]'}
+          ${isActive ? 'w-[340px]' : 'w-[70px]'}
         `}
         onMouseEnter={onMouseEnter}
       >
