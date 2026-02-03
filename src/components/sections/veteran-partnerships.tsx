@@ -379,7 +379,7 @@ export default function VeteranPartnerships() {
                           role="alert"
                         >
                           <p className="font-medium">Failed to send partnership inquiry</p>
-                          <p className="text-sm opacity-90">Please try again or contact us directly at contacts@steelmotionllc.com</p>
+                          <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
                         </motion.div>
                       )}
                     </div>

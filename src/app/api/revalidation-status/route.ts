@@ -10,6 +10,8 @@ import { revalidatePath } from 'next/cache'
  * Auth: Bearer token via REVALIDATION_SECRET env var.
  */
 
+export const maxDuration = 10
+
 function isAuthorized(request: NextRequest): boolean {
   const secret = process.env.REVALIDATION_SECRET
   if (!secret) return false
