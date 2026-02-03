@@ -26,7 +26,7 @@ Add these secrets in GitHub repository settings (Settings → Secrets and variab
 
 | Secret Name | Description | Example Value |
 |-------------|-------------|---------------|
-| `VPS_HOST` | VPS IP address | `REDACTED` |
+| `VPS_HOST` | VPS IP address | `<YOUR_VPS_IP>` |
 | `VPS_USERNAME` | SSH username | `root` |
 | `VPS_SSH_KEY` | Private SSH key | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
 
@@ -34,16 +34,16 @@ Add these secrets in GitHub repository settings (Settings → Secrets and variab
 
 1. **Generate SSH key pair** (if not already done):
    ```bash
-   ssh-keygen -t ed25519 -f ~/.ssh/REDACTED -C "github-actions-deploy"
+   ssh-keygen -t ed25519 -f ~/.ssh/<your_deploy_key> -C "github-actions-deploy"
    ```
 
 2. **Add public key to VPS**:
    ```bash
-   ssh-copy-id -i ~/.ssh/REDACTED.pub root@REDACTED
+   ssh-copy-id -i ~/.ssh/<your_deploy_key>.pub <USERNAME>@<YOUR_VPS_IP>
    ```
 
 3. **Add private key to GitHub Secrets**:
-   - Copy the content of `~/.ssh/REDACTED`
+   - Copy the content of `~/.ssh/<your_deploy_key>`
    - Add as `VPS_SSH_KEY` secret in GitHub
 
 ## Deployment Process

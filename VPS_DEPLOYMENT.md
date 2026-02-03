@@ -14,7 +14,7 @@
 ### Step 1: Connect to Your VPS
 
 ```bash
-ssh -i ~/.ssh/REDACTED root@REDACTED -p 2222
+ssh -i ~/.ssh/<your_deploy_key> <USERNAME>@<YOUR_VPS_IP> -p <PORT>
 ```
 
 ### Step 2: Navigate to Project Directory
