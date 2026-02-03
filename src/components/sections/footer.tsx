@@ -13,6 +13,9 @@ const footerLinks = {
   solutions: [
     { label: "AI Automation", href: "/services/ai-transformation" },
     { label: "Custom Development", href: "/services/custom-development" },
+    { label: "Cloud Infrastructure", href: "/services/cloud-infrastructure" },
+    { label: "Cybersecurity", href: "/services/cybersecurity" },
+    { label: "Data Analytics", href: "/services/data-analytics" },
   ],
   portfolio: [
     { label: "Software", href: "/portfolio/software" },
@@ -84,13 +87,14 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-sm-border-inverse pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Left side - Brand & Social */}
+            {/* Left side - Brand & Social - FIX-206 */}
             <div className="flex items-center gap-4">
               <Image
                 src="/images/steel-motion-hero-logo.png"
                 alt="Steel Motion Logo"
                 width={32}
                 height={32}
+                sizes="32px"
                 className="object-contain"
               />
               <span className="text-lg font-bold text-sm-text-inverse">Steel Motion LLC</span>

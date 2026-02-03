@@ -105,7 +105,10 @@ export default function VeteranPartnerships() {
         setSubmitStatus('error')
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
+      // SECURITY: Console logging — FIX-012
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error submitting form:', error)
+      }
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -364,7 +367,7 @@ export default function VeteranPartnerships() {
                       {submitStatus === 'success' && (
                         <motion.div
                           {...fadeIn}
-                          className="bg-green-600 border border-green-500 text-white px-4 py-3 rounded-lg"
+                          className="bg-sm-status-success-light border border-sm-status-success/20 text-sm-status-success px-4 py-3 rounded-lg"
                           role="alert"
                         >
                           <p className="font-medium">Partnership inquiry sent!</p>
@@ -375,11 +378,11 @@ export default function VeteranPartnerships() {
                       {submitStatus === 'error' && (
                         <motion.div
                           {...fadeIn}
-                          className="bg-red-600 border border-red-500 text-white px-4 py-3 rounded-lg"
+                          className="bg-sm-status-error-light border border-sm-status-error/20 text-sm-status-error px-4 py-3 rounded-lg"
                           role="alert"
                         >
                           <p className="font-medium">Failed to send partnership inquiry</p>
-                          <p className="text-sm opacity-90">Please try again or contact us directly at contacts@steelmotionllc.com</p>
+                          <p className="text-sm opacity-90">Please try again or contact us directly at contact@steelmotionllc.com</p>
                         </motion.div>
                       )}
                     </div>

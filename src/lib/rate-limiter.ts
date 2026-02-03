@@ -10,11 +10,20 @@ const isRedisConfigured =
 if (!isRedisConfigured && process.env.NODE_ENV === 'production') {
   console.error('CRITICAL: Rate limiting not configured — Upstash Redis env vars missing. All requests will be allowed.');
 }
+
 const mockRatelimit = {
-  limit: async () => ({ success: true, limit: 5, remaining: 5, reset: 0 }),
+  limit: async () => {
+    // SECURITY: Fail closed when Redis unconfigured in production — FIX-013
+    if (process.env.NODE_ENV === 'production') {
+      console.warn('[SECURITY] Rate limiter has no Redis — failing closed')
+      return { success: false, limit: 5, remaining: 0, reset: 0 }
+    }
+    return { success: true, limit: 5, remaining: 5, reset: 0 }
+  },
 };
 
 // Create a new ratelimiter, that allows 5 requests per 10 seconds
+// Per-route identifiers handled by caller (e.g., contact:ip, partnerships:ip) — FIX-025
 export const ratelimit = isRedisConfigured
   ? new Ratelimit({
       redis: Redis.fromEnv(),

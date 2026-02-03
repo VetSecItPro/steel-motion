@@ -6,11 +6,14 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: 'Terms of Service | Steel Motion LLC',
   description: 'Terms of Service for Steel Motion LLC. Read our terms and conditions for using our website and services.',
+  alternates: {
+    canonical: 'https://steelmotionllc.com/terms',
+  },
 }
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-4xl">

@@ -93,7 +93,8 @@ export default function Products() {
                   {product.href !== "#" && (
                     <div className="flex items-center gap-1 text-sm-accent-secondary group-hover:underline transition-colors text-sm">
                       <span>Visit</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span className="sr-only">(opens in new tab)</span>
                     </div>
                   )}
                 </div>
