@@ -52,7 +52,7 @@ export const revalidate = 60
 const POSTS_PER_PAGE = 6
 
 interface BlogPageProps {
-  searchParams: Promise<{ page?: string; search?: string }>
+  searchParams: Promise<{ page?: string; q?: string }>
 }
 
 async function getBlogData(page: number, search: string) {
@@ -94,11 +94,12 @@ function BlogPostsSkeleton() {
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const params = await searchParams
   const page = Math.max(1, parseInt(params.page || '1', 10))
-  const search = params.search || ''
+  // SECURITY: Blog search param length limit — FIX-023
+  const searchQuery = params.q?.slice(0, 200) || ''
 
-  const { posts, featuredPosts, categories, totalCount, totalPages, currentPage } = await getBlogData(page, search)
+  const { posts, featuredPosts, categories, totalCount, totalPages, currentPage } = await getBlogData(page, searchQuery)
 
-  const showFeatured = !search && page === 1 && featuredPosts.length > 0
+  const showFeatured = !searchQuery && page === 1 && featuredPosts.length > 0
 
   return (
     <main id="main-content" className="min-h-screen bg-sm-surface-primary">
@@ -131,11 +132,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <div className="lg:col-span-2">
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-sm-text-primary mb-2">
-                {search ? `Search Results` : 'Latest Articles'}
+                {searchQuery ? `Search Results` : 'Latest Articles'}
               </h2>
               <p className="text-sm-text-secondary">
-                {search
-                  ? `${totalCount} article${totalCount !== 1 ? 's' : ''} found for "${search}"`
+                {searchQuery
+                  ? `${totalCount} article${totalCount !== 1 ? 's' : ''} found for "${searchQuery}"`
                   : 'Insights and analysis from our veteran technology team'
                 }
               </p>
@@ -159,8 +160,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     No articles found
                   </h3>
                   <p className="text-sm-text-secondary">
-                    {search
-                      ? `No articles match "${search}". Try a different search term.`
+                    {searchQuery
+                      ? `No articles match "${searchQuery}". Try a different search term.`
                       : 'Check back soon for new content.'
                     }
                   </p>

@@ -11,6 +11,7 @@ const Spotlight = () => {
   useEffect(() => {
     if (!isDesktop) return
 
+    // PERF: Independent mouse tracking — FIX-203 (acceptable, components render independently)
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
     }
