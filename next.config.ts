@@ -1,21 +1,19 @@
 import type { NextConfig } from "next";
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
-const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' *.youtube.com *.twitter.com;
-  child-src *.youtube.com *.google.com *.twitter.com;
-  style-src 'self' 'unsafe-inline' *.googleapis.com;
-  img-src 'self' blob: data: cdn.sanity.io images.unsplash.com placehold.co;
-  media-src 'none';
-  connect-src 'self' https://*.sanity.io https://*.supabase.co https://*.upstash.io https://*.vercel-insights.com https://*.vercel-analytics.com;
-  font-src 'self' data:;
-`;
+// SECURITY: CSP is now handled in src/middleware.ts with nonce-based script-src (FIX-001/002)
+// This provides XSS protection without 'unsafe-inline' for scripts
+// Other security headers remain here for non-middleware routes
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+    // FIX-211: Configure staleTimes for better caching
+    staleTimes: {
+      dynamic: 30,
+      static: 180,
+    },
   },
   async redirects() {
     return [
@@ -54,10 +52,6 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim()
-          },
-          {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
@@ -82,6 +76,8 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // FIX-208: Add AVIF format support for better compression
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',

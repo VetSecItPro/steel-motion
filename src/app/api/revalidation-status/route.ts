@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
+import { timingSafeEqual } from 'crypto'
 
 /**
  * On-demand revalidation endpoint for Sanity webhooks.
@@ -16,7 +17,11 @@ function isAuthorized(request: NextRequest): boolean {
   const secret = process.env.REVALIDATION_SECRET
   if (!secret) return false
   const authHeader = request.headers.get('authorization')
-  return authHeader === `Bearer ${secret}`
+  if (!authHeader) return false
+  const expected = `Bearer ${secret}`
+  if (authHeader.length !== expected.length) return false
+  // SECURITY: Timing-safe comparison — FIX-005
+  return timingSafeEqual(Buffer.from(authHeader), Buffer.from(expected))
 }
 
 export async function GET(request: NextRequest) {

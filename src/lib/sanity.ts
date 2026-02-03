@@ -12,7 +12,9 @@ export const client = createClient({
   projectId: projectId || '',
   dataset: dataset || 'production',
   apiVersion: '2024-01-01',
-  useCdn: false,
+  // FIX-209: Use Sanity CDN in production for edge caching
+  // PERF: CDN enabled in production for better performance
+  useCdn: process.env.NODE_ENV === 'production',
 })
 
 const builder = imageUrlBuilder(client)

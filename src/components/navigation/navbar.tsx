@@ -75,13 +75,14 @@ export default function Navbar() {
           {/* Logo and Brand */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
             <div className="flex items-center gap-3 animate-slide-in-left">
-            {/* Steel Motion Logo */}
+            {/* Steel Motion Logo - FIX-205 */}
             <div className="w-10 h-10 relative">
               <Image
                 src="/images/steel-motion-hero-logo.png"
                 alt="Steel Motion Logo"
                 width={40}
                 height={40}
+                sizes="40px"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -111,6 +112,7 @@ export default function Navbar() {
               </button>
               {/* Dropdown menu */}
               <div
+                aria-hidden={!isDropdownOpen('solutions')}
                 className={`absolute top-full left-0 mt-2 w-72 bg-sm-surface-elevated border border-sm-border-default rounded-lg transition-all duration-300 ${
                   isDropdownOpen('solutions')
                     ? 'opacity-100 visible'
@@ -139,6 +141,36 @@ export default function Navbar() {
                   >
                     <div className="font-medium">Custom Development</div>
                     <div className="text-sm text-sm-text-muted">Web applications, APIs, and internal tools</div>
+                  </Link>
+                  <Link
+                    href="/services/cloud-infrastructure"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
+                  >
+                    <div className="font-medium">Cloud Infrastructure</div>
+                    <div className="text-sm text-sm-text-muted">Scalable cloud architecture & DevOps</div>
+                  </Link>
+                  <Link
+                    href="/services/cybersecurity"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
+                  >
+                    <div className="font-medium">Cybersecurity</div>
+                    <div className="text-sm text-sm-text-muted">Security assessments & protection</div>
+                  </Link>
+                  <Link
+                    href="/services/data-analytics"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
+                  >
+                    <div className="font-medium">Data Analytics</div>
+                    <div className="text-sm text-sm-text-muted">Business intelligence & insights</div>
                   </Link>
                 </div>
               </div>
@@ -223,7 +255,7 @@ export default function Navbar() {
               className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-label="Toggle navigation menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -235,6 +267,7 @@ export default function Navbar() {
         {isMobile && isOpen && (
           <div
             id="mobile-menu"
+            aria-hidden={!isOpen}
             className="bg-sm-surface-elevated border-t border-sm-border-default animate-mobile-menu"
             role="menu"
           >
@@ -255,6 +288,27 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                   >
                     Custom Development
+                  </Link>
+                  <Link
+                    href="/services/cloud-infrastructure"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Cloud Infrastructure
+                  </Link>
+                  <Link
+                    href="/services/cybersecurity"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Cybersecurity
+                  </Link>
+                  <Link
+                    href="/services/data-analytics"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Data Analytics
                   </Link>
                 </div>
               </div>
