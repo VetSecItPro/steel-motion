@@ -3,7 +3,7 @@ name: Monthly Security Scan
 on:
   schedule:
     - cron: '30 6 1-7 * *' # Days 1-7 of each month at 12:30 AM CST (6:30 AM UTC)
-  workflow_dispatch:
+  workflow_dispatch: # Manual trigger support
 
 env:
   NODE_VERSION: '22'
