@@ -18,7 +18,7 @@ test.describe('Navigation', () => {
     // Test Articles link
     await page.goto('/');
     await page.click('nav >> text=Articles');
-    await expect(page).toHaveURL(/\/blog/);
+    await expect(page).toHaveURL(/\/articles/);
   });
 
   test('mobile navigation works', async ({ page }) => {
