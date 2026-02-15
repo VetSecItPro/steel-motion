@@ -163,7 +163,7 @@ export default function PrivacyPage() {
                 </p>
                 <ul className="list-disc list-inside text-sm-text-secondary space-y-2 ml-4">
                   <li><strong className="text-sm-text-primary">Vercel:</strong> Website hosting and deployment</li>
-                  <li><strong className="text-sm-text-primary">Sanity CMS:</strong> Content management for our blog</li>
+                  <li><strong className="text-sm-text-primary">Velite:</strong> Static content management for our blog</li>
                   <li><strong className="text-sm-text-primary">Resend:</strong> Email delivery for contact form submissions</li>
                 </ul>
                 <p className="text-sm-text-secondary leading-relaxed mt-4">
