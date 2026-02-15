@@ -101,31 +101,6 @@ export default function BlogSidebar({ categories }: BlogSidebarProps) {
         </CardContent>
       </Card>
 
-      {/* Quick Links */}
-      <Card className="bg-sm-surface-elevated border border-sm-border-default" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
-        <CardHeader>
-          <CardTitle className="text-sm-text-primary">Our Services</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-2">
-            {[
-              { title: "AI Transformation", href: "/services/ai-transformation" },
-              { title: "Cloud Infrastructure", href: "/services/cloud-infrastructure" },
-              { title: "Cybersecurity", href: "/services/cybersecurity" },
-              { title: "Custom Development", href: "/services/custom-development" },
-              { title: "Data Analytics", href: "/services/data-analytics" },
-            ].map((service) => (
-              <Link
-                key={service.href}
-                href={service.href}
-                className="block text-sm text-sm-text-secondary hover:text-sm-accent-primary transition-colors py-1"
-              >
-                {service.title}
-              </Link>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }
