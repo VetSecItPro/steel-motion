@@ -18,7 +18,7 @@ interface ServicePageProps {
   title: string
   subtitle: string
   description: string
-  heroGradient: string
+  heroGradient?: string
   features: ServiceFeature[]
   benefits: string[]
   industries: string[]
@@ -30,7 +30,6 @@ export default function ServicePage({
   title,
   subtitle,
   description,
-  heroGradient,
   features,
   benefits,
   industries,
