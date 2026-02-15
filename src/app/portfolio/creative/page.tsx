@@ -8,43 +8,7 @@ import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
 import Footer from "@/components/sections/footer"
 import { slideInUp } from "@/lib/animations"
-
-const bands = [
-  {
-    name: "Iron Pulse",
-    genre: "Hard Rock",
-    description:
-      "Original hard rock compositions produced with AI-assisted tools. Multiple albums available on streaming platforms.",
-    aiTools: "Suno (composition and production)",
-    status: "Live",
-    statusBg: "bg-sm-status-success-light",
-    statusText: "text-sm-status-success",
-    gradient: "from-orange-500 via-red-500 to-red-600",
-    features: [
-      "AI-assisted composition (Suno)",
-      "Hard rock genre focus",
-      "Full-length albums",
-      "Available on Spotify, Apple Music",
-    ],
-  },
-  {
-    name: "Other Life",
-    genre: "Hard Rock",
-    description:
-      "Second band project. Different sonic direction within the hard rock spectrum. AI-assisted production and composition.",
-    aiTools: "Suno (composition and production)",
-    status: "Live",
-    statusBg: "bg-sm-status-success-light",
-    statusText: "text-sm-status-success",
-    gradient: "from-red-500 via-purple-500 to-violet-600",
-    features: [
-      "AI-assisted composition (Suno)",
-      "Hard rock genre focus",
-      "Full-length albums",
-      "Available on Spotify, Apple Music",
-    ],
-  },
-]
+import { bands } from "@/lib/data/bands"
 
 export default function CreativePortfolioPage() {
   const scrollToContact = () => {
@@ -117,59 +81,69 @@ export default function CreativePortfolioPage() {
                 {...slideInUp}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div
-                  className="bg-sm-surface-elevated border border-sm-border-default rounded-2xl overflow-hidden hover:shadow-[var(--sm-shadow-md)] transition-all duration-300"
-                  style={{ boxShadow: "var(--sm-shadow-sm)" }}
-                >
-                  <div className="grid md:grid-cols-[240px_1fr]">
-                    {/* Gradient Side */}
-                    <div className={`bg-gradient-to-br ${band.gradient} flex items-center justify-center p-8 min-h-[200px]`}>
-                      <Music className="w-20 h-20 text-white/30" />
-                    </div>
+                <Link href={`/portfolio/creative/${band.slug}`} className="block">
+                  <div
+                    className="bg-sm-surface-elevated border border-sm-border-default rounded-2xl overflow-hidden hover:shadow-[var(--sm-shadow-md)] transition-all duration-300 cursor-pointer"
+                    style={{ boxShadow: "var(--sm-shadow-sm)" }}
+                  >
+                    <div className="grid md:grid-cols-[240px_1fr]">
+                      {/* Gradient Side */}
+                      <div className={`bg-gradient-to-br ${band.gradient} flex items-center justify-center p-8 min-h-[200px]`}>
+                        <Music className="w-20 h-20 text-white/30" />
+                      </div>
 
-                    {/* Content */}
-                    <div className="p-8">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h3 className="text-2xl font-bold text-sm-text-primary">
-                            {band.name}
-                          </h3>
-                          <p className="text-sm-accent-primary text-sm font-medium">
-                            {band.genre}
-                          </p>
+                      {/* Content */}
+                      <div className="p-8">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <h3 className="text-2xl font-bold text-sm-text-primary">
+                              {band.name}
+                            </h3>
+                            <p className="text-sm-accent-primary text-sm font-medium">
+                              {band.genre}
+                            </p>
+                          </div>
+                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${band.statusBg} ${band.statusText}`}>
+                            {band.status}
+                          </span>
                         </div>
-                        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${band.statusBg} ${band.statusText}`}>
-                          {band.status}
-                        </span>
-                      </div>
 
-                      <p className="text-sm-text-secondary leading-relaxed mt-4 mb-5">
-                        {band.description}
-                      </p>
+                        <p className="text-sm-text-secondary leading-relaxed mt-4 mb-5">
+                          {band.description}
+                        </p>
 
-                      <div className="mb-5">
-                        <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
-                          AI Tools
-                        </h4>
-                        <p className="text-sm text-sm-text-secondary">{band.aiTools}</p>
-                      </div>
+                        <div className="mb-5">
+                          <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
+                            AI Tools
+                          </h4>
+                          <p className="text-sm text-sm-text-secondary">{band.aiTools}</p>
+                        </div>
 
-                      <div>
-                        <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
-                          Details
-                        </h4>
-                        <div className="grid grid-cols-2 gap-2">
-                          {band.features.map((feature) => (
-                            <div key={feature} className="flex items-center gap-2 text-sm text-sm-text-secondary">
-                              <div className="w-1.5 h-1.5 bg-sm-accent-primary rounded-full flex-shrink-0" />
-                              {feature}
-                            </div>
-                          ))}
+                        <div className="mb-5">
+                          <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
+                            Details
+                          </h4>
+                          <div className="grid grid-cols-2 gap-2">
+                            {band.features.map((feature) => (
+                              <div key={feature} className="flex items-center gap-2 text-sm text-sm-text-secondary">
+                                <div className="w-1.5 h-1.5 bg-sm-accent-primary rounded-full flex-shrink-0" />
+                                {feature}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* View Albums CTA */}
+                        <div className="pt-4 border-t border-sm-border-default">
+                          <span className="inline-flex items-center gap-1.5 text-sm-accent-secondary text-sm font-medium group-hover:gap-2 transition-all">
+                            View Albums
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
