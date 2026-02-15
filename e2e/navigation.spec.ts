@@ -1,10 +1,17 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation', () => {
+  test.beforeEach(async ({ page }) => {
+    // Dismiss cookie notice by setting localStorage before navigation
+    await page.addInitScript(() => {
+      localStorage.setItem('cookie-notice-dismissed', 'true');
+    });
+  });
+
   test('homepage loads correctly', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Steel Motion/);
-    await expect(page.locator('nav')).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
     await expect(page.locator('footer')).toBeVisible();
   });
 
@@ -12,12 +19,12 @@ test.describe('Navigation', () => {
     await page.goto('/');
 
     // Test About link
-    await page.click('nav >> text=About');
+    await page.getByRole('navigation', { name: 'Main navigation' }).getByText('About').click();
     await expect(page).toHaveURL(/\/about/);
 
     // Test Articles link
     await page.goto('/');
-    await page.click('nav >> text=Articles');
+    await page.getByRole('navigation', { name: 'Main navigation' }).getByText('Articles').click();
     await expect(page).toHaveURL(/\/articles/);
   });
 
@@ -29,7 +36,7 @@ test.describe('Navigation', () => {
     const mobileMenuButton = page.locator('button[aria-label*="menu"], button[aria-label*="Menu"]');
     if (await mobileMenuButton.isVisible()) {
       await mobileMenuButton.click();
-      await expect(page.locator('nav')).toBeVisible();
+      await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
     }
   });
 
@@ -37,12 +44,12 @@ test.describe('Navigation', () => {
     await page.goto('/');
 
     // Test Privacy Policy link
-    await page.click('footer >> text=Privacy');
+    await page.locator('footer').getByText('Privacy').click();
     await expect(page).toHaveURL(/\/privacy/);
 
     // Test Terms link
     await page.goto('/');
-    await page.click('footer >> text=Terms');
+    await page.locator('footer').getByText('Terms').click();
     await expect(page).toHaveURL(/\/terms/);
   });
 });

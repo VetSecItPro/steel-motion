@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import BlogHero from "@/components/blog/blog-hero"
 import FeaturedPosts from "@/components/blog/featured-posts"
 import BlogPostGrid from "@/components/blog/blog-post-grid"
@@ -189,7 +188,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div>
       </div>
 
-      <Footer />
     </main>
   )
 }

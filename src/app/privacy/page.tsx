@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -223,7 +222,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </main>
   )
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import ServiceSchema from "@/components/structured-data/service"
 import AITransformationContent from "./content"
 
@@ -35,7 +34,6 @@ export default function AITransformationPage() {
       <ServiceSchema service={serviceSchema} />
       <Navbar />
       <AITransformationContent />
-      <Footer />
     </main>
   )
 }

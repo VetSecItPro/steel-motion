@@ -7,7 +7,6 @@ import { ArrowRight, ArrowLeft, ExternalLink, ShieldCheck, Plug, CheckCircle, Ke
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import { slideInUp } from "@/lib/animations"
 
 const products = [
@@ -281,7 +280,6 @@ export default function SoftwarePortfolioPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

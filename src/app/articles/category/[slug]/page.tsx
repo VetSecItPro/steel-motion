@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense, cache } from "react"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import BlogPostGrid from "@/components/blog/blog-post-grid"
 import BlogSidebar from "@/components/blog/blog-sidebar"
 import { Badge } from "@/components/ui/badge"
@@ -31,19 +30,6 @@ const getCategoryData = cache(async (slug: string) => {
 
   return { posts, categories, currentCategory }
 })
-
-const getCategoryColor = (color: string) => {
-  const colors = {
-    cyan: "bg-cyan-100 text-cyan-800 border-cyan-200",
-    red: "bg-red-100 text-red-800 border-red-200",
-    blue: "bg-blue-100 text-blue-800 border-blue-200",
-    purple: "bg-purple-100 text-purple-800 border-purple-200",
-    green: "bg-green-100 text-green-800 border-green-200",
-    orange: "bg-orange-100 text-orange-800 border-orange-200",
-    indigo: "bg-indigo-100 text-indigo-800 border-indigo-200",
-  }
-  return colors[color as keyof typeof colors] || colors.cyan
-}
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params
@@ -148,7 +134,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </div>
 
-      <Footer />
     </main>
   )
 }

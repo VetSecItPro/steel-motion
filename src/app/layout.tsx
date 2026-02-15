@@ -5,6 +5,7 @@ import PageTransition from "@/components/ui/page-transition";
 import OrganizationSchema from "@/components/structured-data/organization";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 import CookieNotice from "@/components/ui/cookie-notice";
+import Footer from "@/components/sections/footer";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -68,6 +69,7 @@ export default function RootLayout({
           <PageTransition>
             {children}
           </PageTransition>
+          <Footer />
           <CookieNotice />
         </DeviceProvider>
       </body>

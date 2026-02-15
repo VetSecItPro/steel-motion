@@ -23,13 +23,14 @@ export function AlbumCard({ album, index }: AlbumCardProps) {
         style={{ boxShadow: "var(--sm-shadow-sm)" }}
       >
         {/* Album Cover */}
-        <div className="relative aspect-square overflow-hidden">
+        <div className="relative overflow-hidden bg-black">
           <Image
             src={album.coverImage}
             alt={`${album.name} album cover`}
-            fill
+            width={600}
+            height={600}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
           />
         </div>
 
@@ -39,26 +40,36 @@ export function AlbumCard({ album, index }: AlbumCardProps) {
             {album.name}
           </h3>
 
-          {/* Streaming Buttons */}
-          <div className="flex gap-3">
-            <a
-              href={album.spotifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-[#1DB954] text-white hover:bg-[#1ed760] transition-colors"
-            >
-              <SpotifyIcon className="w-4 h-4" />
-              Spotify
-            </a>
-            <a
-              href={album.appleMusicUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-[#FC3C44] text-white hover:bg-[#fd5b62] transition-colors"
-            >
-              <AppleMusicIcon className="w-4 h-4" />
-              Apple Music
-            </a>
+          {/* Streaming Badges */}
+          <div className="flex flex-wrap gap-2">
+            {album.spotifyUrl && (
+              <a
+                href={album.spotifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-lg px-4 py-2 transition-colors"
+              >
+                <SpotifyIcon className="w-6 h-6 text-[#1DB954]" />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[9px] font-normal tracking-wide opacity-80">Listen on</span>
+                  <span className="text-sm font-semibold -mt-0.5">Spotify</span>
+                </div>
+              </a>
+            )}
+            {album.appleMusicUrl && (
+              <a
+                href={album.appleMusicUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-lg px-4 py-2 transition-colors"
+              >
+                <AppleMusicIcon className="w-6 h-6" />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[9px] font-normal tracking-wide opacity-80">Listen on</span>
+                  <span className="text-sm font-semibold -mt-0.5">Apple Music</span>
+                </div>
+              </a>
+            )}
           </div>
         </div>
       </div>
