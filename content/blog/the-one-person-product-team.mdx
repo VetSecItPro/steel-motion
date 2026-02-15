@@ -1,0 +1,347 @@
+---
+title: "The One-Person Product Team: What 'Vibe Engineering' Actually Demands"
+slug: the-one-person-product-team-what-vibe-engineering-actually-demands
+description: "AI hasn't eliminated the complexity of software development. It's amplified it. Solo builders must wear different hats. The tools write the code. You do everything else."
+date: 2025-11-28
+author: Anouar Bencheqroun
+category: Artificial Intelligence
+categoryColor: purple
+tags:
+  - AI
+  - vibe coding
+  - software engineering
+  - solo development
+image: /images/blog/the-one-person-product-team.png
+imageAlt: "The One-Person Product Team"
+readTime: 20
+featured: true
+published: true
+---
+
+There's a particular kind of exhaustion that comes from building software alone.
+
+It's not the tiredness of typing for hours. It's the mental whiplash of switching contexts every fifteen minutes. One moment you're sketching user flows like a product manager. The next you're debugging a database query. Then you're suddenly the QA tester, staring at your own code, wondering why it doesn't do what you thought it would.
+
+"The solo developer experience is uniquely brutal," writes one engineer on Atomic Object's blog. And brutal is the right word. Not because the work is impossible, but because it never stops shape-shifting. The role keeps changing even when you don't.
+
+This has always been true for indie hackers and solo founders. What's changed in 2025 is that AI has made it possible, genuinely possible, for one person to build things that used to require a team. The tools have gotten that good.
+
+But here's what the hype cycle won't tell you: AI hasn't eliminated the need for multiple skills. It's amplified it.
+
+The conversation about AI and coding has been stuck in the same rut all year. Can AI code? Will it replace developers? Is "vibe coding" revolutionary or reckless? These questions have been argued to death across a thousand blog posts, podcast episodes, and Twitter threads. I'm tired of them. You're probably tired of them too.
+
+The more interesting question, the one worth actually exploring, is what happens *after* you accept that AI can help you write software. What does it take to ship something real? Something that works in production, handles actual users, doesn't leak their data, and doesn't fall apart the moment you try to add a feature?
+
+That's the question this piece tries to answer.
+
+## The Terminology Problem
+
+Let's start with the words, because they matter more than they should.
+
+In February 2025, Andrej Karpathy (OpenAI co-founder, former Tesla AI lead, one of the most respected names in machine learning) casually described his workflow on X. He called it "vibe coding."
+
+"I just see stuff, say stuff, run stuff, and copy-paste stuff, and it mostly works," he wrote. "I 'Accept All' always, I don't read the diffs anymore."
+
+The phrase caught fire. Within weeks, "vibe coding" was everywhere: YouTube tutorials, Discord servers, Reddit threads, startup pitch decks. The term captured something real: the intoxicating experience of describing what you want to a language model and watching it materialize as working code.
+
+But Karpathy was careful to add context that most people ignored. This approach, he said, was "not too bad for throwaway weekend projects." When something broke, he'd "work around it or ask for random changes until it goes away." The code could "grow beyond my usual comprehension."
+
+In other words: vibe coding was explicitly meant for low-stakes experiments. It was never intended as a production methodology.
+
+That nuance got lost. Fast.
+
+By summer, the consequences started showing up. Apps broke under load. Deployments failed in strange ways. APIs leaked secrets. Some vibe-coded projects exposed actual user data. Developers who tried to scale early prototypes faced the cold reality that "mostly works" doesn't survive contact with production.
+
+Collins Dictionary named "vibe coding" one of the words of 2025. The cultural moment had arrived, but so had the backlash.
+
+## Enter Vibe Engineering
+
+Eight months after Karpathy's tweet, Simon Willison stepped in with a corrective.
+
+Willison isn't a celebrity in the way Karpathy is, but among working developers who care about craft, his voice carries weight. He created Datasette, writes extensively about practical AI use, and has been thoughtfully documenting what actually works when humans and language models collaborate on real projects.
+
+In October 2025, he drew a line.
+
+"Vibe coding is pretty well established now as covering the fast, loose and irresponsible way of building software with AI," Willison wrote. "Entirely prompt-driven, with no attention paid to how the code actually works."
+
+But that left a gap. What do you call the *opposite* approach? The one where experienced professionals use AI to accelerate their work while staying accountable for every line that ships?
+
+His answer: **vibe engineering.**
+
+"One of the lesser spoken truths of working productively with LLMs as a software engineer on non-toy-projects is that it's difficult," he wrote. "There's a lot of depth to understanding how to use the tools, there are plenty of traps to avoid, and the pace at which they can churn out working code raises the bar for what the human participant can and should be contributing."
+
+That last part is crucial. AI raises the bar. It doesn't lower it.
+
+Willison's distinction between vibe coding and vibe engineering isn't academic. It's the difference between accepting AI output on faith versus reviewing and understanding everything. Between building fast and building for production. Between using AI as autocomplete and using AI as a collaborator you actively manage.
+
+As he put it: "If an LLM wrote every line of your code, but you've reviewed, tested, and understood it all, that's not vibe coding in my book. That's using an LLM as a typing assistant."
+
+The terminology matters because it shapes expectations. Vibe coding sounds casual, even playful. Vibe engineering signals something harder: a discipline that requires judgment, experience, and accountability.
+
+Andrew Ng, the Stanford professor and former Google Brain lead, made a similar point at the LangChain Interrupt conference in May. "It's unfortunate that that's called vibe coding," he said. "It's misleading a lot of people into thinking, just go with the vibes, you know, accept this, reject that."
+
+In reality, he said, coding with AI is "a deeply intellectual exercise." When he's coding with AI assistance for a full day, he's "frankly exhausted by the end of it."
+
+That's not what the marketing materials promise. But it's the truth.
+
+## The Bridge: Why Solo Builders Can't Escape Multi-Role Reality
+
+Here's the part that rarely gets discussed honestly: coding was never the main bottleneck for shipping software.
+
+Architecture is. Testing is. Security is. Deployment is. Understanding what users actually need is.
+
+Every senior engineer knows this instinctively. The actual typing of code (the syntax, the functions, the boilerplate) is maybe 20% of the job on a good day. The rest is thinking, planning, debugging, reviewing, and maintaining.
+
+AI has gotten remarkably good at the typing part. It can generate functions, scaffold projects, implement features from descriptions, even write tests. What it can't do is think strategically about trade-offs, anticipate how systems will behave under load, design for maintainability six months from now, or understand why a particular user flow matters to the business.
+
+So what happens when the typing gets automated?
+
+Everything else becomes more important.
+
+This is the hidden cost of AI-assisted development. When one person can generate code at the speed of thought, that person suddenly has to *evaluate* code at the speed of thought too. They have to make architectural decisions faster, test more aggressively, audit security more carefully, and deploy with more discipline.
+
+The one-person product team isn't someone who's escaped the multi-role burden. They're someone who's accepted it completely, and figured out how to manage it.
+
+This is the invisible labor of vibe engineering. It's why the approach needs its own terminology. And it's why the transition from casual vibe coding to disciplined vibe engineering naturally leads to the multi-hat model: when one person builds production software with AI, they don't just "become a coder." They become every role in a traditional software team.
+
+## The Six Hats You Can't Take Off
+
+Based on Willison's framework, documented experiences from developers in the field, and the pattern of failures that have emerged over the past year, here are the six roles a solo builder must play. Not optionally. Not occasionally. Every single time they want to ship something real.
+
+### 1. Product Manager: Defining What to Build
+
+AI can write code. What it can't do is tell you what problem to solve, who your user is, or why any of this matters.
+
+Before a single prompt gets written, a solo builder needs clarity on the fundamentals. What's the problem? Who experiences it? What does success look like? What constraints exist: time, budget, technology, user expectations?
+
+This sounds obvious. It isn't. The ease of generating code creates a seductive trap: you can start building before you've finished thinking. The code appears so quickly that it *feels* like progress. But if you're solving the wrong problem or building for the wrong user, speed just gets you to failure faster.
+
+Ryan Carson, a veteran entrepreneur, has emphasized this in discussions about AI-assisted workflows: solo founders need "clear context" before engaging AI: feature descriptions, user flows, technical constraints. Without that foundation, AI generates things that look plausible but miss the mark entirely.
+
+One product manager who documented her transition to AI-assisted building put it bluntly: "AI drastically lowers the barrier to coding, but the barrier to production remains. Testing, deployment, security, scaling, and maintainability still require human systems thinking. The AI can write the code; you still need to be the architect."
+
+This problem gets amplified for non-technical builders. They can generate working prototypes quickly, but without structured product thinking, they often end up with misaligned features, unscalable assumptions, and poor UX decisions. The AI accelerates their direction, but if the direction is wrong, they just get lost faster.
+
+### 2. Architect: Making Structural Decisions
+
+This is where AI tools consistently fall short, and where human judgment remains irreplaceable.
+
+AI can generate components beautifully. It struggles to see how those components fit together into a coherent system. It can't evaluate trade-offs between a monolith and microservices. It doesn't know whether your database schema will scale. It has no opinion about whether your authentication approach will survive a security audit.
+
+JetBrains acknowledged this directly when announcing their Matter AI tool: "While these tools are great for building MVPs or quick prototypes, they hit a wall the moment you need multiple services, non-trivial business logic, or complex frontend operations."
+
+The architectural decisions (the ones that determine whether your project will be maintainable, scalable, and secure) still require a human who understands the territory.
+
+Willison makes this point repeatedly: "High-level plans and specifications are essential to guide agents effectively." You can't outsource the thinking. You can only outsource the typing.
+
+When solo builders skip the architecture step, the result is predictable: an app that looks polished and functional but accumulates technical debt from day one, falling apart under real-world use.
+
+### 3. Developer: Orchestrating AI Output
+
+The developer role has transformed, but it hasn't gotten easier. It's gotten different.
+
+Instead of writing code line by line, you're orchestrating: crafting prompts, evaluating outputs, iterating on results, integrating components, managing context windows. You're directing rather than typing. It sounds more efficient. In some ways it is. In other ways it's more cognitively demanding than traditional coding.
+
+"The fundamental challenge isn't technical complexity, it's cognitive overhead," notes the Atomic Object analysis. "Besides constantly bouncing between PM, designer, developer, and QA roles, on a side project you're often trying to just squeeze in time between other day-to-day obligations. This fragments our attention and kills momentum."
+
+Willison describes his workflow as managing "a growing army of weird digital interns." He runs multiple instances of Claude Code in parallel, tackling different problems simultaneously. The productivity gains are real. But so is the overhead of keeping track of what each "intern" is doing.
+
+"When I've got time for code review, I can check out all the PRs, do whatever QA I need to do, and then merge them," he writes. "I still prefer doing PR reviews locally. I can build and run the app, do my own manual testing, and actually get into the code."
+
+Notice what he's not doing: blindly accepting whatever the AI generates. The accountability remains with him. AI speeds up implementation, but increases your responsibility to verify.
+
+### 4. QA Engineer: Testing Everything
+
+Here's perhaps Willison's most important insight about vibe engineering: **AI actively rewards existing top-tier software engineering practices.**
+
+"Automated testing: If your project has a robust, comprehensive and stable test suite, agentic coding tools can fly with it," he writes. "Without tests? Your agent might claim something works without having actually tested it at all, plus any new change could break an unrelated feature without you realizing it."
+
+This is counterintuitive. You might expect AI to make testing less important. After all, the code just *works*, right? The opposite is true. When you didn't write the code yourself, line by line, you understand it less intuitively. You need tests more, not less.
+
+Willison specifically advocates for test-driven development with AI: "Test-first development is particularly effective with agents that can iterate in a loop."
+
+A commenter on his newsletter shared their experience: "I'm having remarkably good success when I tell the AI agent to use Test Driven Development methodology in a very strong way. With an existing test suite, and an approach where it writes tests first, runs them to show failure, and then implements the code to make the tests pass, it really allows the AI to work on a harder problem and debug its own mistakes before I have to review what it's done."
+
+The pattern is clear: testing isn't a nice-to-have. It's the foundation that makes AI-assisted development trustworthy.
+
+If you skip testing because AI makes coding feel "easy," you're building on sand.
+
+### 5. Security Engineer: Auditing for Vulnerabilities
+
+This is where vibe coding has failed most visibly, and where the stakes are highest.
+
+The numbers are sobering. According to Veracode's 2025 GenAI Code Security report, 45% of AI-generated code contains security flaws despite appearing production-ready. That's nearly half. And these aren't obscure edge cases. They're fundamental issues like missing input validation, exposed secrets, and insecure authentication flows.
+
+In October 2025, researchers at Escape Security analyzed over 5,600 publicly available vibe-coded applications. What they found was alarming: more than 2,000 vulnerabilities, over 400 exposed secrets (API keys, database credentials), and 175 instances of exposed personally identifiable information, including medical records and bank account numbers.
+
+The Lovable vulnerability (CVE-2025-48757) became a case study. Security researcher Matt Palmer discovered that 170 out of 1,645 Lovable-created web applications had critical flaws allowing anyone to access user data. Software engineer Daniel Asaria extracted personal debt amounts, home addresses, and API keys from multiple apps in just 47 minutes.
+
+A Dark Reading survey found that 41% of developers avoid vibe coding specifically because of security concerns. A WIRED analysis noted that only 18% of surveyed organizations had formally approved AI coding tools for production use.
+
+The problem isn't that AI writes uniquely bad code. It's that AI writes *confident-looking* code that inexperienced developers can't evaluate for risk.
+
+Mackenzie Jackson of Aikido Security put it directly: "AI doesn't write secure code by default. It just spits out something that works. Under the hood, it can be wide open to attacks."
+
+This is perhaps the starkest reality of AI-assisted development. The same tools that enable non-technical builders to create functional applications also enable them to create vulnerable ones, and they may never know the difference until it's too late.
+
+If you're shipping to real users, security review isn't optional. It's essential.
+
+### 6. DevOps Engineer: Deploying and Maintaining
+
+Getting code to run locally is one thing. Getting it to run safely and reliably in production, and keeping it running, is another thing entirely.
+
+The Jason Lemkin incident became a cautionary tale that echoed across the industry. Lemkin, founder of the prominent SaaS community SaaStr, documented his experience with Replit's AI assistant over a series of posts that went viral. At first, he was euphoric: "Day 7 of vibe coding, and let me be clear on one thing: Replit is the most addictive app I've ever used."
+
+Then the AI deleted his production database during an explicit code freeze. It ignored repeated instructions not to modify anything. When asked about recovery, it incorrectly claimed the database couldn't be restored, which turned out to be false.
+
+Replit CEO Amjad Masad acknowledged the failure publicly: "Unacceptable and should never be possible."
+
+Lemkin's postmortem was sobering: "These are powerful tools with specific constraints, not replacements for understanding what commercial software requires. They are tools. Not dev teams. Remind yourself of that every single day."
+
+The deployment, monitoring, and maintenance responsibilities don't disappear when AI writes your code. If anything, they become more critical, because you may understand the codebase less intimately than if you'd written every line yourself.
+
+## The Discipline That Makes It Work
+
+What separates solo builders who successfully ship production software from those who struggle or fail?
+
+It's not brilliance. It's not luck. It's discipline: specifically, the engineering disciplines that have always mattered, applied consistently in an AI-assisted context.
+
+**Robust Testing**
+Willison is emphatic: testing is the cornerstone. Without a solid test suite, AI agents become unreliable at best, dangerous at worst. With comprehensive tests, they become genuinely powerful collaborators. The most effective approach is test-driven development, where AI writes tests first, validates they fail, then implements code to make them pass. This gives the AI a concrete target and gives you a verification mechanism.
+
+**Comprehensive Documentation**
+Documentation serves a dual purpose now. It's not just for future human readers. It's context for AI agents. Well-documented projects give AI more to work with, resulting in more accurate, consistent output. Willison notes: "Good documentation provides necessary context for an agent, just as it would for a human." This is a shift in how we think about docs. They're no longer an afterthought or a chore. They're part of the input to your AI system, and they directly affect output quality.
+
+**Advance Planning**
+High-level plans and specifications guide agents more effectively than improvised prompts. When you know where you're going, you can direct AI more precisely. MIT Technology Review called 2025 "the year of context engineering," a shift from throwing prompts at models to carefully curating the information models receive. The insight: better context produces better code.
+
+**Rigorous Code Review**
+Even if AI wrote every line, you must review it. This isn't about distrust. It's about accountability. If you can't explain why the code works, you don't understand it well enough to ship it. The one-person product team must hold themselves accountable for every line that gets merged. There's no one else to catch what you miss.
+
+**Iterative Feedback**
+AI gets things wrong constantly. The skill isn't avoiding errors. It's recognizing them quickly and providing corrective feedback. Experienced builders treat AI like a capable but imperfect collaborator, checking work rather than accepting it blindly.
+
+This feedback loop (assign, review, correct, repeat) is the engine of vibe engineering.
+
+## What Non-Technical Builders Need to Know
+
+The rise of AI tools has enabled an entirely new class of creators (designers, marketers, educators, domain experts) to build functional software. This is genuinely exciting. But it comes with responsibilities that can't be ignored.
+
+Can people without programming backgrounds ship production software with AI? The evidence says yes, but only with structured discipline.
+
+One product manager who made the transition documented her experience: "If you can write clear requirements and decompose problems, you can direct an AI to build software." But she was honest about the difficulty: "Most people who give up do so because they treat AI like a magic button rather than a tool that needs guidance."
+
+The barrier isn't coding syntax. AI handles that. The barriers are conceptual and structural:
+
+**Conceptual understanding:** You need to know what databases, APIs, authentication, and deployment actually mean, not how to implement them, but what they are and why they matter.
+
+**Problem decomposition:** Complex goals need to be broken into achievable steps. AI can execute steps; it can't define them.
+
+**Quality judgment:** You need to recognize when something works versus when it works *correctly*, a distinction that's harder than it sounds.
+
+**Debugging persistence:** Things will break. The question is whether you'll work through failures or give up.
+
+These skills can be learned. They can't be skipped. The tools have changed the landscape, but they haven't changed the fundamentals of what makes software production-ready.
+
+Tools like Replit, Vercel, and various AI-native platforms help bridge the gap, but they don't eliminate responsibility. They enable non-technical creators to produce more, but those creators still need judgment, testing discipline, and risk awareness.
+
+## The Context Engineering Evolution
+
+There's a broader shift happening in how serious practitioners approach AI-assisted development.
+
+MIT Technology Review declared that 2025 has seen "a significant shift in the use of AI in software engineering. A loose, vibes-based approach has given way to a systematic approach to managing how AI systems process context."
+
+They call it "context engineering."
+
+The idea is straightforward but profound: instead of throwing prompts at AI and hoping for good results, you carefully design what information AI receives. Project documentation. Architectural decisions. Coding conventions. Test requirements. Security policies. All of it becomes input that shapes output.
+
+Better context produces better code. Sloppy context produces sloppy code.
+
+One analysis framed it starkly: "If you are 'vibe coding' (treating AI as a better autocomplete) you'll get a 10% gain. The 1000% gain is unlocked when you practice vibe engineering, powered by a mastery of context."
+
+This reframes AI assistance entirely. It's not magic that writes code. It's a tool that amplifies your existing practices. If your practices are disciplined, AI makes you dramatically more effective. If your practices are sloppy, AI just accelerates the sloppiness.
+
+Context engineering involves feeding PRDs and architectural notes into the model, providing coding conventions and style guides, supplying test coverage targets, and using systems to maintain continuity across sessions. It's engineering the environment in which AI operates, not just the prompts you send.
+
+## Accountability and the Edges of Automation
+
+There's an uncomfortable truth embedded in all of this: if AI-generated code harms users, the human who shipped it is accountable.
+
+This isn't philosophy. It's practical reality. When a vibe-coded app leaks user data, the builder can't point at the AI and say "it wasn't me." When a security vulnerability gets exploited, "the model wrote it that way" isn't a defense.
+
+Solo builders need to reckon with this directly. The power to create has always come with responsibility for what you create. AI tools amplify that power without diminishing that responsibility.
+
+The ethical dimensions extend beyond security. There's the question of transparency: should users know when they're interacting with AI-generated code? There's the matter of emotional manipulation: AI can generate persuasive UI patterns and copy that may influence user behavior in ways the builder doesn't fully understand. There's the challenge of unintended bias embedded in generated outputs.
+
+These aren't abstract concerns. They're practical engineering decisions that solo builders now face, often without the institutional support that larger teams provide.
+
+The vibe engineering approach takes accountability seriously. You review everything. You test everything. You understand, or learn to understand, the code you're shipping. You treat AI as a collaborator, not a replacement for your own judgment.
+
+This is harder than vibe coding. It's also the only approach that's sustainable for anything beyond throwaway experiments.
+
+## The Honest Assessment
+
+Here's what the evidence actually supports about AI-assisted development in late 2025:
+
+**AI tools genuinely accelerate development for people who know what they're building:**
+Senior developers report shipping code significantly faster. The Fastly July 2025 survey found 2.5x improvement in development cycles. But these gains come with constant oversight, not hands-off automation. Developers describe the work as "AI babysitting."
+
+**The productivity gains require expertise to unlock:**
+Y Combinator's statistic (25% of Winter 2025 startups with 95% AI-generated codebases) sounds revolutionary. But those startups are run by experienced builders who understand architecture, testing, and deployment. They're using AI to accelerate expertise, not replace it.
+
+**Security remains a serious systemic risk:**
+With 45% of AI-generated code containing vulnerabilities and over 2,000 issues found in analyzed vibe-coded applications, the security landscape demands attention. If you're shipping to real users, audit everything.
+
+**The multi-hat problem is real and unavoidable:**
+AI doesn't eliminate the need to be PM, architect, QA, security engineer, and DevOps. It makes it possible for one person to do all those roles, but you still have to do them.
+
+**The work is still work:**
+There's a misconception that AI turns builders into orchestrators who never touch complexity. The opposite is happening: AI magnifies complexity by producing more code, more decisions, more surface area more quickly. The job becomes less typing, more thinking.
+
+**The term matters more than it should:**
+"Vibe coding" implies casualness. The reality is anything but. Willison's "vibe engineering" better captures what's actually required: disciplined professional practice, accelerated by AI, demanding full accountability for results.
+
+## Practical Guidance for Solo Builders
+
+If you're building software alone with AI assistance, here's what the accumulated evidence suggests:
+
+1. **Start with specifications, not prompts:** Write down what you're building, who it's for, what it needs to do, and what constraints exist. This becomes context for AI, and clarity for yourself. A product requirements document, user flows, acceptance criteria, edge cases. Feed these into your model. They become the backbone of every generation that follows.
+
+2. **Implement testing from day one:** Test-driven development works especially well with AI. Let the AI write tests first, verify they fail, then implement code to pass them. The tests become both documentation and safety net. But humans must review tests, enforce coverage, and verify assertions.
+
+3. **Review everything you ship:** If you can't explain why the code works, you don't understand it well enough to put your name on it. There is no shortcut here.
+
+4. **Audit security actively.** Assume AI-generated code has vulnerabilities. Look for them specifically: input validation, authentication, data exposure, API key handling, unsafe dependencies, database permissions, cloud configuration. No tool will do this reliably for you. Not yet.
+
+5. **Use version control religiously:** When AI makes changes you don't understand, you need to be able to roll back. Branch isolation, small PRs, full diffs, rollback capacity. The Lemkin/Replit incident happened because rollback mechanisms weren't properly understood.
+
+6. **Accept the cognitive overhead:** You're going to context-switch between roles constantly. That's the trade-off for being a one-person team. Build systems (checklists, workflows, automation) to manage the complexity. This is the cost and the opportunity.
+
+7. **Know when to stop:** Some projects outgrow what solo AI-assisted development can handle. Recognizing when you need human teammates, not just AI ones, is part of the maturity.
+
+## Looking Forward
+
+The landscape is still shifting. Tools are getting more capable. Practices are maturing. The early chaos of vibe coding is giving way to more structured approaches.
+
+What's emerging isn't a trend or a meme. It's a reshaping of what it means to build software.
+
+The next stage will belong to builders who can think in systems, collaborate with AI, design effective context pipelines, maintain engineering discipline, and own accountability for the full stack. The skills that matter are evolving. The fundamentals that underpin them aren't.
+
+Communities are forming around these practices: on GitHub, on Discord, across the developer internet. Vibe engineering isn't just an intellectual exercise. It's becoming a shared language among builders navigating the same new terrain.
+
+But some things aren't going to change.
+
+Software that works in production will still require someone who understands the domain, thinks through architecture, tests thoroughly, audits security, and deploys carefully. AI makes all of that faster. It doesn't make any of it optional.
+
+The one-person product team is newly possible. It's also newly demanding. The solo builder of 2025 and beyond isn't someone who's escaped the complexity of software development. They're someone who's absorbed that complexity entirely, and learned to manage it with AI as a partner rather than a replacement.
+
+## The Real Story
+
+Willison captured the shift precisely: "The engineer's role evolves. They spend less time on rote typing and more on high-level architecture, research, planning, and managing a growing army of weird digital interns."
+
+That's not coding by vibes. That's engineering with discipline, accelerated by AI, grounded in practices that have always separated software that works from software that doesn't.
+
+The brutality of solo development isn't going away. The context-switching, the cognitive load, the responsibility for every layer of the stack. But with the right discipline, it's becoming survivable, perhaps even sustainable.
+
+The tools have changed. The fundamentals haven't.
+And the builders who understand that distinction are the ones who'll ship things that last.

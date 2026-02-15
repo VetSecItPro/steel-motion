@@ -13,9 +13,9 @@ export function middleware(request: NextRequest) {
     script-src 'self' 'unsafe-inline' 'unsafe-eval' *.youtube.com *.twitter.com;
     child-src *.youtube.com *.google.com *.twitter.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
-    img-src 'self' blob: data: cdn.sanity.io images.unsplash.com placehold.co;
+    img-src 'self' blob: data: images.unsplash.com placehold.co;
     media-src 'none';
-    connect-src 'self' https://*.sanity.io https://*.supabase.co https://*.upstash.io https://*.vercel-insights.com https://*.vercel-analytics.com;
+    connect-src 'self' https://*.supabase.co https://*.upstash.io https://*.vercel-insights.com https://*.vercel-analytics.com;
     font-src 'self' data:;
   `.replace(/\s{2,}/g, ' ').trim();
 

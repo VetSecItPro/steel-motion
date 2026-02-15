@@ -18,13 +18,13 @@ export default defineConfig({
         'src/test/',
         '**/*.d.ts',
         '**/*.config.*',
-        '**/sanity/**',
       ],
     },
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '#content': path.resolve(__dirname, './.velite'),
     },
   },
 })
