@@ -108,10 +108,7 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
                 {band.description}
               </p>
 
-              <div className="mt-6 flex items-center gap-3">
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${band.statusBg} ${band.statusText}`}>
-                  {band.status}
-                </span>
+              <div className="mt-6">
                 <span className="text-sm text-sm-text-inverse-muted">
                   {band.albums.length} {band.albums.length === 1 ? 'Album' : 'Albums'}
                 </span>

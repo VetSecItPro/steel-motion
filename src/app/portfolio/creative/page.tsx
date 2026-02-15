@@ -117,9 +117,6 @@ export default function CreativePortfolioPage() {
                               {band.genre}
                             </p>
                           </div>
-                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${band.statusBg} ${band.statusText}`}>
-                            {band.status}
-                          </span>
                         </div>
 
                         <p className="text-sm-text-secondary leading-relaxed mt-4 mb-5 whitespace-pre-line">
