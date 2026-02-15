@@ -1,6 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation', () => {
+  test.beforeEach(async ({ page }) => {
+    // Dismiss cookie notice by setting localStorage before navigation
+    await page.addInitScript(() => {
+      localStorage.setItem('cookie-notice-dismissed', 'true');
+    });
+  });
+
   test('homepage loads correctly', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Steel Motion/);
