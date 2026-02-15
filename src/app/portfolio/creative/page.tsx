@@ -5,8 +5,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, Music } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import { slideInUp } from "@/lib/animations"
 import { bands } from "@/lib/data/bands"
 
@@ -87,10 +87,24 @@ export default function CreativePortfolioPage() {
                     style={{ boxShadow: "var(--sm-shadow-sm)" }}
                   >
                     <div className="grid md:grid-cols-[240px_1fr]">
-                      {/* Gradient Side */}
-                      <div className={`bg-gradient-to-br ${band.gradient} flex items-center justify-center p-8 min-h-[200px]`}>
-                        <Music className="w-20 h-20 text-white/30" />
-                      </div>
+                      {/* Band Image / Gradient Side */}
+                      {band.image ? (
+                        <div className="relative min-h-[200px] md:min-h-0">
+                          <Image
+                            src={band.image}
+                            alt={band.name}
+                            width={480}
+                            height={720}
+                            sizes="(max-width: 768px) 100vw, 240px"
+                            className="w-full h-full object-cover object-top"
+                            priority
+                          />
+                        </div>
+                      ) : (
+                        <div className={`bg-gradient-to-br ${band.gradient} flex items-center justify-center p-8 min-h-[200px]`}>
+                          <Music className="w-20 h-20 text-white/30" />
+                        </div>
+                      )}
 
                       {/* Content */}
                       <div className="p-8">
@@ -108,17 +122,20 @@ export default function CreativePortfolioPage() {
                           </span>
                         </div>
 
-                        <p className="text-sm-text-secondary leading-relaxed mt-4 mb-5">
+                        <p className="text-sm-text-secondary leading-relaxed mt-4 mb-5 whitespace-pre-line">
                           {band.description}
                         </p>
 
+                        {band.aiTools && (
                         <div className="mb-5">
                           <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
                             AI Tools
                           </h4>
                           <p className="text-sm text-sm-text-secondary">{band.aiTools}</p>
                         </div>
+                        )}
 
+                        {band.features && band.features.length > 0 && (
                         <div className="mb-5">
                           <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
                             Details
@@ -132,6 +149,7 @@ export default function CreativePortfolioPage() {
                             ))}
                           </div>
                         </div>
+                        )}
 
                         {/* View Albums CTA */}
                         <div className="pt-4 border-t border-sm-border-default">
@@ -185,7 +203,6 @@ export default function CreativePortfolioPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

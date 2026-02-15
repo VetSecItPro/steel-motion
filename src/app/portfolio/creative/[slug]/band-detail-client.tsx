@@ -1,13 +1,14 @@
 'use client'
 
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, ArrowLeft, Music } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { AlbumCard } from "@/components/ui/album-card"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import { slideInUp } from "@/lib/animations"
 import type { Band } from "@/lib/data/bands"
 import { bands } from "@/lib/data/bands"
@@ -18,6 +19,10 @@ interface BandDetailClientProps {
 
 export default function BandDetailClient({ band }: BandDetailClientProps) {
   const otherBand = bands.find((b) => b.slug !== band.slug)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const scrollToContact = () => {
     const el = document.getElementById("contact")
@@ -61,36 +66,58 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
         style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}
       >
         <div className="container mx-auto px-4">
-          <motion.div {...slideInUp} className="max-w-4xl mx-auto text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20"
+          <div className="max-w-5xl mx-auto grid md:grid-cols-[320px_1fr] gap-10 items-center">
+            {/* Band Photo */}
+            <motion.div
+              {...slideInUp}
+              className="relative"
             >
-              {band.genre}
-            </Badge>
+              {band.image ? (
+                <div className="overflow-hidden rounded-2xl shadow-2xl">
+                  <Image
+                    src={band.image}
+                    alt={band.name}
+                    width={480}
+                    height={720}
+                    sizes="(max-width: 768px) 100vw, 320px"
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                </div>
+              ) : (
+                <div className={`w-full aspect-[2/3] rounded-2xl bg-gradient-to-br ${band.gradient} flex items-center justify-center shadow-2xl`}>
+                  <Music className="w-20 h-20 text-white/30" />
+                </div>
+              )}
+            </motion.div>
 
-            {/* Band Icon */}
-            <div className={`w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${band.gradient} flex items-center justify-center`}>
-              <Music className="w-12 h-12 text-white/60" />
-            </div>
+            {/* Band Info */}
+            <motion.div {...slideInUp} transition={{ duration: 0.5, delay: 0.1 }}>
+              <Badge
+                variant="secondary"
+                className="mb-4 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20"
+              >
+                {band.genre}
+              </Badge>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-sm-text-inverse">
-              {band.name}
-            </h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-5 text-sm-text-inverse">
+                {band.name}
+              </h1>
 
-            <p className="text-xl text-sm-text-inverse-muted max-w-3xl mx-auto leading-relaxed">
-              {band.description}
-            </p>
+              <p className="text-lg text-sm-text-inverse-muted leading-relaxed whitespace-pre-line">
+                {band.description}
+              </p>
 
-            <div className="mt-6 flex items-center justify-center gap-3">
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${band.statusBg} ${band.statusText}`}>
-                {band.status}
-              </span>
-              <span className="text-sm text-sm-text-inverse-muted">
-                {band.albums.length} {band.albums.length === 1 ? 'Album' : 'Albums'}
-              </span>
-            </div>
-          </motion.div>
+              <div className="mt-6 flex items-center gap-3">
+                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${band.statusBg} ${band.statusText}`}>
+                  {band.status}
+                </span>
+                <span className="text-sm text-sm-text-inverse-muted">
+                  {band.albums.length} {band.albums.length === 1 ? 'Album' : 'Albums'}
+                </span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -172,7 +199,6 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

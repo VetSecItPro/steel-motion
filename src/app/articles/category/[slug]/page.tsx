@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense, cache } from "react"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import BlogPostGrid from "@/components/blog/blog-post-grid"
 import BlogSidebar from "@/components/blog/blog-sidebar"
 import { Badge } from "@/components/ui/badge"
@@ -148,7 +147,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </div>
 
-      <Footer />
     </main>
   )
 }

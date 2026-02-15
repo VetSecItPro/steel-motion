@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import ServicePage from "@/components/sections/service-page"
 import ServiceSchema from "@/components/structured-data/service"
 
@@ -92,7 +91,6 @@ export default function DataAnalyticsPage() {
       <ServiceSchema service={serviceSchema} />
       <Navbar />
       <ServicePage {...serviceData} />
-      <Footer />
     </main>
   )
 }

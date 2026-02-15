@@ -5,7 +5,6 @@ import Services from "@/components/sections/services"
 import Products from "@/components/sections/products"
 import WhySteelMotion from "@/components/sections/why-steel-motion"
 import Contact from "@/components/sections/contact"
-import Footer from "@/components/sections/footer"
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <Products />
       <WhySteelMotion />
       <Contact />
-      <Footer />
     </main>
   );
 }

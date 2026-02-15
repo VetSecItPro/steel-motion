@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { cache } from "react"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import BlogPostContent from "@/components/blog/blog-post-content"
 import { client } from "@/lib/sanity"
 import { postQuery } from "@/lib/sanity-queries"
@@ -83,7 +82,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <main className="min-h-screen bg-sm-surface-primary">
       <Navbar />
       <BlogPostContent post={post} />
-      <Footer />
     </main>
   )
 }

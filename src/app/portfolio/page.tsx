@@ -9,7 +9,6 @@ import { ArrowRight, ExternalLink, Code, Music } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import { slideInUp } from "@/lib/animations"
 
 type ProjectCategory = "all" | "software" | "creative"
@@ -27,6 +26,7 @@ interface Project {
   statusText: string
   gradient: string
   logo?: string
+  image?: string
   href?: string
 }
 
@@ -82,9 +82,9 @@ const projects: Project[] = [
   {
     id: "iron-pulse",
     title: "Iron Pulse",
-    subtitle: "Hard Rock / AI-Assisted Production",
+    subtitle: "American Hard Rock",
     description:
-      "Original hard rock compositions produced with AI tools including Suno. Full albums available on streaming platforms.",
+      "Iron Pulse is a cinematic American rock project built on tension, release, and emotional truth. Fronted by dual lead vocalists, Elias Vale and Ari Solenne, the band blends modern hard rock weight with melodic depth and atmospheric texture.\n\nEach album is crafted as a full narrative arc — deliberate, structured, emotionally charged music designed to feel lived in, not manufactured.",
     category: "creative",
     categoryLabel: "Creative Project",
     categoryIcon: Music,
@@ -92,13 +92,15 @@ const projects: Project[] = [
     statusBg: "bg-sm-status-success-light",
     statusText: "text-sm-status-success",
     gradient: "from-orange-500 via-red-500 to-red-600",
+    image: "/images/bands/iron-pulse-card.webp",
+    href: "/portfolio/creative/iron-pulse",
   },
   {
     id: "other-life",
     title: "Other Life",
-    subtitle: "Hard Rock / AI-Assisted Production",
+    subtitle: "French Hard Rock",
     description:
-      "Second band project exploring AI-assisted music production. Different sonic direction from Iron Pulse across the hard rock spectrum.",
+      "Other Life is a French hard rock project driven by intensity, atmosphere, and emotional weight. Fronted by Adrien Corren and Anaïs Ardent, the band blends cinematic textures with heavy, riff-forward energy and dual-vocal dynamics that move between restraint and eruption. Each album explores identity, fracture, and survival through long-form compositions built for impact rather than trends.\n\nOther Life stands at the intersection of modern production and raw performance, delivering full-length records that feel deliberate, immersive, and unapologetically alive.",
     category: "creative",
     categoryLabel: "Creative Project",
     categoryIcon: Music,
@@ -106,6 +108,8 @@ const projects: Project[] = [
     statusBg: "bg-sm-status-success-light",
     statusText: "text-sm-status-success",
     gradient: "from-red-500 via-purple-500 to-violet-600",
+    image: "/images/bands/other-life.webp",
+    href: "/portfolio/creative/other-life",
   },
 ]
 
@@ -182,9 +186,22 @@ export default function PortfolioPage() {
                 {...slideInUp}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                <Card className="h-full bg-sm-surface-elevated border-sm-border-default hover:border-sm-accent-primary/30 transition-all duration-300 overflow-hidden group hover:shadow-[var(--sm-shadow-md)]" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
-                  {/* Gradient Header */}
-                  <div className={`h-32 bg-gradient-to-r ${project.gradient} relative overflow-hidden`}>
+                <Card className="h-full flex flex-col bg-sm-surface-elevated border-sm-border-default hover:border-sm-accent-primary/30 transition-all duration-300 overflow-hidden group hover:shadow-[var(--sm-shadow-md)]" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
+                  {/* Header */}
+                  <div className={`${project.image ? 'h-64' : 'h-32'} bg-gradient-to-r ${project.gradient} relative overflow-hidden`}>
+                    {project.image ? (
+                      <>
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover object-top"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                      </>
+                    ) : (
+                      <>
                     <div className="absolute inset-0 bg-black/20" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       {project.logo ? (
@@ -205,9 +222,11 @@ export default function PortfolioPage() {
                         {project.status}
                       </span>
                     </div>
+                      </>
+                    )}
                   </div>
 
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-1">
                     {/* Category */}
                     <div className="flex items-center gap-2 mb-3">
                       <project.categoryIcon className="w-4 h-4 text-sm-accent-primary" />
@@ -223,12 +242,19 @@ export default function PortfolioPage() {
                     </p>
 
                     {/* Description */}
-                    <p className="text-sm-text-secondary/80 mb-5 leading-relaxed text-sm">
+                    <p className="text-sm-text-secondary/80 mb-5 leading-relaxed text-sm whitespace-pre-line flex-1">
                       {project.description}
                     </p>
 
                     {/* Action */}
-                    {project.href ? (
+                    {project.href?.startsWith("/") ? (
+                      <Link
+                        href={project.href}
+                        className="inline-flex items-center gap-1 text-sm-accent-secondary hover:underline text-sm font-medium"
+                      >
+                        View Albums <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    ) : project.href ? (
                       <a
                         href={project.href}
                         target="_blank"
@@ -285,7 +311,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

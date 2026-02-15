@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, ArrowRightLeft, Handshake, Send, Loader2, DollarSign, FolderGit2, Shield, Code, Cpu, Award, Calendar, Paintbrush, TrendingUp, Wrench, UserCheck } from "lucide-react"
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import { FormField } from "@/components/ui/form-field"
 import { partnershipFormSchema, type PartnershipFormData } from "@/lib/validations/partnership"
 import { slideInUp, scaleIn, fadeIn, slideInLeft, slideInRight } from "@/lib/animations"
@@ -458,7 +457,6 @@ export default function VeteranPartnerships() {
         </div>
       </section>
 
-      <Footer />
     </>
   )
 }

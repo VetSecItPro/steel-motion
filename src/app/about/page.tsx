@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import Navbar from "@/components/navigation/navbar"
-import Footer from "@/components/sections/footer"
 import AboutContent from "@/components/sections/about"
 import PersonSchema from '@/components/structured-data/person'
 
@@ -32,7 +31,6 @@ export default function AboutPage() {
       <PersonSchema />
       <Navbar />
       <AboutContent />
-      <Footer />
     </main>
   )
 }
