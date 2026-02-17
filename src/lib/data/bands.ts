@@ -145,6 +145,13 @@ export const bands: Band[] = [
         spotifyUrl: "https://open.spotify.com/album/3IUzLk5wxAxABKQS9mmKEG",
         appleMusicUrl: "https://music.apple.com/us/album/sans-retour/1861239960",
       },
+      {
+        name: "Sous La Peau Du Monde",
+        slug: "sous-la-peau-du-monde",
+        coverImage: "/images/albums/other-life-sous-la-peau-du-monde.webp",
+        spotifyUrl: "https://open.spotify.com/album/2iurS6LMJoGgDnbxqRge2j",
+        appleMusicUrl: "https://music.apple.com/us/album/sous-la-peau-du-monde/1877596779",
+      },
     ],
   },
 ]
