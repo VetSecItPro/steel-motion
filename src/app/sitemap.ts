@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/blog'
+import { bands } from '@/lib/data/bands'
 
 const BASE_URL = 'https://steelmotionllc.com'
 
@@ -101,5 +102,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...blogRoutes]
+  // Dynamic band routes
+  const bandRoutes: MetadataRoute.Sitemap = bands.map((band) => ({
+    url: `${BASE_URL}/portfolio/creative/${band.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }))
+
+  return [...staticRoutes, ...blogRoutes, ...bandRoutes]
 }

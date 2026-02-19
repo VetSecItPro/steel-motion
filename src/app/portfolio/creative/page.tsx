@@ -110,9 +110,9 @@ export default function CreativePortfolioPage() {
                       <div className="p-8">
                         <div className="flex items-start justify-between mb-2">
                           <div>
-                            <h3 className="text-2xl font-bold text-sm-text-primary">
+                            <h2 className="text-2xl font-bold text-sm-text-primary">
                               {band.name}
-                            </h3>
+                            </h2>
                             <p className="text-sm-accent-primary text-sm font-medium">
                               {band.genre}
                             </p>
@@ -125,18 +125,18 @@ export default function CreativePortfolioPage() {
 
                         {band.aiTools && (
                         <div className="mb-5">
-                          <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
+                          <h3 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
                             AI Tools
-                          </h4>
+                          </h3>
                           <p className="text-sm text-sm-text-secondary">{band.aiTools}</p>
                         </div>
                         )}
 
                         {band.features && band.features.length > 0 && (
                         <div className="mb-5">
-                          <h4 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
+                          <h3 className="text-sm font-semibold text-sm-text-muted uppercase tracking-wider mb-2">
                             Details
-                          </h4>
+                          </h3>
                           <div className="grid grid-cols-2 gap-2">
                             {band.features.map((feature) => (
                               <div key={feature} className="flex items-center gap-2 text-sm text-sm-text-secondary">
@@ -151,7 +151,7 @@ export default function CreativePortfolioPage() {
                         {/* View Albums CTA */}
                         <div className="pt-4 border-t border-sm-border-default">
                           <span className="inline-flex items-center gap-1.5 text-sm-accent-secondary text-sm font-medium group-hover:gap-2 transition-all">
-                            View Albums
+                            View Discography
                             <ArrowRight className="w-3.5 h-3.5" />
                           </span>
                         </div>
