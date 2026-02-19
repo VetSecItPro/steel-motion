@@ -118,6 +118,13 @@ export const bands: Band[] = [
         spotifyUrl: "https://open.spotify.com/album/6aRqBxQR63JOAn2GsKwPRI",
         appleMusicUrl: "https://music.apple.com/us/album/the-four-seasons/1866193379",
       },
+      {
+        name: "A Quiet Kind of Gravity",
+        slug: "a-quiet-kind-of-gravity",
+        coverImage: "/images/albums/iron-pulse-a-quiet-kind-of-gravity.webp",
+        spotifyUrl: "https://open.spotify.com/album/0D7FlkNrd59MeSEi9OXvLf",
+        appleMusicUrl: "https://music.apple.com/us/album/a-quiet-kind-of-gravity/1866486504",
+      },
     ],
   },
   {

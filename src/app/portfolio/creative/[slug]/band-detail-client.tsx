@@ -110,7 +110,7 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
 
               <div className="mt-6">
                 <span className="text-sm text-sm-text-inverse-muted">
-                  {band.albums.length} {band.albums.length === 1 ? 'Album' : 'Albums'}
+                  {band.albums.length} {band.albums.length === 1 ? 'Release' : 'Releases'}
                 </span>
               </div>
             </motion.div>
@@ -126,7 +126,7 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
               {...slideInUp}
               className="text-2xl font-bold text-sm-text-primary mb-10"
             >
-              Albums
+              Discography
             </motion.h2>
 
             {band.albums.length > 0 ? (
@@ -137,7 +137,7 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
               </div>
             ) : (
               <motion.p {...slideInUp} className="text-sm-text-secondary text-center py-12">
-                Albums coming soon. Check back for updates.
+                Discography coming soon. Check back for updates.
               </motion.p>
             )}
           </div>
