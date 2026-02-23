@@ -7,7 +7,27 @@ import type { NextRequest } from 'next/server';
 // To re-enable nonce-based CSP, you must also update layout.tsx to read the nonce
 // from headers() and pass it to Script components via the nonce prop.
 
+// Bot blocking — return 403 before any serverless work
+const BLOCKED_BOTS = [
+  'GPTBot', 'ChatGPT-User', 'CCBot', 'ClaudeBot', 'anthropic-ai',
+  'PerplexityBot', 'Bytespider', 'meta-externalagent', 'FacebookBot',
+  'facebookexternalhit', 'AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot',
+  'PetalBot', 'Amazonbot', 'YouBot', 'Applebot-Extended', 'cohere-ai',
+  'Google-Extended',
+];
+
+function isBlockedBot(ua: string): boolean {
+  const lower = ua.toLowerCase();
+  return BLOCKED_BOTS.some((bot) => lower.includes(bot.toLowerCase()));
+}
+
 export function middleware(request: NextRequest) {
+  // Block aggressive bots before any processing
+  const userAgent = request.headers.get('user-agent') ?? '';
+  if (userAgent && isBlockedBot(userAgent)) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval' *.youtube.com *.twitter.com;
@@ -29,6 +49,19 @@ export function middleware(request: NextRequest) {
   });
 
   response.headers.set('Content-Security-Policy', cspHeader);
+
+  // PERF: Aggressive edge caching for public pages to reduce function invocations
+  const pathname = request.nextUrl.pathname;
+  if (pathname.startsWith('/articles/')) {
+    // Blog articles — cache 1 hour, stale for 7 days
+    response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=604800');
+  } else if (pathname.startsWith('/portfolio/') || pathname.startsWith('/services/') || pathname.startsWith('/about')) {
+    // Static marketing pages — cache 1 hour, stale for 1 day
+    response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+  } else if (pathname === '/' || pathname === '/partnerships') {
+    // Home and partnerships — cache 5 min, stale for 1 hour
+    response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600');
+  }
 
   return response;
 }
