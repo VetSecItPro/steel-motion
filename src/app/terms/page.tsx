@@ -38,9 +38,6 @@ export default function TermsPage() {
                 <ul className="list-disc list-inside text-sm-text-secondary space-y-2 ml-4 mt-4">
                   <li>AI Transformation and Automation</li>
                   <li>Custom Application Development</li>
-                  <li>Cloud Infrastructure Solutions</li>
-                  <li>Cybersecurity Services</li>
-                  <li>Data Analytics and Intelligence</li>
                 </ul>
                 <p className="text-sm-text-secondary leading-relaxed mt-4">
                   Specific services, deliverables, timelines, and pricing are defined in individual
