@@ -79,18 +79,6 @@ export default function Services() {
           ))}
         </div>
 
-        <motion.div
-          {...slideInUp}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-10"
-        >
-          <p className="text-sm-text-secondary text-sm">
-            We also support{' '}
-            <Link href="/services/cloud-infrastructure" className="text-sm-accent-secondary hover:underline">cloud infrastructure</Link>,{' '}
-            <Link href="/services/cybersecurity" className="text-sm-accent-secondary hover:underline">cybersecurity</Link>, and{' '}
-            <Link href="/services/data-analytics" className="text-sm-accent-secondary hover:underline">data analytics</Link> engagements.
-          </p>
-        </motion.div>
       </div>
     </section>
   )

@@ -142,36 +142,6 @@ export default function Navbar() {
                     <div className="font-medium">Custom Development</div>
                     <div className="text-sm text-sm-text-muted">Web applications, APIs, and internal tools</div>
                   </Link>
-                  <Link
-                    href="/services/cloud-infrastructure"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
-                    role="menuitem"
-                    onKeyDown={handleDropdownItemKeyDown}
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    <div className="font-medium">Cloud Infrastructure</div>
-                    <div className="text-sm text-sm-text-muted">Scalable cloud architecture & DevOps</div>
-                  </Link>
-                  <Link
-                    href="/services/cybersecurity"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
-                    role="menuitem"
-                    onKeyDown={handleDropdownItemKeyDown}
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    <div className="font-medium">Cybersecurity</div>
-                    <div className="text-sm text-sm-text-muted">Security assessments & protection</div>
-                  </Link>
-                  <Link
-                    href="/services/data-analytics"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
-                    role="menuitem"
-                    onKeyDown={handleDropdownItemKeyDown}
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    <div className="font-medium">Data Analytics</div>
-                    <div className="text-sm text-sm-text-muted">Business intelligence & insights</div>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -288,27 +258,6 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                   >
                     Custom Development
-                  </Link>
-                  <Link
-                    href="/services/cloud-infrastructure"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Cloud Infrastructure
-                  </Link>
-                  <Link
-                    href="/services/cybersecurity"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Cybersecurity
-                  </Link>
-                  <Link
-                    href="/services/data-analytics"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Data Analytics
                   </Link>
                 </div>
               </div>
