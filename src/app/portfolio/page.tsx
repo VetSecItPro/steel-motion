@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, ExternalLink, Code, Music } from "lucide-react"
+import { ArrowRight, ExternalLink, Code, Music, Terminal, Package, Shield, Flag, GitBranch, Gauge, TestTubes } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
@@ -27,6 +27,7 @@ interface Project {
   gradient: string
   logo?: string
   image?: string
+  icons?: React.ElementType[]
   href?: string
 }
 
@@ -68,7 +69,7 @@ const projects: Project[] = [
     title: "Rowan",
     subtitle: "Household Organization App",
     description:
-      "Real-time task coordination for couples, roommates, and families. Live sync, task automation, and notification workflows.",
+      "Real-time task coordination for couples, roommates, and families. AI-powered chat, receipt scanning, recipe parsing, live sync, and notification workflows.",
     category: "software",
     categoryLabel: "Software Product",
     categoryIcon: Code,
@@ -80,11 +81,27 @@ const projects: Project[] = [
     href: "https://rowanapp.com",
   },
   {
+    id: "claude-code-skills",
+    title: "Claude Code Skills",
+    subtitle: "Open Source DevOps Framework",
+    description:
+      "24 production-tested Claude Code skills across development, quality, security, design, and planning. All free on GitHub, backed by 3 shared standards protocols.",
+    category: "software",
+    categoryLabel: "Open Source",
+    categoryIcon: Terminal,
+    status: "Open Source",
+    statusBg: "bg-sm-status-success-light",
+    statusText: "text-sm-status-success",
+    gradient: "from-violet-500 via-purple-500 to-indigo-600",
+    icons: [Terminal, Shield, Gauge, GitBranch, TestTubes],
+    href: "/portfolio/software/claude-code-skills",
+  },
+  {
     id: "iron-pulse",
     title: "Iron Pulse",
     subtitle: "American Hard Rock",
     description:
-      "Iron Pulse is a cinematic American rock project built on tension, release, and emotional truth. Fronted by dual lead vocalists, Elias Vale and Ari Solenne, the band blends modern hard rock weight with melodic depth and atmospheric texture.\n\nEach album is crafted as a full narrative arc — deliberate, structured, emotionally charged music designed to feel lived in, not manufactured.",
+      "Iron Pulse is a cinematic American rock project built on tension, release, and emotional truth. Fronted by dual lead vocalists, Elias Vale and Ari Solenne, the band blends modern hard rock weight with melodic depth and atmospheric texture.\n\nEach album is crafted as a full narrative arc. Deliberate, structured, emotionally charged music designed to feel lived in, not manufactured.",
     category: "creative",
     categoryLabel: "Creative Project",
     categoryIcon: Music,
@@ -138,21 +155,45 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-24 pb-16 bg-[#0B1A2B] bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="pt-24 pb-20 bg-[#0B1A2B] bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-6 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20">
-              Our Work
+              Solo-Built
             </Badge>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-sm-text-inverse">
-              What We <span className="text-sm-accent-inverse">Build</span>
+              One Person. Full Stack.{" "}
+              <span className="text-sm-accent-inverse">Production Everything.</span>
             </h1>
 
-            <p className="text-xl text-sm-text-inverse-muted max-w-2xl mx-auto leading-relaxed">
-              Software products, AI-assisted music, and the systems behind them.
+            <p className="text-lg md:text-xl text-sm-text-inverse-muted max-w-3xl mx-auto leading-relaxed mb-12">
+              3 production SaaS apps, a custom Claude Code skill system, and AI-assisted music. Built and shipped by one Army veteran.
             </p>
           </motion.div>
+
+          {/* Proof Points Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {[
+              { icon: Package, label: "3 SaaS Products", desc: "Kaulby, Clarus, Rowan, all in production" },
+              { icon: Terminal, label: "24 Claude Code Skills", desc: "Custom SDLC automation: QA, security, shipping" },
+              { icon: Music, label: "2 AI-Assisted Bands", desc: "Iron Pulse, Other Life. Full albums, AI-produced" },
+              { icon: Flag, label: "20yr Army IT + CISSP", desc: "Veteran-owned, cybersecurity background" },
+            ].map((item, index) => (
+              <motion.div
+                key={item.label}
+                {...slideInUp}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
+              >
+                <div className="inline-flex items-center justify-center bg-sm-accent-inverse/10 border border-sm-accent-inverse/20 rounded-lg p-2 mb-3">
+                  <item.icon className="w-5 h-5 text-sm-accent-inverse" />
+                </div>
+                <p className="text-sm-text-inverse font-bold text-sm md:text-base mb-1">{item.label}</p>
+                <p className="text-sm-text-inverse-muted text-xs leading-snug">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -179,7 +220,7 @@ export default function PortfolioPage() {
           </div>
 
           {/* Project Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {filtered.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -213,6 +254,14 @@ export default function PortfolioPage() {
                           sizes="80px"
                           className="object-contain drop-shadow-lg rounded-xl"
                         />
+                      ) : project.icons ? (
+                        <div className="flex items-center gap-3">
+                          {project.icons.map((Icon, i) => (
+                            <div key={i} className="bg-white/15 backdrop-blur-sm rounded-lg p-2 drop-shadow-md">
+                              <Icon className="w-6 h-6 text-white" />
+                            </div>
+                          ))}
+                        </div>
                       ) : (
                         <project.categoryIcon className="w-16 h-16 text-white/30" />
                       )}
@@ -252,7 +301,7 @@ export default function PortfolioPage() {
                         href={project.href}
                         className="inline-flex items-center gap-1 text-sm-accent-secondary hover:underline text-sm font-medium"
                       >
-                        View Albums <ArrowRight className="w-3.5 h-3.5" />
+                        {project.category === "creative" ? "View Albums" : "View Project"} <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     ) : project.href ? (
                       <a

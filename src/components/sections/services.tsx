@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Bot, Code, Workflow, FileSearch, BarChart3, BrainCircuit, Globe, Cloud, Link as LinkIcon } from "lucide-react"
+import { Bot, Code, Workflow, FileSearch, BrainCircuit, Globe, Cloud, Link as LinkIcon } from "lucide-react"
 import Link from "next/link"
 import { slideInUp } from "@/lib/animations"
 
@@ -13,7 +13,6 @@ const services = [
     items: [
       { icon: Workflow, label: "Process automation and workflow optimization" },
       { icon: FileSearch, label: "Intelligent document processing" },
-      { icon: BarChart3, label: "Predictive analytics and decision support" },
       { icon: BrainCircuit, label: "LLM integration and AI agent development" },
     ],
   },
