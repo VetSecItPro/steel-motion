@@ -3,13 +3,28 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, ExternalLink, ShieldCheck, Plug, CheckCircle, Key } from "lucide-react"
+import { ArrowRight, ArrowLeft, ExternalLink, ShieldCheck, Plug, CheckCircle, Key, Terminal } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
 import { slideInUp } from "@/lib/animations"
 
-const products = [
+interface SoftwareProduct {
+  name: string
+  tagline: string
+  description: string
+  techStack: string
+  status: string
+  statusBg: string
+  statusText: string
+  gradient: string
+  logo?: string
+  icon?: React.ElementType
+  href: string
+  linkLabel: string
+}
+
+const products: SoftwareProduct[] = [
   {
     name: "Kaulby",
     tagline: "Community Intelligence Platform",
@@ -52,6 +67,20 @@ const products = [
     logo: "/images/rowan-logo.png",
     href: "https://rowanapp.com",
     linkLabel: "Visit",
+  },
+  {
+    name: "Claude Code Skills",
+    tagline: "Open Source DevOps Framework",
+    description:
+      "33 production-tested Claude Code skills for development, quality, security, design, and planning. 10 free on GitHub, 12 premium via email. Backed by 3 shared standards protocols for consistent behavior across all skills.",
+    techStack: "Claude Code, Markdown, Bash, GitHub Actions, Supabase, Resend",
+    status: "Open Source",
+    statusBg: "bg-sm-status-success-light",
+    statusText: "text-sm-status-success",
+    gradient: "from-violet-500 via-purple-500 to-indigo-600",
+    icon: Terminal,
+    href: "/portfolio/software/claude-code-skills",
+    linkLabel: "View Project",
   },
 ]
 
@@ -122,14 +151,18 @@ export default function SoftwarePortfolioPage() {
                   <div className="grid md:grid-cols-[240px_1fr]">
                     {/* Gradient Side */}
                     <div className={`bg-gradient-to-br ${product.gradient} flex items-center justify-center p-8 min-h-[200px]`}>
-                      <Image
-                        src={product.logo}
-                        alt={`${product.name} logo`}
-                        width={120}
-                        height={120}
-                        sizes="120px"
-                        className="object-contain drop-shadow-lg rounded-xl"
-                      />
+                      {product.logo ? (
+                        <Image
+                          src={product.logo}
+                          alt={`${product.name} logo`}
+                          width={120}
+                          height={120}
+                          sizes="120px"
+                          className="object-contain drop-shadow-lg rounded-xl"
+                        />
+                      ) : product.icon ? (
+                        <product.icon className="w-20 h-20 text-white/80 drop-shadow-lg" />
+                      ) : null}
                     </div>
 
                     {/* Content */}
@@ -168,7 +201,14 @@ export default function SoftwarePortfolioPage() {
                         </div>
                       </div>
 
-                      {product.linkLabel === "Visit" ? (
+                      {product.href.startsWith("/") ? (
+                        <Link
+                          href={product.href}
+                          className="inline-flex items-center gap-1 text-sm-accent-secondary hover:underline text-sm font-medium"
+                        >
+                          {product.linkLabel} <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ) : product.linkLabel === "Visit" ? (
                         <a
                           href={product.href}
                           target="_blank"
@@ -264,10 +304,10 @@ export default function SoftwarePortfolioPage() {
         <div className="container mx-auto px-4 text-center">
           <motion.div {...slideInUp} className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-sm-text-inverse">
-              Building Something New
+              Need Custom Software Built?
             </h2>
             <p className="text-lg text-sm-text-inverse-muted mb-8 leading-relaxed">
-              We&apos;re always shipping. Follow along or get in touch.
+              From SaaS products to internal tools. We build production-grade software tailored to your business.
             </p>
             <Button
               onClick={scrollToContact}
