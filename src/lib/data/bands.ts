@@ -166,6 +166,13 @@ export const bands: Band[] = [
         spotifyUrl: "https://open.spotify.com/album/2iurS6LMJoGgDnbxqRge2j",
         appleMusicUrl: "https://music.apple.com/us/album/sous-la-peau-du-monde/1877596779",
       },
+      {
+        name: "À Ciel Ouvert",
+        slug: "a-ciel-ouvert",
+        coverImage: "/images/albums/other-life-a-ciel-ouvert.webp",
+        spotifyUrl: "https://open.spotify.com/album/7f7J7NaCsoLvq1kVW5NUIL",
+        appleMusicUrl: "https://music.apple.com/us/album/%C3%A0-ciel-ouvert/1878688222",
+      },
     ],
   },
 ]
