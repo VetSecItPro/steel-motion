@@ -125,6 +125,13 @@ export const bands: Band[] = [
         spotifyUrl: "https://open.spotify.com/album/0D7FlkNrd59MeSEi9OXvLf",
         appleMusicUrl: "https://music.apple.com/us/album/a-quiet-kind-of-gravity/1866486504",
       },
+      {
+        name: "The Sight Of What Survives",
+        slug: "the-sight-of-what-survives",
+        coverImage: "/images/albums/iron-pulse-the-sight-of-what-survives.webp",
+        spotifyUrl: "https://open.spotify.com/album/4vNu2qXAlqq0ndMjNmgf28",
+        appleMusicUrl: "https://music.apple.com/us/album/the-sight-of-what-survives/1866872899",
+      },
     ],
   },
   {

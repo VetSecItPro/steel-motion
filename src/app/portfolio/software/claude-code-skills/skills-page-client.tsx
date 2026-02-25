@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   ArrowLeft, ArrowRight, Github,
-  Layers, BookOpen, Cpu,
+  Layers, BookOpen, Cpu, Eraser,
 } from 'lucide-react'
 import Link from 'next/link'
 import Navbar from '@/components/navigation/navbar'
@@ -93,7 +93,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
 
             <p className="text-xl text-sm-text-inverse-muted max-w-3xl mx-auto leading-relaxed">
               A mature DevOps framework built from shipping real products. Skills for development,
-              testing, security, design, and planning, with 3 shared standards protocols.
+              testing, security, design, and planning, with 4 shared standards protocols.
             </p>
           </motion.div>
         </div>
@@ -107,7 +107,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
               { value: String(skillCount), label: 'Skills' },
               { value: String(categoryCount), label: 'Categories' },
               { value: '100%', label: 'Free' },
-              { value: '3', label: 'Shared Standards' },
+              { value: '4', label: 'Shared Standards' },
             ].map((stat) => (
               <div key={stat.label}>
                 <span className="text-2xl font-bold text-sm-accent-primary">{stat.value}</span>
@@ -213,7 +213,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-sm-text-primary mb-4">
-              3 Standards Protocols
+              4 Standards Protocols
             </h2>
             <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto mb-3">
               Every skill follows the same shared protocols. Consistent behavior across all {skillCount} skills.
@@ -223,7 +223,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
                 icon: Layers,
@@ -242,6 +242,12 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
                 title: 'Agent Orchestration',
                 file: 'AGENT_ORCHESTRATION.md',
                 body: 'Multi-agent coordination protocol. How skills delegate to sub-agents, manage parallel execution, and aggregate results.',
+              },
+              {
+                icon: Eraser,
+                title: 'Cleanup Protocol',
+                file: 'CLEANUP_PROTOCOL.md',
+                body: 'Leave no trace. Skills clean up browser instances, dev servers, temp files, git stashes, and test data on exit — even after crashes.',
               },
             ].map((protocol, i) => (
               <motion.div
@@ -269,7 +275,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
               Get Started in One Command
             </h2>
             <p className="text-lg text-sm-text-secondary mb-8 leading-relaxed">
-              Clone the repo, copy the skills into your project, and start using them immediately. All {skillCount} skills, 3 standards protocols, and an install script included.
+              Clone the repo, copy the skills into your project, and start using them immediately. All {skillCount} skills, 4 standards protocols, and an install script included.
             </p>
             <a
               href={GITHUB_REPO}

@@ -77,7 +77,7 @@ const products: SoftwareProduct[] = [
     status: "Open Source",
     statusBg: "bg-sm-status-success-light",
     statusText: "text-sm-status-success",
-    gradient: "from-violet-500 via-purple-500 to-indigo-600",
+    gradient: "from-neutral-900 via-neutral-950 to-black",
     icon: Terminal,
     href: "/portfolio/software/claude-code-skills",
     linkLabel: "View Project",
@@ -161,7 +161,11 @@ export default function SoftwarePortfolioPage() {
                           className="object-contain drop-shadow-lg rounded-xl"
                         />
                       ) : product.icon ? (
-                        <product.icon className="w-20 h-20 text-white/80 drop-shadow-lg" />
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="font-mono text-6xl font-bold text-emerald-400 tracking-tight select-none drop-shadow-lg">
+                            {'>'}_
+                          </span>
+                        </div>
                       ) : null}
                     </div>
 
