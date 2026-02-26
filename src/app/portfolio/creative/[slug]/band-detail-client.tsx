@@ -132,7 +132,7 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
             {band.albums.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {band.albums.map((album, i) => (
-                  <AlbumCard key={album.slug} album={album} index={i} />
+                  <AlbumCard key={album.slug} album={album} bandSlug={band.slug} index={i} />
                 ))}
               </div>
             ) : (

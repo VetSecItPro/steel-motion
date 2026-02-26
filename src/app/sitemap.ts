@@ -98,5 +98,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticRoutes, ...blogRoutes, ...bandRoutes]
+  // Dynamic album routes
+  const albumRoutes: MetadataRoute.Sitemap = bands.flatMap((band) =>
+    band.albums.map((album) => ({
+      url: `${BASE_URL}/portfolio/creative/${band.slug}/${album.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    }))
+  )
+
+  return [...staticRoutes, ...blogRoutes, ...bandRoutes, ...albumRoutes]
 }
