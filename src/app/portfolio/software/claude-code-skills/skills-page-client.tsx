@@ -87,13 +87,14 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
             </Badge>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-sm-text-inverse">
-              {skillCount} Production-Tested{' '}
+              Automate the Boring Stuff via These{' '}
               <span className="text-sm-accent-inverse">Claude Code Skills</span>
             </h1>
 
             <p className="text-xl text-sm-text-inverse-muted max-w-3xl mx-auto leading-relaxed">
-              A mature DevOps framework built from shipping real products. Skills for development,
-              testing, security, design, and planning, with 4 shared standards protocols.
+              A mature DevOps framework built from shipping real products.
+              <br />
+              Skills for development, testing, security, design, and planning — with 4 shared standards protocols.
             </p>
           </motion.div>
         </div>

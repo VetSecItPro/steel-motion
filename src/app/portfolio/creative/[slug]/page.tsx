@@ -61,11 +61,12 @@ export default async function BandDetailPage({ params }: PageProps) {
     ...(band.image && {
       image: `https://steelmotionllc.com${band.image}`,
     }),
-    album: band.albums.map((album) => ({
+    album: band.albums.map((a) => ({
       '@type': 'MusicAlbum',
-      name: album.name,
-      image: `https://steelmotionllc.com${album.coverImage}`,
-      url: album.spotifyUrl || album.appleMusicUrl || undefined,
+      name: a.name,
+      image: `https://steelmotionllc.com${a.coverImage}`,
+      url: `https://steelmotionllc.com/portfolio/creative/${band.slug}/${a.slug}`,
+      ...(a.tracks && { numTracks: a.tracks.length }),
     })),
   }
 
