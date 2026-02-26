@@ -76,10 +76,11 @@ export default async function AlbumDetailPage({ params }: PageProps) {
     },
     ...(album.tracks && {
       numTracks: album.tracks.length,
-      track: album.tracks.map((trackName, i) => ({
+      track: album.tracks.map((t, i) => ({
         '@type': 'MusicRecording',
-        name: trackName,
+        name: t.name,
         position: i + 1,
+        ...(t.spotifyUrl && { url: t.spotifyUrl }),
       })),
     }),
   }
@@ -223,10 +224,36 @@ export default async function AlbumDetailPage({ params }: PageProps) {
                       key={i}
                       className="flex items-center gap-4 py-4 px-4 hover:bg-sm-surface-elevated rounded-lg transition-colors"
                     >
-                      <span className="text-sm text-sm-text-muted w-8 text-right font-mono tabular-nums">
+                      <span className="text-sm text-sm-text-muted w-8 text-right font-mono tabular-nums shrink-0">
                         {i + 1}
                       </span>
-                      <span className="text-sm-text-primary font-medium">{track}</span>
+                      <span className="text-sm-text-primary font-medium flex-1 min-w-0 truncate">
+                        {track.name}
+                      </span>
+                      <span className="flex items-center gap-2 shrink-0">
+                        {track.spotifyUrl && (
+                          <a
+                            href={track.spotifyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Listen to ${track.name} on Spotify`}
+                            className="text-sm-text-muted opacity-60 hover:opacity-100 hover:text-[#1DB954] transition-all"
+                          >
+                            <SpotifyIcon className="w-[18px] h-[18px]" />
+                          </a>
+                        )}
+                        {track.appleMusicUrl && (
+                          <a
+                            href={track.appleMusicUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Listen to ${track.name} on Apple Music`}
+                            className="text-sm-text-muted opacity-60 hover:opacity-100 hover:text-[#FA243C] transition-all"
+                          >
+                            <AppleMusicIcon className="w-[18px] h-[18px]" />
+                          </a>
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ol>
