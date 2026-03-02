@@ -161,15 +161,15 @@ export default async function AlbumDetailPage({ params }: PageProps) {
 
                 <p className="text-sm text-sm-text-inverse-muted mt-1">{band.genre}</p>
 
-                {album.description && (
-                  <p className="text-sm-text-inverse-muted leading-relaxed mt-6 whitespace-pre-line">
-                    {album.description}
-                  </p>
-                )}
-
                 {album.tracks && (
                   <p className="text-sm text-sm-text-inverse-muted mt-4">
                     {album.tracks.length} {album.tracks.length === 1 ? 'track' : 'tracks'}
+                  </p>
+                )}
+
+                {album.description && (
+                  <p className="text-sm-text-inverse-muted leading-relaxed mt-6 whitespace-pre-line">
+                    {album.description}
                   </p>
                 )}
 
@@ -180,7 +180,7 @@ export default async function AlbumDetailPage({ params }: PageProps) {
                       href={album.spotifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-lg px-4 py-2 transition-colors"
+                      className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-full px-5 py-2 transition-colors"
                     >
                       <SpotifyIcon className="w-6 h-6 text-[#1DB954]" />
                       <div className="flex flex-col leading-tight">
@@ -194,7 +194,7 @@ export default async function AlbumDetailPage({ params }: PageProps) {
                       href={album.appleMusicUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-lg px-4 py-2 transition-colors"
+                      className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-full px-5 py-2 transition-colors"
                     >
                       <AppleMusicIcon className="w-6 h-6" />
                       <div className="flex flex-col leading-tight">

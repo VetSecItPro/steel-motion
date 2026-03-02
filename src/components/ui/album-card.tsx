@@ -44,20 +44,17 @@ export function AlbumCard({ album, bandSlug, index }: AlbumCardProps) {
           </h3>
 
           {/* Streaming Badges */}
-          <div className="flex flex-wrap gap-2" onClick={(e) => e.stopPropagation()}>
+          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
             {album.spotifyUrl && (
               <a
                 href={album.spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-lg px-4 py-2 transition-colors"
+                className="inline-flex items-center gap-1.5 bg-black hover:bg-neutral-800 text-white rounded-full px-3 py-1.5 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
-                <SpotifyIcon className="w-6 h-6 text-[#1DB954]" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-[9px] font-normal tracking-wide opacity-80">Listen on</span>
-                  <span className="text-sm font-semibold -mt-0.5">Spotify</span>
-                </div>
+                <SpotifyIcon className="w-5 h-5 text-[#1DB954]" />
+                <span className="text-xs font-semibold">Spotify</span>
               </a>
             )}
             {album.appleMusicUrl && (
@@ -65,14 +62,11 @@ export function AlbumCard({ album, bandSlug, index }: AlbumCardProps) {
                 href={album.appleMusicUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-lg px-4 py-2 transition-colors"
+                className="inline-flex items-center gap-1.5 bg-black hover:bg-neutral-800 text-white rounded-full px-3 py-1.5 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
-                <AppleMusicIcon className="w-6 h-6" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-[9px] font-normal tracking-wide opacity-80">Listen on</span>
-                  <span className="text-sm font-semibold -mt-0.5">Apple Music</span>
-                </div>
+                <AppleMusicIcon className="w-5 h-5" />
+                <span className="text-xs font-semibold">Apple Music</span>
               </a>
             )}
           </div>
