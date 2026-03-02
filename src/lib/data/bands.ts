@@ -61,6 +61,7 @@ export const bands: Band[] = [
           { name: "After The Ash", spotifyUrl: "https://open.spotify.com/track/68jqsYxOd2IEnoxwjnuDwo", appleMusicUrl: "https://music.apple.com/us/album/after-the-ash/1861190036?i=1861190138" },
           { name: "Light Remains", spotifyUrl: "https://open.spotify.com/track/0lDPWv77mxVd1sMRMc4I3L", appleMusicUrl: "https://music.apple.com/us/album/light-remains/1861190036?i=1861190139" },
         ],
+        description: "Rise & Break is a journey through pressure, resistance, and renewal. Across eleven tracks, Iron Pulse traces the arc from ignition to endurance, from rebellion to reflection, capturing what it feels like to stand in the fire and refuse to collapse. The album's lyrics explore grit without arrogance, strength without cruelty, and triumph that is earned rather than declared. It begins in chaos, burns through defiance and survival, and closes in quiet light -- a reminder that even after everything breaks, something steady still remains.",
       },
       {
         name: "Echoes of the Fall",
@@ -86,6 +87,7 @@ export const bands: Band[] = [
           { name: "Blame The Rain (Acoustic)", spotifyUrl: "https://open.spotify.com/track/2FTtEUrDplpPoffOvYzeXk", appleMusicUrl: "https://music.apple.com/us/album/blame-the-rain-acoustic/1861200553?i=1861200569" },
           { name: "Echoes Of The Fall (Orchestral Duet)", spotifyUrl: "https://open.spotify.com/track/3ehZrsEnmFgyNSreQ81CTW", appleMusicUrl: "https://music.apple.com/us/album/echoes-of-the-fall-orchestral-duet/1861200553?i=1861200570" },
         ],
+        description: "Echoes of the Fall is a record about standing in the wreckage and choosing to rise anyway. It moves from fire and defiance through fracture and reflection, tracing a deeply personal journey where every scar becomes part of the melody. The lyrics confront guilt, freedom, loss, and redemption without flinching, carried by guitars that burn and drums that thunder like weather breaking overhead. By the final notes, the chaos has quieted into something stronger -- not perfection, but peace earned the hard way.",
       },
       {
         name: "Sang-Froid",
@@ -107,6 +109,7 @@ export const bands: Band[] = [
           { name: "Sang-Froid", spotifyUrl: "https://open.spotify.com/track/2QO44lVqjkcrcKVoLK2YPf", appleMusicUrl: "https://music.apple.com/us/album/sang-froid/1861200910?i=1861200926" },
           { name: "Still Warm", spotifyUrl: "https://open.spotify.com/track/6C0Y0uCVZMQeVjI68qE5OZ", appleMusicUrl: "https://music.apple.com/us/album/still-warm/1861200910?i=1861200927" },
         ],
+        description: "Sang-Froid is a journey through cold landscapes and controlled fire -- a record about endurance, restraint, and the quiet mastery forged in pressure. It begins in isolation and tension, where survival is instinct, and moves steadily toward clarity, renewal, and earned calm. Each song carries the weight of struggle but refuses collapse, trading chaos for composure and noise for intention. By the final ember, what remains is not victory in the loud sense, but something stronger -- warmth that survives the storm and a spirit that stands steady in its own light.",
       },
       {
         name: "HeartSteel",
@@ -130,6 +133,7 @@ export const bands: Band[] = [
           { name: "Elias", spotifyUrl: "https://open.spotify.com/track/13vz8yvXjAbhrhSXmK7Wl6", appleMusicUrl: "https://music.apple.com/us/album/elias/1865223571?i=1865223584" },
           { name: "Ash And Nerve (Reprise)", spotifyUrl: "https://open.spotify.com/track/1m4EVDqrAfViOB6JjPVvCS", appleMusicUrl: "https://music.apple.com/us/album/ash-and-nerve-reprise/1865223571?i=1865223585" },
         ],
+        description: "HeartSteel is a record about being forged without losing your pulse. It begins in pressure and fire, where doubt and defiance collide, and follows Elias as he learns that strength is not the absence of feeling but the courage to carry it. Across heavy guitars and raw, unguarded vocals, the songs move from ignition to endurance to clarity, tracing the line between survival and self-acceptance. By the final note, the fire no longer consumes him -- it lives inside him, steady, human, and unbreakable.",
       },
       {
         name: "Glass Veins",
@@ -154,6 +158,7 @@ export const bands: Band[] = [
           { name: "Glass Veins", spotifyUrl: "https://open.spotify.com/track/7wHl1wrTERbbjlfibjdheq", appleMusicUrl: "https://music.apple.com/us/album/glass-veins/1865364903?i=1865364917" },
           { name: "Where The Noise Ends", spotifyUrl: "https://open.spotify.com/track/0E99LrzoZwQ8AoGa5C3r0E", appleMusicUrl: "https://music.apple.com/us/album/where-the-noise-ends/1865364903?i=1865364918" },
         ],
+        description: "Glass Veins begins in fracture -- in static, doubt, and the hum of something breaking beneath the surface -- and slowly moves toward clarity without ever pretending the damage didn't happen. The record traces two voices learning how to stand inside the noise, confront what cracked them open, and discover that light often enters through the fault lines. Across storm-heavy guitars and intimate piano moments, the songs wrestle with loss, identity, and the quiet courage it takes to stay. By the time the sound fades, what remains is not perfection, but resilience -- a human kind of faith forged in the fire and carried forward in the calm.",
       },
       {
         name: "Crimson Drive",
@@ -180,6 +185,7 @@ export const bands: Band[] = [
           { name: "Counting Sparks", spotifyUrl: "https://open.spotify.com/track/3ba5se2jrIoZJN0Z00QsGj", appleMusicUrl: "https://music.apple.com/us/album/counting-sparks/1865323454?i=1865323472" },
           { name: "For The Long Run", spotifyUrl: "https://open.spotify.com/track/1aChHbUeDUuCY13dTwcaFO", appleMusicUrl: "https://music.apple.com/us/album/for-the-long-run/1865323454?i=1865323593" },
         ],
+        description: "Crimson Drive is a record built for motion -- engines humming, city lights streaking past, two voices locked in step as the road opens wide. Across these songs, the band trades reflection for forward momentum, chasing sparks, signals, and open horizons without apology or hesitation. It's an album about choosing movement over fear, connection over silence, and heat over hesitation -- not to escape the past, but to outgrow it. By the final mile, what began as restless energy becomes something steadier and stronger: freedom earned, voices aligned, and a drive that doesn't fade when the night does.",
       },
       {
         name: "The Long Midnight Run",
@@ -207,6 +213,7 @@ export const bands: Band[] = [
           { name: "Morning After The Noise", spotifyUrl: "https://open.spotify.com/track/40nRk29FzkoySujdjvfwJS", appleMusicUrl: "https://music.apple.com/us/album/morning-after-the-noise/1865413435?i=1865413752" },
           { name: "Bare Hands On The Night", spotifyUrl: "https://open.spotify.com/track/0jX9zfygqB6b6a4u0SNwDp", appleMusicUrl: "https://music.apple.com/us/album/bare-hands-on-the-night/1865413435?i=1865413753" },
         ],
+        description: "The Long Midnight Run is a record about motion -- about what happens when you stop circling your doubts and finally drive straight through them. Across eighteen tracks, Iron Pulse moves from ignition and adrenaline to bruised reflection, through tension, confession, and finally a clear-eyed kind of resilience. Elias and Ari trade fire and tenderness, their voices pushing and catching each other as the night stretches wide and honest around them. By the end, the road is still open, but the weight is lighter -- not because the past disappeared, but because it was faced with bare hands and carried forward.",
       },
       {
         name: "Faint Maps of Fire",
@@ -228,6 +235,7 @@ export const bands: Band[] = [
           { name: "The Far Shore", spotifyUrl: "https://open.spotify.com/track/71SkH7SeYINoiuinheiksD", appleMusicUrl: "https://music.apple.com/us/album/the-far-shore/1865856428?i=1865856439" },
           { name: "Morning After The Noise", spotifyUrl: "https://open.spotify.com/track/6wnYJBNFQj6oA4TJYQWR48", appleMusicUrl: "https://music.apple.com/us/album/morning-after-the-noise/1865856428?i=1865856440" },
         ],
+        description: "Faint Maps of Fire traces the quiet journey from fracture to clarity, where silence becomes a teacher and fire becomes a guide. Across cold horizons, frostlines, and ember-lit thresholds, the record follows a voice learning to stand still long enough to hear itself again. These songs move through shadow without collapsing into it, carrying grief, memory, and restraint toward something steadier and more self-defined. By the final breath, the storm has not erased the past, but it has revealed a stronger center -- a human heart choosing presence over noise.",
       },
       {
         name: "The Far Rooms",
@@ -254,6 +262,7 @@ export const bands: Band[] = [
           { name: "Keys On The Quiet Table (Acoustic)", spotifyUrl: "https://open.spotify.com/track/6t50qAzOoSSFiEBM4UdAO7", appleMusicUrl: "https://music.apple.com/us/album/keys-on-the-quiet-table-acoustic/1865880906?i=1865881103" },
           { name: "No One Leaves Completely (Acoustic)", spotifyUrl: "https://open.spotify.com/track/5JKnlf82VadSgPCxJvI8iW", appleMusicUrl: "https://music.apple.com/us/album/no-one-leaves-completely-acoustic/1865880906?i=1865881106" },
         ],
+        description: "The Far Rooms is a record about walking back into the parts of yourself you thought were sealed off for good. Each song opens a different door -- old choices, unfinished words, sleeping versions of who you were -- and refuses to let them stay buried. What begins as confrontation slowly becomes reconciliation, as the weight of memory shifts from something haunting to something human. By the final light on the landing, the past is no longer an enemy -- it's a foundation, and the man standing in those rooms is stronger for having faced them.",
       },
       {
         name: "The Known Stranger",
@@ -278,6 +287,7 @@ export const bands: Band[] = [
           { name: "Thread The Fuse", spotifyUrl: "https://open.spotify.com/track/1gzQR4RYIbdgXufqZYuIx4", appleMusicUrl: "https://music.apple.com/us/album/thread-the-fuse/1866020241?i=1866020535" },
           { name: "A Door That Knows My Name", spotifyUrl: "https://open.spotify.com/track/3Tw2WWyjvGza3d62fbNtjx", appleMusicUrl: "https://music.apple.com/us/album/a-door-that-knows-my-name/1866020241?i=1866020536" },
         ],
+        description: "The Known Stranger is a record about coming face to face with the parts of yourself you tried to outgrow, outrun, or bury. Across hard-driving riffs, smoldering ballads, and moments of quiet reckoning, the album traces the tension between who we were and who we are becoming. Each song feels like a threshold crossed, a shadow named, a truth dragged into the light. By the final note, the stranger is no longer distant -- he stands recognized, scarred, and fully alive.",
       },
       {
         name: "After the Last Mask Falls",
@@ -302,6 +312,7 @@ export const bands: Band[] = [
           { name: "Carry Me Through The Quiet", spotifyUrl: "https://open.spotify.com/track/497RUwIaY9N3V77SzwwZaf", appleMusicUrl: "https://music.apple.com/us/album/carry-me-through-the-quiet/1866163316?i=1866163330" },
           { name: "When The Last Light Breaks", spotifyUrl: "https://open.spotify.com/track/4UrdTScCaKSDV5pqiBzv52", appleMusicUrl: "https://music.apple.com/us/album/when-the-last-light-breaks/1866163316?i=1866163331" },
         ],
+        description: "This record moves through collapse and confession into something steadier and unmasked. It begins in fracture, where mirrors crack, bones remember, and the weight of unspoken truths presses hard against the chest. Track by track, the silence breaks open, identities fall away, and the fire that once destroyed becomes the light that clarifies. By the final notes, what remains is not perfection but honesty -- a grounded strength earned through facing the dark and choosing to stand anyway.",
       },
       {
         name: "The Four Seasons",
@@ -328,6 +339,7 @@ export const bands: Band[] = [
           { name: "Where The Season Never Ends", spotifyUrl: "https://open.spotify.com/track/3fCy9j5CjVCnasbPiw3O3I", appleMusicUrl: "https://music.apple.com/us/album/where-the-season-never-ends/1866193379?i=1866193485" },
           { name: "Hold Me Through The Longest Night (Reprise)", spotifyUrl: "https://open.spotify.com/track/2h9npcp8u4K6xJPlxRUT7F", appleMusicUrl: "https://music.apple.com/us/album/hold-me-through-the-longest-night-reprise/1866193379?i=1866193486" },
         ],
+        description: "The Four Seasons moves through change the way real life does -- not in grand gestures, but in quiet fractures, hard conversations, and moments that refuse to fade. Each chapter carries the weight of memory, broken promises, resilience, and the stubborn hope that something stronger can grow from what burned. Elias and Ari trade confession and confrontation across a landscape of hard rock intensity, turning loss into clarity and tension into momentum. By the final note, the album does not promise perfection -- it promises endurance, the kind that survives winter and still chooses to bloom again.",
       },
       {
         name: "A Quiet Kind of Gravity",
@@ -353,6 +365,7 @@ export const bands: Band[] = [
           { name: "When The Light Found Us", spotifyUrl: "https://open.spotify.com/track/4EaB1TGEbO5Yw7zx9jJJSJ", appleMusicUrl: "https://music.apple.com/us/album/when-the-light-found-us/1866486504?i=1866486519" },
           { name: "A Quiet Kind Of Gravity (Reprise)", spotifyUrl: "https://open.spotify.com/track/32E7fiep4D2CPNhWVc46V9", appleMusicUrl: "https://music.apple.com/us/album/a-quiet-kind-of-gravity-reprise/1866486504?i=1866486520" },
         ],
+        description: "This record traces the arc of a love that does not arrive gently but carves its way through fire, fracture, and silence. It begins in tension and gravity, where desire feels dangerous and truth trembles beneath the surface, then moves through ashes, distance, and reckoning. Instead of collapsing under the weight, the songs choose honesty, allowing what breaks to reshape what remains. By the final notes, the album does not promise perfection, only something stronger -- two people standing in earned light, unafraid of what it took to get there.",
       },
       {
         name: "The Sight Of What Survives",
@@ -377,6 +390,7 @@ export const bands: Band[] = [
           { name: "The Sight Of What Survives", spotifyUrl: "https://open.spotify.com/track/6hH2GAvvz9GqQ04mvhvAcJ", appleMusicUrl: "https://music.apple.com/us/album/the-sight-of-what-survives/1866872899?i=1866873125" },
           { name: "Quiet Roads After The Storm", spotifyUrl: "https://open.spotify.com/track/4tiV4F0mTFb1u7wo7DlZWC", appleMusicUrl: "https://music.apple.com/us/album/quiet-roads-after-the-storm/1866872899?i=1866873126" },
         ],
+        description: "The Sight of What Survives is a record about pressure turning into motion. It moves through fracture, memory, doubt, and buried fire, tracing the quiet wars we fight inside before we finally decide to step forward. The songs do not glorify the damage, they examine it, then build from it, finding strength not in noise but in clarity. By the final track, survival is no longer about endurance alone. It is about standing in the light of what remains and choosing to move anyway.",
       },
       {
         name: "The Last Shape We Kept",
@@ -403,6 +417,7 @@ export const bands: Band[] = [
           { name: "The Weight In The Grip (Acoustic)", spotifyUrl: "https://open.spotify.com/track/0I2TiuQZdez27RWBcY6vx8", appleMusicUrl: "https://music.apple.com/us/album/the-weight-in-the-grip-acoustic/1868120131?i=1868120147" },
           { name: "Cut From One Line (Acoustic)", spotifyUrl: "https://open.spotify.com/track/39tyLckMSaqhrdMmXAmch9", appleMusicUrl: "https://music.apple.com/us/album/cut-from-one-line-acoustic/1868120131?i=1868120148" },
         ],
+        description: "The Last Shape We Kept is a record about pressure, not performance. Across grinding riffs, exposed acoustic turns, and moments of hard-earned stillness, the songs trace what remains after strain has done its work. This is not a story of reinvention, but of form -- what holds, what drags, what rises again without ceremony. By the final track, nothing explodes and nothing begs to be understood; what's left standing is simply the shape that refused to disappear.",
       },
     ],
   },
@@ -439,6 +454,7 @@ export const bands: Band[] = [
           { name: "L'Âme Défigurée", appleMusicUrl: "https://music.apple.com/us/album/l%C3%A2me-d%C3%A9figur%C3%A9e/1861239352?i=1861239366" },
           { name: "Avant Le Fracas", appleMusicUrl: "https://music.apple.com/us/album/avant-le-fracas/1861239352?i=1861239367" },
         ],
+        description: "Les Miracles Sauvages is a collision of fire and asphalt -- fourteen tracks that begin in tension, descend into fracture, and rise back up with scars still visible. The record moves through hidden cries, inner voids, shattered reflections, and the shadows that refuse to leave, never softening the truth of what it means to feel too much. It is an album about endurance -- about standing inside the storm instead of running from it, about finding heat in the coldest streets. By the final note, nothing is neatly healed, but something has hardened, sharpened, and chosen to remain standing before the fracas.",
       },
       {
         name: "Sans Retour",
@@ -463,6 +479,7 @@ export const bands: Band[] = [
           { name: "Lumière Sur Les Ruines", spotifyUrl: "https://open.spotify.com/track/2kQBfQVvkeHoZsKxmcosWe", appleMusicUrl: "https://music.apple.com/us/album/lumi%C3%A8re-sur-les-ruines/1861239960?i=1861239974" },
           { name: "L'instant Qui Reste", spotifyUrl: "https://open.spotify.com/track/17AP0ImiWrYJPHjKIs2Cib", appleMusicUrl: "https://music.apple.com/us/album/linstant-qui-reste/1861239960?i=1861239975" },
         ],
+        description: "Sans Retour is the sound of a line crossed and a life that refuses to turn back. Across rain-soaked streets, fractured promises, and voices that finally meet in truth, the record moves from tension and isolation toward clarity and hard-earned light. It explores what breaks, what burns, and what remains when illusions fall away. By the final track, the chaos has settled into something quieter but stronger -- not untouched, but transformed, carrying forward the instant that still matters.",
       },
       {
         name: "Sous La Peau Du Monde",
@@ -490,6 +507,7 @@ export const bands: Band[] = [
           { name: "Les Mots Sous La Langue (Version Orchestrale)", spotifyUrl: "https://open.spotify.com/track/26S0DNx8ZQ9ER9uARphRST", appleMusicUrl: "https://music.apple.com/us/album/les-mots-sous-la-langue-version-orchestrale/1877596779?i=1877596800" },
           { name: "Ce Qui Tient Debout (Version Acoustique)", spotifyUrl: "https://open.spotify.com/track/1MOCBfHItQw4CLjTW4G9KJ", appleMusicUrl: "https://music.apple.com/us/album/ce-qui-tient-debout-version-acoustique/1877596779?i=1877596801" },
         ],
+        description: "Sous la peau du monde begins with polished surfaces and practiced smiles, then spends sixteen tracks peeling them away -- layer by layer, room by room, scar by scar. It's an album about what happens when you stop protecting yourself from your own life: the erosion of promises no one kept, the wars fought in silence between people who share a bed, the strange grace of finding something still standing in the wreckage. By the time the final piano note fades, the answer isn't a revelation but a recognition -- what you find beneath the skin of the world is what you brought with you. Two voices, one French, one journey through fire and back.",
       },
       {
         name: "À Ciel Ouvert",
@@ -515,6 +533,7 @@ export const bands: Band[] = [
           { name: "Quelqu'un Reste (Version Orchestrale)", spotifyUrl: "https://open.spotify.com/track/5a2o9m9p3aRR4FqUCvqYvY", appleMusicUrl: "https://music.apple.com/us/album/quelquun-reste-version-orchestrale/1878688222?i=1878688388" },
           { name: "Tomber Sans Tomber (Chamber Rock)", spotifyUrl: "https://open.spotify.com/track/1IE8F6Idb9zH1f5gdVb3qj", appleMusicUrl: "https://music.apple.com/us/album/tomber-sans-tomber-chamber-rock/1878688222?i=1878688389" },
         ],
+        description: "À ciel ouvert begins where most stories end -- after the war is over, when the silence is louder than anything that came before. Across fourteen tracks, a man who built his life around surviving learns the most terrifying thing he'll ever do: stay. He buries the version of himself that kept him alive, counts three seconds of happiness and tries for four, and discovers that coffee on a table can be more violent than any departure. This is an album about what it costs to stand in the open with no armor, no walls, and no guarantee -- and to call that a life worth choosing.",
       },
     ],
   },
