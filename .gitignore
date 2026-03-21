@@ -61,3 +61,14 @@ next-env.d.ts
 .claude/
 .mdmp/
 .velite/
+
+# Skill output / research files
+TODO-*.md
+*-research.md
+.qatest-reports/
+.sec-ship-reports/
+.perf-reports/
+.a11y-reports/
+.deps-reports/
+.cleancode-reports/
+.docs-reports/

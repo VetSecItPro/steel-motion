@@ -81,6 +81,21 @@ const projects: Project[] = [
     href: "https://rowanapp.com",
   },
   {
+    id: "styrby",
+    title: "Styrby",
+    subtitle: "AI Coding Agent Remote Control",
+    description:
+      "Control Claude Code, Codex, Gemini CLI, and more from your phone. E2E encrypted, real-time cost tracking, push notifications, and offline-resilient command queuing.",
+    category: "software",
+    categoryLabel: "Software Product",
+    categoryIcon: Code,
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
+    gradient: "from-violet-500 via-purple-500 to-purple-600",
+    href: "https://www.styrbyapp.com",
+  },
+  {
     id: "claude-code-skills",
     title: "Claude Code Skills",
     subtitle: "Open Source DevOps Framework",
@@ -175,7 +190,7 @@ export default function PortfolioPage() {
           {/* Proof Points Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              { icon: Package, label: "3 SaaS Products", desc: "Kaulby, Clarus, Rowan, all in production" },
+              { icon: Package, label: "4 SaaS Products", desc: "Kaulby, Clarus, Rowan, Styrby — all in production" },
               { icon: Terminal, label: "24 Claude Code Skills", desc: "Custom SDLC automation: QA, security, shipping" },
               { icon: Music, label: "2 AI-Assisted Bands", desc: "Iron Pulse, Other Life. Full albums, AI-produced" },
               { icon: Flag, label: "20yr Army IT + CISSP", desc: "Veteran-owned, cybersecurity background" },
