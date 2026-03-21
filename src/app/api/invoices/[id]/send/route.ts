@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
 import { isAdminRequest } from '@/lib/admin-auth';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { Resend } from 'resend';
 import { formatCents } from '@/lib/invoice-helpers';
 
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   // Create Stripe Checkout session
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://steelmotionllc.com';
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: items.map(item => ({
       price_data: {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 
 type RouteParams = { params: Promise<{ id: string }> };
 
@@ -40,7 +40,7 @@ export async function POST(_request: NextRequest, { params }: RouteParams) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://steelmotionllc.com';
 
   // Create Stripe Checkout session
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: items.map(item => ({
       price_data: {
