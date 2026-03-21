@@ -69,6 +69,20 @@ const products: SoftwareProduct[] = [
     linkLabel: "Visit",
   },
   {
+    name: "Styrby",
+    tagline: "AI Coding Agent Remote Control",
+    description:
+      "Control all your AI coding agents from your phone. Manage Claude Code, Codex, Gemini CLI, OpenCode, and Aider from a single mobile app. End-to-end encrypted — your code never leaves your machine. Real-time cost tracking, push notifications, and offline-resilient command queuing.",
+    techStack:
+      "Next.js, React Native, TypeScript, Supabase, TweetNaCl E2E Encryption, Node.js, Polar, Vercel",
+    status: "Product Launch",
+    statusBg: "bg-sm-status-info-light",
+    statusText: "text-sm-status-info",
+    gradient: "from-violet-500 via-purple-500 to-purple-600",
+    href: "https://www.styrbyapp.com",
+    linkLabel: "Visit",
+  },
+  {
     name: "Claude Code Skills",
     tagline: "Open Source DevOps Framework",
     description:
@@ -128,7 +142,7 @@ export default function SoftwarePortfolioPage() {
             </h1>
 
             <p className="text-xl text-sm-text-inverse-muted max-w-3xl mx-auto leading-relaxed">
-              Three SaaS products in production. Same stack, same process, same standards we bring to client projects.
+              Four SaaS products in production. Same stack, same process, same standards we bring to client projects.
             </p>
           </motion.div>
         </div>
