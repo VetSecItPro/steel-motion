@@ -45,7 +45,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
   }
 
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
 
       {/* Breadcrumb */}
@@ -189,6 +189,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
                 onClick={() => setFilter(tab.value)}
                 role="tab"
                 aria-selected={filter === tab.value}
+                aria-controls="skills-grid"
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   filter === tab.value
                     ? 'bg-sm-accent-primary text-white'
@@ -201,7 +202,7 @@ export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
           </div>
 
           {/* Skills Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div id="skills-grid" role="tabpanel" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {filtered.map((skill, i) => (
               <SkillCard key={skill.slug} skill={skill} index={i} />
             ))}

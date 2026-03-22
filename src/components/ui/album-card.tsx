@@ -52,6 +52,7 @@ export function AlbumCard({ album, bandSlug, index }: AlbumCardProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 bg-black hover:bg-neutral-800 text-white rounded-full px-3 py-1.5 transition-colors"
                 onClick={(e) => e.stopPropagation()}
+                aria-label={`Listen to ${album.name} on Spotify`}
               >
                 <SpotifyIcon className="w-5 h-5 text-[#1DB954]" />
                 <span className="text-xs font-semibold">Spotify</span>
@@ -64,6 +65,7 @@ export function AlbumCard({ album, bandSlug, index }: AlbumCardProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 bg-black hover:bg-neutral-800 text-white rounded-full px-3 py-1.5 transition-colors"
                 onClick={(e) => e.stopPropagation()}
+                aria-label={`Listen to ${album.name} on Apple Music`}
               >
                 <AppleMusicIcon className="w-5 h-5" />
                 <span className="text-xs font-semibold">Apple Music</span>

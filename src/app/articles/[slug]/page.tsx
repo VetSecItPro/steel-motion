@@ -49,7 +49,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const related = getRelatedPosts(slug, 3)
 
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
 
       {/* Article Header */}

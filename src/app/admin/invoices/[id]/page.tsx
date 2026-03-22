@@ -187,6 +187,7 @@ export default function InvoiceDetailPage() {
             size="icon"
             onClick={() => router.push('/admin/invoices')}
             className="text-sm-text-secondary hover:text-sm-text-primary"
+            aria-label="Back to invoices"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
@@ -246,6 +247,7 @@ export default function InvoiceDetailPage() {
               size="icon"
               onClick={handleDelete}
               className="h-9 w-9 text-sm-status-error hover:text-sm-status-error"
+              aria-label="Delete invoice"
             >
               <Trash2 className="w-4 h-4" />
             </Button>

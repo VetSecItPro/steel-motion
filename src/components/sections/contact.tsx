@@ -148,6 +148,7 @@ export default function Contact() {
                       error={touched.name ? errors.name : undefined}
                       required
                       placeholder="Your full name"
+                      autoComplete="name"
                       inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                     />
                     <FormField
@@ -160,6 +161,7 @@ export default function Contact() {
                       error={touched.email ? errors.email : undefined}
                       required
                       placeholder="your@email.com"
+                      autoComplete="email"
                       inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                     />
                   </div>
@@ -186,6 +188,7 @@ export default function Contact() {
                     onBlur={handleBlur}
                     error={touched.company ? errors.company : undefined}
                     placeholder="Your company name"
+                    autoComplete="organization"
                     inputClassName="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
 
@@ -265,7 +268,7 @@ export default function Contact() {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="bg-sm-accent-inverse/10 w-12 h-12 rounded-lg flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-sm-accent-inverse" />
+                  <Mail className="w-6 h-6 text-sm-accent-inverse" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="font-semibold text-sm-text-inverse">Email</p>
@@ -277,7 +280,7 @@ export default function Contact() {
 
               <div className="flex items-center gap-4">
                 <div className="bg-sm-accent-inverse/10 w-12 h-12 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-sm-accent-inverse" />
+                  <MapPin className="w-6 h-6 text-sm-accent-inverse" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="font-semibold text-sm-text-inverse">Service Area</p>

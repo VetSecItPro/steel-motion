@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function PartnershipsPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen" id="main-content">
       <VeteranPartnerships />
     </main>
   )

@@ -1,6 +1,6 @@
 export default function ArticlesLoading() {
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       {/* Hero skeleton */}
       <div className="bg-[var(--sm-surface-inverse)] pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">

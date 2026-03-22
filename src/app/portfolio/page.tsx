@@ -166,7 +166,7 @@ export default function PortfolioPage() {
   }
 
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
 
       {/* Hero */}
@@ -223,6 +223,7 @@ export default function PortfolioPage() {
                 onClick={() => setFilter(tab.value)}
                 role="tab"
                 aria-selected={filter === tab.value}
+                aria-controls="project-grid"
                 className={`px-5 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
                   filter === tab.value
                     ? "bg-sm-accent-primary text-white"
@@ -235,7 +236,7 @@ export default function PortfolioPage() {
           </div>
 
           {/* Project Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div id="project-grid" role="tabpanel" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {filtered.map((project, index) => (
               <motion.div
                 key={project.id}
