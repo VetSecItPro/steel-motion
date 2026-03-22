@@ -17,7 +17,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Partnerships | Steel Motion LLC",
     description: "Partner with Steel Motion LLC on referrals, shared projects, and overflow work.",
-  }
+  },
+  alternates: {
+    canonical: "https://steelmotionllc.com/partnerships",
+  },
 }
 
 export default function PartnershipsPage() {

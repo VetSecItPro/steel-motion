@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     title: "Steel Motion LLC | AI Automation & Custom Software Development",
     description: "Steel Motion LLC builds AI automation systems and custom software applications. Veteran-owned. Based in Texas.",
   },
+  alternates: {
+    canonical: "https://steelmotionllc.com",
+  },
 };
 
 export default function RootLayout({
