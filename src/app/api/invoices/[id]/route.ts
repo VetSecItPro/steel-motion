@@ -31,7 +31,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     data.items.sort((a: { sort_order: number }, b: { sort_order: number }) => a.sort_order - b.sort_order);
   }
 
-  return NextResponse.json({ invoice: data });
+  return NextResponse.json({ invoice: data }, {
+    headers: { 'Cache-Control': 'private, no-store' },
+  });
 }
 
 // PATCH update invoice (admin only)
