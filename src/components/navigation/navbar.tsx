@@ -146,6 +146,16 @@ export default function Navbar() {
                     <div className="text-sm text-sm-text-muted">Intelligent automation & process optimization</div>
                   </Link>
                   <Link
+                    href="/services/operations-intelligence"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                    role="menuitem"
+                    onKeyDown={handleDropdownItemKeyDown}
+                    onClick={() => setOpenDropdown(null)}
+                  >
+                    <div className="font-medium">Operations Intelligence</div>
+                    <div className="text-sm text-sm-text-muted">AI agents across your entire business</div>
+                  </Link>
+                  <Link
                     href="/services/custom-development"
                     className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
                     role="menuitem"
@@ -269,6 +279,13 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                   >
                     AI Automation
+                  </Link>
+                  <Link
+                    href="/services/operations-intelligence"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-3"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Operations Intelligence
                   </Link>
                   <Link
                     href="/services/custom-development"

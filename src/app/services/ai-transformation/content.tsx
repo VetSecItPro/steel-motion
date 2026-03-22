@@ -250,12 +250,19 @@ export default function AITransformationContent() {
             className="text-center mt-10"
           >
             <p className="text-sm-text-secondary text-sm">
-              Need a full custom application built alongside your automation?{" "}
+              Need AI agents across your entire operations?{" "}
+              <Link
+                href="/services/operations-intelligence"
+                className="text-sm-accent-secondary hover:underline font-medium"
+              >
+                Operations Intelligence →
+              </Link>
+              {" | "}
               <Link
                 href="/services/custom-development"
                 className="text-sm-accent-secondary hover:underline font-medium"
               >
-                See our Custom Application Development service →
+                Custom Development →
               </Link>
             </p>
           </motion.div>

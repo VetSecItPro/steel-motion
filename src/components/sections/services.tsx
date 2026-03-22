@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Bot, Code, Workflow, FileSearch, BrainCircuit, Globe, Cloud, Link as LinkIcon } from "lucide-react"
+import { Bot, Code, Workflow, FileSearch, BrainCircuit, Globe, Cloud, Link as LinkIcon, Network, Eye, LineChart } from "lucide-react"
 import Link from "next/link"
 import { slideInUp } from "@/lib/animations"
 
@@ -14,6 +14,16 @@ const services = [
       { icon: BrainCircuit, label: "AI assistants that handle customer questions, sort emails, and process documents automatically" },
       { icon: Workflow, label: "Automate the repetitive tasks eating up your team's day" },
       { icon: FileSearch, label: "Intelligent document processing" },
+    ],
+  },
+  {
+    icon: Network,
+    title: "Operations Intelligence",
+    href: "/services/operations-intelligence",
+    items: [
+      { icon: Network, label: "Multi-agent AI systems that coordinate across your entire business" },
+      { icon: Eye, label: "Real-time visibility into KPIs, cash flow, and operational risks" },
+      { icon: LineChart, label: "Fractional AI operations manager — ongoing optimization and ROI reporting" },
     ],
   },
   {
@@ -41,14 +51,14 @@ export default function Services() {
             What We Do
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sm-text-primary">
-            Two Things We Do. <span className="text-sm-accent-primary">Done Right.</span>
+            Three Things We Do. <span className="text-sm-accent-primary">Done Right.</span>
           </h2>
           <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto leading-relaxed">
-            We focus on AI automation and custom application development. We do not spread thin across a dozen service lines. Deep expertise in two areas beats shallow knowledge in ten.
+            AI automation, operations intelligence, and custom application development. We do not spread thin across a dozen service lines. Deep expertise in three areas beats shallow knowledge in ten.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={service.title}

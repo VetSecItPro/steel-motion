@@ -267,7 +267,14 @@ export default function CustomDevelopmentContent() {
                 href="/services/ai-transformation"
                 className="text-sm-accent-secondary hover:underline font-medium"
               >
-                See our AI Automation services →
+                AI Automation →
+              </Link>
+              {" | "}
+              <Link
+                href="/services/operations-intelligence"
+                className="text-sm-accent-secondary hover:underline font-medium"
+              >
+                Operations Intelligence →
               </Link>
             </p>
           </motion.div>
