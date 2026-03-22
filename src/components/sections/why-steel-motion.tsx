@@ -38,7 +38,7 @@ export default function WhySteelMotion() {
               Why Steel Motion
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sm-text-primary">
-              What Makes Us <span className="text-sm-accent-primary">Different</span>
+              Why DFW Business Owners <span className="text-sm-accent-primary">Choose Us</span>
             </h2>
           </motion.div>
 
@@ -84,7 +84,7 @@ export default function WhySteelMotion() {
                   </div>
                 </div>
                 <p className="text-sm-text-secondary leading-relaxed">
-                  We partner with veteran organizations on technology initiatives. If you&apos;re a veteran-owned business looking for a technology partner, or a veteran org that needs development support, reach out.
+                  We build free or discounted technology for veteran-owned businesses and nonprofits. If you&apos;re a veteran org that needs development help, let&apos;s talk.
                 </p>
                 <div className="mt-4 text-sm-accent-secondary font-medium group-hover:underline transition-colors">
                   Learn more about partnerships →

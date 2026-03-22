@@ -63,7 +63,7 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
       {/* Hero */}
       <section
         className="pb-16 pt-8 bg-sm-surface-inverse"
-        style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}
+        style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-[320px_1fr] gap-10 items-center">
@@ -186,11 +186,13 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
               We&apos;re always shipping. Follow along or get in touch.
             </p>
             <Button
-              onClick={scrollToContact}
+              asChild
               className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
             >
-              Schedule a Strategy Call
+              <a href="https://cal.com/steelmotionllc" target="_blank" rel="noopener noreferrer">
+                Book a Free 30-Minute Call
               <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
           </motion.div>
         </div>

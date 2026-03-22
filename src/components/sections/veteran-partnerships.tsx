@@ -119,7 +119,7 @@ export default function VeteranPartnerships() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-sm-surface-inverse text-white pt-24 pb-16 relative overflow-hidden" style={{ backgroundColor: '#0B1A2B', background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="bg-sm-surface-inverse text-white pt-24 pb-16 relative overflow-hidden" style={{ backgroundColor: 'var(--sm-surface-inverse)', background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}>
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             {...slideInUp}

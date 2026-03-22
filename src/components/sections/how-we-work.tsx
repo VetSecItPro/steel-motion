@@ -13,12 +13,12 @@ const pillars = [
   {
     icon: Target,
     title: "Outcome-Driven",
-    description: "We define success metrics before writing a line of code. Every project includes an ROI framework with milestones you track in real time.",
+    description: "Before we write a single line of code, we agree on what success looks like — in numbers. You'll see exactly what you're getting and when you're getting it.",
   },
   {
     icon: BookOpen,
-    title: "Knowledge Transfer",
-    description: "We build solutions your team maintains after we leave. Documentation, training, and architecture reviews are included in every engagement. No vendor lock-in.",
+    title: "You Keep Everything",
+    description: "When we're done, you own the code, the docs, and the know-how. We train your team to run it. No ongoing fees. No lock-in. It's yours.",
   },
 ]
 

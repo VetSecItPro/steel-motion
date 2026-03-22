@@ -54,9 +54,11 @@ export default function ClientPortalView({
   paymentSuccess,
 }: Props) {
   const [paying, setPaying] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
 
   async function handlePay() {
     setPaying(true);
+    setPaymentError(null);
     try {
       const res = await fetch(`/api/invoices/${invoiceId}/checkout`, {
         method: 'POST',
@@ -68,9 +70,9 @@ export default function ClientPortalView({
           return;
         }
       }
-      alert('Unable to initiate payment. Please try again.');
+      setPaymentError('Unable to initiate payment. Please try again.');
     } catch {
-      alert('Something went wrong. Please try again.');
+      setPaymentError('Something went wrong. Please try again.');
     } finally {
       setPaying(false);
     }
@@ -90,6 +92,7 @@ export default function ClientPortalView({
               alt="Steel Motion LLC"
               width={40}
               height={40}
+              sizes="160px"
               className="rounded"
             />
             <div>
@@ -257,6 +260,11 @@ export default function ClientPortalView({
             <p className="text-xs text-sm-text-muted mt-4">
               Secure payment powered by Stripe
             </p>
+            {paymentError && (
+              <div className="mt-4 bg-sm-status-error/10 border border-sm-status-error/20 rounded-lg px-4 py-3 text-sm text-sm-status-error">
+                {paymentError}
+              </div>
+            )}
           </div>
         )}
 
@@ -288,6 +296,7 @@ export default function ClientPortalView({
               alt="Steel Motion LLC"
               width={24}
               height={24}
+              sizes="24px"
               className="rounded opacity-60"
             />
             <span className="text-xs text-sm-text-muted">Steel Motion LLC</span>

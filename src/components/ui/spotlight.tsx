@@ -1,19 +1,22 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion, useMotionValue, useMotionTemplate } from 'framer-motion'
 import { useDevice } from '@/lib/contexts/DeviceContext'
 
 const Spotlight = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
   const { isDesktop } = useDevice()
+
+  const background = useMotionTemplate`radial-gradient(600px at ${mouseX}px ${mouseY}px, rgba(29, 78, 216, 0.15), transparent 80%)`
 
   useEffect(() => {
     if (!isDesktop) return
 
-    // PERF: Independent mouse tracking — FIX-203 (acceptable, components render independently)
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
     }
 
     document.addEventListener('mousemove', handleMouseMove)
@@ -21,7 +24,7 @@ const Spotlight = () => {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [isDesktop])
+  }, [isDesktop, mouseX, mouseY])
 
   if (!isDesktop) {
     return null
@@ -30,9 +33,7 @@ const Spotlight = () => {
   return (
     <motion.div
       className="pointer-events-none fixed inset-0 z-30 transition duration-300"
-      style={{
-        background: `radial-gradient(600px at ${position.x}px ${position.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
-      }}
+      style={{ background }}
     />
   )
 }

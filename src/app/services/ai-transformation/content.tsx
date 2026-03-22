@@ -160,7 +160,7 @@ export default function AITransformationContent() {
   return (
     <>
       {/* ── Back Navigation ── */}
-      <section className="bg-[#0B1A2B] bg-sm-surface-inverse pt-20 pb-4">
+      <section className="bg-[var(--sm-surface-inverse)] bg-sm-surface-inverse pt-20 pb-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-4">
             <Link
@@ -183,7 +183,7 @@ export default function AITransformationContent() {
       </section>
 
       {/* ── Hero ── */}
-      <section className="bg-[#0B1A2B] text-sm-text-inverse py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="bg-[var(--sm-surface-inverse)] text-sm-text-inverse py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}>
         <div className="absolute inset-0 bg-sm-surface-inverse-alt/40 pointer-events-none" />
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -200,11 +200,13 @@ export default function AITransformationContent() {
             </p>
 
             <Button
-              onClick={scrollToContact}
+              asChild
               className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
             >
-              Schedule a Strategy Call
+              <a href="https://cal.com/steelmotionllc" target="_blank" rel="noopener noreferrer">
+                Book a Free 30-Minute Call
               <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
           </div>
         </div>
@@ -444,11 +446,13 @@ export default function AITransformationContent() {
               Most AI automation engagements run between $5,000 and $25,000 depending on complexity.
             </p>
             <Button
-              onClick={scrollToContact}
+              asChild
               className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
             >
-              Schedule a Strategy Call
+              <a href="https://cal.com/steelmotionllc" target="_blank" rel="noopener noreferrer">
+                Book a Free 30-Minute Call
               <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
           </motion.div>
         </div>

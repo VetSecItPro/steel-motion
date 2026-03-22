@@ -113,7 +113,7 @@ export default function SoftwarePortfolioPage() {
       <Navbar />
 
       {/* Breadcrumb */}
-      <section className="bg-[#0B1A2B] bg-sm-surface-inverse pt-20 pb-4">
+      <section className="bg-[var(--sm-surface-inverse)] bg-sm-surface-inverse pt-20 pb-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-2 text-sm">
             <Link
@@ -130,7 +130,7 @@ export default function SoftwarePortfolioPage() {
       </section>
 
       {/* Hero */}
-      <section className="pb-16 pt-8 bg-[#0B1A2B] bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="pb-16 pt-8 bg-[var(--sm-surface-inverse)] bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}>
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-6 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20">
@@ -328,11 +328,13 @@ export default function SoftwarePortfolioPage() {
               From SaaS products to internal tools. We build production-grade software tailored to your business.
             </p>
             <Button
-              onClick={scrollToContact}
+              asChild
               className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
             >
-              Schedule a Strategy Call
+              <a href="https://cal.com/steelmotionllc" target="_blank" rel="noopener noreferrer">
+                Book a Free 30-Minute Call
               <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
           </motion.div>
         </div>

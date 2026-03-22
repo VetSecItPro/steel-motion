@@ -105,7 +105,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-24 pb-12 bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="pt-24 pb-12 bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}>
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-sm-text-inverse mb-4">
             Steel Motion <span className="text-sm-accent-inverse">Insights</span>

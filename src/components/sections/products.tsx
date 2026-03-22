@@ -49,7 +49,7 @@ export default function Products() {
             Software We Build <span className="text-sm-accent-primary">and Run</span>
           </h2>
           <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Steel Motion is not only a consultancy. We build and operate our own SaaS products, which means we practice what we advise.
+            We don&apos;t just build software for clients — we build and run our own products. That means we know what works in production, not just in theory.
           </p>
         </motion.div>
 
@@ -102,6 +102,14 @@ export default function Products() {
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          {...slideInUp}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center text-sm-text-secondary mt-12 max-w-3xl mx-auto leading-relaxed"
+        >
+          The same tools, process, and rigor behind these products goes into everything we build for clients.
+        </motion.p>
       </div>
     </section>
   )

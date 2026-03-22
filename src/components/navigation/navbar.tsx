@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
@@ -20,6 +21,18 @@ export default function Navbar() {
       setIsOpen(false)
     }
   }, [isMobile, isOpen])
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -234,12 +247,17 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation */}
+        <AnimatePresence>
         {isMobile && isOpen && (
-          <div
+          <motion.div
             id="mobile-menu"
             aria-hidden={!isOpen}
-            className="bg-sm-surface-elevated border-t border-sm-border-default animate-mobile-menu"
+            className="bg-sm-surface-elevated border-t border-sm-border-default overflow-hidden"
             role="menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             <div className="px-4 py-6 space-y-4">
               <div className="space-y-2">
@@ -247,14 +265,14 @@ export default function Navbar() {
                 <div className="pl-4 space-y-2">
                   <Link
                     href="/services/ai-transformation"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-3"
                     onClick={() => setIsOpen(false)}
                   >
                     AI Automation
                   </Link>
                   <Link
                     href="/services/custom-development"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-3"
                     onClick={() => setIsOpen(false)}
                   >
                     Custom Development
@@ -272,14 +290,14 @@ export default function Navbar() {
                 <div className="pl-4 space-y-2">
                   <Link
                     href="/portfolio/software"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-3"
                     onClick={() => setIsOpen(false)}
                   >
                     Software
                   </Link>
                   <Link
                     href="/portfolio/creative"
-                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-1"
+                    className="block w-full text-left text-sm-text-secondary hover:text-sm-accent-primary transition-colors text-sm py-3"
                     onClick={() => setIsOpen(false)}
                   >
                     Creative
@@ -311,8 +329,9 @@ export default function Navbar() {
                 <Link href="/#contact" onClick={() => setIsOpen(false)}>Get Started</Link>
               </Button>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
 
       <style jsx>{`
@@ -358,6 +377,15 @@ export default function Navbar() {
 
         .animate-mobile-menu {
           animation: mobileMenuSlide 0.3s ease-out forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-slide-in-left,
+          .animate-fade-in-delay,
+          .animate-mobile-menu {
+            animation: none;
+            opacity: 1;
+          }
         }
       `}</style>
     </nav>

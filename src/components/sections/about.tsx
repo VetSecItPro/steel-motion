@@ -61,8 +61,8 @@ export default function About() {
     <>
       {/* ── Section 1: Company Hero ── */}
       <section
-        className="bg-[#0B1A2B] text-sm-text-inverse pt-32 pb-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}
+        className="bg-[var(--sm-surface-inverse)] text-sm-text-inverse pt-32 pb-20 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}
       >
         <div className="absolute inset-0 bg-sm-surface-inverse-alt/40 pointer-events-none" />
         <div className="container mx-auto px-4 text-center relative z-10">
@@ -281,10 +281,10 @@ export default function About() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild className="bg-sm-accent-primary hover:bg-sm-accent-primary/90 text-white font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105">
-                <Link href="/#contact">
-                  Schedule a Strategy Call
+                <a href="https://cal.com/steelmotionllc" target="_blank" rel="noopener noreferrer">
+                  Book a Free 30-Minute Call
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
+                </a>
               </Button>
               <Button asChild variant="outline" className="border-sm-border-default text-sm-text-primary hover:border-sm-accent-primary/30 hover:text-sm-accent-primary font-semibold px-8 py-4 text-lg transition-all duration-300">
                 <Link href="/portfolio">
