@@ -21,5 +21,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json({ templates: data });
+  return NextResponse.json({ templates: data }, {
+    headers: { 'Cache-Control': 'private, no-store' },
+  });
 }
