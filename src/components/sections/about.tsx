@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Shield, Lock, GraduationCap, Globe, Bot, Code, Layers, Linkedin, ArrowRight } from "lucide-react"
+import { Shield, Lock, GraduationCap, Globe, Bot, Code, Layers, Linkedin, ArrowRight, Network } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
@@ -18,6 +18,12 @@ const services = [
     href: "/services/ai-transformation",
   },
   {
+    icon: Network,
+    title: "Operations Intelligence",
+    subtitle: "AI agents that run your entire business operations",
+    href: "/services/operations-intelligence",
+  },
+  {
     icon: Code,
     title: "Custom Development",
     subtitle: "Web applications, APIs, internal tools built to spec",
@@ -26,7 +32,7 @@ const services = [
   {
     icon: Layers,
     title: "Our Products",
-    subtitle: "Kaulby, Clarus, and Rowan. SaaS tools we build and run.",
+    subtitle: "Kaulby, Clarus, Rowan, and Styrby. SaaS tools we build and run.",
     href: "/portfolio/software",
   },
 ]
