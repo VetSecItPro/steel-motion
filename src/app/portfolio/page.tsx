@@ -156,15 +156,6 @@ export default function PortfolioPage() {
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter)
 
-  const scrollToContact = () => {
-    const el = document.getElementById("contact")
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    } else {
-      window.location.assign("/#contact")
-    }
-  }
-
   return (
     <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />

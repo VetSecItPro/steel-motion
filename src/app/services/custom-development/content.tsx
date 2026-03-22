@@ -160,15 +160,6 @@ const goodFit = [
 /* ─── Component ─── */
 
 export default function CustomDevelopmentContent() {
-  const scrollToContact = () => {
-    const el = document.getElementById("contact")
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    } else {
-      window.location.assign("/#contact")
-    }
-  }
-
   return (
     <>
       {/* ── Back Navigation ── */}

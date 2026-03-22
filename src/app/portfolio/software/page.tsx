@@ -99,15 +99,6 @@ const products: SoftwareProduct[] = [
 ]
 
 export default function SoftwarePortfolioPage() {
-  const scrollToContact = () => {
-    const el = document.getElementById("contact")
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    } else {
-      window.location.assign("/#contact")
-    }
-  }
-
   return (
     <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />

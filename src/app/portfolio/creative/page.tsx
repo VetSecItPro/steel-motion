@@ -11,15 +11,6 @@ import { slideInUp } from "@/lib/animations"
 import { bands } from "@/lib/data/bands"
 
 export default function CreativePortfolioPage() {
-  const scrollToContact = () => {
-    const el = document.getElementById("contact")
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    } else {
-      window.location.assign("/#contact")
-    }
-  }
-
   return (
     <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />

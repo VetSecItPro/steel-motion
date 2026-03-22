@@ -24,15 +24,6 @@ export default function BandDetailClient({ band }: BandDetailClientProps) {
     window.scrollTo(0, 0)
   }, [])
 
-  const scrollToContact = () => {
-    const el = document.getElementById("contact")
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    } else {
-      window.location.assign("/#contact")
-    }
-  }
-
   return (
     <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
