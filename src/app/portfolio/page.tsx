@@ -170,7 +170,7 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-24 pb-20 bg-[#0B1A2B] bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="pt-24 pb-20 bg-[var(--sm-surface-inverse)] bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}>
         <div className="container mx-auto px-4">
           <motion.div {...slideInUp} className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-6 bg-sm-accent-inverse/10 text-sm-accent-inverse border border-sm-accent-inverse/30 hover:bg-sm-accent-inverse/20">
@@ -178,12 +178,12 @@ export default function PortfolioPage() {
             </Badge>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-sm-text-inverse">
-              One Person. Full Stack.{" "}
-              <span className="text-sm-accent-inverse">Production Everything.</span>
+              Everything Here Was Built by One Person.{" "}
+              <span className="text-sm-accent-inverse">Here&apos;s What We Can Build for You.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-sm-text-inverse-muted max-w-3xl mx-auto leading-relaxed mb-12">
-              3 production SaaS apps, a custom Claude Code skill system, and AI-assisted music. Built and shipped by one Army veteran.
+              4 SaaS products. All live, all serving real users. Built and shipped by one Army veteran using the same process and standards we bring to every client project.
             </p>
           </motion.div>
 
@@ -191,7 +191,7 @@ export default function PortfolioPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
               { icon: Package, label: "4 SaaS Products", desc: "Kaulby, Clarus, Rowan, Styrby — all in production" },
-              { icon: Terminal, label: "24 Claude Code Skills", desc: "Custom SDLC automation: QA, security, shipping" },
+              { icon: Terminal, label: "24 Claude Code Skills", desc: "Internal Dev Tools — Custom development automation for faster, safer shipping" },
               { icon: Music, label: "2 AI-Assisted Bands", desc: "Iron Pulse, Other Life. Full albums, AI-produced" },
               { icon: Flag, label: "20yr Army IT + CISSP", desc: "Veteran-owned, cybersecurity background" },
             ].map((item, index) => (
@@ -223,7 +223,7 @@ export default function PortfolioPage() {
                 onClick={() => setFilter(tab.value)}
                 role="tab"
                 aria-selected={filter === tab.value}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-5 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
                   filter === tab.value
                     ? "bg-sm-accent-primary text-white"
                     : "bg-sm-surface-secondary text-sm-text-secondary hover:bg-sm-surface-elevated hover:text-sm-text-primary border border-sm-border-default"
@@ -235,12 +235,12 @@ export default function PortfolioPage() {
           </div>
 
           {/* Project Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {filtered.map((project, index) => (
               <motion.div
                 key={project.id}
                 {...slideInUp}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Card className="h-full flex flex-col bg-sm-surface-elevated border-sm-border-default hover:border-sm-accent-primary/30 transition-all duration-300 overflow-hidden group hover:shadow-[var(--sm-shadow-md)]" style={{ boxShadow: 'var(--sm-shadow-sm)' }}>
                   {/* Header */}
@@ -365,11 +365,13 @@ export default function PortfolioPage() {
               We&apos;re always shipping. Follow along or get in touch.
             </p>
             <Button
-              onClick={scrollToContact}
+              asChild
               className="bg-sm-accent-inverse hover:bg-[#2CC4B0] text-sm-surface-inverse font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
             >
-              Schedule a Strategy Call
+              <a href="https://cal.com/steelmotionllc" target="_blank" rel="noopener noreferrer">
+                Book a Free 30-Minute Call
               <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
           </motion.div>
         </div>

@@ -53,7 +53,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <Navbar />
 
       {/* Article Header */}
-      <section className="pt-24 pb-8 bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}>
+      <section className="pt-24 pb-8 bg-sm-surface-inverse" style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <Link
@@ -151,7 +151,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     href={`/articles/${r.slug}`}
                     className="block bg-sm-surface-elevated border border-sm-border-default rounded-lg p-4 hover:border-sm-accent-primary/30 transition-all"
                   >
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium border mb-2 ${getCategoryColor(r.categoryColor)}`}>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border mb-2 ${getCategoryColor(r.categoryColor)}`}>
                       {r.category}
                     </span>
                     <h3 className="font-semibold text-sm text-sm-text-primary line-clamp-2">

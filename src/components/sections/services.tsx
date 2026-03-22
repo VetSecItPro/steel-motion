@@ -11,9 +11,9 @@ const services = [
     title: "AI Transformation & Automation",
     href: "/services/ai-transformation",
     items: [
-      { icon: Workflow, label: "Process automation and workflow optimization" },
+      { icon: BrainCircuit, label: "AI assistants that handle customer questions, sort emails, and process documents automatically" },
+      { icon: Workflow, label: "Automate the repetitive tasks eating up your team's day" },
       { icon: FileSearch, label: "Intelligent document processing" },
-      { icon: BrainCircuit, label: "LLM integration and AI agent development" },
     ],
   },
   {
@@ -21,10 +21,10 @@ const services = [
     title: "Custom Application Development",
     href: "/services/custom-development",
     items: [
-      { icon: Globe, label: "Full-stack web application development" },
-      { icon: Cloud, label: "SaaS product architecture and build" },
-      { icon: LinkIcon, label: "API design and third-party integrations" },
-      { icon: Cloud, label: "Cloud-native deployment on AWS/Vercel" },
+      { icon: Globe, label: "Custom web apps your team and customers actually use" },
+      { icon: Cloud, label: "Turn your business idea into a subscription software product" },
+      { icon: LinkIcon, label: "Connect your tools so data flows automatically between them" },
+      { icon: Cloud, label: "Hosted and managed — fast, secure, and always online" },
     ],
   },
 ]
@@ -41,7 +41,7 @@ export default function Services() {
             What We Do
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sm-text-primary">
-            Two Core Capabilities. <span className="text-sm-accent-primary">Done Well.</span>
+            Two Things We Do. <span className="text-sm-accent-primary">Done Right.</span>
           </h2>
           <p className="text-lg text-sm-text-secondary max-w-2xl mx-auto leading-relaxed">
             We focus on AI automation and custom application development. We do not spread thin across a dozen service lines. Deep expertise in two areas beats shallow knowledge in ten.
@@ -79,6 +79,13 @@ export default function Services() {
           ))}
         </div>
 
+        <motion.p
+          {...slideInUp}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center text-sm-text-secondary mt-12 max-w-3xl mx-auto leading-relaxed"
+        >
+          We work with small and mid-sized businesses across Dallas-Fort Worth — restaurants, dental offices, law firms, contractors, and e-commerce stores.
+        </motion.p>
       </div>
     </section>
   )

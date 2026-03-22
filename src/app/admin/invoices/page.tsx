@@ -128,7 +128,23 @@ export default function InvoicesPage() {
 
       <div className="bg-sm-surface-elevated border border-sm-border-default rounded-xl overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center text-sm-text-muted">Loading invoices...</div>
+          <div className="p-4">
+            <div className="border-b border-sm-border-default bg-sm-surface-secondary/50 px-4 py-3 flex gap-4">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="h-3 bg-sm-surface-secondary rounded animate-pulse flex-1" />
+              ))}
+            </div>
+            {[1, 2, 3, 4, 5].map((row) => (
+              <div key={row} className="px-4 py-4 flex gap-4 border-b border-sm-border-default last:border-b-0">
+                <div className="h-4 bg-sm-surface-secondary rounded animate-pulse w-24" />
+                <div className="h-4 bg-sm-surface-secondary rounded animate-pulse flex-1" />
+                <div className="h-4 bg-sm-surface-secondary rounded animate-pulse w-20" />
+                <div className="h-4 bg-sm-surface-secondary rounded animate-pulse w-16" />
+                <div className="h-4 bg-sm-surface-secondary rounded animate-pulse w-24" />
+                <div className="h-4 bg-sm-surface-secondary rounded animate-pulse w-24" />
+              </div>
+            ))}
+          </div>
         ) : invoices.length === 0 ? (
           <div className="p-12 text-center">
             <FileTextIcon />

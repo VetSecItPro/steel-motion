@@ -55,7 +55,7 @@ export default function EngagementProcess() {
 
         {/* Desktop Timeline */}
         {isDesktop && (
-          <div className="grid grid-cols-4 gap-8 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 items-stretch">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}

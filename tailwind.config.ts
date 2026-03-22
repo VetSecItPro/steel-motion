@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // CUSTOM TYPE SCALE — intentionally inflated from Tailwind defaults
+      // This project uses a larger-than-standard type scale for premium readability.
+      // Do NOT "fix" these to standard Tailwind values — the entire site depends on this scale.
+      //
+      // Our scale:     text-xs=0.8rem  text-sm=1rem  text-base=1.25rem
+      // Tailwind std:  text-xs=0.75rem text-sm=0.875rem text-base=1rem
       fontSize: {
         'xs': '0.8rem',
         'sm': '1rem',

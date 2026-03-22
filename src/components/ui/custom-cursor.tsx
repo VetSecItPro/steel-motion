@@ -1,11 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useDevice } from '@/lib/contexts/DeviceContext'
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const cursorX = useMotionValue(0)
+  const cursorY = useMotionValue(0)
+  const springX = useSpring(cursorX, { stiffness: 300, damping: 20 })
+  const springY = useSpring(cursorY, { stiffness: 300, damping: 20 })
   const [isHovering, setIsHovering] = useState(false)
   const { isDesktop } = useDevice()
 
@@ -13,7 +16,8 @@ const CustomCursor = () => {
     if (!isDesktop) return
 
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
+      cursorX.set(e.clientX - 16)
+      cursorY.set(e.clientY - 16)
     }
 
     // FIX-202: Use event delegation instead of querying elements on mount
@@ -30,7 +34,6 @@ const CustomCursor = () => {
       }
     }
 
-    // PERF: Independent mouse tracking — FIX-203 (acceptable, components render independently)
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseover', handleMouseOver)
 
@@ -38,7 +41,7 @@ const CustomCursor = () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseover', handleMouseOver)
     }
-  }, [isDesktop])
+  }, [isDesktop, cursorX, cursorY])
 
   if (!isDesktop) {
     return null
@@ -48,8 +51,8 @@ const CustomCursor = () => {
     <motion.div
       className="fixed top-0 left-0 w-8 h-8 rounded-full bg-white/20 pointer-events-none z-[9999]"
       style={{
-        translateX: position.x - 16,
-        translateY: position.y - 16,
+        translateX: springX,
+        translateY: springY,
       }}
       animate={{
         scale: isHovering ? 1.5 : 1,

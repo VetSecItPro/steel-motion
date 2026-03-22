@@ -117,7 +117,7 @@ export default function Contact() {
             Get Started
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-sm-text-inverse">
-            Let&apos;s Talk About Your Project
+            Tell Us What&apos;s Slowing Your Business Down
           </h2>
           <p className="text-xl text-sm-text-inverse-muted max-w-3xl mx-auto">
             Book a free 30-minute strategy call. No pitch deck, no pressure. We&apos;ll discuss your goals and tell you honestly if we&apos;re the right fit.
@@ -128,7 +128,7 @@ export default function Contact() {
           <motion.div
             {...slideInLeft}
           >
-            <Card className="bg-sm-surface-elevated border-sm-border-default">
+            <Card className="bg-sm-surface-elevated border border-sm-border-default/20">
               <CardHeader>
                 <CardTitle className="text-2xl text-sm-text-primary">Send us a message</CardTitle>
                 <CardDescription className="text-sm-text-secondary">
@@ -215,11 +215,13 @@ export default function Contact() {
                       </>
                     ) : (
                       <>
-                        Send Message
+                        Send My Message
                         <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </>
                     )}
                   </Button>
+
+                  <p className="text-center text-sm text-sm-text-secondary mt-2">We respond to every message within 24 hours.</p>
 
                   <div aria-live="polite" aria-atomic="true">
                     {submitStatus === 'success' && (
@@ -279,7 +281,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-sm-text-inverse">Service Area</p>
-                  <p className="text-sm-text-inverse-muted">Nationwide Remote (Responsive on Zoom as needed)</p>
+                  <p className="text-sm-text-inverse-muted">Remote-first, available for in-person meetings across DFW</p>
                 </div>
               </div>
             </div>

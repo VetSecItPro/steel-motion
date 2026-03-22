@@ -2,7 +2,7 @@ export default function ArticlesLoading() {
   return (
     <main className="min-h-screen bg-sm-surface-primary">
       {/* Hero skeleton */}
-      <div className="bg-[#0B1A2B] pt-32 pb-16">
+      <div className="bg-[var(--sm-surface-inverse)] pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">
           <div className="h-8 w-48 bg-white/10 rounded-full mx-auto mb-4 animate-pulse" />
           <div className="h-12 w-96 max-w-full bg-white/10 rounded-lg mx-auto mb-3 animate-pulse" />

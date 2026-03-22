@@ -129,7 +129,7 @@ export default async function AlbumDetailPage({ params }: PageProps) {
         {/* Hero */}
         <section
           className="pb-16 pt-8 bg-sm-surface-inverse"
-          style={{ background: 'linear-gradient(135deg, #0B1A2B 0%, #112240 50%, #0B1A2B 100%)' }}
+          style={{ background: 'linear-gradient(135deg, var(--sm-surface-inverse) 0%, var(--sm-surface-inverse-alt) 50%, var(--sm-surface-inverse) 100%)' }}
         >
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto grid md:grid-cols-[400px_1fr] gap-10 items-start">

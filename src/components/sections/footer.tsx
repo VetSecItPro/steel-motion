@@ -43,6 +43,7 @@ export default function Footer() {
 
         {/* Right: Veteran Badge + Copyright + Social */}
         <div className="flex items-center gap-4">
+          <span className="text-sm-text-inverse-muted text-xs">Dallas-Fort Worth, Texas</span>
           <div className="inline-flex items-center gap-1.5 bg-sm-surface-inverse-alt border border-sm-border-inverse rounded-full px-3 py-1">
             <div className="w-2 h-2 bg-sm-accent-inverse rounded-full animate-pulse"></div>
             <span className="text-sm-text-inverse-muted text-xs font-medium">VETERAN OWNED</span>
