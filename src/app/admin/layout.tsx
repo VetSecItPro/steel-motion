@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { FileText, Users, Lock, LogOut, Menu, X, LayoutDashboard, Kanban, UserPlus, Eye, EyeOff } from 'lucide-react';
+import { FileText, Users, Lock, LogOut, Menu, X, LayoutDashboard, Kanban, UserPlus, Eye, EyeOff, ChevronRight, Home } from 'lucide-react';
 
 function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [password, setPassword] = useState('');
@@ -95,9 +95,65 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { href: '/admin/pipeline', label: 'Pipeline', icon: Kanban },
   { href: '/admin/leads', label: 'Leads', icon: UserPlus },
-  { href: '/admin/invoices', label: 'Invoices', icon: FileText },
   { href: '/admin/clients', label: 'Clients', icon: Users },
+  { href: '/admin/invoices', label: 'Invoices', icon: FileText },
 ];
+
+const segmentLabels: Record<string, string> = {
+  admin: 'Admin',
+  pipeline: 'Pipeline',
+  leads: 'Leads',
+  invoices: 'Invoices',
+  clients: 'Clients',
+  proposals: 'Proposals',
+  new: 'New',
+};
+
+function Breadcrumbs({ pathname }: { pathname: string }) {
+  const segments = pathname.split('/').filter(Boolean);
+
+  // Don't show breadcrumbs on the dashboard root
+  if (segments.length <= 1) return null;
+
+  const crumbs: { label: string; href: string }[] = [];
+
+  // Always start with Dashboard
+  crumbs.push({ label: 'Dashboard', href: '/admin' });
+
+  // Build crumbs from segments after "admin"
+  for (let i = 1; i < segments.length; i++) {
+    const seg = segments[i];
+    const href = '/' + segments.slice(0, i + 1).join('/');
+    const label = segmentLabels[seg] || (seg.length > 8 ? seg.slice(0, 8) + '…' : seg);
+    crumbs.push({ label, href });
+  }
+
+  return (
+    <nav aria-label="Breadcrumb" className="mb-4">
+      <ol className="flex items-center gap-1.5 text-sm">
+        {crumbs.map((crumb, i) => {
+          const isLast = i === crumbs.length - 1;
+          return (
+            <li key={crumb.href} className="flex items-center gap-1.5">
+              {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-sm-text-muted flex-shrink-0" />}
+              {i === 0 && <Home className="w-3.5 h-3.5 text-sm-text-muted flex-shrink-0 mr-0.5" />}
+              {isLast ? (
+                <span className="text-sm-text-primary font-medium">{crumb.label}</span>
+              ) : (
+                <Link
+                  href={crumb.href}
+                  className="text-sm-text-secondary hover:text-sm-accent-primary transition-colors"
+                >
+                  {crumb.label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -195,6 +251,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Main content */}
         <main className="flex-1 lg:ml-64 min-h-screen">
           <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+            <Breadcrumbs pathname={pathname} />
             {children}
           </div>
         </main>
