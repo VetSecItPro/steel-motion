@@ -93,6 +93,7 @@ const projects: Project[] = [
     statusBg: "bg-sm-status-info-light",
     statusText: "text-sm-status-info",
     gradient: "from-violet-500 via-purple-500 to-purple-600",
+    logo: "/images/styrby-logo.png",
     href: "https://www.styrbyapp.com",
   },
   {

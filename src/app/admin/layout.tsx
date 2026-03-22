@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { FileText, Users, Lock, LogOut, Menu, X, LayoutDashboard, Kanban, UserPlus } from 'lucide-react';
+import { FileText, Users, Lock, LogOut, Menu, X, LayoutDashboard, Kanban, UserPlus, Eye, EyeOff } from 'lucide-react';
 
 function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -53,16 +54,26 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
             <label htmlFor="admin-password" className="sr-only">Password</label>
-            <Input
-              id="admin-password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
-              autoComplete="current-password"
-              autoFocus
-            />
+            <div className="relative">
+              <Input
+                id="admin-password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary pr-10"
+                autoComplete="current-password"
+                autoFocus
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-sm-text-muted hover:text-sm-text-secondary transition-colors"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
             {error && (
               <p className="text-sm text-sm-status-error" role="alert">{error}</p>
             )}
