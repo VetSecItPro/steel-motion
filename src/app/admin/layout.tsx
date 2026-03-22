@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { FileText, Users, Lock, LogOut, Menu, X } from 'lucide-react';
+import { FileText, Users, Lock, LogOut, Menu, X, LayoutDashboard, Kanban, UserPlus } from 'lucide-react';
 
 function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [password, setPassword] = useState('');
@@ -81,6 +81,9 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
 }
 
 const navItems = [
+  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
+  { href: '/admin/pipeline', label: 'Pipeline', icon: Kanban },
+  { href: '/admin/leads', label: 'Leads', icon: UserPlus },
   { href: '/admin/invoices', label: 'Invoices', icon: FileText },
   { href: '/admin/clients', label: 'Clients', icon: Users },
 ];
@@ -150,7 +153,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <nav className="flex-1 p-4 space-y-1">
             {navItems.map(item => {
-              const isActive = pathname.startsWith(item.href);
+              const isActive = item.exact ? pathname === item.href : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
@@ -198,7 +201,7 @@ function MobileNav({ pathname, onNavigate }: { pathname: string; onNavigate: () 
       </div>
       <nav className="space-y-1">
         {navItems.map(item => {
-          const isActive = pathname.startsWith(item.href);
+          const isActive = item.exact ? pathname === item.href : pathname.startsWith(item.href);
           return (
             <Link
               key={item.href}
