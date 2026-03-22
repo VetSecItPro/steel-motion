@@ -21,28 +21,10 @@ interface SkillsPageClientProps {
 
 const GITHUB_REPO = 'https://github.com/VetSecItPro/claude-code-skills'
 
-const phaseLabels: Record<string, string> = {
-  plan: 'Plan',
-  build: 'Build',
-  design: 'Design',
-  quality: 'Quality',
-  security: 'Security',
-  ship: 'Ship',
-}
-
 export default function SkillsPageClient({ skills }: SkillsPageClientProps) {
   const [filter, setFilter] = useState<SkillCategory | 'all'>('all')
 
   const filtered = filter === 'all' ? skills : skills.filter((s) => s.category === filter)
-
-  const scrollToContact = () => {
-    const el = document.getElementById('contact')
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      window.location.assign('/#contact')
-    }
-  }
 
   return (
     <main className="min-h-screen bg-sm-surface-primary" id="main-content">

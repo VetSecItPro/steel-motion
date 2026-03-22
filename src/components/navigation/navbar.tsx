@@ -261,7 +261,7 @@ export default function Navbar() {
           >
             <div className="px-4 py-6 space-y-4">
               <div className="space-y-2">
-                <div className="text-sm-text-primary font-medium py-2">Solutions</div>
+                <div className="text-sm-text-primary font-medium py-2" role="heading" aria-level={2}>Solutions</div>
                 <div className="pl-4 space-y-2">
                   <Link
                     href="/services/ai-transformation"

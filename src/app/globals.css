@@ -86,7 +86,7 @@
   /* 30% — Text & Structure */
   --sm-text-primary: #0F1B2D;
   --sm-text-secondary: #475569;
-  --sm-text-muted: #94A3B8;
+  --sm-text-muted: #64748B;
   --sm-text-inverse: #F1F5F9;
   --sm-text-inverse-muted: #94A3B8;
   --sm-border-default: #E2E8F0;
@@ -235,6 +235,13 @@
   top: 0;
   outline: 2px solid var(--sm-accent-primary);
   outline-offset: 2px;
+}
+
+/* Focus ring visibility on dark backgrounds */
+.bg-sm-surface-inverse [data-focus-visible],
+.bg-sm-surface-inverse :focus-visible,
+[class*="bg-sm-surface-inverse"] :focus-visible {
+  --tw-ring-color: rgba(255, 255, 255, 0.7);
 }
 
 /* A11Y: Respect prefers-reduced-motion — FIX-318/332 */

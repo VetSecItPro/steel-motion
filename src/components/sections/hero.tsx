@@ -5,13 +5,6 @@ import { ArrowRight, MapPin, Phone, Award, Flag, Shield, Rocket, CheckCircle } f
 import Image from "next/image"
 
 export default function Hero() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
     <section
       id="hero"
