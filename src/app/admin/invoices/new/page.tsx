@@ -209,6 +209,7 @@ export default function NewInvoicePage() {
           size="icon"
           onClick={() => router.back()}
           className="text-sm-text-secondary hover:text-sm-text-primary"
+          aria-label="Go back"
         >
           <ArrowLeft className="w-5 h-5" />
         </Button>
@@ -225,7 +226,9 @@ export default function NewInvoicePage() {
 
           {!showNewClient ? (
             <div className="space-y-3">
+              <label htmlFor="select-client" className="sr-only">Select a client</label>
               <select
+                id="select-client"
                 value={selectedClientId}
                 onChange={(e) => setSelectedClientId(e.target.value)}
                 className="w-full h-9 rounded-md border border-sm-border-default bg-sm-surface-primary px-3 text-sm text-sm-text-primary focus:outline-none focus:ring-2 focus:ring-sm-accent-primary/50"
@@ -248,31 +251,37 @@ export default function NewInvoicePage() {
             <div className="space-y-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-sm-text-secondary mb-1">Name *</label>
+                  <label htmlFor="new-client-name" className="block text-xs font-medium text-sm-text-secondary mb-1">Name *</label>
                   <Input
+                    id="new-client-name"
                     value={newClientName}
                     onChange={e => setNewClientName(e.target.value)}
                     placeholder="John Doe"
+                    autoComplete="name"
                     className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-sm-text-secondary mb-1">Email *</label>
+                  <label htmlFor="new-client-email" className="block text-xs font-medium text-sm-text-secondary mb-1">Email *</label>
                   <Input
+                    id="new-client-email"
                     type="email"
                     value={newClientEmail}
                     onChange={e => setNewClientEmail(e.target.value)}
                     placeholder="john@example.com"
+                    autoComplete="email"
                     className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">Company</label>
+                <label htmlFor="new-client-company" className="block text-xs font-medium text-sm-text-secondary mb-1">Company</label>
                 <Input
+                  id="new-client-company"
                   value={newClientCompany}
                   onChange={e => setNewClientCompany(e.target.value)}
                   placeholder="Acme Inc."
+                  autoComplete="organization"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
@@ -295,7 +304,9 @@ export default function NewInvoicePage() {
               <div key={index} className="border border-sm-border-default rounded-lg p-4 bg-sm-surface-primary">
                 {templates.length > 0 && (
                   <div className="mb-3">
+                    <label htmlFor={`template-${index}`} className="sr-only">Service template for line item {index + 1}</label>
                     <select
+                      id={`template-${index}`}
                       onChange={(e) => applyTemplate(index, e.target.value)}
                       className="w-full h-8 rounded-md border border-sm-border-default bg-sm-surface-elevated px-3 text-xs text-sm-text-secondary focus:outline-none focus:ring-2 focus:ring-sm-accent-primary/50"
                       defaultValue=""
@@ -311,8 +322,9 @@ export default function NewInvoicePage() {
                 )}
                 <div className="grid grid-cols-12 gap-3">
                   <div className="col-span-12 sm:col-span-6">
-                    <label className="block text-xs font-medium text-sm-text-secondary mb-1">Description</label>
+                    <label htmlFor={`item-desc-${index}`} className="block text-xs font-medium text-sm-text-secondary mb-1">Description</label>
                     <Input
+                      id={`item-desc-${index}`}
                       value={item.description}
                       onChange={e => updateLineItem(index, 'description', e.target.value)}
                       placeholder="Service description"
@@ -320,8 +332,9 @@ export default function NewInvoicePage() {
                     />
                   </div>
                   <div className="col-span-4 sm:col-span-2">
-                    <label className="block text-xs font-medium text-sm-text-secondary mb-1">Qty</label>
+                    <label htmlFor={`item-qty-${index}`} className="block text-xs font-medium text-sm-text-secondary mb-1">Qty</label>
                     <Input
+                      id={`item-qty-${index}`}
                       type="number"
                       min={1}
                       value={item.quantity}
@@ -330,8 +343,9 @@ export default function NewInvoicePage() {
                     />
                   </div>
                   <div className="col-span-5 sm:col-span-3">
-                    <label className="block text-xs font-medium text-sm-text-secondary mb-1">Unit Price ($)</label>
+                    <label htmlFor={`item-price-${index}`} className="block text-xs font-medium text-sm-text-secondary mb-1">Unit Price ($)</label>
                     <Input
+                      id={`item-price-${index}`}
                       type="number"
                       min={0}
                       step={0.01}
@@ -347,6 +361,7 @@ export default function NewInvoicePage() {
                       onClick={() => removeLineItem(index)}
                       disabled={items.length <= 1}
                       className="h-9 w-9 text-sm-status-error hover:text-sm-status-error disabled:opacity-30"
+                      aria-label={`Remove line item ${index + 1}`}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -383,8 +398,9 @@ export default function NewInvoicePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-sm-text-secondary mb-1">Payment Terms</label>
+              <label htmlFor="payment-terms" className="block text-xs font-medium text-sm-text-secondary mb-1">Payment Terms</label>
               <select
+                id="payment-terms"
                 value={paymentTerms}
                 onChange={e => setPaymentTerms(e.target.value)}
                 className="w-full h-9 rounded-md border border-sm-border-default bg-sm-surface-primary px-3 text-sm text-sm-text-primary focus:outline-none focus:ring-2 focus:ring-sm-accent-primary/50"
@@ -397,8 +413,9 @@ export default function NewInvoicePage() {
           </div>
 
           <div className="mt-4">
-            <label className="block text-xs font-medium text-sm-text-secondary mb-1">Notes</label>
+            <label htmlFor="invoice-notes" className="block text-xs font-medium text-sm-text-secondary mb-1">Notes</label>
             <Textarea
+              id="invoice-notes"
               value={notes}
               onChange={e => setNotes(e.target.value)}
               placeholder="Any additional notes for the client..."

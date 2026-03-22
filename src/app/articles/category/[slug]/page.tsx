@@ -99,7 +99,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const posts = getPostsByCategory(current.name)
 
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
 
       {/* Hero */}

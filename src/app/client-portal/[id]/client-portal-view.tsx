@@ -132,7 +132,7 @@ export default function ClientPortalView({
         </div>
       )}
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12" id="main-content">
         {/* Invoice meta */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
           <div>

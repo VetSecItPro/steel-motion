@@ -87,6 +87,7 @@ export default function ClientsPage() {
         <Button
           onClick={() => setShowForm(!showForm)}
           className="bg-sm-accent-primary hover:bg-sm-accent-primary-hover text-white"
+          aria-expanded={showForm}
         >
           {showForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
           {showForm ? 'Cancel' : 'Add Client'}
@@ -100,78 +101,94 @@ export default function ClientsPage() {
           <form onSubmit={handleCreate} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">Name *</label>
+                <label htmlFor="client-name" className="block text-xs font-medium text-sm-text-secondary mb-1">Name *</label>
                 <Input
+                  id="client-name"
                   required
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="John Doe"
+                  autoComplete="name"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">Email *</label>
+                <label htmlFor="client-email" className="block text-xs font-medium text-sm-text-secondary mb-1">Email *</label>
                 <Input
+                  id="client-email"
                   required
                   type="email"
                   value={formData.email}
                   onChange={e => setFormData({ ...formData, email: e.target.value })}
                   placeholder="john@example.com"
+                  autoComplete="email"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">Company</label>
+                <label htmlFor="client-company" className="block text-xs font-medium text-sm-text-secondary mb-1">Company</label>
                 <Input
+                  id="client-company"
                   value={formData.company}
                   onChange={e => setFormData({ ...formData, company: e.target.value })}
                   placeholder="Acme Inc."
+                  autoComplete="organization"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">Phone</label>
+                <label htmlFor="client-phone" className="block text-xs font-medium text-sm-text-secondary mb-1">Phone</label>
                 <Input
+                  id="client-phone"
                   value={formData.phone}
                   onChange={e => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="(555) 123-4567"
+                  autoComplete="tel"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">Address</label>
+                <label htmlFor="client-address" className="block text-xs font-medium text-sm-text-secondary mb-1">Address</label>
                 <Input
+                  id="client-address"
                   value={formData.address_line1}
                   onChange={e => setFormData({ ...formData, address_line1: e.target.value })}
                   placeholder="123 Main St"
+                  autoComplete="street-address"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-sm-text-secondary mb-1">City</label>
+                <label htmlFor="client-city" className="block text-xs font-medium text-sm-text-secondary mb-1">City</label>
                 <Input
+                  id="client-city"
                   value={formData.city}
                   onChange={e => setFormData({ ...formData, city: e.target.value })}
                   placeholder="Dallas"
+                  autoComplete="address-level2"
                   className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-sm-text-secondary mb-1">State</label>
+                  <label htmlFor="client-state" className="block text-xs font-medium text-sm-text-secondary mb-1">State</label>
                   <Input
+                    id="client-state"
                     value={formData.state}
                     onChange={e => setFormData({ ...formData, state: e.target.value })}
                     placeholder="TX"
+                    autoComplete="address-level1"
                     className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-sm-text-secondary mb-1">ZIP</label>
+                  <label htmlFor="client-zip" className="block text-xs font-medium text-sm-text-secondary mb-1">ZIP</label>
                   <Input
+                    id="client-zip"
                     value={formData.zip}
                     onChange={e => setFormData({ ...formData, zip: e.target.value })}
                     placeholder="75001"
+                    autoComplete="postal-code"
                     className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
                   />
                 </div>

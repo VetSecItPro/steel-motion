@@ -189,7 +189,7 @@ export default function ServicePage({
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className="flex items-start gap-3"
                   >
-                    <CheckCircle className="w-6 h-6 text-sm-accent-primary flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-6 h-6 text-sm-accent-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                     <p className="text-sm-text-secondary leading-relaxed">{benefit}</p>
                   </motion.div>
                 ))}
@@ -209,7 +209,7 @@ export default function ServicePage({
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className="flex items-center gap-3"
                   >
-                    <CheckCircle className="w-5 h-5 text-sm-accent-primary flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-sm-accent-primary flex-shrink-0" aria-hidden="true" />
                     <p className="text-sm-text-secondary">{industry}</p>
                   </motion.div>
                 ))}

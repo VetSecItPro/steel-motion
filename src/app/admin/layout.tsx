@@ -52,16 +52,19 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
             Enter your password to continue
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
+            <label htmlFor="admin-password" className="sr-only">Password</label>
             <Input
+              id="admin-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="bg-sm-surface-primary border-sm-border-default text-sm-text-primary"
+              autoComplete="current-password"
               autoFocus
             />
             {error && (
-              <p className="text-sm text-sm-status-error">{error}</p>
+              <p className="text-sm text-sm-status-error" role="alert">{error}</p>
             )}
             <Button
               type="submit"
@@ -120,6 +123,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="text-sm-text-secondary hover:text-sm-text-primary"
+          aria-label="Toggle admin menu"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -127,8 +132,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setMobileMenuOpen(false)}>
-          <div className="w-64 h-full bg-sm-surface-elevated border-r border-sm-border-default p-4" onClick={e => e.stopPropagation()}>
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setMobileMenuOpen(false)} onKeyDown={(e) => { if (e.key === 'Escape') setMobileMenuOpen(false); }} role="presentation">
+          <div className="w-64 h-full bg-sm-surface-elevated border-r border-sm-border-default p-4" onClick={e => e.stopPropagation()} role="dialog" aria-label="Admin navigation menu">
             <MobileNav pathname={pathname} onNavigate={() => setMobileMenuOpen(false)} />
           </div>
         </div>

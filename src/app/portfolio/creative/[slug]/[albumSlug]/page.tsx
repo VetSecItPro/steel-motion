@@ -93,7 +93,7 @@ export default async function AlbumDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="min-h-screen bg-sm-surface-primary">
+      <main className="min-h-screen bg-sm-surface-primary" id="main-content">
         <Navbar />
 
         {/* Breadcrumb */}
@@ -180,6 +180,7 @@ export default async function AlbumDetailPage({ params }: PageProps) {
                       href={album.spotifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Listen to ${album.name} on Spotify`}
                       className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-full px-5 py-2 transition-colors"
                     >
                       <SpotifyIcon className="w-6 h-6 text-[#1DB954]" />
@@ -194,6 +195,7 @@ export default async function AlbumDetailPage({ params }: PageProps) {
                       href={album.appleMusicUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Listen to ${album.name} on Apple Music`}
                       className="inline-flex items-center gap-2.5 bg-black hover:bg-neutral-800 text-white rounded-full px-5 py-2 transition-colors"
                     >
                       <AppleMusicIcon className="w-6 h-6" />

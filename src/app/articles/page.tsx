@@ -101,7 +101,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { posts, totalCount, totalPages, currentPage } = result
 
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
 
       {/* Hero */}

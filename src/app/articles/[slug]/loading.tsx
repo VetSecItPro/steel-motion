@@ -1,6 +1,6 @@
 export default function ArticleLoading() {
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       {/* Hero image skeleton */}
       <div className="py-8">
         <div className="container mx-auto px-4">

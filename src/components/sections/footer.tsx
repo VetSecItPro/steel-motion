@@ -1,5 +1,3 @@
-'use client'
-
 import { Linkedin, Mail } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -27,7 +25,7 @@ export default function Footer() {
             sizes="28px"
             className="object-contain"
           />
-          <nav className="flex flex-wrap items-center gap-x-1 gap-y-2">
+          <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-x-1 gap-y-2">
             {footerLinks.map((link, i) => (
               <span key={link.href} className="flex items-center gap-1">
                 <Link href={link.href} className="text-sm-text-inverse-muted hover:text-sm-text-inverse text-sm transition-colors">

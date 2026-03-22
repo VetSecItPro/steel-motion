@@ -109,7 +109,7 @@ export default function SoftwarePortfolioPage() {
   }
 
   return (
-    <main className="min-h-screen bg-sm-surface-primary">
+    <main className="min-h-screen bg-sm-surface-primary" id="main-content">
       <Navbar />
 
       {/* Breadcrumb */}
