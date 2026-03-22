@@ -19,7 +19,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Custom Software Development | Steel Motion LLC",
     description: "We build web applications, APIs, and internal tools from scratch. You own the code. Fixed-price engagements.",
-  }
+  },
+  alternates: {
+    canonical: "https://steelmotionllc.com/services/custom-development",
+  },
 }
 
 export default function CustomDevelopmentPage() {

@@ -19,7 +19,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Automation Services | Steel Motion LLC",
     description: "We build AI automation systems that reduce manual work, cut processing time, and produce measurable ROI.",
-  }
+  },
+  alternates: {
+    canonical: "https://steelmotionllc.com/services/ai-transformation",
+  },
 }
 
 export default function AITransformationPage() {
