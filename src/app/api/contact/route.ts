@@ -158,6 +158,20 @@ export async function POST(request: NextRequest) {
           .from('sm_contact_inquiries')
           .update({ email_sent: true, resend_id: resendId || null })
           .eq('id', rowId);
+
+        // Auto-create CRM lead from contact submission
+        await supabaseAdmin
+          .from('sm_leads')
+          .insert({
+            name: sanitizedName,
+            email: sanitizedEmail,
+            company: sanitizedCompany || null,
+            source: 'website',
+            status: 'new',
+            estimated_value: 0,
+            notes: sanitizedMessage,
+            contact_inquiry_id: rowId,
+          });
       }
     }
 
