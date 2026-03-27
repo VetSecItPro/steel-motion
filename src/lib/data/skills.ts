@@ -105,17 +105,6 @@ export const skills: Skill[] = [
     highlights: ['All viewport testing', 'Trend research', 'Component audit'],
     whenToUse: 'Running a full UI/UX audit across all viewports',
   },
-  {
-    name: '/landing-page',
-    slug: 'landing-page',
-    title: 'Landing Page Builder',
-    description: 'Generate, optimize, and audit conversion-optimized landing pages with current design trends.',
-    category: 'design',
-    phase: 'design',
-    icon: 'Layout',
-    highlights: ['Conversion scoring', 'A/B test suggestions', 'Trend-aware', '4 modes'],
-    whenToUse: 'Building or optimizing landing pages for conversion',
-  },
   // ── Quality ─────────────────────────────────────────
   {
     name: '/smoketest',

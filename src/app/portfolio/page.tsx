@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, ExternalLink, Code, Music, Terminal, Package, Shield, Flag, GitBranch, Gauge, TestTubes } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { skillCount } from "@/lib/data/skills"
 import Navbar from "@/components/navigation/navbar"
 import { slideInUp } from "@/lib/animations"
 
@@ -101,7 +102,7 @@ const projects: Project[] = [
     title: "Claude Code Skills",
     subtitle: "Open Source DevOps Framework",
     description:
-      "24 production-tested Claude Code skills across development, quality, security, design, and planning. All free on GitHub, backed by 3 shared standards protocols.",
+      `${skillCount} production-tested Claude Code skills across development, quality, security, design, and planning. All free on GitHub, backed by 4 shared standards protocols.`,
     category: "software",
     categoryLabel: "Open Source",
     categoryIcon: Terminal,

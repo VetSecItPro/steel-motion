@@ -44,7 +44,7 @@ export default function ClaudeCodeSkillsPage() {
       name: 'Open Source',
       price: '0',
       priceCurrency: 'USD',
-      description: `${skillCount} production-tested skills + 3 standards protocols`,
+      description: `${skillCount} production-tested skills + 4 standards protocols`,
     },
   }
 
