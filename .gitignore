@@ -6,6 +6,7 @@
 !.yarn/versions
 .a11y-reports/
 .claude/
+.claude-config-backup/
 .cleancode-reports/
 .content-cache.json
 .deps-reports/
