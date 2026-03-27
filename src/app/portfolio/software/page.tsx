@@ -8,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navigation/navbar"
 import { slideInUp } from "@/lib/animations"
+import { skillCount } from "@/lib/data/skills"
 
 interface SoftwareProduct {
   name: string
@@ -87,7 +88,7 @@ const products: SoftwareProduct[] = [
     name: "Claude Code Skills",
     tagline: "Open Source DevOps Framework",
     description:
-      "33 production-tested Claude Code skills for development, quality, security, design, and planning. 10 free on GitHub, 12 premium via email. Backed by 3 shared standards protocols for consistent behavior across all skills.",
+      `${skillCount} production-tested Claude Code skills for development, quality, security, design, and planning. All free on GitHub, backed by 4 shared standards protocols for consistent behavior across all skills.`,
     techStack: "Claude Code, Markdown, Bash, GitHub Actions, Supabase, Resend",
     status: "Open Source",
     statusBg: "bg-sm-status-success-light",
