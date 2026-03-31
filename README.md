@@ -6,7 +6,7 @@ Veteran-owned technology consulting. Software development, cloud architecture, a
 
 ## What We Build
 
-Steel Motion builds software products and provides consulting for businesses that need AI automation, operations intelligence, and custom development. We also maintain a collection of 26 open-source Claude Code skills that cover the full software development lifecycle.
+Steel Motion builds software products and provides consulting for businesses that need AI automation, operations intelligence, and custom development. We also maintain a collection of 25 open-source Claude Code skills that cover the full software development lifecycle.
 
 ## Tech Stack
 
@@ -20,7 +20,7 @@ Steel Motion builds software products and provides consulting for businesses tha
 
 ## Claude Code Skills Collection
 
-26 production-tested slash commands for Claude Code. Each skill handles one job in the development pipeline, from planning through shipping. They share four common standards (status updates, context management, agent orchestration, cleanup protocol, SITREP format) so they work the same way and clean up after themselves.
+25 production-tested slash commands for Claude Code. Each skill handles one job in the development pipeline, from planning through shipping. They share five common standards (status updates, context management, agent orchestration, cleanup protocol, SITREP format) so they work the same way and clean up after themselves.
 
 ### Plan
 
