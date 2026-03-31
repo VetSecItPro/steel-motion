@@ -184,7 +184,7 @@ export default function PortfolioPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
               { icon: Package, label: "4 SaaS Products", desc: "Kaulby, Clarus, Rowan, Styrby — all in production" },
-              { icon: Terminal, label: "24 Claude Code Skills", desc: "Internal Dev Tools — Custom development automation for faster, safer shipping" },
+              { icon: Terminal, label: `${skillCount} Claude Code Skills`, desc: "Internal Dev Tools — Custom development automation for faster, safer shipping" },
               { icon: Music, label: "2 AI-Assisted Bands", desc: "Iron Pulse, Other Life. Full albums, AI-produced" },
               { icon: Flag, label: "20yr Army IT + CISSP", desc: "Veteran-owned, cybersecurity background" },
             ].map((item, index) => (
